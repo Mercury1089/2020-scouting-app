@@ -418,10 +418,10 @@
 
         android:inputType="number"
 
-        android:nextFocusDown="@+id/SecondAlliancePartnerInput"
-
-
         android:maxLength="4"
+
+
+        android:nextFocusDown="@+id/SecondAlliancePartnerInput"
 
         android:tag="Alliance1"
 
@@ -477,18 +477,13 @@
         android:layout_height="wrap_content"
 
 
-        android:layout_marginStart="296dp"
-
-
         android:text="@string/AllianceColor"
 
 
         android:textColor="@color/bootstrap_dropdown_divider"
 
 
-        app:layout_constraintStart_toEndOf="@+id/IDAlliancePartners"
-
-
+        app:layout_constraintStart_toStartOf="@+id/AllianceColors"
         app:layout_constraintTop_toTopOf="@+id/IDAlliancePartners" />
 
 
@@ -504,12 +499,6 @@
         android:layout_height="wrap_content"
 
 
-        android:layout_marginTop="24dp"
-
-
-        android:layout_marginEnd="36dp"
-
-
         android:orientation="horizontal"
 
 
@@ -517,14 +506,8 @@
 
 
         app:bootstrapSize="lg"
-
-
-        app:layout_constraintEnd_toEndOf="parent"
-
-
-        app:layout_constraintTop_toTopOf="@+id/IDAllianceColor"
-
-
+        app:layout_constraintStart_toStartOf="@+id/NoShowSwitch"
+        app:layout_constraintTop_toTopOf="@+id/FirstAlliancePartnerInput"
         app:roundedCorners="true">
 
 
@@ -647,90 +630,6 @@
         app:layout_constraintTop_toBottomOf="@+id/IDPrepopulated" />
 
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-
-
-        android:id="@+id/LeftOrRight"
-
-
-        android:layout_width="wrap_content"
-
-
-        android:layout_height="wrap_content"
-
-
-        android:layout_marginStart="24dp"
-
-
-        android:layout_marginTop="8dp"
-
-
-        android:orientation="horizontal"
-
-
-        app:bootstrapBrand="success"
-
-
-        app:bootstrapSize="lg"
-
-
-        app:layout_constraintStart_toStartOf="parent"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/IDPrepopulatedDirections"
-
-
-        app:roundedCorners="true">
-
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-
-            android:id="@+id/PanelButton"
-
-
-            android:layout_width="wrap_content"
-
-
-            android:layout_height="match_parent"
-
-
-            android:background="@color/bootstrap_brand_success"
-
-
-            android:onClick="panelClick"
-
-            android:tag="PanelToggle"
-
-            android:text="@string/Panel"
-
-            android:textSize="12sp" />
-
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-
-            android:id="@+id/CargoButton"
-
-
-            android:layout_width="wrap_content"
-
-
-            android:layout_height="match_parent"
-
-
-            android:onClick="cargoClick"
-
-            android:tag="CargoToggle"
-
-            android:text="@string/Cargo"
-
-            android:textSize="12sp" />
-
-
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
-
     <TextView
 
 
@@ -746,9 +645,6 @@
         android:layout_marginStart="16dp"
 
 
-        android:layout_marginTop="32dp"
-
-
         android:fontFamily="sans-serif-black"
 
 
@@ -761,7 +657,7 @@
         app:layout_constraintStart_toStartOf="parent"
 
 
-        app:layout_constraintTop_toBottomOf="@+id/LeftOrRight" />
+        tools:layout_editor_absoluteY="512dp" />
 
 
     <TextView
@@ -779,610 +675,40 @@
         android:layout_marginStart="16dp"
 
 
+        android:layout_marginTop="16dp"
+
+
         android:text="@string/SetupDirections"
 
 
         android:textColor="@color/bootstrap_dropdown_divider"
-
-
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDStartingPosition" /><![CDATA[
 
 
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPosition" />
 
 
-    <View
 
 
-        android:id="@+id/LL2"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="87dp"
-
-
-        android:layout_marginStart="64dp"
-
-
-        android:layout_marginTop="8dp"
-
-
-        android:background="@color/bootstrap_brand_info"
-
-
-        android:onClick="LL2Click"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toStartOf="parent"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleLL2"
-
-        android:layout_width="87dp"
-
-        android:layout_height="87dp"
-
-        android:layout_marginStart="64dp"
-
-        android:layout_marginTop="8dp"
-
-        android:layout_marginBottom="10dp"
-
-        android:tag="LL2"
-
-        android:visibility="invisible"
-
-        app:layout_constraintBottom_toTopOf="@+id/L2M1"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections"
-
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <View
-
-
-        android:id="@+id/L2M1"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="87dp"
-
-
-        android:layout_marginTop="10dp"
-
-
-        android:layout_marginEnd="12dp"
-
-
-        android:background="@color/bootstrap_brand_info"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintEnd_toStartOf="@+id/CircleLC1"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/LL2" />
-
-
-    <View
-
-
-        android:id="@+id/LR2"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="87dp"
-
-
-        android:layout_marginStart="64dp"
-
-
-        android:layout_marginTop="10dp"
-
-
-        android:background="@color/bootstrap_brand_info"
-
-
-        android:onClick="LR2Click"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toStartOf="parent"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/L2M1" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleLR2"
-
-        android:layout_width="87dp"
-
-        android:layout_height="87dp"
-
-        android:layout_marginStart="64dp"
-
-        android:layout_marginTop="10dp"
-
-        android:layout_marginEnd="12dp"
-
-        android:tag="LR2"
-
-        android:visibility="invisible"
-
-        app:layout_constraintEnd_toStartOf="@+id/CircleLR1"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/L2M1" />
-
-
-    <View
-
-
-        android:id="@+id/LL1"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="95dp"
-
-
-        android:layout_marginStart="12dp"
-
-
-        android:background="@color/bootstrap_brand_info"
-
-
-        android:onClick="LL1Click"
-
-
-        android:tag="LL1"
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/LL2"
-
-
-        app:layout_constraintTop_toTopOf="@+id/LL2" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleLL1"
-
-        android:layout_width="87dp"
-
-        android:layout_height="95dp"
-
-        android:layout_marginStart="12dp"
-
-        android:layout_marginTop="8dp"
-
-        android:tag="LL1"
-
-        android:visibility="invisible"
-
-        app:layout_constraintStart_toEndOf="@+id/CircleLL2"
-
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
-
-
-    <View
-
-
-        android:id="@+id/LC1"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="95dp"
-
-
-        android:layout_marginStart="12dp"
-
-
-        android:background="@color/bootstrap_brand_info"
-
-
-        android:onClick="LC1Click"
-
-
-        android:tag="LC1"
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/L2M1"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/LL1" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleLC1"
-
-        android:layout_width="87dp"
-
-        android:layout_height="95dp"
-
-        android:layout_marginStart="12dp"
-
-        android:tag="LC1"
-
-        android:visibility="invisible"
-
-        app:layout_constraintStart_toEndOf="@+id/CircleLL2"
-
-        app:layout_constraintTop_toBottomOf="@+id/CircleLL1" />
-
-
-    <View
-
-
-        android:id="@+id/LR1"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="95dp"
-
-
-        android:layout_marginStart="12dp"
-
-
-        android:background="@color/bootstrap_brand_info"
-
-
-        android:onClick="LR1Click"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/LR2"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/LC1" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleLR1"
-
-        android:layout_width="87dp"
-
-        android:layout_height="95dp"
-
-        android:layout_marginStart="12dp"
-
-        android:tag="LR1"
-
-        android:visibility="invisible"
-
-        app:layout_constraintStart_toEndOf="@+id/CircleLL2"
-
-        app:layout_constraintTop_toBottomOf="@+id/CircleLC1" />
-
-
-    <View
-
-
-        android:id="@+id/RR1"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="95dp"
-
-
-        android:layout_marginStart="64dp"
-
-
-        android:background="@color/bootstrap_brand_danger"
-
-
-        android:onClick="RR1Click"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/LL1"
-
-
-        app:layout_constraintTop_toTopOf="@+id/RR2" />
     app:layout_constraintTop_toTopOf="@+id/RR2" />
 
 
-    <com.mercury1089.scoutingapp2019.CustomView
 
-        android:id="@+id/CircleRR1"
 
-        android:layout_width="87dp"
 
-        android:layout_height="95dp"
 
-        android:layout_marginStart="64dp"
 
-        android:layout_marginTop="8dp"
 
-        android:onClick="RR1Click"
 
-        android:tag="RR1"
 
-        android:visibility="invisible"
 
-        app:layout_constraintStart_toEndOf="@+id/CircleLL1"
 
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
 
-    <View
 
 
-        android:id="@+id/RC1"
 
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="95dp"
-
-
-        android:layout_marginStart="64dp"
-
-
-        android:background="@color/bootstrap_brand_danger"
-
-
-        android:onClick="RC1Click"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/LC1"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/LL1" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleRC1"
-
-        android:layout_width="87dp"
-
-        android:layout_height="95dp"
-
-        android:layout_marginStart="64dp"
-
-        android:tag="RC1"
-
-        android:visibility="invisible"
-
-        app:layout_constraintStart_toEndOf="@+id/CircleLL1"
-
-        app:layout_constraintTop_toBottomOf="@+id/CircleRR1" />
-
-
-    <View
-
-
-        android:id="@+id/RL1"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="95dp"
-
-
-        android:layout_marginStart="64dp"
-
-
-        android:background="@color/bootstrap_brand_danger"
-
-
-        android:onClick="RL1Click"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/LR1"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/LC1" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleRL1"
-
-        android:layout_width="87dp"
-
-        android:layout_height="95dp"
-
-        android:layout_marginStart="64dp"
-
-        android:tag="RL1"
-
-        android:visibility="invisible"
-
-        app:layout_constraintStart_toEndOf="@+id/CircleLL1"
-
-        app:layout_constraintTop_toBottomOf="@+id/CircleRC1" />
-
-
-    <View
-
-
-        android:id="@+id/RR2"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="87dp"
-
-
-        android:layout_marginStart="12dp"
-
-
-        android:layout_marginTop="8dp"
-
-
-        android:background="@color/bootstrap_brand_danger"
-
-
-        android:onClick="RR2Click"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/RR1"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleRR2"
-
-        android:layout_width="87dp"
-
-        android:layout_height="87dp"
-
-        android:layout_marginStart="12dp"
-
-        android:layout_marginTop="8dp"
-
-        android:tag="RR2"
-
-        android:visibility="invisible"
-
-        app:layout_constraintStart_toEndOf="@+id/CircleRR1"
-
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
-
-
-    <View
-
-
-        android:id="@+id/R2M"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="87dp"
-
-
-        android:layout_marginStart="12dp"
-
-
-        android:layout_marginTop="10dp"
-
-
-        android:background="@color/bootstrap_brand_danger"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/RC1"
-
-
-        app:layout_constraintTop_toBottomOf="@+id/CircleRR2" />
-
-
-    <View
-
-
-        android:id="@+id/RL2"
-
-
-        android:layout_width="87dp"
-
-
-        android:layout_height="87dp"
-
-
-        android:layout_marginStart="12dp"
-
-
-        android:layout_marginTop="10dp"
-
-
-        android:background="@color/bootstrap_brand_danger"
-
-
-        android:onClick="RL2Click"
-
-
-        android:tag="RL2"
-
-
-        android:visibility="invisible"
-
-
-        app:layout_constraintStart_toEndOf="@+id/CircleRL1"
-
-        app:layout_constraintTop_toBottomOf="@+id/R2M" />
-
-
-    <com.mercury1089.scoutingapp2019.CustomView
-
-        android:id="@+id/CircleRL2"
-
-        android:layout_width="87dp"
-
-        android:layout_height="87dp"
-
-        android:layout_marginStart="12dp"
-
-        android:layout_marginTop="10dp"
-
-        android:tag="RL2"
-
-        android:visibility="invisible"
-
-        app:layout_constraintStart_toEndOf="@+id/CircleRR1"
-
-        app:layout_constraintTop_toBottomOf="@+id/R2M" />
-
+    ]]>
 
     <TextView
 
@@ -1394,9 +720,6 @@
 
 
         android:layout_height="wrap_content"
-
-
-        android:layout_marginTop="16dp"
 
 
         android:text="@string/StartButtonDirections"
@@ -1414,7 +737,7 @@
         app:layout_constraintStart_toEndOf="@+id/StartButton"
 
 
-        app:layout_constraintTop_toBottomOf="@+id/RL1" />
+        tools:layout_editor_absoluteY="868dp" />
 
 
     <Button
@@ -1444,18 +767,6 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/IDStartButtonDirections" />
-
-    <TextView
-        android:id="@+id/DiagramMessage"
-        android:layout_width="603dp"
-        android:layout_height="295dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:gravity="center"
-        android:text="You must select an alliance color (above) before you can access the map."
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
 
 </android.support.constraint.ConstraintLayout>
