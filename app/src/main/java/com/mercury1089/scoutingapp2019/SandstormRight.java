@@ -25,26 +25,6 @@ public class SandstormRight extends MainActivity {
     private int CSPR1Counter = 0;
     private int CSPR3Counter = 0;
 
-    private int RRPNT1Counter = 0;
-    private int RRPNT2Counter = 0;
-    private int RRPNT3Counter = 0;
-    private int RRCT1Counter = 0;
-    private int RRCT2Counter = 0;
-    private int RRCT3Counter = 0;
-    private int RRPFT1Counter = 0;
-    private int RRPFT2Counter = 0;
-    private int RRPFT3Counter = 0;
-
-    private TextView LRPNT1;
-    private TextView LRPNT2;
-    private TextView LRPNT3;
-    private TextView LRCT1;
-    private TextView LRCT2;
-    private TextView LRCT3;
-    private TextView LRPFT1;
-    private TextView LRPFT2;
-    private TextView LRPFT3;
-
     private TextView CSPF1;
     private TextView CSPF2;
     private TextView CSCF1;
@@ -61,34 +41,6 @@ public class SandstormRight extends MainActivity {
     private TextView CSPR1;
     private TextView CSPR2;
     private TextView CSPR3;
-
-    private TextView RRPNT1;
-    private TextView RRPNT2;
-    private TextView RRPNT3;
-    private TextView RRCT1;
-    private TextView RRCT2;
-    private TextView RRCT3;
-    private TextView RRPFT1;
-    private TextView RRPFT2;
-    private TextView RRPFT3;
-
-    //right rocket text
-    //cargo ship text
-    //left rocket text
-    //right rocket counters
-    //LEFT ROCKET
-    //panel variables
-    CircleButton LeftRocketPanelNearT3;
-    CircleButton LeftRocketPanelNearT2;
-    CircleButton LeftRocketPanelNearT1;
-    CircleButton LeftRocketPanelFarT3;
-    CircleButton LeftRocketPanelFarT2;
-    CircleButton LeftRocketPanelFarT1;
-
-    //cargo variables
-    CircleButton LeftRocketCargoT3;
-    CircleButton LeftRocketCargoT1;
-    CircleButton LeftRocketCargoT2;
 
 
     //CARGO SHIP
@@ -112,20 +64,6 @@ public class SandstormRight extends MainActivity {
     CircleButton CargoShipCargoRight2;
     CircleButton CargoShipCargoRight3;
 
-    //RIGHT ROCKET
-    //panel variables
-    CircleButton RightRocketPanelNearT3;
-    CircleButton RightRocketPanelNearT2;
-    CircleButton RightRocketPanelNearT1;
-    CircleButton RightRocketPanelFarT3;
-    CircleButton RightRocketPanelFarT2;
-    CircleButton RightRocketPanelFarT1;
-
-    //cargo variables
-    CircleButton RightRocketCargoT3;
-    CircleButton RightRocketCargoT2;
-    CircleButton RightRocketCargoT1;
-
     //displayed counters
     private int totalPanels = 0;
     private int totalCargo = 0;
@@ -133,17 +71,6 @@ public class SandstormRight extends MainActivity {
     private int droppedCargo = 0;
     private int missedCargo = 0;
     private int missedPanels = 0;
-
-    //left rocket counters
-    private int LRPNT3Counter = 0;
-    private int LRPNT2Counter = 0;
-    private int LRPNT1Counter = 0;
-    private int LRCT3Counter = 0;
-    private int LRCT2Counter = 0;
-    private int LRCT1Counter = 0;
-    private int LRPFT3Counter = 0;
-    private int LRPFT2Counter = 0;
-    private int LRPFT1Counter = 0;
 
     //cargo ship counters
     private int CSPF1Counter = 0;
@@ -191,7 +118,6 @@ public class SandstormRight extends MainActivity {
     private boolean isCargo = false;
     private boolean isPanel = false;
     private Timer timer;
-    private int eventCounter;
     Button UndoButton;
     ConstraintLayout constraintLayout;
     String UNDO;
@@ -207,15 +133,6 @@ public class SandstormRight extends MainActivity {
         setContentView(R.layout.activity_sandstorm_right);
 
         //initializers
-        LeftRocketPanelNearT3 = findViewById(R.id.LeftRocketPanelNearT3);
-        LeftRocketPanelNearT2 = findViewById(R.id.LeftRocketPanelNearT2);
-        LeftRocketPanelNearT1 = findViewById(R.id.LeftRocketPanelNearT1);
-        LeftRocketPanelFarT3 = findViewById(R.id.LeftRocketPanelFarT3);
-        LeftRocketPanelFarT2 = findViewById(R.id.LeftRocketPanelFarT2);
-        LeftRocketPanelFarT1 = findViewById(R.id.LeftRocketPanelFarT1);
-        LeftRocketCargoT3 = findViewById(R.id.LeftRocketCargoT3);
-        LeftRocketCargoT2 = findViewById(R.id.LeftRocketCargoT2);
-        LeftRocketCargoT1 = findViewById(R.id.LeftRocketCargoT1);
         CargoShipPanelFront1 = findViewById(R.id.CargoShipPanelFront1);
         CargoShipPanelFront2 = findViewById(R.id.CargoShipPanelFront2);
         CargoShipPanelLeft1 = findViewById(R.id.CargoShipPanelLeft1);
@@ -232,24 +149,6 @@ public class SandstormRight extends MainActivity {
         CargoShipCargoRight1 = findViewById(R.id.CargoShipCargoRight1);
         CargoShipCargoRight2 = findViewById(R.id.CargoShipCargoRight2);
         CargoShipCargoRight3 = findViewById(R.id.CargoShipCargoRight3);
-        RightRocketPanelNearT3 = findViewById(R.id.RightRocketPanelNearT3);
-        RightRocketPanelNearT2 = findViewById(R.id.RightRocketPanelNearT2);
-        RightRocketPanelNearT1 = findViewById(R.id.RightRocketPanelNearT1);
-        RightRocketPanelFarT3 = findViewById(R.id.RightRocketPanelFarT3);
-        RightRocketPanelFarT2 = findViewById(R.id.RightRocketPanelFarT2);
-        RightRocketPanelFarT1 = findViewById(R.id.RightRocketPanelFarT1);
-        RightRocketCargoT3 = findViewById(R.id.RightRocketCargoT3);
-        RightRocketCargoT2 = findViewById(R.id.RightRocketCargoT2);
-        RightRocketCargoT1 = findViewById(R.id.RightRocketCargoT1);
-        LRPNT1 = findViewById(R.id.LRPNT1);
-        LRPNT2 = findViewById(R.id.LRPNT2);
-        LRPNT3 = findViewById(R.id.LRPNT3);
-        LRCT1 = findViewById(R.id.LRCT1);
-        LRCT2 = findViewById(R.id.LRCT2);
-        LRCT3 = findViewById(R.id.LRCT3);
-        LRPFT1 = findViewById(R.id.LRPFT1);
-        LRPFT2 = findViewById(R.id.LRPFT2);
-        LRPFT3 = findViewById(R.id.LRPFT3);
         CSPF1 = findViewById(R.id.CSPF1);
         CSPF2 = findViewById(R.id.CSPF2);
         CSCF1 = findViewById(R.id.CSCF1);
@@ -266,15 +165,6 @@ public class SandstormRight extends MainActivity {
         CSPR1 = findViewById(R.id.CSPR1);
         CSPR2 = findViewById(R.id.CSPR2);
         CSPR3 = findViewById(R.id.CSPR3);
-        RRPNT1 = findViewById(R.id.RRPNT1);
-        RRPNT2 = findViewById(R.id.RRPNT2);
-        RRPNT3 = findViewById(R.id.RRPNT3);
-        RRCT1 = findViewById(R.id.RRCT1);
-        RRCT2 = findViewById(R.id.RRCT2);
-        RRCT3 = findViewById(R.id.RRCT3);
-        RRPFT1 = findViewById(R.id.RRPFT1);
-        RRPFT2 = findViewById(R.id.RRPFT2);
-        RRPFT3 = findViewById(R.id.RRPFT3);
         PanelCounterText = findViewById(R.id.PanelCounterText);
         CargoCounterText = findViewById(R.id.CargoCounterText);
         DroppedCounterText = findViewById(R.id.DroppedCounterText);
@@ -387,273 +277,7 @@ public class SandstormRight extends MainActivity {
                 char arr[] = tag.toCharArray();
                 String hashVal;
 
-                if (arr[1] == 'R')
-                {
-                    if (arr[0] == 'L')
-                    {
-                        if (arr[2] == 'P')
-                        {
-                            if (arr[3] == 'N')
-                            {
-                                if (arr[5] == '1')
-                                {
-                                    hashVal = scoreHashMap.get("LRPNT1");
-                                    LRPNT1.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        LeftRocketPanelNearT1.setColor(YELLOW);
-                                        LRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '2')
-                                {
-                                    hashVal = scoreHashMap.get("LRPNT2");
-                                    LRPNT2.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        LeftRocketPanelNearT2.setColor(YELLOW);
-                                        LRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '3')
-                                {
-                                    hashVal = scoreHashMap.get("LRPNT3");
-                                    LRPNT3.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        LeftRocketPanelNearT3.setColor(YELLOW);
-                                        LRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                            }
-                            else if (arr[3] == 'F')
-                            {
-                                if (arr[5] == '1')
-                                {
-                                    hashVal = scoreHashMap.get("LRPFT1");
-                                    LRPFT1.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        LeftRocketPanelFarT1.setColor(YELLOW);
-                                        LRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '2')
-                                {
-                                    hashVal = scoreHashMap.get("LRPFT2");
-                                    LRPFT2.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        LeftRocketPanelFarT2.setColor(YELLOW);
-                                        LRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '3')
-                                {
-                                    hashVal = scoreHashMap.get("LRPFT3");
-                                    LRPFT3.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        LeftRocketPanelFarT3.setColor(YELLOW);
-                                        LRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                            }
-                        }
-                        else if (arr[2] == 'C')
-                        {
-                            if (arr[4] == '1')
-                            {
-                                hashVal = scoreHashMap.get("LRCT1");
-                                LRCT1.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    LeftRocketCargoT1.setColor(ORANGE);
-                                    //panel text set
-                                }
-                                else {
-                                    //panel disabled colors
-                                    //panel text set
-                                }
-                            }
-                            else if (arr[4] == '2')
-                            {
-                                hashVal = scoreHashMap.get("LRCT2");
-                                LRCT2.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    LeftRocketCargoT2.setColor(ORANGE);
-                                    //panel text set
-                                }
-                                else {
-                                    //panel disabled colors
-                                    //panel text set
-                                }
-                            }
-                            else if (arr[4] == '3')
-                            {
-                                hashVal = scoreHashMap.get("LRCT3");
-                                LRCT3.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    LeftRocketCargoT3.setColor(ORANGE);
-                                    //panel text set
-                                }
-                                else {
-                                    //panel disabled colors
-                                    //panel text set
-                                }
-                            }
-                        }
-                    }
-                    else if (arr[0] == 'R') {
-                        if (arr[2] == 'P')
-                        {
-                            if (arr[3] == 'N')
-                            {
-                                if (arr[5] == '1')
-                                {
-                                    hashVal = scoreHashMap.get("RRPNT1");
-                                    RRPNT1.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        RightRocketPanelNearT1.setColor(YELLOW);
-                                        RRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '2')
-                                {
-                                    hashVal = scoreHashMap.get("RRPNT2");
-                                    RRPNT2.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        RightRocketPanelNearT2.setColor(YELLOW);
-                                        RRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '3')
-                                {
-                                    hashVal = scoreHashMap.get("RRPNT3");
-                                    RRPNT3.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        RightRocketPanelNearT3.setColor(YELLOW);
-                                        RRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                            }
-                            else if (arr[3] == 'F')
-                            {
-                                if (arr[5] == '1')
-                                {
-                                    hashVal = scoreHashMap.get("RRPFT1");
-                                    RRPFT1.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        RightRocketPanelFarT1.setColor(YELLOW);
-                                        RRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '2')
-                                {
-                                    hashVal = scoreHashMap.get("RRPFT2");
-                                    RRPFT2.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        RightRocketPanelFarT2.setColor(YELLOW);
-                                        RRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                                else if (arr[5] == '3')
-                                {
-                                    hashVal = scoreHashMap.get("RRPFT3");
-                                    RRPFT3.setText(hashVal);
-                                    if (Integer.parseInt(hashVal) > 0) {
-                                        RightRocketPanelFarT3.setColor(YELLOW);
-                                        RRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                                    }
-                                    else {
-                                        //panel disabled colors
-                                        //panel text set
-                                    }
-                                }
-                            }
-                        }
-                        else if (arr[2] == 'C')
-                        {
-                            if (arr[4] == '1')
-                            {
-                                hashVal = scoreHashMap.get("RRCT1");
-                                RRCT1.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    RightRocketCargoT1.setColor(ORANGE);
-                                    //panel text set
-                                }
-                                else {
-                                    //panel disabled colors
-                                    //panel text set
-                                }
-                            }
-                            else if (arr[4] == '2')
-                            {
-                                hashVal = scoreHashMap.get("RRCT2");
-                                RRCT2.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    RightRocketCargoT2.setColor(ORANGE);
-                                    //panel text set
-                                }
-                                else {
-                                    //panel disabled colors
-                                    //panel text set
-                                }
-                            }
-                            else if (arr[4] == '3')
-                            {
-                                hashVal = scoreHashMap.get("RRCT3");
-                                RRCT3.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    RightRocketCargoT3.setColor(ORANGE);
-                                    //panel text set
-                                }
-                                else {
-                                    //panel disabled colors
-                                    //panel text set
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (tag.toCharArray()[1] == 'S') {
+                if (tag.toCharArray()[1] == 'S') {
                     if (arr[2] == 'P')
                     {
                         if (arr[3] == 'L') {
@@ -1065,13 +689,6 @@ public class SandstormRight extends MainActivity {
                 isCargo = false;
                 isPanel = false;
             case 'P':
-                LeftRocketPanelNearT3.setEnabled(false);
-                LeftRocketPanelNearT2.setEnabled(false);
-                LeftRocketPanelNearT1.setEnabled(false);
-                LeftRocketPanelFarT3.setEnabled(false);
-                LeftRocketPanelFarT2.setEnabled(false);
-                LeftRocketPanelFarT1.setEnabled(false);
-
                 CargoShipPanelFront1.setEnabled(false);
                 CargoShipPanelFront2.setEnabled(false);
                 CargoShipPanelLeft1.setEnabled(false);
@@ -1081,20 +698,6 @@ public class SandstormRight extends MainActivity {
                 CargoShipPanelRight2.setEnabled(false);
                 CargoShipPanelRight3.setEnabled(false);
 
-                RightRocketPanelNearT3.setEnabled(false);
-                RightRocketPanelNearT2.setEnabled(false);
-                RightRocketPanelNearT1.setEnabled(false);
-                RightRocketPanelFarT3.setEnabled(false);
-                RightRocketPanelFarT2.setEnabled(false);
-                RightRocketPanelFarT1.setEnabled(false);
-
-                LRPNT1.setEnabled(false);
-                LRPNT2.setEnabled(false);
-                LRPNT3.setEnabled(false);
-
-                LRPFT1.setEnabled(false);
-                LRPFT2.setEnabled(false);
-                LRPFT3.setEnabled(false);
                 CSPF1.setEnabled(false);
                 CSPF2.setEnabled(false);
 
@@ -1105,65 +708,7 @@ public class SandstormRight extends MainActivity {
                 CSPR1.setEnabled(false);
                 CSPR2.setEnabled(false);
                 CSPR3.setEnabled(false);
-                RRPNT1.setEnabled(false);
-                RRPNT2.setEnabled(false);
-                RRPNT3.setEnabled(false);
 
-                RRPFT1.setEnabled(false);
-                RRPFT2.setEnabled(false);
-                RRPFT3.setEnabled(false);
-
-                if (LRPNT3Counter > 0) {
-                    LeftRocketPanelNearT3.setColor(Color.rgb(248, 231, 28));
-                    LRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelNearT3.setColor(Color.rgb(30, 30, 30));
-                    LRPNT3.setTextColor(getResources().getColor(R.color.light));
-                }
-
-                if (LRPNT2Counter > 0) {
-                    LeftRocketPanelNearT2.setColor(Color.rgb(248, 231, 28));
-                    LRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelNearT2.setColor(Color.rgb(30, 30, 30));
-                    LRPNT2.setTextColor(getResources().getColor(R.color.light));
-                }
-
-                if (LRPNT1Counter > 0) {
-                    LeftRocketPanelNearT1.setColor(Color.rgb(248, 231, 28));
-                    LRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelNearT1.setColor(Color.rgb(30, 30, 30));
-                    LRPNT1.setTextColor(getResources().getColor(R.color.light));
-                }
-
-                if (LRPFT3Counter > 0) {
-                    LeftRocketPanelFarT3.setColor(Color.rgb(248, 231, 28));
-                    LRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelFarT3.setColor(Color.rgb(30, 30, 30));
-                    LRPFT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (LRPFT2Counter > 0) {
-                    LeftRocketPanelFarT2.setColor(Color.rgb(248, 231, 28));
-                    LRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelFarT2.setColor(Color.rgb(30, 30, 30));
-                    LRPFT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (LRPFT1Counter > 0) {
-                    LeftRocketPanelFarT1.setColor(Color.rgb(248, 231, 28));
-                    LRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelFarT1.setColor(Color.rgb(30, 30, 30));
-                    LRPFT1.setTextColor(getResources().getColor(R.color.light));
-                }
                 if (CSPF1Counter > 0) {
                     CargoShipPanelFront1.setColor(Color.rgb(248, 231, 28));
                     CSPF1.setTextColor(getResources().getColor(R.color.textdefault));
@@ -1229,61 +774,9 @@ public class SandstormRight extends MainActivity {
                     CargoShipPanelRight3.setColor(Color.rgb(30, 30, 30));
                     CSPR3.setTextColor(getResources().getColor(R.color.light));
                 }
-                if (RRPNT3Counter > 0) {
-                    RightRocketPanelNearT3.setColor(Color.rgb(248, 231, 28));
-                    RRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelNearT3.setColor(Color.rgb(30, 30, 30));
-                    RRPNT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (RRPNT2Counter > 0) {
-                    RightRocketPanelNearT2.setColor(Color.rgb(248, 231, 28));
-                    RRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelNearT2.setColor(Color.rgb(30, 30, 30));
-                    RRPNT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (RRPNT1Counter > 0) {
-                    RightRocketPanelNearT1.setColor(Color.rgb(248, 231, 28));
-                    RRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelNearT1.setColor(Color.rgb(30, 30, 30));
-                    RRPNT1.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (RRPFT3Counter > 0) {
-                    RightRocketPanelFarT3.setColor(Color.rgb(248, 231, 28));
-                    RRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelFarT3.setColor(Color.rgb(30, 30, 30));
-                    RRPFT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (RRPFT2Counter > 0) {
-                    RightRocketPanelFarT2.setColor(Color.rgb(248, 231, 28));
-                    RRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelFarT2.setColor(Color.rgb(30, 30, 30));
-                    RRPFT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (RRPFT1Counter > 0) {
-                    RightRocketPanelFarT1.setColor(Color.rgb(248, 231, 28));
-                    RRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelFarT1.setColor(Color.rgb(30, 30, 30));
-                    RRPFT1.setTextColor(getResources().getColor(R.color.light));
-                }
                 if (c == 'P')
                     break;
             case 'C':
-                LeftRocketCargoT3.setEnabled(false);
-                LeftRocketCargoT2.setEnabled(false);
-                LeftRocketCargoT1.setEnabled(false);
-
                 CargoShipCargoFront1.setEnabled(false);
                 CargoShipCargoFront2.setEnabled(false);
                 CargoShipCargoLeft1.setEnabled(false);
@@ -1292,14 +785,6 @@ public class SandstormRight extends MainActivity {
                 CargoShipCargoRight1.setEnabled(false);
                 CargoShipCargoRight2.setEnabled(false);
                 CargoShipCargoRight3.setEnabled(false);
-
-                RightRocketCargoT3.setEnabled(false);
-                RightRocketCargoT2.setEnabled(false);
-                RightRocketCargoT1.setEnabled(false);
-
-                LRCT1.setEnabled(false);
-                LRCT2.setEnabled(false);
-                LRCT3.setEnabled(false);
 
                 CSCF1.setEnabled(false);
                 CSCF2.setEnabled(false);
@@ -1310,37 +795,6 @@ public class SandstormRight extends MainActivity {
                 CSCR1.setEnabled(false);
                 CSCR2.setEnabled(false);
                 CSCR3.setEnabled(false);
-
-                RRCT1.setEnabled(false);
-                RRCT2.setEnabled(false);
-                RRCT3.setEnabled(false);
-
-                if (LRCT3Counter > 0) {
-                    LeftRocketCargoT3.setColor(Color.rgb(45, 192, 103));
-                    LRCT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    LeftRocketCargoT3.setColor(Color.rgb(30, 30, 30));
-                    LRCT3.setTextColor(getResources().getColor(R.color.light));
-                }
-
-                if (LRCT2Counter > 0) {
-                    LeftRocketCargoT2.setColor(Color.rgb(45, 192, 103));
-                    LRCT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    LeftRocketCargoT2.setColor(Color.rgb(30, 30, 30));
-                    LRCT2.setTextColor(getResources().getColor(R.color.light));
-                }
-
-                if (LRCT1Counter > 0) {
-                    LeftRocketCargoT1.setColor(Color.rgb(45, 192, 103));
-                    LRCT1.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    LeftRocketCargoT1.setColor(Color.rgb(30, 30, 30));
-                    LRCT1.setTextColor(getResources().getColor(R.color.light));
-                }
 
                 if (CSCF1Counter > 0) {
                     CargoShipCargoFront1.setColor(Color.rgb(45, 192, 103));
@@ -1406,30 +860,6 @@ public class SandstormRight extends MainActivity {
                     CargoShipCargoRight3.setColor(Color.rgb(30, 30, 30));
                     CSCR3.setTextColor(getResources().getColor(R.color.light));
                 }
-                if (RRCT3Counter > 0) {
-                    RightRocketCargoT3.setColor(Color.rgb(45, 192, 103));
-                    RRCT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    RightRocketCargoT3.setColor(Color.rgb(30, 30, 30));
-                    RRCT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (RRCT2Counter > 0) {
-                    RightRocketCargoT2.setColor(Color.rgb(45, 192, 103));
-                    RRCT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    RightRocketCargoT2.setColor(Color.rgb(30, 30, 30));
-                    RRCT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                if (RRCT1Counter > 0) {
-                    RightRocketCargoT1.setColor(Color.rgb(45, 192, 103));
-                    RRCT1.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    RightRocketCargoT1.setColor(Color.rgb(30, 30, 30));
-                    RRCT1.setTextColor(getResources().getColor(R.color.light));
-                }
         }
     }
 
@@ -1437,13 +867,6 @@ public class SandstormRight extends MainActivity {
         switch (c) {
             case 'A':
             case 'P':
-                LeftRocketPanelNearT3.setEnabled(true);
-                LeftRocketPanelNearT2.setEnabled(true);
-                LeftRocketPanelNearT1.setEnabled(true);
-                LeftRocketPanelFarT3.setEnabled(true);
-                LeftRocketPanelFarT2.setEnabled(true);
-                LeftRocketPanelFarT1.setEnabled(true);
-
                 CargoShipPanelFront1.setEnabled(true);
                 CargoShipPanelFront2.setEnabled(true);
                 CargoShipPanelLeft1.setEnabled(true);
@@ -1453,20 +876,6 @@ public class SandstormRight extends MainActivity {
                 CargoShipPanelRight2.setEnabled(true);
                 CargoShipPanelRight3.setEnabled(true);
 
-                RightRocketPanelNearT3.setEnabled(true);
-                RightRocketPanelNearT2.setEnabled(true);
-                RightRocketPanelNearT1.setEnabled(true);
-                RightRocketPanelFarT3.setEnabled(true);
-                RightRocketPanelFarT2.setEnabled(true);
-                RightRocketPanelFarT1.setEnabled(true);
-
-                LRPNT1.setEnabled(true);
-                LRPNT2.setEnabled(true);
-                LRPNT3.setEnabled(true);
-
-                LRPFT1.setEnabled(true);
-                LRPFT2.setEnabled(true);
-                LRPFT3.setEnabled(true);
                 CSPF1.setEnabled(true);
                 CSPF2.setEnabled(true);
 
@@ -1477,64 +886,7 @@ public class SandstormRight extends MainActivity {
                 CSPR1.setEnabled(true);
                 CSPR2.setEnabled(true);
                 CSPR3.setEnabled(true);
-                RRPNT1.setEnabled(true);
-                RRPNT2.setEnabled(true);
-                RRPNT3.setEnabled(true);
 
-                RRPFT1.setEnabled(true);
-                RRPFT2.setEnabled(true);
-                RRPFT3.setEnabled(true);
-
-
-
-                if (LRPNT3Counter > 0) {
-                    LeftRocketPanelNearT3.setColor(Color.rgb(248, 231, 28));
-                    LRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelNearT3.setColor(Color.rgb(255, 255, 217));
-                    LRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (LRPNT2Counter > 0) {
-                    LeftRocketPanelNearT2.setColor(Color.rgb(248, 231, 28));
-                    LRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelNearT2.setColor(Color.rgb(255, 255, 217));
-                    LRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (LRPNT1Counter > 0) {
-                    LeftRocketPanelNearT1.setColor(Color.rgb(248, 231, 28));
-                    LRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelNearT1.setColor(Color.rgb(255, 255, 217));
-                    LRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (LRPFT3Counter > 0) {
-                    LeftRocketPanelFarT3.setColor(Color.rgb(248, 231, 28));
-                    LRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelFarT3.setColor(Color.rgb(255, 255, 217));
-                    LRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (LRPFT2Counter > 0) {
-                    LeftRocketPanelFarT2.setColor(Color.rgb(248, 231, 28));
-                    LRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelFarT2.setColor(Color.rgb(255, 255, 217));
-                    LRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (LRPFT1Counter > 0) {
-                    LeftRocketPanelFarT1.setColor(Color.rgb(248, 231, 28));
-                    LRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    LeftRocketPanelFarT1.setColor(Color.rgb(255, 255, 217));
-                    LRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
                 if (CSPF1Counter > 0) {
                     CargoShipPanelFront1.setColor(Color.rgb(248, 231, 28));
                     CSPF1.setTextColor(getResources().getColor(R.color.textdefault));
@@ -1599,61 +951,10 @@ public class SandstormRight extends MainActivity {
                     CargoShipPanelRight3.setColor(Color.rgb(255, 255, 217));
                     CSPR3.setTextColor(getResources().getColor(R.color.textdefault));
                 }
-                if (RRPNT3Counter > 0) {
-                    RightRocketPanelNearT3.setColor(Color.rgb(248, 231, 28));
-                    RRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelNearT3.setColor(Color.rgb(255, 255, 217));
-                    RRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (RRPNT2Counter > 0) {
-                    RightRocketPanelNearT2.setColor(Color.rgb(248, 231, 28));
-                    RRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelNearT2.setColor(Color.rgb(255, 255, 217));
-                    RRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (RRPNT1Counter > 0) {
-                    RightRocketPanelNearT1.setColor(Color.rgb(248, 231, 28));
-                    RRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelNearT1.setColor(Color.rgb(255, 255, 217));
-                    RRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (RRPFT3Counter > 0) {
-                    RightRocketPanelFarT3.setColor(Color.rgb(248, 231, 28));
-                    RRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelFarT3.setColor(Color.rgb(255, 255, 217));
-                    RRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (RRPFT2Counter > 0) {
-                    RightRocketPanelFarT2.setColor(Color.rgb(248, 231, 28));
-                    RRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelFarT2.setColor(Color.rgb(255, 255, 217));
-                    RRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                if (RRPFT1Counter > 0) {
-                    RightRocketPanelFarT1.setColor(Color.rgb(248, 231, 28));
-                    RRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                else {
-                    RightRocketPanelFarT1.setColor(Color.rgb(255, 255, 217));
-                    RRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
+
                 if (c == 'P')
                     break;
             case 'C':
-                LeftRocketCargoT3.setEnabled(true);
-                LeftRocketCargoT2.setEnabled(true);
-                LeftRocketCargoT1.setEnabled(true);
-
                 CargoShipCargoFront1.setEnabled(true);
                 CargoShipCargoFront2.setEnabled(true);
                 CargoShipCargoLeft1.setEnabled(true);
@@ -1662,14 +963,6 @@ public class SandstormRight extends MainActivity {
                 CargoShipCargoRight1.setEnabled(true);
                 CargoShipCargoRight2.setEnabled(true);
                 CargoShipCargoRight3.setEnabled(true);
-
-                RightRocketCargoT3.setEnabled(true);
-                RightRocketCargoT2.setEnabled(true);
-                RightRocketCargoT1.setEnabled(true);
-
-                LRCT1.setEnabled(true);
-                LRCT2.setEnabled(true);
-                LRCT3.setEnabled(true);
 
                 CSCF1.setEnabled(true);
                 CSCF2.setEnabled(true);
@@ -1680,36 +973,6 @@ public class SandstormRight extends MainActivity {
                 CSCR1.setEnabled(true);
                 CSCR2.setEnabled(true);
                 CSCR3.setEnabled(true);
-
-                RRCT1.setEnabled(true);
-                RRCT2.setEnabled(true);
-                RRCT3.setEnabled(true);
-
-                if (LRCT3Counter > 0) {
-                    LeftRocketCargoT3.setColor(Color.rgb(255, 152, 0));
-                    LRCT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    LeftRocketCargoT3.setColor(Color.rgb(221, 172, 107));
-                    LRCT3.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                if (LRCT2Counter > 0) {
-                    LeftRocketCargoT2.setColor(Color.rgb(255, 152, 0));
-                    LRCT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    LeftRocketCargoT2.setColor(Color.rgb(221, 172, 107));
-                    LRCT2.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                if (LRCT1Counter > 0) {
-                    LeftRocketCargoT1.setColor(Color.rgb(255, 152, 0));
-                    LRCT1.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    LeftRocketCargoT1.setColor(Color.rgb(221, 172, 107));
-                    LRCT1.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-
 
                 if (CSCF1Counter > 0) {
                     CargoShipCargoFront1.setColor(Color.rgb(255, 152, 0));
@@ -1774,33 +1037,6 @@ public class SandstormRight extends MainActivity {
                 else {
                     CargoShipCargoRight3.setColor(Color.rgb(221, 172, 107));
                     CSCR3.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-
-
-                if (RRCT3Counter > 0) {
-                    RightRocketCargoT3.setColor(Color.rgb(255, 152, 0));
-                    RRCT3.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    RightRocketCargoT3.setColor(Color.rgb(221, 172, 107));
-                    RRCT3.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                if (RRCT2Counter > 0) {
-                    RightRocketCargoT2.setColor(Color.rgb(255, 152, 0));
-                    RRCT2.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    RightRocketCargoT2.setColor(Color.rgb(221, 172, 107));
-                    RRCT2.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-
-                if (RRCT1Counter > 0) {
-                    RightRocketCargoT1.setColor(Color.rgb(255, 152, 0));
-                    RRCT1.setTextColor(getResources().getColor(R.color.light));
-                }
-                else {
-                    RightRocketCargoT1.setColor(Color.rgb(221, 172, 107));
-                    RRCT1.setTextColor(getResources().getColor(R.color.defaultdisabled));
                 }
         }
     }
@@ -1967,226 +1203,8 @@ public class SandstormRight extends MainActivity {
         disableScoringDiagram('A');
     }
 
-    //left rocket onClicks
-    public void LRPNT3CounterClick (View view) {
-        eventCounter++;
-        LRPNT3Counter++;
-        scoreHashMap.put(LRPNT3.getTag().toString(), String.valueOf(LRPNT3Counter));
-        LeftRocketPanelNearT3.setColor(Color.rgb(248, 231, 28));
-        UNDO = "LRPNT3";
-        LRPNT3.setText(String.valueOf(LRPNT3Counter));
-        LRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRPNT2CounterClick (View view) {
-        eventCounter++;
-        LRPNT2Counter++;
-        LeftRocketPanelNearT2.setColor(Color.rgb(248, 231, 28));
-        scoreHashMap.put(LRPNT2.getTag().toString(), String.valueOf(LRPNT2Counter));
-        UNDO = "LRPNT2";
-        LRPNT2.setText(String.valueOf(LRPNT2Counter));
-        LRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        isPanel = false;
-        isCargo = false;
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRPNT1CounterClick (View view) {
-        eventCounter++;
-        LRPNT1Counter++;
-        LeftRocketPanelNearT1.setColor(Color.rgb(248, 231, 28));
-        scoreHashMap.put(LRPNT1.getTag().toString(), String.valueOf(LRPNT1Counter));
-        UNDO = "LRPNT1";
-        LRPNT1.setText(String.valueOf(LRPNT1Counter));
-        LRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRCT3CounterClick (View view) {
-        eventCounter++;
-        LRCT3Counter++;
-        LeftRocketCargoT3.setColor(Color.argb(100, 255, 152, 0));
-        scoreHashMap.put(LRCT3.getTag().toString(), String.valueOf(LRCT3Counter));
-        UNDO = "LRCT3";
-        LRCT3.setText(String.valueOf(LRCT3Counter));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRCT2CounterClick (View view) {
-        eventCounter++;
-        LRCT2Counter++;
-        LeftRocketCargoT2.setColor(Color.argb(100, 255, 152, 0));
-        scoreHashMap.put(LRCT2.getTag().toString(), String.valueOf(LRCT2Counter));
-        UNDO = "LRCT2";
-        LRCT2.setText(String.valueOf(LRCT2Counter));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRCT1CounterClick (View view) {
-        eventCounter++;
-        LRCT1Counter++;
-        LeftRocketCargoT1.setColor(Color.argb(100, 255, 152, 0));
-        scoreHashMap.put(LRCT1.getTag().toString(), String.valueOf(LRCT1Counter));
-        UNDO = "LRCT1";
-        LRCT1.setText(String.valueOf(LRCT1Counter));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRPFT3CounterClick (View view) {
-        eventCounter++;
-        LRPFT3Counter++;
-        LeftRocketPanelFarT3.setColor(Color.rgb(248, 231, 28));
-        scoreHashMap.put(LRPFT3.getTag().toString(), String.valueOf(LRPFT3Counter));
-        UNDO = "LRPFT3";
-        LRPFT3.setText(String.valueOf(LRPFT3Counter));
-        LRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRPFT2CounterClick (View view) {
-        eventCounter++;
-        LRPFT2Counter++;
-        LeftRocketPanelFarT2.setColor(Color.rgb(248, 231, 28));
-        scoreHashMap.put(LRPFT2.getTag().toString(), String.valueOf(LRPFT2Counter));
-        UNDO = "LRPFT2";
-        LRPFT2.setText(String.valueOf(LRPFT2Counter));
-        LRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void LRPFT1CounterClick (View view) {
-        eventCounter++;
-        LRPFT1Counter++;
-        LeftRocketPanelFarT1.setColor(Color.rgb(248, 231, 28));
-        scoreHashMap.put(LRPFT1.getTag().toString(), String.valueOf(LRPFT1Counter));
-        UNDO = "LRPFT1";
-        LRPFT1.setText(String.valueOf(LRPFT1Counter));
-        LRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        UndoButton.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-
     //cargo ship onClicks
     public void CSPF1CounterClick (View view) {
-        eventCounter++;
         CSPF1Counter++;
         CargoShipPanelFront1.setColor(Color.rgb(248, 231, 28));
         scoreHashMap.put(CSPF1.getTag().toString(), String.valueOf(CSPF1Counter));
@@ -2210,7 +1228,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSPF2CounterClick (View view) {
-        eventCounter++;
         CSPF2Counter++;
         CargoShipPanelFront2.setColor(Color.rgb(248, 231, 28));
         scoreHashMap.put(CSPF2.getTag().toString(), String.valueOf(CSPF2Counter));
@@ -2234,7 +1251,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCF1CounterClick (View view) {
-        eventCounter++;
         CSCF1Counter++;
         CargoShipCargoFront1.setColor(Color.argb(100, 255, 152, 0));
         scoreHashMap.put(CSCF1.getTag().toString(), String.valueOf(CSCF1Counter));
@@ -2257,7 +1273,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCF2CounterClick (View view) {
-        eventCounter++;
         CSCF2Counter++;
         scoreHashMap.put(CSCF2.getTag().toString(), String.valueOf(CSCF2Counter));
         CargoShipCargoFront2.setColor(Color.argb(100, 255, 152, 0));
@@ -2280,7 +1295,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSPL1CounterClick (View view) {
-        eventCounter++;
         CSPL1Counter++;
         scoreHashMap.put(CSPL1.getTag().toString(), String.valueOf(CSPL1Counter));
         CargoShipPanelLeft1.setColor(Color.rgb(248, 231, 28));
@@ -2304,7 +1318,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSPL2CounterClick (View view) {
-        eventCounter++;
         CSPL2Counter++;
         scoreHashMap.put(CSPL2.getTag().toString(), String.valueOf(CSPL2Counter));
         CargoShipPanelLeft2.setColor(Color.rgb(248, 231, 28));
@@ -2328,7 +1341,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSPL3CounterClick (View view) {
-        eventCounter++;
         CSPL3Counter++;
         scoreHashMap.put(CSPL3.getTag().toString(), String.valueOf(CSPL3Counter));
         CargoShipPanelLeft3.setColor(Color.rgb(248, 231, 28));
@@ -2352,7 +1364,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCL1CounterClick (View view) {
-        eventCounter++;
         CSCL1Counter++;
         scoreHashMap.put(CSCL1.getTag().toString(), String.valueOf(CSCL1Counter));
         CargoShipCargoLeft1.setColor(Color.argb(100, 255, 152, 0));
@@ -2375,7 +1386,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCL2CounterClick (View view) {
-        eventCounter++;
         CSCL2Counter++;
         scoreHashMap.put(CSCL2.getTag().toString(), String.valueOf(CSCL2Counter));
         CargoShipCargoLeft2.setColor(Color.argb(100, 255, 152, 0));
@@ -2398,7 +1408,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCL3CounterClick (View view) {
-        eventCounter++;
         CSCL3Counter++;
         scoreHashMap.put(CSCL3.getTag().toString(), String.valueOf(CSCL3Counter));
         CargoShipCargoLeft3.setColor(Color.argb(100, 255, 152, 0));
@@ -2421,7 +1430,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCR1CounterClick (View view) {
-        eventCounter++;
         CSCR1Counter++;
         scoreHashMap.put(CSCR1.getTag().toString(), String.valueOf(CSCR1Counter));
         CargoShipCargoRight1.setColor(Color.argb(100, 255, 152, 0));
@@ -2444,7 +1452,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCR2CounterClick (View view) {
-        eventCounter++;
         CSCR2Counter++;
         scoreHashMap.put(CSCR2.getTag().toString(), String.valueOf(CSCR2Counter));
         CargoShipCargoRight2.setColor(Color.argb(100, 255, 152, 0));
@@ -2467,7 +1474,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSCR3CounterClick (View view) {
-        eventCounter++;
         CSCR3Counter++;
         scoreHashMap.put(CSCR3.getTag().toString(), String.valueOf(CSCR3Counter));
         CargoShipCargoRight3.setColor(Color.argb(100, 255, 152, 0));
@@ -2490,7 +1496,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSPR1CounterClick (View view) {
-        eventCounter++;
         CSPR1Counter++;
         scoreHashMap.put(CSPR1.getTag().toString(), String.valueOf(CSPR1Counter));
         CargoShipPanelRight1.setColor(Color.rgb(248, 231, 28));
@@ -2514,7 +1519,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSPR2CounterClick (View view) {
-        eventCounter++;
         CSPR2Counter++;
         scoreHashMap.put(CSPR2.getTag().toString(), String.valueOf(CSPR2Counter));
         CargoShipPanelRight2.setColor(Color.rgb(248, 231, 28));
@@ -2538,7 +1542,6 @@ public class SandstormRight extends MainActivity {
         isCargo = false;
     }
     public void CSPR3CounterClick (View view) {
-        eventCounter++;
         CSPR3Counter++;
         scoreHashMap.put(CSPR3.getTag().toString(), String.valueOf(CSPR3Counter));
         CargoShipPanelRight3.setColor(Color.rgb(248, 231, 28));
@@ -2553,221 +1556,6 @@ public class SandstormRight extends MainActivity {
         DroppedCounterText.setEnabled(false);
         UndoButton.setEnabled(true);
         defaultButtonState(CargoButton);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-
-    //right rocket onClicks
-    public void RRPNT3CounterClick (View view) {
-        eventCounter++;
-        RRPNT3Counter++;
-        scoreHashMap.put(RRPNT3.getTag().toString(), String.valueOf(RRPNT3Counter));
-        RightRocketPanelNearT3.setColor(Color.rgb(248, 231, 28));
-        UNDO = "RRPNT3";
-        RRPNT3.setText(String.valueOf(RRPNT3Counter));
-        RRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRPNT2CounterClick (View view) {
-        eventCounter++;
-        RRPNT2Counter++;
-        scoreHashMap.put(RRPNT2.getTag().toString(), String.valueOf(RRPNT2Counter));
-        RightRocketPanelNearT2.setColor(Color.rgb(248, 231, 28));
-        UNDO = "RRPNT2";
-        RRPNT2.setText(String.valueOf(RRPNT2Counter));
-        RRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRPNT1CounterClick (View view) {
-        eventCounter++;
-        RRPNT1Counter++;
-        scoreHashMap.put(RRPNT1.getTag().toString(), String.valueOf(RRPNT1Counter));
-        RightRocketPanelNearT1.setColor(Color.rgb(248, 231, 28));
-        UNDO = "RRPNT1";
-        RRPNT1.setText(String.valueOf(RRPNT1Counter));
-        RRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRCT3CounterClick (View view) {
-        eventCounter++;
-        RRCT3Counter++;
-        scoreHashMap.put(RRCT3.getTag().toString(), String.valueOf(RRCT3Counter));
-        RightRocketCargoT3.setColor(Color.argb(100, 255, 152, 0));
-        UNDO = "RRCT3";
-        RRCT3.setText(String.valueOf(RRCT3Counter));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRCT2CounterClick (View view) {
-        eventCounter++;
-        RRCT2Counter++;
-        scoreHashMap.put(RRCT2.getTag().toString(), String.valueOf(RRCT2Counter));
-        RightRocketCargoT2.setColor(Color.argb(100, 255, 152, 0));
-        UNDO = "RRCT2";
-        RRCT2.setText(String.valueOf(RRCT2Counter));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRCT1CounterClick (View view) {
-        eventCounter++;
-        RRCT1Counter++;
-        scoreHashMap.put(RRCT1.getTag().toString(), String.valueOf(RRCT1Counter));
-        RightRocketCargoT1.setColor(Color.argb(100, 255, 152, 0));
-        UNDO = "RRCT1";
-        RRCT1.setText(String.valueOf(RRCT1Counter));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRPFT3CounterClick (View view) {
-        eventCounter++;
-        RRPFT3Counter++;
-        scoreHashMap.put(RRPFT3.getTag().toString(), String.valueOf(RRPFT3Counter));
-        RightRocketPanelFarT3.setColor(Color.rgb(248, 231, 28));
-        UNDO = "RRPFT3";
-        RRPFT3.setText(String.valueOf(RRPFT3Counter));
-        RRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRPFT2CounterClick (View view) {
-        eventCounter++;
-        RRPFT2Counter++;
-        scoreHashMap.put(RRPFT2.getTag().toString(), String.valueOf(RRPFT2Counter));
-        RightRocketPanelFarT2.setColor(Color.rgb(248, 231, 28));
-        UNDO = "RRPFT2";
-        RRPFT2.setText(String.valueOf(RRPFT2Counter));
-        RRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
-        PanelButton.setEnabled(true);
-        PanelCounterText.setEnabled(true);
-        CargoButton.setEnabled(true);
-        CargoCounterText.setEnabled(true);
-        HABLineSwitch.setChecked(true);
-        isPanel = false;
-        isCargo = false;
-    }
-    public void RRPFT1CounterClick (View view) {
-        eventCounter++;
-        RRPFT1Counter++;
-        scoreHashMap.put(RRPFT1.getTag().toString(), String.valueOf(RRPFT1Counter));
-        RightRocketPanelFarT1.setColor(Color.rgb(248, 231, 28));
-        UNDO = "RRPFT1";
-        RRPFT1.setText(String.valueOf(RRPFT1Counter));
-        RRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-        disableScoringDiagram('A');
-        defaultButtonState(PanelButton);
-        UndoButton.setEnabled(true);
-        defaultButtonState(CargoButton);
-        MissedButton.setEnabled(false);
-        MissedCounterText.setEnabled(false);
-        DroppedButton.setEnabled(false);
-        DroppedCounterText.setEnabled(false);
         PanelButton.setEnabled(true);
         PanelCounterText.setEnabled(true);
         CargoButton.setEnabled(true);
@@ -2883,192 +1671,7 @@ public class SandstormRight extends MainActivity {
                 setupHashMap.put("HABLine",String.valueOf(0));
                 HABLineSwitch.setChecked(!HABLineSwitch.isChecked());
                 break;
-            case "LRPNT3": //undo for circle buttons aka locations
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                enableScoringDiagram('P');
-                LRPNT3Counter--;
-                LRPNT3.setText(String.valueOf(LRPNT3Counter));
-                if (LRPNT3Counter == 0) {
-                    LeftRocketPanelNearT3.setColor(Color.rgb(255, 255, 217));
-                    LRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "LRPNT2":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRPNT2Counter--;
-                LRPNT2.setText(String.valueOf(LRPNT2Counter));
-                enableScoringDiagram('P');
-                if (LRPNT2Counter == 0) {
-                    LeftRocketPanelNearT2.setColor(Color.rgb(255, 255, 217));
-                    LRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "LRPNT1":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRPNT1Counter--;
-                LRPNT1.setText(String.valueOf(LRPNT1Counter));
-                enableScoringDiagram('P');
-
-                if (LRPNT1Counter == 0) {
-                    LeftRocketPanelNearT1.setColor(Color.rgb(255, 255, 217));
-                    LRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "LRCT3":
-                selectedButtonColors(CargoButton);
-                defaultButtonState(PanelButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRCT3Counter--;
-                LRCT3.setText(String.valueOf(LRCT3Counter));
-                enableScoringDiagram('C');
-
-                if (LRCT3Counter == 0) {
-                    LeftRocketCargoT3.setColor(Color.rgb(221, 172, 107));
-                    LRCT3.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                break;
-            case "LRCT2":
-                selectedButtonColors(CargoButton);
-                defaultButtonState(PanelButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRCT2Counter--;
-                LRCT2.setText(String.valueOf(LRCT2Counter));
-                enableScoringDiagram('C');
-
-                if (LRCT2Counter == 0) {
-                    LeftRocketCargoT2.setColor(Color.rgb(221, 172, 107));
-                    LRCT2.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                break;
-            case "LRCT1":
-                selectedButtonColors(CargoButton);
-                defaultButtonState(PanelButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRCT1Counter--;
-                LRCT1.setText(String.valueOf(LRCT1Counter));
-                enableScoringDiagram('C');
-
-                if (LRCT1Counter == 0) {
-                    LeftRocketCargoT1.setColor(Color.rgb(221, 172, 107));
-                    LRCT1.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                break;
-            case "LRPFT3":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRPFT3Counter--;
-                LRPFT3.setText(String.valueOf(LRPFT3Counter));
-                enableScoringDiagram('P');
-
-                if (LRPFT3Counter == 0) {
-                    LeftRocketPanelFarT3.setColor(Color.rgb(255, 255, 217));
-                    LRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "LRPFT2":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRPFT2Counter--;
-                LRPFT2.setText(String.valueOf(LRPFT2Counter));
-                enableScoringDiagram('P');
-
-                if (LRPFT2Counter == 0) {
-                    LeftRocketPanelFarT2.setColor(Color.rgb(255, 255, 217));
-                    LRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "LRPFT1":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                LRPFT1Counter--;
-                LRPFT1.setText(String.valueOf(LRPFT1Counter));
-                enableScoringDiagram('P');
-
-                if (LRPFT1Counter == 0) {
-                    LeftRocketPanelFarT1.setColor(Color.rgb(255, 255, 217));
-                    LRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
+            //undo for circle buttons aka locations
             case "CSPF1":
                 selectedButtonColors(PanelButton);
                 defaultButtonState(CargoButton);
@@ -3403,196 +2006,6 @@ public class SandstormRight extends MainActivity {
                 if (CSPR3Counter == 0) {
                     CargoShipPanelRight3.setColor(Color.rgb(255, 255, 217));
                     CSPR3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "RRPNT3":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRPNT3Counter--;
-                RRPNT3.setText(String.valueOf(RRPNT3Counter));
-                enableScoringDiagram('P');
-
-                if (RRPNT3Counter == 0) {
-                    RightRocketPanelNearT3.setColor(Color.rgb(255, 255, 217));
-                    RRPNT3.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "RRPNT2":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRPNT2Counter--;
-                RRPNT2.setText(String.valueOf(RRPNT2Counter));
-                enableScoringDiagram('P');
-
-                if (LRPNT2Counter == 0) {
-                    RightRocketPanelNearT2.setColor(Color.rgb(255, 255, 217));
-                    RRPNT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "RRPNT1":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRPNT1Counter--;
-                RRPNT1.setText(String.valueOf(RRPNT1Counter));
-                enableScoringDiagram('P');
-
-                if (RRPNT1Counter == 0) {
-                    RightRocketPanelNearT1.setColor(Color.rgb(255, 255, 217));
-                    RRPNT1.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "RRCT3":
-                selectedButtonColors(CargoButton);
-                defaultButtonState(PanelButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRCT3Counter--;
-                RRCT3.setText(String.valueOf(RRCT3Counter));
-                enableScoringDiagram('C');
-
-                if (RRCT3Counter == 0) {
-                    RightRocketCargoT3.setColor(Color.rgb(221, 172, 107));
-                    RRCT3.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                break;
-            case "RRCT2":
-                selectedButtonColors(CargoButton);
-                defaultButtonState(PanelButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRCT2Counter--;
-                RRCT2.setText(String.valueOf(RRCT2Counter));
-                enableScoringDiagram('C');
-
-                if (RRCT2Counter == 0) {
-                    RightRocketCargoT2.setColor(Color.rgb(221, 172, 107));
-                    RRCT2.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                }
-                break;
-            case "RRCT1":
-                selectedButtonColors(CargoButton);
-                defaultButtonState(PanelButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRCT1Counter--;
-                RRCT1.setText(String.valueOf(RRCT1Counter));
-                enableScoringDiagram('C');
-
-                if (LRCT1Counter == 0) {
-                    RightRocketCargoT1.setColor(Color.rgb(221, 172, 107));
-                    RRCT1.setTextColor(getResources().getColor(R.color.defaultdisabled));
-                    break;
-                }
-            case "RRPFT3":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRPFT3Counter--;
-                RRPFT3.setText(String.valueOf(RRPFT3Counter));
-                enableScoringDiagram('P');
-
-                if (RRPFT3Counter == 0) {
-                    RightRocketPanelFarT3.setColor(Color.rgb(255, 255, 217));
-                    RRPFT3.setTextColor(getResources().getColor(R.color.textdefault));
-
-                }
-                break;
-            case "RRPFT2":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRPFT2Counter--;
-                RRPFT2.setText(String.valueOf(RRPFT2Counter));
-                enableScoringDiagram('P');
-
-                if (RRPFT2Counter == 0) {
-                    RightRocketPanelFarT2.setColor(Color.rgb(255, 255, 217));
-                    RRPFT2.setTextColor(getResources().getColor(R.color.textdefault));
-                }
-                break;
-            case "RRPFT1":
-                selectedButtonColors(PanelButton);
-                defaultButtonState(CargoButton);
-
-                PanelButton.setEnabled(false);
-                PanelCounterText.setEnabled(false);
-                CargoButton.setEnabled(false);
-                CargoCounterText.setEnabled(false);
-                DroppedButton.setEnabled(true);
-                DroppedCounterText.setEnabled(true);
-                MissedButton.setEnabled(true);
-                MissedCounterText.setEnabled(true);
-                RRPFT1Counter--;
-                RRPFT1.setText(String.valueOf(RRPFT1Counter));
-                enableScoringDiagram('P');
-
-                if (RRPFT1Counter == 0) {
-                    RightRocketPanelFarT1.setColor(Color.rgb(255, 255, 217));
-                    RRPFT1.setTextColor(getResources().getColor(R.color.textdefault));
                 }
                 break;
         }

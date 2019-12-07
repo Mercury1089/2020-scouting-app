@@ -1,12 +1,6 @@
 package com.mercury1089.scoutingapp2019;
 
-
-
-
-
-
-
-
+import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
 import android.app.Activity;
 
@@ -17,25 +11,12 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
-
-
-
-
-
-
-
-
-
 import android.os.Bundle;
 
 
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 
 import android.text.TextWatcher;
-
-import android.util.Log;
 
 import android.view.View;
 
@@ -234,8 +215,8 @@ public class MainActivity extends Activity {
             if (setupHashMap != null && setupHashMap.get("NoShow").equals("1")) {
                 NoShowSwitch.setChecked(true);
                 
-                prepopulatedTitle.setTextColor(getAColor(R.color.grey));
-                prepopulatedDirections.setTextColor(getAColor(R.color.grey));
+                prepopulatedTitle.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
+                prepopulatedDirections.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
                 if (ScouterNameInput.getText().length() > 0
 
                         && teamNumberInput.getText().length() > 0
@@ -274,9 +255,9 @@ public class MainActivity extends Activity {
             }
             else if(setupHashMap.get("NoShow") != null && setupHashMap.get("NoShow").equals("0")) {
                 NoShowSwitch.setChecked(false);
-                prepopulatedTitle.setTextColor(getAColor(R.color.light));
+                prepopulatedTitle.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
-                prepopulatedDirections.setTextColor(getAColor(R.color.light));
+                prepopulatedDirections.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
             }
 
 
@@ -287,8 +268,8 @@ public class MainActivity extends Activity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    prepopulatedTitle.setTextColor(getAColor(R.color.grey));
-                    prepopulatedDirections.setTextColor(getAColor(R.color.grey));
+                    prepopulatedTitle.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
+                    prepopulatedDirections.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
 
                     if (ScouterNameInput.getText().length() > 0
                             && teamNumberInput.getText().length() > 0
@@ -321,9 +302,9 @@ public class MainActivity extends Activity {
                     isQRButton = true;
 
                 } else {
-                    prepopulatedTitle.setTextColor(getAColor(R.color.light));
+                    prepopulatedTitle.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
-                    prepopulatedDirections.setTextColor(getAColor(R.color.light));
+                    prepopulatedDirections.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
                     setupHashMap.put("NoShow", "0");
 
@@ -622,29 +603,25 @@ public class MainActivity extends Activity {
     }
 
     //call methods
-    public int getAColor(int id) {
-        return ContextCompat.getColor(this, id);
-    }
-
     public void blueDefault () {
         isBlueAlliance = 0;
-        blueButton.setBackgroundColor(getAColor(R.color.light));
-        blueButton.setTextColor(getAColor(R.color.grey));
+        blueButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.light));
+        blueButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
     }
 
     public void redDefault () {
         isRedAlliance = 0;
-        redButton.setBackgroundColor(getAColor(R.color.light));
-        redButton.setTextColor(getAColor(R.color.grey));
+        redButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.light));
+        redButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
     }
 
 
 
     public void selectedButtonColors(BootstrapButton button) {
 
-        button.setBackgroundColor(getAColor(R.color.orange));
+        button.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.orange));
 
-        button.setTextColor(getAColor(R.color.light));
+        button.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
     }
 
@@ -688,17 +665,17 @@ public class MainActivity extends Activity {
 
                     if (setupHashMap.get("AllianceColor").equals("Blue")) {
 
-                        blueButton.setBackgroundColor(getAColor(R.color.blue));
+                        blueButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.blue));
 
-                        blueButton.setTextColor(getAColor(R.color.light));
+                        blueButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
                     }
 
                     else if (setupHashMap.get("AllianceColor").equals("Red")) {
 
-                        redButton.setBackgroundColor(getAColor(R.color.red));
+                        redButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.red));
 
-                        redButton.setTextColor(getAColor(R.color.light));
+                        redButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
                     }
 
@@ -708,17 +685,17 @@ public class MainActivity extends Activity {
 
                     if (setupHashMap.get("AllianceColor").equals("Blue")) {
 
-                        blueButton.setBackgroundColor(getAColor(R.color.blue));
+                        blueButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.blue));
 
-                        blueButton.setTextColor(getAColor(R.color.light));
+                        blueButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
                     }
 
                     else if (setupHashMap.get("AllianceColor").equals("Red")) {
 
-                        redButton.setBackgroundColor(getAColor(R.color.red));
+                        redButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.red));
 
-                        redButton.setTextColor(getAColor(R.color.light));
+                        redButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
                     }
 
@@ -726,8 +703,8 @@ public class MainActivity extends Activity {
 
                 if (setupHashMap != null && setupHashMap.get("NoShow").equals("1")) {
                     NoShowSwitch.setChecked(true);
-                    prepopulatedTitle.setTextColor(getAColor(R.color.grey));
-                    prepopulatedDirections.setTextColor(getAColor(R.color.grey));
+                    prepopulatedTitle.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
+                    prepopulatedDirections.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.grey));
                     if (ScouterNameInput.getText().length() > 0
 
                             && teamNumberInput.getText().length() > 0
@@ -765,9 +742,9 @@ public class MainActivity extends Activity {
                 }
                 else if(setupHashMap.get("NoShow") != null && setupHashMap.get("NoShow").equals("0")) {
                     NoShowSwitch.setChecked(false);
-                    prepopulatedTitle.setTextColor(getAColor(R.color.light));
+                    prepopulatedTitle.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
-                    prepopulatedDirections.setTextColor(getAColor(R.color.light));
+                    prepopulatedDirections.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
                 }
 
             }
@@ -866,9 +843,9 @@ public class MainActivity extends Activity {
 
             redDefault();
 
-            blueButton.setBackgroundColor(getAColor(R.color.blue));
+            blueButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.blue));
 
-            blueButton.setTextColor(getAColor(R.color.light));
+            blueButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
             isBlueAlliance = 1;
 
@@ -948,9 +925,9 @@ public class MainActivity extends Activity {
 
             blueDefault();
 
-            redButton.setBackgroundColor(getAColor(R.color.red));
+            redButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.red));
 
-            redButton.setTextColor(getAColor(R.color.light));
+            redButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
 
             isRedAlliance = 1;
         }
@@ -1020,7 +997,7 @@ public class MainActivity extends Activity {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getAColor(R.color.colorPrimaryDark) : getAColor(R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(MainActivity.this, R.color.colorPrimaryDark) : GenUtils.getAColor(MainActivity.this, R.color.bootstrap_dropdown_divider);
             }
         }
 
@@ -1072,8 +1049,8 @@ public class MainActivity extends Activity {
                         teamNumber.setText("Team Number: " + setupHashMap.get("TeamNumber"));
                         matchNumber.setText("Match Number: " + setupHashMap.get("MatchNumber"));
                         goBackToMain.setEnabled(false);
-                        goBackToMain.setBackgroundColor(getAColor((R.color.savedefault)));
-                        goBackToMain.setTextColor(getAColor(R.color.savetextdefault));
+                        goBackToMain.setBackgroundColor(GenUtils.getAColor(MainActivity.this, (R.color.savedefault)));
+                        goBackToMain.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.savetextdefault));
 
                         dialog.show();
 
@@ -1082,13 +1059,13 @@ public class MainActivity extends Activity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if (isChecked) {
                                     goBackToMain.setEnabled(true);
-                                    goBackToMain.setBackgroundColor(getAColor((R.color.blue)));
-                                    goBackToMain.setTextColor(getAColor(R.color.light));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(MainActivity.this, (R.color.blue)));
+                                    goBackToMain.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
                                 }
                                 else{
                                     goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(getAColor((R.color.defaultdisabled)));
-                                    goBackToMain.setTextColor(getAColor(R.color.textdefault));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(MainActivity.this, (R.color.defaultdisabled)));
+                                    goBackToMain.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.textdefault));
                                 }
                             }
 
