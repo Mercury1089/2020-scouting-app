@@ -70,6 +70,7 @@ import com.google.zxing.WriterException;
 
 
 import com.google.zxing.common.BitMatrix;
+import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
 
 
 import java.io.Serializable;
@@ -154,8 +155,6 @@ public class MainActivity extends Activity {
         NoShowSwitch = findViewById(R.id.NoShowSwitch);
         clearButton = findViewById(R.id.ClearButton);
         startButton = findViewById(R.id.StartButton);
-        prepopulatedTitle = findViewById(R.id.IDPrepopulated);
-        prepopulatedDirections = findViewById(R.id.IDPrepopulatedDirections);
 
         //setting group buttons to default state
         blueDefault();
@@ -173,8 +172,6 @@ public class MainActivity extends Activity {
 
             if (setupData != null) {
                 setupHashMap = (HashMap<String, String>) setupData;
-//                if (setupHashMap.get("StartingGameObject") == null)
-//                    setupHashMap.put("StartingGameObject", "");
 
                 if (setupHashMap.size() == 0) {
                     setupHashMap.put("NoShow", "0");
@@ -1011,7 +1008,7 @@ public class MainActivity extends Activity {
         @Override
         public void run() {
             StringBuilder QRString = new StringBuilder();
-            QRString.append(setupHashMap.get("ScouterName")).append(",");
+            /*QRString.append(setupHashMap.get("ScouterName")).append(",");
             QRString.append(setupHashMap.get("MatchNumber")).append(",");
             QRString.append(setupHashMap.get("TeamNumber")).append(",");
             QRString.append(setupHashMap.get("FirstAlliancePartner")).append(",");
@@ -1026,8 +1023,8 @@ public class MainActivity extends Activity {
             QRString.append("").append(",");
             QRString.append("").append(",");
             QRString.append(setupHashMap.get("NoShow")).append(",");
-            QRString.append("").append(",");
-            QRValue = QRString.toString();
+            QRString.append("").append(",");*/
+            QRValue = QRStringBuilder.MakeQRString(setupHashMap, null);
 
             try {
                 bitmap = TextToImageEncode(QRValue);

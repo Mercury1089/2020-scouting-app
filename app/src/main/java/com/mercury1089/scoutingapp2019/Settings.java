@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -82,22 +83,22 @@ public class Settings extends AppCompatActivity {
             isLeft = true;
             leftOrRight = "Left";
             rightDefault();
-            fieldSideLeftButton.setBackgroundColor(getResources().getColor(R.color.orange));
-            fieldSideLeftButton.setTextColor(getResources().getColor(R.color.light));
+            fieldSideLeftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+            fieldSideLeftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             saveButton.setEnabled(true);
-            saveButton.setBackgroundColor(getResources().getColor((R.color.saveactive)));
-            saveButton.setTextColor(getResources().getColor(R.color.light));
+            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (GenUtils.GREEN)));
+            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             localStorageResetDefault();
         } else if (mainLeftOrRight.equals("Right")) {
             isRight = true;
             leftOrRight = "Right";
-            fieldSideRightButton.setBackgroundColor(getResources().getColor(R.color.orange));
-            fieldSideRightButton.setTextColor(getResources().getColor(R.color.light));
+            fieldSideRightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+            fieldSideRightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             leftDefault();
             localStorageResetDefault();
             saveButton.setEnabled(true);
-            saveButton.setBackgroundColor(getResources().getColor((R.color.saveactive)));
-            saveButton.setTextColor(getResources().getColor(R.color.light));
+            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (GenUtils.GREEN)));
+            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
         }
     }
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -117,15 +118,15 @@ public class Settings extends AppCompatActivity {
         if (!isRight) {
             isRight = true;
             leftOrRight = "Right";
-            fieldSideRightButton.setBackgroundColor(getResources().getColor(R.color.orange));
-            fieldSideRightButton.setTextColor(getResources().getColor(R.color.light));
+            fieldSideRightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+            fieldSideRightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             leftDefault();
             localStorageResetDefault();
             if (!isFirstTime)
                 CancelButton.setEnabled(true);
             saveButton.setEnabled(true);
-            saveButton.setBackgroundColor(getResources().getColor((R.color.saveactive)));
-            saveButton.setTextColor(getResources().getColor(R.color.light));
+            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.GREEN));
+            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
         }
         else {
             isRight = false;
@@ -145,13 +146,13 @@ public class Settings extends AppCompatActivity {
             isLeft = true;
             leftOrRight = "Left";
             rightDefault();
-            fieldSideLeftButton.setBackgroundColor(getResources().getColor(R.color.orange));
-            fieldSideLeftButton.setTextColor(getResources().getColor(R.color.light));
+            fieldSideLeftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+            fieldSideLeftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             saveButton.setEnabled(true);
             if (!isFirstTime)
                CancelButton.setEnabled(true);
-            saveButton.setBackgroundColor(getResources().getColor((R.color.saveactive)));
-            saveButton.setTextColor(getResources().getColor(R.color.light));
+            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (GenUtils.GREEN)));
+            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             localStorageResetDefault();
         } else {
             isLeft = false;
@@ -169,8 +170,8 @@ public class Settings extends AppCompatActivity {
     public void localStorageResetClick (View view) {
         if (!isLocalStorageClicked) {
             isLocalStorageClicked = true;
-            localStorageResetButton.setBackgroundColor(getResources().getColor(R.color.orange));
-            localStorageResetButton.setTextColor(getResources().getColor(R.color.light));
+            localStorageResetButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+            localStorageResetButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             isFirstTime = true;
             CancelButton.setEnabled(false);
             disabledStyle(CancelButton);
@@ -184,25 +185,25 @@ public class Settings extends AppCompatActivity {
 
     private void localStorageResetDefault () {
         isLocalStorageClicked = false;
-        localStorageResetButton.setBackgroundColor(getResources().getColor(R.color.light));
-        localStorageResetButton.setTextColor(getResources().getColor(R.color.grey));
+        localStorageResetButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
+        localStorageResetButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
     }
 
     private void rightDefault () {
-        fieldSideRightButton.setBackgroundColor(getResources().getColor(R.color.light));
-        fieldSideRightButton.setTextColor(getResources().getColor(R.color.grey));
+        fieldSideRightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
+        fieldSideRightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
         isRight = false;
     }
 
     private void leftDefault () {
-        fieldSideLeftButton.setBackgroundColor(getResources().getColor(R.color.light));
-        fieldSideLeftButton.setTextColor(getResources().getColor(R.color.grey));
+        fieldSideLeftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
+        fieldSideLeftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
         isLeft = false;
     }
 
     private void disabledStyle (Button button) {
-        button.setBackgroundColor(getResources().getColor((R.color.savedefault)));
-        button.setTextColor(getResources().getColor(R.color.savetextdefault));
+        button.setBackgroundColor(GenUtils.getAColor(Settings.this, (R.color.savedefault)));
+        button.setTextColor(GenUtils.getAColor(Settings.this, R.color.savetextdefault));
     }
 
     public void saveClick (View view) {
@@ -215,8 +216,8 @@ public class Settings extends AppCompatActivity {
             localStorageResetDefault();
             saveButton.setEnabled(false);
             disabledStyle(saveButton);
-            saveButton.setBackgroundColor(getResources().getColor((R.color.savedefault)));
-            saveButton.setTextColor(getResources().getColor(R.color.savetextdefault));
+            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (R.color.savedefault)));
+            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.savetextdefault));
 
             setupHashMap.clear();
             setupHashMap.put("NoShow","0");

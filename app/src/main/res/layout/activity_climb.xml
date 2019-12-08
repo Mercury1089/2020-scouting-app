@@ -50,7 +50,7 @@
 
             android:onClick="SandstormClick"
             android:text="@string/Sandstorm"
-            android:textSize="36sp"/>
+            android:textSize="36sp" />
 
         <com.beardedhen.androidbootstrap.BootstrapButton
 
@@ -63,7 +63,7 @@
             android:onClick="TeleopClick"
 
             android:text="@string/Teleop"
-            android:textSize="36sp"/>
+            android:textSize="36sp" />
 
         <com.beardedhen.androidbootstrap.BootstrapButton
 
@@ -75,7 +75,7 @@
 
             android:saveEnabled="false"
             android:text="@string/Climb"
-            android:textSize="36sp"/>
+            android:textSize="36sp" />
 
 
     </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
@@ -105,30 +105,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/IDSoloClimb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Did they climb on their own or with help (another robot lifting them)?"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/OnHab" />
-
-    <TextView
-        android:id="@+id/IDHABLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="sans-serif-black"
-        android:text="What level?"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toEndOf="@+id/IDisHAB"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="542dp"
         android:layout_height="74dp"
@@ -136,51 +112,6 @@
         android:textColor="@color/bootstrap_dropdown_divider"
         app:layout_constraintStart_toStartOf="@+id/IDClimbing"
         app:layout_constraintTop_toBottomOf="@+id/IDClimbing" />
-
-    <TextView
-        android:id="@+id/IDLiftingDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tap “YES” or “NO” to mark if the robot helped OTHER robots on their alliance climb the HAB. Tap “1” or “2” to mark how many OTHER robots the robot elevated."
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="@+id/IDLiftingPartners"
-        app:layout_constraintTop_toBottomOf="@+id/IDLiftingPartners" />
-
-    <TextView
-        android:id="@+id/IDLiftingPartners"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="64dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Lifting Partners"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LiftingPartner" />
-
-    <TextView
-        android:id="@+id/IDPartnerLift"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Did they lift any partners?"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDLiftingDirections" />
-
-    <TextView
-        android:id="@+id/IDNumberPartners"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-black"
-        android:text="How many?"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toEndOf="@+id/IDPartnerLift"
-        app:layout_constraintTop_toBottomOf="@+id/IDLiftingDirections" />
 
     <com.beardedhen.androidbootstrap.BootstrapButtonGroup
 
@@ -227,218 +158,18 @@
 
     </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-
-        android:id="@+id/LevelNumber"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="45dp"
-
-        android:orientation="horizontal"
-
-        app:bootstrapBrand="success"
-        app:bootstrapSize="lg"
-        app:layout_constraintStart_toStartOf="@+id/IDHABLevel"
-        app:layout_constraintTop_toTopOf="@+id/OnHab"
-        app:roundedCorners="true">
-
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/Level1Button"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="Level1Click"
-            android:saveEnabled="false"
-            android:text="1"
-            android:textSize="36sp" />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/Level2Button"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="Level2Click"
-            android:saveEnabled="false"
-            android:text="2"
-            android:textSize="36sp" />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/Level3Button"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="Level3Click"
-
-            android:saveEnabled="false"
-            android:text="3"
-            android:textSize="36sp" />
-
-
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-
-        android:id="@+id/LiftingPartner"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="45dp"
-
-        android:layout_marginTop="24dp"
-
-        android:orientation="horizontal"
-        app:bootstrapBrand="success"
-        app:bootstrapSize="lg"
-        app:layout_constraintStart_toStartOf="@+id/IDSoloClimb"
-        app:layout_constraintTop_toTopOf="@+id/IDSoloClimb"
-        app:roundedCorners="true">
-
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/IsSoloButton"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="OnTheirOwnClick"
-            android:saveEnabled="false"
-            android:text="ON THEIR OWN"
-            android:textSize="36sp" />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/WithHelpButton"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="WithHelpClick"
-            android:saveEnabled="false"
-            android:text="WITH HELP"
-            android:textSize="36sp" />
-
-
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-
-        android:id="@+id/PartnerLift"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="45dp"
-
-        android:layout_marginTop="8dp"
-
-        android:orientation="horizontal"
-        app:bootstrapBrand="success"
-        app:bootstrapSize="lg"
-        app:layout_constraintStart_toStartOf="@+id/IDSoloClimb"
-        app:layout_constraintTop_toBottomOf="@+id/IDPartnerLift"
-        app:roundedCorners="true">
-
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/HasLiftedButton"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="HasLiftedClick"
-            android:saveEnabled="false"
-            android:text="YES"
-            android:textSize="36sp" />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/HasNotLiftedButton"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="HasNotLiftedClick"
-            android:saveEnabled="false"
-            android:text="NO"
-            android:textSize="36sp" />
-
-
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-
-        android:id="@+id/NumberPartners"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="45dp"
-
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:bootstrapBrand="success"
-        app:bootstrapSize="lg"
-        app:layout_constraintStart_toStartOf="@+id/IDNumberPartners"
-        app:layout_constraintTop_toBottomOf="@+id/IDNumberPartners"
-        app:roundedCorners="true">
-
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/OnePartnerButton"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="OnePartnerClick"
-            android:saveEnabled="false"
-            android:text=" 1 "
-            android:textSize="36sp" />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-
-            android:id="@+id/TwoPartnersButton"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="match_parent"
-
-            android:onClick="TwoPartnerClick"
-            android:saveEnabled="false"
-            android:text=" 2 "
-            android:textSize="36sp" />
-
-
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
     <Button
         android:id="@+id/ClimbGenerateQRButton"
         android:layout_width="553dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="496dp"
         android:onClick="GenerateQRClick"
         android:saveEnabled="false"
         android:text="@string/GenerateQRCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NumberPartners" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

@@ -187,10 +187,10 @@
         android:layout_marginStart="16dp"
         android:background="@color/bootstrap_brand_secondary_fill"
         android:ems="10"
+        android:hint="@string/HINT_NAME"
         android:inputType="textPersonName"
         android:tag="ScouterName"
         android:textColor="@color/black"
-        android:hint="@string/HINT_NAME"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDScouterName" />
@@ -233,11 +233,11 @@
         android:layout_marginStart="16dp"
         android:background="@color/bootstrap_brand_secondary_fill"
         android:ems="10"
+        android:hint="@string/HINT_MATCH_NUMBER"
         android:inputType="number"
         android:maxLength="3"
         android:tag="MatchNumber"
         android:textColor="@color/black"
-        android:hint="@string/HINT_MATCH_NUMBER"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDMatchNumber" />
@@ -263,11 +263,11 @@
         android:layout_marginStart="16dp"
         android:background="@color/bootstrap_brand_secondary_fill"
         android:ems="10"
+        android:hint="@string/HINT_TEAM_NUMBER"
         android:inputType="number"
         android:maxLength="4"
         android:tag="TeamNumber"
         android:textColor="@color/black"
-        android:hint="@string/HINT_TEAM_NUMBER"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDTeamNumber" />
@@ -304,12 +304,12 @@
         android:layout_marginStart="16dp"
         android:background="@color/bootstrap_brand_secondary_fill"
         android:ems="10"
+        android:hint="@string/HINT_TEAM_NUMBER"
         android:inputType="number"
         android:maxLength="4"
         android:nextFocusDown="@+id/SecondAlliancePartnerInput"
         android:tag="Alliance1"
         android:textColor="@color/black"
-        android:hint="@string/HINT_TEAM_NUMBER"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDAlliancePartners" />
@@ -322,11 +322,11 @@
         android:layout_marginStart="32dp"
         android:background="@color/bootstrap_brand_secondary_fill"
         android:ems="10"
+        android:hint="@string/HINT_TEAM_NUMBER"
         android:inputType="number"
         android:maxLength="4"
         android:tag="Alliance2"
         android:textColor="@color/black"
-        android:hint="@string/HINT_TEAM_NUMBER"
 
         app:layout_constraintStart_toEndOf="@+id/FirstAlliancePartnerInput"
         app:layout_constraintTop_toBottomOf="@+id/IDAlliancePartners" />
@@ -384,69 +384,17 @@
 
 
     <TextView
-        android:id="@+id/IDPrepopulated"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/PrepopulatedTitle"
-        android:textColor="@color/bootstrap_dropdown_divider"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SecondAlliancePartnerInput" />
-
-
-    <TextView
-        android:id="@+id/IDPrepopulatedDirections"
-        android:layout_width="576dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/PrepopulatedDirections"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDPrepopulated" />
-
-
-    <TextView
-        android:id="@+id/IDStartingPosition"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="96dp"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/StartingPositionTitle"
-        android:textColor="@color/bootstrap_dropdown_divider"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDPrepopulatedDirections" />
-
-
-    <TextView
-        android:id="@+id/IDStartingPositionDirections"
-        android:layout_width="601dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/SetupDirections"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPosition" />
-
-
-    <TextView
         android:id="@+id/IDStartButtonDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="496dp"
         android:text="@string/StartButtonDirections"
         android:textColor="@color/bootstrap_dropdown_divider"
         app:layout_constraintEnd_toStartOf="@+id/StartButton"
-        app:layout_constraintHorizontal_bias="0.5"
 
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/StartButton"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
+        app:layout_constraintTop_toBottomOf="@+id/SecondAlliancePartnerInput" />
 
 
     <Button

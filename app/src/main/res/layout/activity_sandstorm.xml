@@ -102,23 +102,23 @@
         android:id="@+id/CargoShipPanelLeft1"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="396dp"
         android:layout_marginEnd="16dp"
         android:onClick="CSPL1CounterClick"
         app:cb_color="@color/defaultdisabled"
         app:cb_pressedRingWidth="10dp"
         app:layout_constraintEnd_toStartOf="@+id/CargoShipPanelLeft2"
-        app:layout_constraintTop_toBottomOf="@+id/MissedButton" />
+        app:layout_constraintTop_toBottomOf="@+id/OnHab" />
 
     <at.markushi.ui.CircleButton
         android:id="@+id/CargoShipPanelLeft2"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="256dp"
+        android:layout_marginStart="396dp"
         android:onClick="CSPL1CounterClick"
         app:cb_color="@color/defaultdisabled"
         app:cb_pressedRingWidth="10dp"
-        app:layout_constraintStart_toEndOf="@+id/MissedCounterText"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CSPL1" />
 
     <at.markushi.ui.CircleButton
@@ -420,104 +420,6 @@
         app:layout_constraintTop_toBottomOf="@+id/UndoButton" />
 
 
-    <TextView
-        android:id="@+id/IDPossession"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/Possession"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/IDScoring"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/Scoring"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PanelOrCargo" />
-
-    <TextView
-        android:id="@+id/IDPanelOrCargoDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/PossessionDirections"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDPossession" />
-
-    <TextView
-        android:id="@+id/IDScoringPOrCDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/POrCDirections"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDScoring" />
-
-    <TextView
-        android:id="@+id/IDScoringMissedDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/MissedDirections"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/IDScoringPOrCDirections" />
-
-    <TextView
-        android:id="@+id/IDDroppedDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/DroppedDirections"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDPanelOrCargoDirections" />
-
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-        android:id="@+id/PanelOrCargo"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:bootstrapBrand="success"
-        app:bootstrapSize="lg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDDroppedDirections"
-        app:roundedCorners="true">
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/SPanelButton"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:onClick="panelCounterClick"
-            android:text="@string/PanelAndCounter"
-            android:textSize="36sp" />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/SCargoButton"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:onClick="cargoCounterClick"
-            android:text="@string/CargoAndCounter"
-            android:textSize="36sp" />
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
     <com.beardedhen.androidbootstrap.BootstrapButtonGroup
         android:id="@+id/OnHab"
         android:layout_width="wrap_content"
@@ -564,134 +466,5 @@
             android:text="@string/Climb"
             android:textSize="36sp" />
     </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/MissedButton"
-        android:layout_width="125dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:enabled="false"
-        android:onClick="missedClick"
-        android:saveEnabled="true"
-        android:text="@string/MissedAndCounter"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDScoringMissedDirections" />
-
-    <at.markushi.ui.CircleButton
-        android:id="@+id/MissedCounterCircle"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:color="@color/grey"
-        app:cb_color="@color/defaultdisabled"
-        app:cb_pressedRingWidth="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/MissedButton"
-        app:layout_constraintTop_toTopOf="@+id/MissedButton" />
-
-    <at.markushi.ui.CircleButton
-        android:id="@+id/PanelCounterCircle"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="78dp"
-        android:color="@color/grey"
-        android:saveEnabled="false"
-        app:cb_color="@color/defaultdisabled"
-        app:cb_pressedRingWidth="10dp"
-        app:layout_constraintStart_toStartOf="@+id/PanelOrCargo"
-        app:layout_constraintTop_toTopOf="@+id/CargoCounterText" />
-
-    <at.markushi.ui.CircleButton
-        android:id="@+id/CargoCounterCircle"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:color="@color/grey"
-        android:saveEnabled="false"
-        app:cb_color="@color/defaultdisabled"
-        app:cb_pressedRingWidth="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/PanelOrCargo"
-        app:layout_constraintTop_toTopOf="@+id/PanelOrCargo" />
-
-    <TextView
-        android:id="@+id/MissedCounterText"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:enabled="false"
-        android:gravity="center"
-        android:onClick="missedClick"
-        android:tag=""
-        android:text="@string/zero"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintEnd_toEndOf="@+id/MissedCounterCircle"
-        app:layout_constraintStart_toStartOf="@+id/MissedCounterCircle"
-        app:layout_constraintTop_toTopOf="@+id/MissedCounterCircle" />
-
-    <TextView
-        android:id="@+id/PanelCounterText"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="78dp"
-        android:enabled="false"
-        android:gravity="center"
-        android:onClick="panelCounterClick"
-        android:tag="T,P,P,,,"
-        android:text="@string/zero"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintEnd_toEndOf="@+id/PanelCounterCircle"
-        app:layout_constraintStart_toStartOf="@+id/PanelOrCargo"
-        app:layout_constraintTop_toTopOf="@+id/PanelCounterCircle" />
-
-    <TextView
-        android:id="@+id/CargoCounterText"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:enabled="false"
-        android:gravity="center"
-        android:onClick="cargoCounterClick"
-        android:tag="T,P,C,,,"
-        android:text="@string/zero"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintEnd_toEndOf="@+id/CargoCounterCircle"
-        app:layout_constraintStart_toStartOf="@+id/CargoCounterCircle"
-        app:layout_constraintTop_toTopOf="@+id/CargoCounterCircle" />
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-
-        android:id="@+id/DroppedButton"
-
-        android:layout_width="125dp"
-
-        android:layout_height="45dp"
-        android:layout_marginStart="472dp"
-        android:enabled="false"
-        android:onClick="droppedClick"
-        android:text="@string/DroppedAndCounter"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/PanelOrCargo" />
-
-    <at.markushi.ui.CircleButton
-        android:id="@+id/DroppedCounterCircle"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:color="@color/grey"
-        android:saveEnabled="false"
-        app:cb_color="@color/defaultdisabled"
-        app:cb_pressedRingWidth="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/DroppedButton"
-        app:layout_constraintTop_toTopOf="@+id/DroppedCounterText" />
-
-    <TextView
-        android:id="@+id/DroppedCounterText"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:enabled="false"
-        android:gravity="center"
-        android:onClick="droppedClick"
-        android:tag=""
-        android:text="@string/zero"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintEnd_toEndOf="@+id/DroppedCounterCircle"
-        app:layout_constraintTop_toTopOf="@+id/DroppedButton" />
 
 </android.support.constraint.ConstraintLayout>

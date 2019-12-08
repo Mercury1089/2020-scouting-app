@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import com.mercury1089.scoutingapp2019.utils.GenUtils;
+
 
 public class CustomView extends View {
 
@@ -16,7 +18,7 @@ public class CustomView extends View {
     public CustomView (final Context context, final AttributeSet attrs) {
         super(context, attrs);
         drawPaint = new Paint();
-        drawPaint.setColor(getResources().getColor(R.color.orange));
+        drawPaint.setColor(GenUtils.getAColor(getContext(), R.color.orange));
         drawPaint.setAntiAlias(true);
         setOnMeasureCallback();
     }
