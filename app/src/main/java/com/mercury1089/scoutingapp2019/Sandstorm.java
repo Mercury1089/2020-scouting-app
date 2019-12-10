@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
+import com.mercury1089.scoutingapp2019.utils.LocationGroup;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -21,22 +22,22 @@ import java.util.TimerTask;
 import at.markushi.ui.CircleButton;
 
 public class Sandstorm extends MainActivity {
-    private TextView CSPF1;
-    private TextView CSPF2;
-    private TextView CSCF1;
-    private TextView CSCF2;
-    private TextView CSPL1;
-    private TextView CSPL2;
-    private TextView CSPL3;
-    private TextView CSCL1;
-    private TextView CSCL2;
-    private TextView CSCL3;
-    private TextView CSCR1;
-    private TextView CSCR2;
-    private TextView CSCR3;
-    private TextView CSPR1;
-    private TextView CSPR2;
-    private TextView CSPR3;
+    private TextView CSPF1_Text;
+    private TextView CSPF2_Text;
+    private TextView CSCF1_Text;
+    private TextView CSCF2_Text;
+    private TextView CSPL1_Text;
+    private TextView CSPL2_Text;
+    private TextView CSPL3_Text;
+    private TextView CSCL1_Text;
+    private TextView CSCL2_Text;
+    private TextView CSCL3_Text;
+    private TextView CSCR1_Text;
+    private TextView CSCR2_Text;
+    private TextView CSCR3_Text;
+    private TextView CSPR1_Text;
+    private TextView CSPR2_Text;
+    private TextView CSPR3_Text;
 
 
     //CARGO SHIP
@@ -116,22 +117,37 @@ public class Sandstorm extends MainActivity {
         CargoShipCargoRight1 = findViewById(R.id.CargoShipCargoRight1);
         CargoShipCargoRight2 = findViewById(R.id.CargoShipCargoRight2);
         CargoShipCargoRight3 = findViewById(R.id.CargoShipCargoRight3);
-        CSPF1 = findViewById(R.id.CSPF1);
-        CSPF2 = findViewById(R.id.CSPF2);
-        CSCF1 = findViewById(R.id.CSCF1);
-        CSCF2 = findViewById(R.id.CSCF2);
-        CSPL1 = findViewById(R.id.CSPL1);
-        CSPL2 = findViewById(R.id.CSPL2);
-        CSPL3 = findViewById(R.id.CSPL3);
-        CSCL1 = findViewById(R.id.CSCL1);
-        CSCL2 = findViewById(R.id.CSCL2);
-        CSCL3 = findViewById(R.id.CSCL3);
-        CSCR1 = findViewById(R.id.CSCR1);
-        CSCR2 = findViewById(R.id.CSCR2);
-        CSCR3 = findViewById(R.id.CSCR3);
-        CSPR1 = findViewById(R.id.CSPR1);
-        CSPR2 = findViewById(R.id.CSPR2);
-        CSPR3 = findViewById(R.id.CSPR3);
+
+        CSPF1_Text = findViewById(R.id.CSPF1);
+        CSPF2_Text = findViewById(R.id.CSPF2);
+        CSCF1_Text = findViewById(R.id.CSCF1);
+        CSCF2_Text = findViewById(R.id.CSCF2);
+        CSPL1_Text = findViewById(R.id.CSPL1);
+        CSPL2_Text = findViewById(R.id.CSPL2);
+        CSPL3_Text = findViewById(R.id.CSPL3);
+        CSCL1_Text = findViewById(R.id.CSCL1);
+        CSCL2_Text = findViewById(R.id.CSCL2);
+        CSCL3_Text = findViewById(R.id.CSCL3);
+        CSCR1_Text = findViewById(R.id.CSCR1);
+        CSCR2_Text = findViewById(R.id.CSCR2);
+        CSCR3_Text = findViewById(R.id.CSCR3);
+        CSPR1_Text = findViewById(R.id.CSPR1);
+        CSPR2_Text = findViewById(R.id.CSPR2);
+        CSPR3_Text = findViewById(R.id.CSPR3);
+
+        /*
+        LocationGroup CSPF1 = new LocationGroup(CSPF1_Text, CargoShipPanelFront1, CSPF1Counter);
+        LocationGroup CSPF2 = new LocationGroup(CSPF2_Text, CargoShipPanelFront2, CSPF2Counter);
+        LocationGroup CSCF1 = new LocationGroup(CSCF1_Text, CargoShipCargoFront1, CSCF1Counter);
+        LocationGroup CSCF2 = new LocationGroup(CSCF2_Text, CargoShipCargoFront2, CSCF2Counter);
+        LocationGroup CSPL1= new LocationGroup(CSPL1_Text, CargoShipPanelLeft1, CSPL1Counter);
+        LocationGroup CSPL2 = new LocationGroup(CSPL2_Text, CargoShipPanelLeft2, CSPL2Counter);
+        LocationGroup CSPL3 = new LocationGroup(CSPL3_Text, CargoShipPanelLeft3, CSPL3Counter);
+        LocationGroup CSPR1= new LocationGroup(CSPR1_Text, CargoShipPanelRight1, CSPR1Counter);
+        LocationGroup CSPR2 = new LocationGroup(CSPR1_Text, CargoShipPanelRight2, CSPR2Counter);
+        LocationGroup CSPR3 = new LocationGroup(CSPR1_Text, CargoShipPanelRight3, CSPR3Counter);
+        */
+
         SetupButton = findViewById(R.id.SetupButton);
         SandstormButton = findViewById(R.id.SandstormButton);
         TeleopButton = findViewById(R.id.TeleopButton);
