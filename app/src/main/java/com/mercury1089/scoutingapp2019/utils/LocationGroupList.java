@@ -3,9 +3,9 @@ package com.mercury1089.scoutingapp2019.utils;
 import java.util.HashMap;
 
 public class LocationGroupList {
-    protected static HashMap<String, LocationGroup> list = new HashMap<String, LocationGroup>();
+    public static HashMap<String, LocationGroup> list = new HashMap<String, LocationGroup>();
     public static HashMap getLocations(String panelOrCargo) {
-        HashMap<String, LocationGroup> locations = new HashMap<String, LocationGroup>();
+        HashMap<String, LocationGroup> locations = new HashMap<>();
         if (panelOrCargo.equals("Panel")) {
             for (String key : list.keySet()) {
                 if (key.charAt(2) == 'P')
@@ -18,5 +18,9 @@ public class LocationGroupList {
             }
         }
         return locations;
+    }
+    public static void replace (String key, LocationGroup locationGroup) {
+        list.remove(key);
+        list.put(key, locationGroup);
     }
 }

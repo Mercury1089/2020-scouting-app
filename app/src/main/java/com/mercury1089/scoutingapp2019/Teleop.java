@@ -100,67 +100,63 @@ public class Teleop extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teleop);
-            //initializers
-            CargoShipPanelFront1 = findViewById(R.id.CargoShipPanelFront1);
-            CargoShipPanelFront2 = findViewById(R.id.CargoShipPanelFront2);
-            CargoShipPanelLeft1 = findViewById(R.id.CargoShipPanelLeft1);
-            CargoShipPanelLeft2 = findViewById(R.id.CargoShipPanelLeft2);
-            CargoShipPanelLeft3 = findViewById(R.id.CargoShipPanelLeft3);
-            CargoShipPanelRight1 = findViewById(R.id.CargoShipPanelRight1);
-            CargoShipPanelRight2 = findViewById(R.id.CargoShipPanelRight2);
-            CargoShipPanelRight3 = findViewById(R.id.CargoShipPanelRight3);
-            CargoShipCargoFront1 = findViewById(R.id.CargoShipCargoFront1);
-            CargoShipCargoFront2 = findViewById(R.id.CargoShipCargoFront2);
-            CargoShipCargoLeft1 = findViewById(R.id.CargoShipCargoLeft1);
-            CargoShipCargoLeft2 = findViewById(R.id.CargoShipCargoLeft2);
-            CargoShipCargoLeft3 = findViewById(R.id.CargoShipCargoLeft3);
-            CargoShipCargoRight1 = findViewById(R.id.CargoShipCargoRight1);
-            CargoShipCargoRight2 = findViewById(R.id.CargoShipCargoRight2);
-            CargoShipCargoRight3 = findViewById(R.id.CargoShipCargoRight3);
-            CSPF1 = findViewById(R.id.CSPF1);
-            CSPF2 = findViewById(R.id.CSPF2);
-            CSCF1 = findViewById(R.id.CSCF1);
-            CSCF2 = findViewById(R.id.CSCF2);
-            CSPL1 = findViewById(R.id.CSPL1);
-            CSPL2 = findViewById(R.id.CSPL2);
-            CSPL3 = findViewById(R.id.CSPL3);
-            CSCL1 = findViewById(R.id.CSCL1);
-            CSCL2 = findViewById(R.id.CSCL2);
-            CSCL3 = findViewById(R.id.CSCL3);
-            CSCR1 = findViewById(R.id.CSCR1);
-            CSCR2 = findViewById(R.id.CSCR2);
-            CSCR3 = findViewById(R.id.CSCR3);
-            CSPR1 = findViewById(R.id.CSPR1);
-            CSPR2 = findViewById(R.id.CSPR2);
-            CSPR3 = findViewById(R.id.CSPR3);
-            SetupButton = findViewById(R.id.SetupButton);
-            SandstormButton = findViewById(R.id.SandstormButton);
-            TeleopButton = findViewById(R.id.TeleopButton);
-            ClimbButton = findViewById(R.id.ClimbButton);
-            setupHashMap = new HashMap<>();
-            scoreHashMap = new HashMap<>();
-            UndoButton = findViewById(R.id.UndoButton);
-
-            constraintLayout = findViewById(R.id.layout);
-
-            FellOverSwitch = findViewById(R.id.FellOverSwitch);
-
-            //make Sandstorm button look active
-            selectedButtonColors(TeleopButton);
-
-            //make other buttons look default
-            defaultButtonState(SetupButton);
-            defaultButtonState(SandstormButton);
-            defaultButtonState(ClimbButton);
-
-            //disable scoring diagram
-            disableScoringDiagram('A');
-
-            UndoButton.setEnabled(false);
-
-            Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
-            setupHashMap = (HashMap<String, String>)setupData;
+        if (setupHashMap.get("LeftOrRight").equals("Left"))
+            setContentView(R.layout.activity_teleop);
+        else
+            setContentView(R.layout.activity_teleop_right);
+        //initializers
+        CargoShipPanelFront1 = findViewById(R.id.CargoShipPanelFront1);
+        CargoShipPanelFront2 = findViewById(R.id.CargoShipPanelFront2);
+        CargoShipPanelLeft1 = findViewById(R.id.CargoShipPanelLeft1);
+        CargoShipPanelLeft2 = findViewById(R.id.CargoShipPanelLeft2);
+        CargoShipPanelLeft3 = findViewById(R.id.CargoShipPanelLeft3);
+        CargoShipPanelRight1 = findViewById(R.id.CargoShipPanelRight1);
+        CargoShipPanelRight2 = findViewById(R.id.CargoShipPanelRight2);
+        CargoShipPanelRight3 = findViewById(R.id.CargoShipPanelRight3);
+        CargoShipCargoFront1 = findViewById(R.id.CargoShipCargoFront1);
+        CargoShipCargoFront2 = findViewById(R.id.CargoShipCargoFront2);
+        CargoShipCargoLeft1 = findViewById(R.id.CargoShipCargoLeft1);
+        CargoShipCargoLeft2 = findViewById(R.id.CargoShipCargoLeft2);
+        CargoShipCargoLeft3 = findViewById(R.id.CargoShipCargoLeft3);
+        CargoShipCargoRight1 = findViewById(R.id.CargoShipCargoRight1);
+        CargoShipCargoRight2 = findViewById(R.id.CargoShipCargoRight2);
+        CargoShipCargoRight3 = findViewById(R.id.CargoShipCargoRight3);
+        CSPF1 = findViewById(R.id.CSPF1);
+        CSPF2 = findViewById(R.id.CSPF2);
+        CSCF1 = findViewById(R.id.CSCF1);
+        CSCF2 = findViewById(R.id.CSCF2);
+        CSPL1 = findViewById(R.id.CSPL1);
+        CSPL2 = findViewById(R.id.CSPL2);
+        CSPL3 = findViewById(R.id.CSPL3);
+        CSCL1 = findViewById(R.id.CSCL1);
+        CSCL2 = findViewById(R.id.CSCL2);
+        CSCL3 = findViewById(R.id.CSCL3);
+        CSCR1 = findViewById(R.id.CSCR1);
+        CSCR2 = findViewById(R.id.CSCR2);
+        CSCR3 = findViewById(R.id.CSCR3);
+        CSPR1 = findViewById(R.id.CSPR1);
+        CSPR2 = findViewById(R.id.CSPR2);
+        CSPR3 = findViewById(R.id.CSPR3);
+        SetupButton = findViewById(R.id.SetupButton);
+        SandstormButton = findViewById(R.id.SandstormButton);
+        TeleopButton = findViewById(R.id.TeleopButton);
+        ClimbButton = findViewById(R.id.ClimbButton);
+        setupHashMap = new HashMap<>();
+        scoreHashMap = new HashMap<>();
+        UndoButton = findViewById(R.id.UndoButton);
+        constraintLayout = findViewById(R.id.layout);
+        FellOverSwitch = findViewById(R.id.FellOverSwitch);
+        //make Sandstorm button look active
+        selectedButtonColors(TeleopButton);
+        //make other buttons look default
+        defaultButtonState(SetupButton);
+        defaultButtonState(SandstormButton);
+        defaultButtonState(ClimbButton);
+        //disable scoring diagram
+        disableScoringDiagram('A');
+        UndoButton.setEnabled(false);
+        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
+        setupHashMap = (HashMap<String, String>)setupData;
 
         String fellOver = getIntent().getStringExtra("fellOver");
         if (fellOver != null && fellOver.equals("True")) {

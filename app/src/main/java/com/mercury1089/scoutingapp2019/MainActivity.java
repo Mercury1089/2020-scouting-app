@@ -276,13 +276,8 @@ public class MainActivity extends Activity {
                     QRRunnable qrRunnable = new QRRunnable();
                     new Thread(qrRunnable).start();
                 } else {
-                    if (setupHashMap.get("LeftOrRight").equals("Left")) {
+                    if (setupHashMap.get("LeftOrRight") != null) {
                         Intent intent = new Intent(MainActivity.this, Sandstorm.class);
-                        intent.putExtra("setupHashMap", setupHashMap);
-                        startActivity(intent);
-                    }
-                    else {
-                        Intent intent = new Intent(MainActivity.this, SandstormRight.class);
                         intent.putExtra("setupHashMap", setupHashMap);
                         startActivity(intent);
                     }
