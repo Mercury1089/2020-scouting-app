@@ -3,20 +3,7 @@ package com.mercury1089.scoutingapp2019.utils;
 import java.util.HashMap;
 
 public class QRStringBuilder {
-    private String ScouterName;
-    private String TeamNumber;
-    private String matchNumberInput;
-    private String firstAlliancePartner;
-    private String secondAlliancePartner;
-    private String allianceColor;
-
     public QRStringBuilder() {
-        String ScouterName = "";
-        String TeamNumber = "";
-        String matchNumberInput = "";
-        String firstAlliancePartner = "";
-        String secondAlliancePartner = "";
-        String allianceColor = "";
     }
 
     public static String MakeQRString (HashMap setupHashMap, HashMap scoreHashMap) {
@@ -30,15 +17,19 @@ public class QRStringBuilder {
         QRString.append(setupHashMap.get("SecondAlliancePartner")).append(",");
         QRString.append(setupHashMap.get("AllianceColor")).append(",");
         QRString.append(setupHashMap.get("LeftOrRight")).append(",");
-        //QRString.append(setupHashMap.get("StartingPosition")).append(",");
         QRString.append(setupHashMap.get("HABLine")).append(",");
-        //QRString.append(setupHashMap.get("StartingGameObject")).append(",");
-        //QRString.append(setupHashMap.get("ClimbLevel")).append(",");
-        //QRString.append(setupHashMap.get("ClimbPartners")).append(",");
-        //QRString.append(setupHashMap.get("SelfOrWithHelp")).append(",");
         QRString.append(setupHashMap.get("FellOver")).append(",");
-        QRString.append(setupHashMap.get("NoShow")).append(",");
-        //QRString.append(setupHashMap.get("TeleopPrepop"));
+        QRString.append(setupHashMap.get("NoShow"));
+
+
+        /* removed vars:
+        setupHashMap.get("StartingPosition"))
+        setupHashMap.get("StartingGameObject"))
+        setupHashMap.get("ClimbLevel"))
+        setupHashMap.get("ClimbPartners"))
+        setupHashMap.get("SelfOrWithHelp"))
+        setupHashMap.get("TeleopPrepop"))
+        */
 
         //scoreHashMap data
         if (scoreHashMap != null) {
@@ -50,8 +41,22 @@ public class QRStringBuilder {
                     QRString.append(scoreHashMap.get(key));
             }
         }
-
-
         return QRString.toString();
+    }
+
+    public static HashMap<String,String> defaultSetupHashMap(String leftOrRight) {
+        HashMap<String,String> setupHashMap = new HashMap<>();
+        setupHashMap.put("ScouterName", "");
+        setupHashMap.put("MatchNumber", "");
+        setupHashMap.put("TeamNumber", "");
+        setupHashMap.put("FirstAlliancePartner", "");
+        setupHashMap.put("SecondAlliancePartner", "");
+        setupHashMap.put("AllianceColor", "");
+        setupHashMap.put("LeftOrRight", leftOrRight);
+        setupHashMap.put("HABLine", "0");
+        setupHashMap.put("FellOver", "0");
+        setupHashMap.put("NoShow", "0");
+
+        return setupHashMap;
     }
 }

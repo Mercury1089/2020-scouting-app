@@ -135,18 +135,24 @@ public class Sandstorm extends MainActivity {
         CSPR2_Text = findViewById(R.id.CSPR2);
         CSPR3_Text = findViewById(R.id.CSPR3);
 
-        /*
-        LocationGroup CSPF1 = new LocationGroup(CSPF1_Text, CargoShipPanelFront1, CSPF1Counter);
-        LocationGroup CSPF2 = new LocationGroup(CSPF2_Text, CargoShipPanelFront2, CSPF2Counter);
-        LocationGroup CSCF1 = new LocationGroup(CSCF1_Text, CargoShipCargoFront1, CSCF1Counter);
-        LocationGroup CSCF2 = new LocationGroup(CSCF2_Text, CargoShipCargoFront2, CSCF2Counter);
-        LocationGroup CSPL1= new LocationGroup(CSPL1_Text, CargoShipPanelLeft1, CSPL1Counter);
-        LocationGroup CSPL2 = new LocationGroup(CSPL2_Text, CargoShipPanelLeft2, CSPL2Counter);
-        LocationGroup CSPL3 = new LocationGroup(CSPL3_Text, CargoShipPanelLeft3, CSPL3Counter);
-        LocationGroup CSPR1= new LocationGroup(CSPR1_Text, CargoShipPanelRight1, CSPR1Counter);
-        LocationGroup CSPR2 = new LocationGroup(CSPR1_Text, CargoShipPanelRight2, CSPR2Counter);
-        LocationGroup CSPR3 = new LocationGroup(CSPR1_Text, CargoShipPanelRight3, CSPR3Counter);
-        */
+
+        LocationGroup CSPF1 = new LocationGroup("CSPF1", Sandstorm.this, CSPF1_Text, CargoShipPanelFront1, CSPF1Counter);
+        LocationGroup CSPF2 = new LocationGroup("CSPF2", Sandstorm.this, CSPF2_Text, CargoShipPanelFront2, CSPF2Counter);
+        LocationGroup CSCF1 = new LocationGroup("CSCF1", Sandstorm.this, CSCF1_Text, CargoShipCargoFront1, CSCF1Counter);
+        LocationGroup CSCF2 = new LocationGroup("CSCF2", Sandstorm.this, CSCF2_Text, CargoShipCargoFront2, CSCF2Counter);
+        LocationGroup CSPL1= new LocationGroup("CSPL1", Sandstorm.this, CSPL1_Text, CargoShipPanelLeft1, CSPL1Counter);
+        LocationGroup CSPL2 = new LocationGroup("CSPL2", Sandstorm.this, CSPL2_Text, CargoShipPanelLeft2, CSPL2Counter);
+        LocationGroup CSPL3 = new LocationGroup("CSPL3", Sandstorm.this, CSPL3_Text, CargoShipPanelLeft3, CSPL3Counter);
+        LocationGroup CSPR1= new LocationGroup("CSPR1", Sandstorm.this, CSPR1_Text, CargoShipPanelRight1, CSPR1Counter);
+        LocationGroup CSPR2 = new LocationGroup("CSPR2", Sandstorm.this, CSPR1_Text, CargoShipPanelRight2, CSPR2Counter);
+        LocationGroup CSPR3 = new LocationGroup("CSPR3", Sandstorm.this, CSPR1_Text, CargoShipPanelRight3, CSPR3Counter);
+        LocationGroup CSCL1= new LocationGroup("CSCL1", Sandstorm.this, CSCL1_Text, CargoShipCargoLeft1, CSCL1Counter);
+        LocationGroup CSCL2 = new LocationGroup("CSCL2", Sandstorm.this, CSCL2_Text, CargoShipCargoLeft2, CSCL2Counter);
+        LocationGroup CSCL3 = new LocationGroup("CSCL3", Sandstorm.this, CSCL3_Text, CargoShipCargoLeft3, CSCL3Counter);
+        LocationGroup CSCR1= new LocationGroup("CSCR1", Sandstorm.this, CSCR1_Text, CargoShipCargoRight1, CSCR1Counter);
+        LocationGroup CSCR2 = new LocationGroup("CSCR2", Sandstorm.this, CSCR1_Text, CargoShipCargoRight2, CSCR2Counter);
+        LocationGroup CSCR3 = new LocationGroup("CSCR3", Sandstorm.this, CSCR1_Text, CargoShipCargoRight3, CSCR3Counter);
+
 
         SetupButton = findViewById(R.id.SetupButton);
         SandstormButton = findViewById(R.id.SandstormButton);
@@ -232,11 +238,9 @@ public class Sandstorm extends MainActivity {
                         if (arr[3] == 'L') {
                             if (arr[4] == '1') {
                                 hashVal = scoreHashMap.get("CSPL1");
-                                CSPL1.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelLeft1.setColor(GenUtils.YELLOW);
-                                    CSPL1.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                CSPL1.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPL1.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -244,11 +248,9 @@ public class Sandstorm extends MainActivity {
                             }
                             else if (arr[4] == '2') {
                                 hashVal = scoreHashMap.get("CSPL2");
-                                CSPL2.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelLeft2.setColor(GenUtils.YELLOW);
-                                    CSPL2.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                CSPL2.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPL2.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -256,11 +258,9 @@ public class Sandstorm extends MainActivity {
                             }
                             else if (arr[4] == '3') {
                                 hashVal = scoreHashMap.get("CSPL3");
-                                CSPL3.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelLeft3.setColor(GenUtils.YELLOW);
-                                    CSPL3.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                CSPL3.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPL3.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -270,11 +270,9 @@ public class Sandstorm extends MainActivity {
                         else if (arr[3] == 'R') {
                             if (arr[4] == '1') {
                                 hashVal = scoreHashMap.get("CSPR1");
-                                CSPR1.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelRight1.setColor(GenUtils.YELLOW);
-                                    CSPR1.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                CSPR1.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPR1.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -282,11 +280,9 @@ public class Sandstorm extends MainActivity {
                             }
                             else if (arr[4] == '2') {
                                 hashVal = scoreHashMap.get("CSPR2");
-                                CSPR2.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelRight2.setColor(GenUtils.YELLOW);
-                                    CSPR2.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                CSPR2.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPR2.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -294,11 +290,9 @@ public class Sandstorm extends MainActivity {
                             }
                             else if (arr[4] == '3') {
                                 hashVal = scoreHashMap.get("CSPR3");
-                                CSPR3.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelRight3.setColor(GenUtils.YELLOW);
-                                    CSPR3.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                CSPR3.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPR3.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -308,23 +302,19 @@ public class Sandstorm extends MainActivity {
                         else if (arr[3] == 'F') {
                             if (arr[4] == '1') {
                                 hashVal = scoreHashMap.get("CSPF1");
-                                CSPF1.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelFront1.setColor(GenUtils.YELLOW);
-                                    CSPF1.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                CSPF1.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPF1.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
                                 }
                             }
                             else if (arr[4] == '2') {
-                                hashVal = scoreHashMap.get("CSPF2");
-                                CSPF2.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipPanelFront2.setColor(GenUtils.YELLOW);
-                                    CSPF2.setTextColor(GenUtils.getAColor(Sandstorm.this, R.color.textdefault));
-                                }
+                                hashVal = scoreHashMap.get("CSPR2");
+                                CSPR2.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSPR2.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -337,11 +327,9 @@ public class Sandstorm extends MainActivity {
                         if (arr[3] == 'L') {
                             if (arr[4] == '1') {
                                 hashVal = scoreHashMap.get("CSCL1");
-                                CSPL1.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipCargoLeft1.setColor(GenUtils.ORANGE);
-                                    //panel text set
-                                }
+                                CSCL1.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSCL1.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -349,11 +337,9 @@ public class Sandstorm extends MainActivity {
                             }
                             else if (arr[4] == '2') {
                                 hashVal = scoreHashMap.get("CSCL2");
-                                CSPL2.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipCargoLeft2.setColor(GenUtils.ORANGE);
-                                    //panel text set
-                                }
+                                CSCL2.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSCL2.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -361,11 +347,9 @@ public class Sandstorm extends MainActivity {
                             }
                             else if (arr[4] == '3') {
                                 hashVal = scoreHashMap.get("CSCL3");
-                                CSPL3.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipCargoLeft3.setColor(GenUtils.ORANGE);
-                                    //panel text set
-                                }
+                                CSCL3.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSCL3.selectLocation();
                                 else {
                                     //panel disabled colors
                                     //panel text set
@@ -375,31 +359,27 @@ public class Sandstorm extends MainActivity {
                         else if (arr[3] == 'R') {
                             if (arr[4] == '1') {
                                 hashVal = scoreHashMap.get("CSCR1");
-                                CSPR1.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipCargoRight1.setColor(GenUtils.ORANGE);
-                                    //panel text set
-                                } else {
-                                    //panel disabled colors
-                                    //panel text set
+                                CSCR1.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSCR1.selectLocation();
+                                else {
+
                                 }
                             } else if (arr[4] == '2') {
-                                hashVal = scoreHashMap.get("CSCL2");
-                                CSPL2.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipCargoRight2.setColor(GenUtils.ORANGE);
-                                    //panel text set
-                                } else {
+                                hashVal = scoreHashMap.get("CSCR2");
+                                CSCR2.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSCR2.selectLocation();
+                                else {
                                     //panel disabled colors
                                     //panel text set
                                 }
                             } else if (arr[4] == '3') {
-                                hashVal = scoreHashMap.get("CSCL3");
-                                CSPL3.setText(hashVal);
-                                if (Integer.parseInt(hashVal) > 0) {
-                                    CargoShipCargoRight3.setColor(GenUtils.ORANGE);
-                                    //panel text set
-                                } else {
+                                hashVal = scoreHashMap.get("CSCR3");
+                                CSCR3.setCounterText(hashVal);
+                                if (Integer.parseInt(hashVal) > 0)
+                                    CSCR3.selectLocation();
+                                else {
                                     //panel disabled colors
                                     //panel text set
                                 }

@@ -28,8 +28,8 @@ import java.util.Set;
 
 public class Settings extends AppCompatActivity {
 
-    private BootstrapButton fieldSideLeftButton;
-    private BootstrapButton fieldSideRightButton;
+    private BootstrapButton leftButton;
+    private BootstrapButton rightButton;
     private Button localStorageResetButton;
     private Button saveButton;
     private boolean isLeft;
@@ -46,15 +46,17 @@ public class Settings extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        fieldSideLeftButton = findViewById(R.id.FieldSideLeft);
-        fieldSideRightButton = findViewById(R.id.FieldSideRight);
+        
+        //setting variables to screen elements for changing their properties
+        leftButton = findViewById(R.id.FieldSideLeft);
+        rightButton = findViewById(R.id.FieldSideRight);
         localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         saveButton = findViewById(R.id.SaveButton);
         CancelButton = findViewById(R.id.CancelButton);
 
+        //default values
         isLeft = false;
         isRight = false;
         isLocalStorageClicked = false;
@@ -63,11 +65,12 @@ public class Settings extends AppCompatActivity {
         leftOrRight = "";
         leftDefault();
         rightDefault();
-
         String mainLeftOrRight = "";
 
+        //create hashmap for data transfer between screens
         setupHashMap = new HashMap<>();
         setupData = getIntent().getSerializableExtra("setupHashMap");
+
         if (setupData != null) {
             setupHashMap = (HashMap<String, String>) setupData;
             mainLeftOrRight = setupHashMap.get("LeftOrRight");
@@ -80,27 +83,13 @@ public class Settings extends AppCompatActivity {
             isFirstTime = true;
         }
         if (mainLeftOrRight.equals("Left")) {
-            isLeft = true;
-            leftOrRight = "Left";
-            rightDefault();
-            fieldSideLeftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
-            fieldSideLeftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
-            saveButton.setEnabled(true);
-            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (GenUtils.GREEN)));
-            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
-            localStorageResetDefault();
+            leftSelected();
         } else if (mainLeftOrRight.equals("Right")) {
-            isRight = true;
-            leftOrRight = "Right";
-            fieldSideRightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
-            fieldSideRightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
-            leftDefault();
-            localStorageResetDefault();
-            saveButton.setEnabled(true);
-            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (GenUtils.GREEN)));
-            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
+            rightSelected();
         }
     }
+
+    //lets users click an arrow to go to the next textbox
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         View decorView = getWindow().getDecorView();
@@ -116,56 +105,30 @@ public class Settings extends AppCompatActivity {
 
     public void rightClick (View view) {
         if (!isRight) {
-            isRight = true;
-            leftOrRight = "Right";
-            fieldSideRightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
-            fieldSideRightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
-            leftDefault();
-            localStorageResetDefault();
+            rightSelected();
             if (!isFirstTime)
                 CancelButton.setEnabled(true);
-            saveButton.setEnabled(true);
-            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.GREEN));
-            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
         }
         else {
-            isRight = false;
             leftOrRight = "";
             rightDefault();
-            saveButton.setEnabled(false);
-            CancelButton.setEnabled(false);
-            disabledStyle(saveButton);
-            disabledStyle(CancelButton);
+            disable(saveButton);
+            disable(CancelButton);
         }
     }
-
-
 
     public void leftClick (View view) {
         if (!isLeft) {
-            isLeft = true;
-            leftOrRight = "Left";
-            rightDefault();
-            fieldSideLeftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
-            fieldSideLeftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
-            saveButton.setEnabled(true);
+            leftSelected();
             if (!isFirstTime)
-               CancelButton.setEnabled(true);
-            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (GenUtils.GREEN)));
-            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
-            localStorageResetDefault();
+                CancelButton.setEnabled(true);
         } else {
-            isLeft = false;
             leftOrRight = "";
             leftDefault();
-            saveButton.setEnabled(false);
-            CancelButton.setEnabled(false);
-            disabledStyle(saveButton);
-            disabledStyle(CancelButton);
+            disable(saveButton);
+            disable(CancelButton);
         }
     }
-
-
 
     public void localStorageResetClick (View view) {
         if (!isLocalStorageClicked) {
@@ -173,14 +136,12 @@ public class Settings extends AppCompatActivity {
             localStorageResetButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
             localStorageResetButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             isFirstTime = true;
-            CancelButton.setEnabled(false);
-            disabledStyle(CancelButton);
+            disable(CancelButton);
         } else {
             localStorageResetDefault();
             if (!isFirstTime)
                 CancelButton.setEnabled(true);
         }
-
     }
 
     private void localStorageResetDefault () {
@@ -189,36 +150,60 @@ public class Settings extends AppCompatActivity {
         localStorageResetButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
     }
 
+    private void rightSelected () {
+        isRight = true;
+        leftOrRight = "Right";
+        rightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+        rightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
+        leftDefault();
+        localStorageResetDefault();
+        saveButton.setEnabled(true);
+        saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.GREEN));
+        saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
+    }
+
+    private void leftSelected () {
+        isLeft = true;
+        leftOrRight = "Left";
+        rightDefault();
+        leftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+        leftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
+        enable(saveButton);
+        localStorageResetDefault();
+    }
+
     private void rightDefault () {
-        fieldSideRightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
-        fieldSideRightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
         isRight = false;
+        rightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
+        rightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
     }
 
     private void leftDefault () {
-        fieldSideLeftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
-        fieldSideLeftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
         isLeft = false;
+        leftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
+        leftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.grey));
     }
 
-    private void disabledStyle (Button button) {
+    private void disable (Button button) {
         button.setBackgroundColor(GenUtils.getAColor(Settings.this, (R.color.savedefault)));
         button.setTextColor(GenUtils.getAColor(Settings.this, R.color.savetextdefault));
+        button.setEnabled(false);
+    }
+
+    private void enable (Button button) {
+        button.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.GREEN));
+        button.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
+        button.setEnabled(true);
     }
 
     public void saveClick (View view) {
-
-
         if (isLocalStorageClicked) {
+            //clear everything (including values from other screens)
             leftOrRight = "";
             leftDefault();
             rightDefault();
             localStorageResetDefault();
-            saveButton.setEnabled(false);
-            disabledStyle(saveButton);
-            saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, (R.color.savedefault)));
-            saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.savetextdefault));
-
+            disable(saveButton);
             setupHashMap.clear();
             setupHashMap.put("NoShow","0");
             setupHashMap.put("AllianceColor","");
@@ -226,16 +211,15 @@ public class Settings extends AppCompatActivity {
             Toast.makeText(Settings.this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
         }
         else {
+            //save values and go to the setup screen (MainActivity)
             if (isLeft)
                 leftOrRight = "Left";
             else if (isRight)
                 leftOrRight = "Right";
-
             if (setupData == null) {
                 setupHashMap.put("NoShow","0");
                 setupHashMap.put("AllianceColor","");
             }
-
             setupHashMap.put("LeftOrRight",leftOrRight);
 
             Intent intent = new Intent(Settings.this, MainActivity.class);
@@ -252,9 +236,16 @@ public class Settings extends AppCompatActivity {
     }
 
     public void cancelClick (View view) {
+        //send back whatever values were there before settings was opened
         Intent intent = new Intent(Settings.this,MainActivity.class);
         intent.putExtra("LEFTORRIGHT", getIntent().getStringExtra("mainLeftOrRight"));
         intent.putExtra("setupHashMap", setupHashMap);
+        Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
+        HashMap<String, String> scoreHashMap;
+        if (scoreData != null && !HasBeenCleared) {
+            scoreHashMap = (HashMap<String, String>) scoreData;
+            intent.putExtra("scoreHashMap", scoreHashMap);
+        }
         startActivity(intent);
     }
 }
