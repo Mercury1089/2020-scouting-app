@@ -153,15 +153,6 @@ public class Sandstorm extends MainActivity {
         UndoButton = findViewById(R.id.UndoButton);
         constraintLayout = findViewById(R.id.layout);
 
-        //make Sandstorm button look active
-        GenUtils.selectedButtonState(Sandstorm.this, SandstormButton);
-
-        //make other buttons look default
-        //SetupButton.setEnabled(false);
-
-        GenUtils.defaultButtonState(Sandstorm.this, TeleopButton);
-        GenUtils.defaultButtonState(Sandstorm.this, ClimbButton);
-
         //disable scoring diagram
         GenUtils.disableScoringDiagram('A');
 
@@ -182,6 +173,7 @@ public class Sandstorm extends MainActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        /* How to iterate through textview contents
                         for (int i = 0; i < constraintLayout.getChildCount(); i++) {
                             if (constraintLayout.getChildAt(i) instanceof TextView) {
                                 TextView textView = (TextView) constraintLayout.getChildAt(i);
@@ -193,7 +185,12 @@ public class Sandstorm extends MainActivity {
                                     }
                                 }
                             }
+                        }*/
+                        for (LocationGroup lg : LocationGroupList.list.values()) {
+                            if (lg.getCounter() > 0)
+                                scoreHashMap.put(lg.getCounterText().getTag().toString(), lg.getCounterText().getText().toString());
                         }
+
 
                         Intent intent = new Intent(Sandstorm.this, Teleop.class);
                         intent.putExtra("setupHashMap", setupHashMap);
