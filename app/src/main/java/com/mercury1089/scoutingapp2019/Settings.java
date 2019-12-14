@@ -133,7 +133,7 @@ public class Settings extends AppCompatActivity {
     public void localStorageResetClick (View view) {
         if (!isLocalStorageClicked) {
             isLocalStorageClicked = true;
-            localStorageResetButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+            localStorageResetButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.genutils_orange));
             localStorageResetButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             isFirstTime = true;
             disable(CancelButton);
@@ -153,12 +153,12 @@ public class Settings extends AppCompatActivity {
     private void rightSelected () {
         isRight = true;
         leftOrRight = "Right";
-        rightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+        rightButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.genutils_orange));
         rightButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
         leftDefault();
         localStorageResetDefault();
         saveButton.setEnabled(true);
-        saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.GREEN));
+        saveButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.genutils_green));
         saveButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
     }
 
@@ -166,7 +166,7 @@ public class Settings extends AppCompatActivity {
         isLeft = true;
         leftOrRight = "Left";
         rightDefault();
-        leftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.ORANGE));
+        leftButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.genutils_orange));
         leftButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
         enable(saveButton);
         localStorageResetDefault();
@@ -191,7 +191,7 @@ public class Settings extends AppCompatActivity {
     }
 
     private void enable (Button button) {
-        button.setBackgroundColor(GenUtils.getAColor(Settings.this, GenUtils.GREEN));
+        button.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.genutils_green));
         button.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
         button.setEnabled(true);
     }

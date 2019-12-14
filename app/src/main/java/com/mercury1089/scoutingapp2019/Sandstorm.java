@@ -209,7 +209,7 @@ public class Sandstorm extends MainActivity {
         Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
 
         if (scoreData != null) {
-            constraintLayout.setBackgroundColor(GenUtils.RED);
+            constraintLayout.setBackgroundColor(R.color.genutils_red);
             scoreHashMap = (HashMap<String, String>) scoreData;
             Object keySet[] = scoreHashMap.keySet().toArray();
             String tag;

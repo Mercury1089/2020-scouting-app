@@ -59,5 +59,13 @@
     <color name="scarletorange">#FA5347</color>
     <color name="lightscarletorange">#D66C63</color>
 
+    <!-- GenUtils -->
+    <color name="genutils_yellow">#f8e71c</color>
+    <color name="genutils_lightYellow">#ffffd9</color>
+    <color name="genutils_orange">#ff9800</color>
+    <color name="genutils_lightOrange">#ddac6b</color>
+    <color name="genutils_red">#5b1818</color>
+    <color name="genutils_black">#1e1e1e</color>
+    <color name="genutils_green">#2dc067</color>
 
 </resources>

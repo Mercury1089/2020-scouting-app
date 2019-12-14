@@ -45,20 +45,20 @@ public class LocationGroup extends LocationGroupList {
         badge.setEnabled(true);
         if (name.charAt(2) == 'P') {
             if (counter > 0) {
-                badge.setColor(GenUtils.YELLOW);
+                badge.setColor(R.color.genutils_yellow);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
             }
             else {
-                badge.setColor(GenUtils.LIGHT_YELLOW);
+                badge.setColor(R.color.genutils_lightYellow);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
             }
         } else if (name.charAt(2) == 'C') {
             if (counter > 0) {
-                badge.setColor(GenUtils.ORANGE);
+                badge.setColor(R.color.genutils_orange);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.light));
             }
             else {
-                badge.setColor(GenUtils.LIGHT_ORANGE);
+                badge.setColor(R.color.genutils_lightOrange);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
             }
         }
@@ -68,20 +68,20 @@ public class LocationGroup extends LocationGroupList {
         badge.setEnabled(false);
         if (name.charAt(2) == 'P') {
             if (counter > 0) {
-                badge.setColor(GenUtils.YELLOW);
+                badge.setColor(R.color.genutils_yellow);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
             }
             else {
-                badge.setColor(GenUtils.BLACK);
+                badge.setColor(R.color.genutils_black);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.light));
             }
         } else if (name.charAt(2) == 'C') {
             if (counter > 0) {
-                badge.setColor(GenUtils.GREEN);
+                badge.setColor(R.color.genutils_green);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.light));
             }
             else {
-                badge.setColor(GenUtils.BLACK);
+                badge.setColor(R.color.genutils_black);
                 counterText.setTextColor(GenUtils.getAColor(context, R.color.light));
             }
         }
@@ -90,11 +90,11 @@ public class LocationGroup extends LocationGroupList {
     //selected/deselected stykes
     public void selectLocation() {
         if (name.charAt(2) == 'P') {
-            badge.setColor(GenUtils.YELLOW);
+            badge.setColor(R.color.genutils_yellow);
             counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
         }
         else {
-            badge.setColor(GenUtils.ORANGE);
+            badge.setColor(R.color.genutils_orange);
             counterText.setTextColor(GenUtils.getAColor(context, R.color.light));
         }
     }
