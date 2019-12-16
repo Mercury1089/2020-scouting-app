@@ -1,27 +1,14 @@
 package com.mercury1089.scoutingapp2019;
 
-
-
 import android.content.Intent;
-
-
-
 import android.os.Bundle;
-
-
-
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-
-
-
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
