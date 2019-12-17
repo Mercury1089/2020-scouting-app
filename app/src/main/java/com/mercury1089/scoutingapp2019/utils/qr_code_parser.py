@@ -32,20 +32,20 @@ def show_webcam():
             chunks = lambda iAr, n=num_vals: [iAr[i:i+n] \
                                               for i in range(0, len(iAr), n)]
             with open(SETUP_LIST, 'ab+') as csvfile:
-                csvWrite = csv.writer(csvfile, dialect='excel', delimiter=',')
-                csvWrite.writerow(iAr[:15])
+                csv_write = csv.writer(csvfile, dialect='excel', delimiter=',')
+                csv_write.writerow(iAr[:15])
             with open(EVENT_LIST, 'ab+') as csvfile:
-                csvWrite = csv.writer(csvfile, dialect='excel', delimiter=',')
-                setupArr = [team,match]
+                csv_write = csv.writer(csvfile, dialect='excel', delimiter=',')
+                setup_arr = [team,match]
                 del iAr[:15]
                 for chunk in chunks(iAr):
                     if len(chunk) == 7:
                         chunk.append(scouter)
                         chunk.append(time.time())
                         time.sleep(.001)
-                        csvWrite.writerow(setupArr + chunk)
+                        csv_write.writerow(setup_arr + chunk)
             last_input = qr.data
-            print( "Saved - ", scouter, ":", team,":", match)
+            print "Saved - ", scouter, ":", team,":", match
     cv2.destroyAllWindows()
 
 
