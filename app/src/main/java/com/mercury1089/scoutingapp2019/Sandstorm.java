@@ -3,6 +3,7 @@ package com.mercury1089.scoutingapp2019;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -21,7 +22,7 @@ import java.util.TimerTask;
 
 import at.markushi.ui.CircleButton;
 
-public class Sandstorm extends MainActivity {
+public class Sandstorm extends Fragment {
 
 
 
@@ -81,7 +82,7 @@ public class Sandstorm extends MainActivity {
     Switch HABLineSwitch;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (setupHashMap.get("LeftOrRight").equals("Left"))
             setContentView(R.layout.activity_sandstorm);

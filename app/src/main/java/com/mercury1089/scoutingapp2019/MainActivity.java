@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 
 
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 
 import android.text.TextWatcher;
@@ -117,6 +118,8 @@ public class MainActivity extends Activity {
     String leftOrRight;
     private ProgressDialog progressDialog;
 
+    Fragment sandstorm;
+
     @Override
 
 
@@ -141,6 +144,8 @@ public class MainActivity extends Activity {
         NoShowSwitch = findViewById(R.id.NoShowSwitch);
         clearButton = findViewById(R.id.ClearButton);
         startButton = findViewById(R.id.StartButton);
+
+        sandstorm = new Sandstorm();
 
         //setting group buttons to default state
         blueDefault();
