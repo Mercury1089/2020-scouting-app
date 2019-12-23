@@ -1,80 +1,30 @@
 package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-
 import android.app.Activity;
-
 import android.app.AlertDialog;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-
 import android.graphics.Bitmap;
 import android.os.Bundle;
-
-
 import android.text.Editable;
-
 import android.text.TextWatcher;
-
 import android.view.View;
-
-
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-
-
-
 import android.widget.CompoundButton;
-
-
-
 import android.widget.EditText;
-
-
-
 import android.widget.ImageView;
-
-
-
 import android.widget.Switch;
-
-
-
 import android.widget.TextView;
-
-
-
-
-
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
-
-
-
-
-
-
-
 import com.google.zxing.BarcodeFormat;
-
-
-
 import com.google.zxing.MultiFormatWriter;
-
-
-
 import com.google.zxing.WriterException;
-
-
-
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-
-
 import java.io.Serializable;
-
 import java.util.HashMap;
 
 
@@ -93,21 +43,16 @@ public class MainActivity extends Activity {
     private BootstrapButton redButton;
 
 
-
     private Switch NoShowSwitch;
 
 
-
     private HashMap<String, String> setupHashMap;
-
 
 
     //for QR code generator
     public final static int QRCodeSize = 500;
     Bitmap bitmap;
     String QRValue;
-
-
 
     //other variables
     Button clearButton;
@@ -117,10 +62,9 @@ public class MainActivity extends Activity {
     String leftOrRight;
     private ProgressDialog progressDialog;
 
+
+
     @Override
-
-
-
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -133,14 +77,15 @@ public class MainActivity extends Activity {
         secondAlliancePartnerInput = findViewById(R.id.SecondAlliancePartnerInput);
         blueButton = findViewById(R.id.BlueButton);
         redButton = findViewById(R.id.RedButton);
+        NoShowSwitch = findViewById(R.id.NoShowSwitch);
+        clearButton = findViewById(R.id.ClearButton);
+        startButton = findViewById(R.id.StartButton);
 
+        //filling hashmap with default values
         setupHashMap = new HashMap<>();
         setupHashMap.put("NoShow", "0");
         setupHashMap.put("LeftOrRight", getIntent().getStringExtra("LEFTORRIGHT"));
         setupHashMap.put("AllianceColor", "Neither");
-        NoShowSwitch = findViewById(R.id.NoShowSwitch);
-        clearButton = findViewById(R.id.ClearButton);
-        startButton = findViewById(R.id.StartButton);
 
         //setting group buttons to default state
         blueDefault();
@@ -160,7 +105,6 @@ public class MainActivity extends Activity {
                 }
             }
         }
-
         startButtonCheck();
         clearButtonCheck();
 
@@ -176,7 +120,6 @@ public class MainActivity extends Activity {
 
         //starting listener to check the status of the switch
         NoShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     startButtonCheck();
@@ -256,8 +199,6 @@ public class MainActivity extends Activity {
             public void afterTextChanged(Editable s) { }
         });
 
-
-
         //set listener for QR Code generator
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -317,7 +258,7 @@ public class MainActivity extends Activity {
                 && firstAlliancePartnerInput.getText().length() > 0
                 && secondAlliancePartnerInput.getText().length() > 0
                 && (setupHashMap.get("AllianceColor").equals("Blue")
-                || setupHashMap.get("AllianceColor").equals("Red")) )
+                || setupHashMap.get("AllianceColor").equals("Red")))
             startButton.setEnabled(true);
         else
             startButton.setEnabled(false);
@@ -336,7 +277,7 @@ public class MainActivity extends Activity {
         else
             clearButton.setEnabled(false);
     }
-    
+
     private void blueDefault () {
         isBlueAlliance = 0;
         blueButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.light));
@@ -433,6 +374,7 @@ public class MainActivity extends Activity {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+
         if (isBlueAlliance == 0) {
             redDefault();
             blueButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.blue));
@@ -440,8 +382,7 @@ public class MainActivity extends Activity {
             isBlueAlliance = 1;
             if (!NoShowSwitch.isChecked())
                 isQRButton = false;
-        }
-        else {
+        } else {
             blueDefault();
             setupHashMap.put("AllianceColor", "Neither");
         }
@@ -462,8 +403,7 @@ public class MainActivity extends Activity {
             redButton.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.red));
             redButton.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
             isRedAlliance = 1;
-        }
-        else {
+        } else {
             redDefault();
             setupHashMap.put("AllianceColor", "Neither");
         }
@@ -489,10 +429,9 @@ public class MainActivity extends Activity {
         int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
         for (int y = 0; y < bitMatrixHeight; y++) {
             int offset = y * bitMatrixWidth;
-            for (int x = 0; x < bitMatrixWidth; x++) {
+            for (int x = 0; x < bitMatrixWidth; x++)
                 pixels[offset + x] = bitMatrix.get(x, y) ?
                         GenUtils.getAColor(MainActivity.this, R.color.colorPrimaryDark) : GenUtils.getAColor(MainActivity.this, R.color.bootstrap_dropdown_divider);
-            }
         }
 
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
@@ -545,28 +484,25 @@ public class MainActivity extends Activity {
                         goBackToMain.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.savetextdefault));
 
                         dialog.show();
-
                         CheckSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if (isChecked) {
                                     goBackToMain.setEnabled(true);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(MainActivity.this, (R.color.blue)));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.blue));
                                     goBackToMain.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.light));
-                                }
-                                else{
+                                } else {
                                     goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(MainActivity.this, (R.color.defaultdisabled)));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(MainActivity.this, R.color.defaultdisabled));
                                     goBackToMain.setTextColor(GenUtils.getAColor(MainActivity.this, R.color.textdefault));
                                 }
                             }
-
                         });
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 dialog.dismiss();
+
                                 //clear everything except field orientation
                                 setupHashMap = QRStringBuilder.defaultSetupHashMap(setupHashMap.get("LeftOrRight"));
                                 ScouterNameInput.setText("");

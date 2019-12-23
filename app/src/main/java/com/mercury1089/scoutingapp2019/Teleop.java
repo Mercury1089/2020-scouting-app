@@ -8,23 +8,17 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.LocationGroup;
 import com.mercury1089.scoutingapp2019.utils.LocationGroupList;
-
 import java.io.Serializable;
 import java.util.HashMap;
-
 import at.markushi.ui.CircleButton;
 
 public class Teleop extends MainActivity {
-
-
-
     //CARGO SHIP
-    //panel variables
+    //panel location buttons
     CircleButton CargoShipPanelFront1;
     CircleButton CargoShipPanelFront2;
     CircleButton CargoShipPanelLeft1;
@@ -34,7 +28,7 @@ public class Teleop extends MainActivity {
     CircleButton CargoShipPanelRight2;
     CircleButton CargoShipPanelRight3;
 
-    //cargo variables
+    //cargo location buttons
     CircleButton CargoShipCargoFront1;
     CircleButton CargoShipCargoFront2;
     CircleButton CargoShipCargoLeft1;
@@ -44,7 +38,7 @@ public class Teleop extends MainActivity {
     CircleButton CargoShipCargoRight2;
     CircleButton CargoShipCargoRight3;
 
-    //cargo ship counters
+    //cargo ship score counters
     private int CSPF1Counter = 0;
     private int CSPF2Counter = 0;
     private int CSCF1Counter = 0;
@@ -61,10 +55,12 @@ public class Teleop extends MainActivity {
     private int CSCR1Counter = 0;
     private int CSCR2Counter = 0;
     private int CSCR3Counter = 0;
+
+    //hashmaps for sending QR data between screens
     private HashMap<String, String> setupHashMap;
     private HashMap<String, String> scoreHashMap;
 
-    //bootstrap buttons
+    //navigation buttons
     BootstrapButton SetupButton;
     BootstrapButton SandstormButton;
     BootstrapButton TeleopButton;
@@ -87,7 +83,17 @@ public class Teleop extends MainActivity {
 
         LocationGroupList.list.clear();
 
-        //initializers
+        //linking variables to XML elements on the screen
+        SetupButton = findViewById(R.id.SetupButton);
+        SandstormButton = findViewById(R.id.SandstormButton);
+        TeleopButton = findViewById(R.id.TeleopButton);
+        ClimbButton = findViewById(R.id.ClimbButton);
+
+        UndoButton = findViewById(R.id.UndoButton);
+        constraintLayout = findViewById(R.id.layout);
+        HABLineSwitch = findViewById(R.id.CrossedHABLineSwitch);
+        FellOverSwitch = findViewById(R.id.FellOverSwitch);
+
         CargoShipPanelFront1 = findViewById(R.id.CargoShipPanelFront1);
         CargoShipPanelFront2 = findViewById(R.id.CargoShipPanelFront2);
         CargoShipPanelLeft1 = findViewById(R.id.CargoShipPanelLeft1);
@@ -122,6 +128,7 @@ public class Teleop extends MainActivity {
         TextView CSPR2_Text = findViewById(R.id.CSPR2);
         TextView CSPR3_Text = findViewById(R.id.CSPR3);
 
+        // grouping screen elements from the scoring map based on location
         LocationGroup CSPF1 = new LocationGroup("CSPF1", Teleop.this, CSPF1_Text, CargoShipPanelFront1, CSPF1Counter);
         LocationGroup CSPF2 = new LocationGroup("CSPF2", Teleop.this, CSPF2_Text, CargoShipPanelFront2, CSPF2Counter);
         LocationGroup CSCF1 = new LocationGroup("CSCF1", Teleop.this, CSCF1_Text, CargoShipCargoFront1, CSCF1Counter);
@@ -139,22 +146,15 @@ public class Teleop extends MainActivity {
         LocationGroup CSCR2 = new LocationGroup("CSCR2", Teleop.this, CSCR2_Text, CargoShipCargoRight2, CSCR2Counter);
         LocationGroup CSCR3 = new LocationGroup("CSCR3", Teleop.this, CSCR3_Text, CargoShipCargoRight3, CSCR3Counter);
 
-        SetupButton = findViewById(R.id.SetupButton);
-        SandstormButton = findViewById(R.id.SandstormButton);
-        TeleopButton = findViewById(R.id.TeleopButton);
-        ClimbButton = findViewById(R.id.ClimbButton);
 
         setupHashMap = new HashMap<>();
         scoreHashMap = new HashMap<>();
 
-        UndoButton = findViewById(R.id.UndoButton);
-        constraintLayout = findViewById(R.id.layout);
-
         //disable scoring diagram
         GenUtils.disableScoringDiagram('A');
-
         UndoButton.setEnabled(false);
 
+        //initialize hash maps and fill in default data
         final Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
         setupHashMap = (HashMap<String, String>)setupData;
 
@@ -174,8 +174,7 @@ public class Teleop extends MainActivity {
                 String hashVal;
 
                 if (tag.toCharArray()[1] == 'S') {
-                    if (arr[2] == 'P')
-                    {
+                    if (arr[2] == 'P') {
                         if (arr[3] == 'L') {
                             if (arr[4] == '1') {
                                 hashVal = scoreHashMap.get("CSPL1");
@@ -274,9 +273,8 @@ public class Teleop extends MainActivity {
                     }
                 }
             }
-        } else {
+        } else
             scoreHashMap = new HashMap<>();
-        }
 
         //making only Teleop Button look active from top toggle
         GenUtils.defaultButtonState(Teleop.this, SetupButton);
@@ -285,8 +283,6 @@ public class Teleop extends MainActivity {
         GenUtils.defaultButtonState(Teleop.this, ClimbButton);
 
 
-        setupHashMap.put("HABLine",String.valueOf(0));
-        HABLineSwitch = findViewById(R.id.CrossedHABLineSwitch);
         HABLineSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -298,7 +294,6 @@ public class Teleop extends MainActivity {
             }
         });
 
-        FellOverSwitch = findViewById(R.id.FellOverSwitch);
         FellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -307,26 +302,11 @@ public class Teleop extends MainActivity {
                     setupHashMap.put("FellOver",String.valueOf(1));
                     HABLineSwitch.setEnabled(false);
                     GenUtils.disableScoringDiagram('A');
-
                 } else {
                     setupHashMap.put("FellOver",String.valueOf(0));
                     HABLineSwitch.setEnabled(true);
                 }
-
-                /* //template for iterating through labels
-
-                for (int i = 0; i < constraintLayout.getChildCount(); i++) {
-                    if ((constraintLayout.getChildAt(i) instanceof TextView) && (constraintLayout.getChildAt(i).getTag() != null)) {
-                            if (constraintLayout.getChildAt(i).getTag().toString().length() > 9) {
-                                String tag = constraintLayout.getChildAt(i).getTag().toString();
-                                if (tag.equals("label")) {
-                                    setTextToColor((TextView) constraintLayout.getChildAt(i), color);
-                                }
-                            }
-                        }
-                    }*/
             }
-
         });
     }
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -361,7 +341,7 @@ public class Teleop extends MainActivity {
     }
 
 
-    //click methods
+    //button click methods
     public void setupClick (View view) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("setupHashMap", setupHashMap);
@@ -407,7 +387,7 @@ public class Teleop extends MainActivity {
     }
 
 
-    //cargo ship onClicks
+    //cargo ship location click methods
     public void CSPF1CounterClick (View view) {
         UNDO = "CSPF1";
         cargoShipClick(UNDO);

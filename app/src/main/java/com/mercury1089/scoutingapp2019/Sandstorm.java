@@ -8,45 +8,41 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.LocationGroup;
 import com.mercury1089.scoutingapp2019.utils.LocationGroupList;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import at.markushi.ui.CircleButton;
 
+
+
 public class Sandstorm extends MainActivity {
-
-
-
     //CARGO SHIP
-    //panel variables
-    CircleButton CargoShipPanelFront1;
-    CircleButton CargoShipPanelFront2;
-    CircleButton CargoShipPanelLeft1;
-    CircleButton CargoShipPanelLeft2;
-    CircleButton CargoShipPanelLeft3;
-    CircleButton CargoShipPanelRight1;
-    CircleButton CargoShipPanelRight2;
-    CircleButton CargoShipPanelRight3;
+    //panel location buttons
+    private CircleButton CargoShipPanelFront1;
+    private CircleButton CargoShipPanelFront2;
+    private CircleButton CargoShipPanelLeft1;
+    private CircleButton CargoShipPanelLeft2;
+    private CircleButton CargoShipPanelLeft3;
+    private CircleButton CargoShipPanelRight1;
+    private CircleButton CargoShipPanelRight2;
+    private CircleButton CargoShipPanelRight3;
 
-    //cargo variables
-    CircleButton CargoShipCargoFront1;
-    CircleButton CargoShipCargoFront2;
-    CircleButton CargoShipCargoLeft1;
-    CircleButton CargoShipCargoLeft2;
-    CircleButton CargoShipCargoLeft3;
-    CircleButton CargoShipCargoRight1;
-    CircleButton CargoShipCargoRight2;
-    CircleButton CargoShipCargoRight3;
+    //cargo location buttons
+    private CircleButton CargoShipCargoFront1;
+    private CircleButton CargoShipCargoFront2;
+    private CircleButton CargoShipCargoLeft1;
+    private CircleButton CargoShipCargoLeft2;
+    private CircleButton CargoShipCargoLeft3;
+    private CircleButton CargoShipCargoRight1;
+    private CircleButton CargoShipCargoRight2;
+    private CircleButton CargoShipCargoRight3;
 
-    //cargo ship counters
+    //cargo ship score counters
     private int CSPF1Counter = 0;
     private int CSPF2Counter = 0;
     private int CSCF1Counter = 0;
@@ -63,22 +59,24 @@ public class Sandstorm extends MainActivity {
     private int CSCR1Counter = 0;
     private int CSCR2Counter = 0;
     private int CSCR3Counter = 0;
+
+    //hashmaps for sending QR data between screens
     private HashMap<String, String> setupHashMap;
     private HashMap<String, String> scoreHashMap;
 
-    //bootstrap buttons
-    BootstrapButton SetupButton;
-    BootstrapButton SandstormButton;
-    BootstrapButton TeleopButton;
-    BootstrapButton ClimbButton;
+    //navigation buttons
+    private BootstrapButton SetupButton;
+    private BootstrapButton SandstormButton;
+    private BootstrapButton TeleopButton;
+    private BootstrapButton ClimbButton;
 
     //other variables
     private Timer timer;
-    Button UndoButton;
-    ConstraintLayout constraintLayout;
-    String UNDO;
-    Switch FellOverSwitch;
-    Switch HABLineSwitch;
+    private Button UndoButton;
+    private ConstraintLayout constraintLayout;
+    private String UNDO;
+    private Switch FellOverSwitch;
+    private Switch HABLineSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +86,15 @@ public class Sandstorm extends MainActivity {
         else
             setContentView(R.layout.activity_sandstorm_right);
 
-        //initializers
+        //linking variables to XML elements on the screen
+        SetupButton = findViewById(R.id.SetupButton);
+        SandstormButton = findViewById(R.id.SandstormButton);
+        TeleopButton = findViewById(R.id.TeleopButton);
+        ClimbButton = findViewById(R.id.ClimbButton);
+
+        HABLineSwitch = findViewById(R.id.CrossedHABLineSwitch);
+        FellOverSwitch = findViewById(R.id.FellOverSwitch);
+
         CargoShipPanelFront1 = findViewById(R.id.CargoShipPanelFront1);
         CargoShipPanelFront2 = findViewById(R.id.CargoShipPanelFront2);
         CargoShipPanelLeft1 = findViewById(R.id.CargoShipPanelLeft1);
@@ -123,6 +129,7 @@ public class Sandstorm extends MainActivity {
         TextView CSPR2_Text = findViewById(R.id.CSPR2);
         TextView CSPR3_Text = findViewById(R.id.CSPR3);
 
+        // grouping screen elements from the scoring map based on location
         LocationGroup CSPF1 = new LocationGroup("CSPF1", Sandstorm.this, CSPF1_Text, CargoShipPanelFront1, CSPF1Counter);
         LocationGroup CSPF2 = new LocationGroup("CSPF2", Sandstorm.this, CSPF2_Text, CargoShipPanelFront2, CSPF2Counter);
         LocationGroup CSCF1 = new LocationGroup("CSCF1", Sandstorm.this, CSCF1_Text, CargoShipCargoFront1, CSCF1Counter);
@@ -140,12 +147,6 @@ public class Sandstorm extends MainActivity {
         LocationGroup CSCR2 = new LocationGroup("CSCR2", Sandstorm.this, CSCR2_Text, CargoShipCargoRight2, CSCR2Counter);
         LocationGroup CSCR3 = new LocationGroup("CSCR3", Sandstorm.this, CSCR3_Text, CargoShipCargoRight3, CSCR3Counter);
 
-
-        SetupButton = findViewById(R.id.SetupButton);
-        SandstormButton = findViewById(R.id.SandstormButton);
-        TeleopButton = findViewById(R.id.TeleopButton);
-        ClimbButton = findViewById(R.id.ClimbButton);
-
         setupHashMap = new HashMap<>();
         scoreHashMap = new HashMap<>();
 
@@ -155,25 +156,23 @@ public class Sandstorm extends MainActivity {
 
         //disable scoring diagram
         GenUtils.disableScoringDiagram('A');
-
         UndoButton.setEnabled(false);
 
+        //initialize hash maps and fill in default data
         final Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
         setupHashMap = (HashMap<String, String>)setupData;
-
         setupHashMap.put("FellOver",String.valueOf(0));
         setupHashMap.put("HABLine",String.valueOf(0));
 
 
-
-
+        //switch to the next screen with data after 15 seconds
         TimerTask switchToTeleop = new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        /* How to iterate through textview contents
+                        /*Template for iterating through screen elements
                         for (int i = 0; i < constraintLayout.getChildCount(); i++) {
                             if (constraintLayout.getChildAt(i) instanceof TextView) {
                                 TextView textView = (TextView) constraintLayout.getChildAt(i);
@@ -186,11 +185,9 @@ public class Sandstorm extends MainActivity {
                                 }
                             }
                         }*/
-                        for (LocationGroup lg : LocationGroupList.list.values()) {
+                        for (LocationGroup lg : LocationGroupList.list.values())
                             if (lg.getCounter() > 0)
                                 scoreHashMap.put(lg.getCounterText().getTag().toString(), lg.getCounterText().getText().toString());
-                        }
-
 
                         Intent intent = new Intent(Sandstorm.this, Teleop.class);
                         intent.putExtra("setupHashMap", setupHashMap);
@@ -207,9 +204,8 @@ public class Sandstorm extends MainActivity {
         timer.schedule(switchToTeleop, 15000);
 
         Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
-
-        if (scoreData != null) {
-            constraintLayout.setBackgroundColor(R.color.genutils_red);
+        if (scoreData != null) { //show any values entered before coming to this screen
+            constraintLayout.setBackgroundColor(GenUtils.getAColor(Sandstorm.this,R.color.genutils_red));
             scoreHashMap = (HashMap<String, String>) scoreData;
             Object keySet[] = scoreHashMap.keySet().toArray();
             String tag;
@@ -219,8 +215,7 @@ public class Sandstorm extends MainActivity {
                 String hashVal;
 
                 if (tag.toCharArray()[1] == 'S') {
-                    if (arr[2] == 'P')
-                    {
+                    if (arr[2] == 'P') {
                         if (arr[3] == 'L') {
                             if (arr[4] == '1') {
                                 hashVal = scoreHashMap.get("CSPL1");
@@ -319,9 +314,9 @@ public class Sandstorm extends MainActivity {
                     }
                 }
             }
-        } else {
+        } else
             scoreHashMap = new HashMap<>();
-        }
+
 
         //making only Sandstorm Button look active from top toggle
         GenUtils.defaultButtonState(Sandstorm.this, SetupButton);
@@ -330,8 +325,7 @@ public class Sandstorm extends MainActivity {
         GenUtils.defaultButtonState(Sandstorm.this, ClimbButton);
 
 
-        setupHashMap.put("HABLine",String.valueOf(0));
-        HABLineSwitch = findViewById(R.id.CrossedHABLineSwitch);
+        //set listeners for buttons and fill the hashmap with data
         HABLineSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -344,8 +338,6 @@ public class Sandstorm extends MainActivity {
         });
 
 
-
-        FellOverSwitch = findViewById(R.id.FellOverSwitch);
         FellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -354,28 +346,14 @@ public class Sandstorm extends MainActivity {
                     setupHashMap.put("FellOver",String.valueOf(1));
                     HABLineSwitch.setEnabled(false);
                     GenUtils.disableScoringDiagram('A');
-
                 } else {
                     setupHashMap.put("FellOver",String.valueOf(0));
                     HABLineSwitch.setEnabled(true);
                 }
-
-                /* //template for iterating through labels
-                
-                for (int i = 0; i < constraintLayout.getChildCount(); i++) {
-                    if ((constraintLayout.getChildAt(i) instanceof TextView) && (constraintLayout.getChildAt(i).getTag() != null)) {
-                            if (constraintLayout.getChildAt(i).getTag().toString().length() > 9) {
-                                String tag = constraintLayout.getChildAt(i).getTag().toString();
-                                if (tag.equals("label")) {
-                                    setTextToColor((TextView) constraintLayout.getChildAt(i), color);
-                                }
-                            }
-                        }
-                    }*/
-                }
-
+            }
         });
     }
+
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         View decorView = getWindow().getDecorView();
@@ -390,7 +368,6 @@ public class Sandstorm extends MainActivity {
     }
 
     //call methods
-
     private void cargoShipClick(String name) {
         LocationGroup lg = LocationGroupList.list.get(name);
         lg.increaseCounter();
@@ -400,7 +377,7 @@ public class Sandstorm extends MainActivity {
         UndoButton.setEnabled(true);
         HABLineSwitch.setChecked(true);
     }
-    
+
     private void cargoShipUndo(String name) {
         LocationGroup lg = LocationGroup.list.get(name);
         lg.decreaseCounter();
@@ -408,7 +385,7 @@ public class Sandstorm extends MainActivity {
     }
 
 
-    //click methods
+    //button click methods
     public void setupClick (View view) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("setupHashMap", setupHashMap);
@@ -417,7 +394,6 @@ public class Sandstorm extends MainActivity {
     }
     public void teleopClick (View view) {
         Intent intent = new Intent(this, Teleop.class);
-
         if (FellOverSwitch.isChecked())
             intent.putExtra("fellOver","True");
         else
@@ -437,7 +413,7 @@ public class Sandstorm extends MainActivity {
     }
 
 
-    //cargo ship onClicks
+    //cargo ship location click methods
     public void CSPF1CounterClick (View view) {
         UNDO = "CSPF1";
         cargoShipClick(UNDO);
@@ -503,7 +479,7 @@ public class Sandstorm extends MainActivity {
         cargoShipClick(UNDO);
     }
 
-    //undo button
+    //undo button click method
     public void UndoClick (View view) {
         UndoButton.setEnabled(false);
         switch (UNDO) {
@@ -516,7 +492,7 @@ public class Sandstorm extends MainActivity {
                 setupHashMap.put("HABLine", String.valueOf(0));
                 HABLineSwitch.setChecked(!HABLineSwitch.isChecked());
                 break;
-            //undo for circle buttons aka locations
+            //undo for cargo ship locations
             case "CSPF1":
                 cargoShipUndo(UNDO);
                 break;
