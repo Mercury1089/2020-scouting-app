@@ -2,7 +2,6 @@ package com.mercury1089.scoutingapp2019;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,7 @@ import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Settings extends AppCompatActivity {
 
@@ -35,7 +35,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        
+
         //setting variables to screen elements for changing their properties
         leftButton = findViewById(R.id.FieldSideLeft);
         rightButton = findViewById(R.id.FieldSideRight);
