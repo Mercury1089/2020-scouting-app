@@ -61,13 +61,14 @@ public class Settings extends AppCompatActivity {
         if (setupData != null) {
             setupHashMap = (HashMap<String, String>) setupData;
             mainLeftOrRight = setupHashMap.get("LeftOrRight");
-        } else if (getIntent().getStringExtra("mainLeftOrRight") != null)
+        }
+        else if (getIntent().getStringExtra("mainLeftOrRight") != null) {
             mainLeftOrRight = getIntent().getStringExtra("mainLeftOrRight");
+        }
         else {
             CancelButton.setEnabled(false);
             isFirstTime = true;
         }
-
         if (mainLeftOrRight.equals("Left")) {
             leftSelected();
         } else if (mainLeftOrRight.equals("Right")) {
@@ -89,7 +90,6 @@ public class Settings extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
     }
 
-    //button click methods
     public void rightClick (View view) {
         if (!isRight) {
             rightSelected();
@@ -131,58 +131,6 @@ public class Settings extends AppCompatActivity {
         }
     }
 
-    public void saveClick (View view) {
-        if (isLocalStorageClicked) {
-            //clear everything (including values from other screens)
-            leftOrRight = "";
-            leftDefault();
-            rightDefault();
-            localStorageResetDefault();
-            disable(saveButton);
-            setupHashMap.clear();
-            setupHashMap.put("NoShow","0");
-            setupHashMap.put("AllianceColor","");
-            HasBeenCleared = true;
-            Toast.makeText(Settings.this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
-        } else {
-            //save values and go to the setup screen (MainActivity)
-            if (isLeft)
-                leftOrRight = "Left";
-            else if (isRight)
-                leftOrRight = "Right";
-            if (setupData == null) {
-                setupHashMap.put("NoShow","0");
-                setupHashMap.put("AllianceColor","");
-            }
-            setupHashMap.put("LeftOrRight",leftOrRight);
-
-            Intent intent = new Intent(Settings.this, MainActivity.class);
-            intent.putExtra("setupHashMap", setupHashMap);
-            Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
-            HashMap<String, String> scoreHashMap;
-            if (scoreData != null && !HasBeenCleared) {
-                scoreHashMap = (HashMap<String, String>) scoreData;
-                intent.putExtra("scoreHashMap", scoreHashMap);
-            }
-            startActivity(intent);
-        }
-    }
-
-    public void cancelClick (View view) {
-        //send back whatever values were there before settings was opened
-        Intent intent = new Intent(Settings.this,MainActivity.class);
-        intent.putExtra("LEFTORRIGHT", getIntent().getStringExtra("mainLeftOrRight"));
-        intent.putExtra("setupHashMap", setupHashMap);
-        Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
-        HashMap<String, String> scoreHashMap;
-        if (scoreData != null && !HasBeenCleared) {
-            scoreHashMap = (HashMap<String, String>) scoreData;
-            intent.putExtra("scoreHashMap", scoreHashMap);
-        }
-        startActivity(intent);
-    }
-
-    //call methods
     private void localStorageResetDefault () {
         isLocalStorageClicked = false;
         localStorageResetButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.light));
@@ -233,5 +181,58 @@ public class Settings extends AppCompatActivity {
         button.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.genutils_green));
         button.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
         button.setEnabled(true);
+    }
+
+    public void saveClick (View view) {
+        if (isLocalStorageClicked) {
+            //clear everything (including values from other screens)
+            leftOrRight = "";
+            leftDefault();
+            rightDefault();
+            localStorageResetDefault();
+            disable(saveButton);
+            setupHashMap.clear();
+            setupHashMap.put("NoShow","0");
+            setupHashMap.put("AllianceColor","");
+            HasBeenCleared = true;
+            Toast.makeText(Settings.this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            //save values and go to the setup screen (MainActivity)
+            if (isLeft)
+                leftOrRight = "Left";
+            else if (isRight)
+                leftOrRight = "Right";
+            if (setupData == null) {
+                setupHashMap.put("NoShow","0");
+                setupHashMap.put("AllianceColor","");
+            }
+            setupHashMap.put("LeftOrRight",leftOrRight);
+
+            Intent intent = new Intent(Settings.this, MainActivity.class);
+            intent.putExtra("setupHashMap", setupHashMap);
+            Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
+            HashMap<String, String> scoreHashMap;
+            if (scoreData != null && !HasBeenCleared) {
+                scoreHashMap = (HashMap<String, String>) scoreData;
+                intent.putExtra("scoreHashMap", scoreHashMap);
+            }
+            startActivity(intent);
+        }
+
+    }
+
+    public void cancelClick (View view) {
+        //send back whatever values were there before settings was opened
+        Intent intent = new Intent(Settings.this,MainActivity.class);
+        intent.putExtra("LEFTORRIGHT", getIntent().getStringExtra("mainLeftOrRight"));
+        intent.putExtra("setupHashMap", setupHashMap);
+        Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
+        HashMap<String, String> scoreHashMap;
+        if (scoreData != null && !HasBeenCleared) {
+            scoreHashMap = (HashMap<String, String>) scoreData;
+            intent.putExtra("scoreHashMap", scoreHashMap);
+        }
+        startActivity(intent);
     }
 }
