@@ -35,7 +35,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        
+
         //setting variables to screen elements for changing their properties
         leftButton = findViewById(R.id.FieldSideLeft);
         rightButton = findViewById(R.id.FieldSideRight);
