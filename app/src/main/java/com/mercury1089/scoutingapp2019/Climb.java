@@ -1,41 +1,37 @@
 package com.mercury1089.scoutingapp2019;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import androidx.fragment.app.Fragment;
+
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
 import java.io.Serializable;
 import java.util.HashMap;
+
 import static com.mercury1089.scoutingapp2019.utils.GenUtils.getAColor;
 import static com.mercury1089.scoutingapp2019.utils.QRStringBuilder.MakeQRString;
 
-public class Climb extends Fragment {
+public class Climb extends AppCompatActivity {
+
+    
     //bootstrap buttons
     private BootstrapButton OnHABButton;
     private BootstrapButton OffHABButton;
-
-    //navigation buttons
-    BootstrapButton SetupButton;
-    BootstrapButton SandstormButton;
-    BootstrapButton TeleopButton;
-    BootstrapButton ClimbButton;
 
     private Button GenerateQRButton;
 
@@ -53,30 +49,28 @@ public class Climb extends Fragment {
     public String QRValue = "";
 
 
-    Activity context;
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        context = getActivity();
-        //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_climb, container, false);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_climb);
 
-    public void onStart(){
-        super.onStart();
-
-        SetupButton = context.findViewById(R.id.ClimbSetupButton);
-        SandstormButton = context.findViewById(R.id.ClimbSandstormButton);
-        TeleopButton = context.findViewById(R.id.ClimbTeleopButton);
-        ClimbButton = context.findViewById(R.id.ClimbClimbButton);
-
+        BootstrapButton SetupButton = findViewById(R.id.ClimbSetupButton);
         SetupButton.setEnabled(false);
+
+        BootstrapButton SandstormButton = findViewById(R.id.ClimbSandstormButton);
         SandstormButton.setEnabled(false);
+
+        BootstrapButton TeleopButton = findViewById(R.id.ClimbTeleopButton);
         TeleopButton.setEnabled(false);
 
-        OnHABButton = context.findViewById(R.id.OnHabButton);
-        OffHABButton = context.findViewById(R.id.OffHabButton);
+        BootstrapButton ClimbButton = findViewById(R.id.ClimbClimbButton);
 
-        GenerateQRButton = context.findViewById(R.id.ClimbGenerateQRButton);
+        OnHABButton = findViewById(R.id.OnHabButton);
+        OffHABButton = findViewById(R.id.OffHabButton);
+
+        GenerateQRButton = findViewById(R.id.ClimbGenerateQRButton);
+
+
 
         defaultButtonState(SetupButton);
         defaultButtonState(SandstormButton);
@@ -88,147 +82,81 @@ public class Climb extends Fragment {
 
         GenerateQRButton.setEnabled(true);
 
-        GenerateQRButton.setBackgroundColor(getAColor(context, R.color.light));
-        GenerateQRButton.setTextColor(getAColor(context, R.color.grey));
+        GenerateQRButton.setBackgroundColor(getAColor(Climb.this, R.color.light));
+        GenerateQRButton.setTextColor(getAColor(Climb.this, R.color.grey));
 
-        Serializable setupData = context.getIntent().getSerializableExtra("setupHashMap");
+        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
         setupHashMap = (HashMap<String, String>) setupData;
         if (setupHashMap.get("FellOver") != null && Integer.parseInt(setupHashMap.get("FellOver")) == 1) {
             disableAllButtons();
             generateQR('E');
-        } else {
+        }
+        else {
             disableAllButtons();
             yesOrNOButtons('E');
             generateQR('D');
         }
 
 
-        Serializable scoreData = context.getIntent().getSerializableExtra("scoreHashMap");
+        Serializable scoreData = getIntent().getSerializableExtra("scoreHashMap");
         scoreHashMap = (HashMap<String, String>) scoreData;
-
-        SetupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.putExtra("setupHashMap", setupHashMap);
-                intent.putExtra("setupHashMap", setupHashMap);
-                startActivity(intent);
-            }
-        });
-
-        SandstormButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, Sandstorm.class);
-                intent.putExtra("setupHashMap", setupHashMap);
-                intent.putExtra("scoreHashMap", scoreHashMap);
-                startActivity(intent);
-            }
-        });
-
-        TeleopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, Teleop.class);
-                intent.putExtra("setupHashMap", setupHashMap);
-                intent.putExtra("scoreHashMap", scoreHashMap);
-                startActivity(intent);
-            }
-        });
-
-        OnHABButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isOnHAB = !isOnHAB;
-                if (!isOnHAB) {
-                    defaultButtonState(OnHABButton);
-                    yesOrNOButtons('E');
-                    isOnHAB = false;
-                } else {
-                    defaultButtonState(OffHABButton);
-                    selectedButtonColors(OnHABButton);
-                    isOnHAB = true;
-                    isOffHAB = false;
-                }
-                generateQR('E');
-            }
-        });
-
-        OffHABButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isOffHAB = !isOffHAB;
-                if (!isOffHAB) {
-                    defaultButtonState(OnHABButton);
-                    isOffHAB = false;
-                    yesOrNOButtons('E');
-                } else {
-                    defaultButtonState(OnHABButton);
-                    selectedButtonColors(OffHABButton);
-                    isOnHAB = false;
-                    isOffHAB = true;
-                }
-                generateQR('D');
-            }
-        });
-
-        GenerateQRButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressDialog = new ProgressDialog(context, R.style.LoadingDialogStyle);
-                progressDialog.setMessage("Please Wait");
-                progressDialog.setCancelable(false);
-                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progressDialog.show();
-
-                QRRunnable qrRunnable = new QRRunnable();
-                new Thread(qrRunnable).start();
-            }
-            Bitmap TextToImageEncode(String Value) throws WriterException {
-                BitMatrix bitMatrix;
-                try {
-                    bitMatrix = new MultiFormatWriter().encode(
-                            Value,
-                            BarcodeFormat.DATA_MATRIX.QR_CODE,
-                            QRCodeSize, QRCodeSize, null
-                    );
-                } catch (IllegalArgumentException illegalArgumentException) {
-                    return null;
-                }
-
-                int bitMatrixWidth = bitMatrix.getWidth();
-                int bitMatrixHeight = bitMatrix.getHeight();
-                int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
-                for (int y = 0; y < bitMatrixHeight; y++) {
-                    int offset = y * bitMatrixWidth;
-                    for (int x = 0; x < bitMatrixWidth; x++)
-                        pixels[offset + x] = bitMatrix.get(x, y) ?
-                                getAColor(context, R.color.colorPrimaryDark) : getAColor(context, R.color.bootstrap_dropdown_divider);
-                }
-                Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-                bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
-                return bitmap;
-            }
-        });
     }
 
-    //call methods
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        View decorView = getWindow().getDecorView();
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+    }
+
     private void defaultButtonState (BootstrapButton button) {
-        button.setBackgroundColor(getAColor(context, R.color.light));
-        button.setTextColor(getAColor(context, R.color.grey));
+        button.setBackgroundColor(getAColor(Climb.this, R.color.light));
+        button.setTextColor(getAColor(Climb.this, R.color.grey));
     }
     public void selectedButtonColors(BootstrapButton button) {
-        button.setBackgroundColor(getAColor(context, R.color.orange));
-        button.setTextColor(getAColor(context, R.color.light));
+        button.setBackgroundColor(getAColor(Climb.this, R.color.orange));
+        button.setTextColor(getAColor(Climb.this, R.color.light));
     }
     public void disabledButtonColors(BootstrapButton button) {
-        button.setBackgroundColor(getAColor(context, R.color.savedefault));
-        button.setTextColor(getAColor(context, R.color.textdefault));
+        button.setBackgroundColor(getAColor(Climb.this, R.color.savedefault));
+        button.setTextColor(getAColor(Climb.this, R.color.textdefault));
     }
     public void activeButtonColors(Button button) {
-        button.setBackgroundColor(getAColor(context, R.color.saveactive));
-        button.setTextColor(getAColor(context, R.color.light));
+        button.setBackgroundColor(getAColor(Climb.this, R.color.saveactive));
+        button.setTextColor(getAColor(Climb.this, R.color.light));
     }
+
+    /*public void enableAllButtons() {
+        OnHABButton.setEnabled(true);
+        OffHABButton.setEnabled(true);
+        Level1Button.setEnabled(true);
+        Level2Button.setEnabled(true);
+        Level3Button.setEnabled(true);
+        OnYourOwnButton.setEnabled(true);
+        WithHelpButton.setEnabled(true);
+        HasLiftedButton.setEnabled(true);
+        HasNotLiftedButton.setEnabled(true);
+        OnePartnerButton.setEnabled(true);
+        TwoPartnerButton.setEnabled(true);
+
+        defaultButtonState(OnHABButton);
+        defaultButtonState(OffHABButton);
+        defaultButtonState(Level1Button);
+        defaultButtonState(Level2Button);
+        defaultButtonState(Level3Button);
+        defaultButtonState(OnYourOwnButton);
+        defaultButtonState(WithHelpButton);
+        defaultButtonState(HasLiftedButton);
+        defaultButtonState(HasNotLiftedButton);
+        defaultButtonState(OnePartnerButton);
+        defaultButtonState(TwoPartnerButton);
+    }*/
 
     public void disableAllButtons() {
         OnHABButton.setEnabled(false);
@@ -244,7 +172,8 @@ public class Climb extends Fragment {
             OffHABButton.setEnabled(true);
             defaultButtonState(OnHABButton);
             defaultButtonState(OffHABButton);
-        } else {
+        }
+        else {
             OnHABButton.setEnabled(false);
             OffHABButton.setEnabled(false);
             disabledButtonColors(OnHABButton);
@@ -259,31 +188,125 @@ public class Climb extends Fragment {
         if (enabledOrDisabled == 'E') {
             GenerateQRButton.setEnabled(true);
             activeButtonColors(GenerateQRButton);
-        } else {
+        }
+        else {
             GenerateQRButton.setEnabled(false);
-            GenerateQRButton.setBackgroundColor(getAColor(context, R.color.savedefault));
-            GenerateQRButton.setTextColor(getAColor(context, R.color.textdefault));
+            GenerateQRButton.setBackgroundColor(getAColor(Climb.this, R.color.savedefault));
+            GenerateQRButton.setTextColor(getAColor(Climb.this, R.color.textdefault));
         }
     }
 
 
+    public void SetupClick (View view) {
+        Intent intent = new Intent(Climb.this, MainActivity.class);
+        intent.putExtra("setupHashMap", setupHashMap);
+        intent.putExtra("setupHashMap", setupHashMap);
+        startActivity(intent);
+    }
+    public void SandstormClick (View view) {
+        Intent intent = new Intent(Climb.this, Sandstorm.class);
+        intent.putExtra("setupHashMap", setupHashMap);
+        intent.putExtra("scoreHashMap", scoreHashMap);
+        startActivity(intent);
+    }
+    public void TeleopClick (View view) {
+        Intent intent = new Intent(Climb.this, Teleop.class);
+        intent.putExtra("setupHashMap", setupHashMap);
+        intent.putExtra("scoreHashMap", scoreHashMap);
+        startActivity(intent);
+    }
+
+    public void OnHABClick (View view) {
+        isOnHAB = !isOnHAB;
+        if (!isOnHAB) {
+            defaultButtonState(OnHABButton);
+            yesOrNOButtons('E');
+            isOnHAB = false;
+        }
+        else {
+            defaultButtonState(OffHABButton);
+            selectedButtonColors(OnHABButton);
+            isOnHAB = true;
+            isOffHAB = false;
+        }
+        generateQR('E');
+    }
+
+    public void OffHABClick (View view) {
+        isOffHAB = !isOffHAB;
+        if (!isOffHAB) {
+            defaultButtonState(OnHABButton);
+            isOffHAB = false;
+            yesOrNOButtons('E');
+        }
+        else {
+            defaultButtonState(OnHABButton);
+            selectedButtonColors(OffHABButton);
+            isOnHAB = false;
+            isOffHAB = true;
+        }
+
+        generateQR('D');
+    }
+
+
+    public void GenerateQRClick (View view) {
+        progressDialog = new ProgressDialog(Climb.this, R.style.LoadingDialogStyle);
+        progressDialog.setMessage("Please Wait");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
+        QRRunnable qrRunnable = new QRRunnable();
+        new Thread(qrRunnable).start();
+    }
+    Bitmap TextToImageEncode(String Value) throws WriterException {
+        BitMatrix bitMatrix;
+        try {
+
+            bitMatrix = new MultiFormatWriter().encode(
+                    Value,
+                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    QRCodeSize, QRCodeSize, null
+            );
+
+        } catch (IllegalArgumentException illegalArgumentException) {
+            return null;
+        }
 
 
 
+        int bitMatrixWidth = bitMatrix.getWidth();
+        int bitMatrixHeight = bitMatrix.getHeight();
+        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
+        for (int y = 0; y < bitMatrixHeight; y++) {
+            int offset = y * bitMatrixWidth;
+            for (int x = 0; x < bitMatrixWidth; x++) {
+                pixels[offset + x] = bitMatrix.get(x, y) ?
+                        getAColor(Climb.this, R.color.colorPrimaryDark) : getAColor(Climb.this, R.color.bootstrap_dropdown_divider);
+            }
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        return bitmap;
+    }
 
     class QRRunnable implements Runnable {
         @Override
         public void run() {
 
             try {
+
                 QRValue = MakeQRString(setupHashMap, scoreHashMap);
+
                 Log.d("QRString",QRValue);
 
                 final Bitmap bitmap = TextToImageEncode(QRValue);
-                context.runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
+                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(Climb.this);
 
                         View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
@@ -306,8 +329,8 @@ public class Climb extends Fragment {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if (isChecked) {
                                     goBackToMain.setEnabled(true);
-                                    goBackToMain.setBackgroundColor(getAColor(context, (R.color.blue)));
-                                    goBackToMain.setTextColor(getAColor(context, R.color.light));
+                                    goBackToMain.setBackgroundColor(getAColor(Climb.this, (R.color.blue)));
+                                    goBackToMain.setTextColor(getAColor(Climb.this, R.color.light));
                                 }
 
                             }
@@ -317,7 +340,7 @@ public class Climb extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 dialog.cancel();
-                                Intent intent = new Intent (context, MainActivity.class);
+                                Intent intent = new Intent (Climb.this, MainActivity.class);
                                 intent.putExtra("LEFTORRIGHT",setupHashMap.get("LeftOrRight"));
                                 startActivity(intent);
                             }

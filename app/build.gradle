@@ -34,9 +34,5 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.0'
     implementation 'com.google.zxing:javase:3.4.0'
     implementation 'com.github.markushi:circlebutton:1.1'
-    implementation 'androidx.fragment:fragment:1.1.0'
-
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
 }

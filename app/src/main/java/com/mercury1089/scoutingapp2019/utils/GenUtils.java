@@ -1,13 +1,12 @@
 package com.mercury1089.scoutingapp2019.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.R;
+
 import java.util.HashMap;
 
 public class GenUtils {
@@ -71,12 +70,5 @@ public class GenUtils {
         }
     }
 
-    public static void hideKeyboard(@NonNull Activity activity) {
-        // Check if no view has focus:
-        View view = activity.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    }
+
 }
