@@ -21,6 +21,8 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.mercury1089.scoutingapp2019.utils.GenUtils;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import static com.mercury1089.scoutingapp2019.utils.GenUtils.getAColor;
@@ -48,7 +50,7 @@ public class Climb extends Fragment {
 
     private ProgressDialog progressDialog;
 
-    public final static int QRCodeSize = 500;
+
 
     public String QRValue = "";
 
@@ -184,31 +186,7 @@ public class Climb extends Fragment {
                 QRRunnable qrRunnable = new QRRunnable();
                 new Thread(qrRunnable).start();
             }
-            Bitmap TextToImageEncode(String Value) throws WriterException {
-                BitMatrix bitMatrix;
-                try {
-                    bitMatrix = new MultiFormatWriter().encode(
-                            Value,
-                            BarcodeFormat.DATA_MATRIX.QR_CODE,
-                            QRCodeSize, QRCodeSize, null
-                    );
-                } catch (IllegalArgumentException illegalArgumentException) {
-                    return null;
-                }
 
-                int bitMatrixWidth = bitMatrix.getWidth();
-                int bitMatrixHeight = bitMatrix.getHeight();
-                int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
-                for (int y = 0; y < bitMatrixHeight; y++) {
-                    int offset = y * bitMatrixWidth;
-                    for (int x = 0; x < bitMatrixWidth; x++)
-                        pixels[offset + x] = bitMatrix.get(x, y) ?
-                                getAColor(context, R.color.colorPrimaryDark) : getAColor(context, R.color.bootstrap_dropdown_divider);
-                }
-                Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-                bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
-                return bitmap;
-            }
         });
     }
 
@@ -279,7 +257,7 @@ public class Climb extends Fragment {
                 QRValue = MakeQRString(setupHashMap, scoreHashMap);
                 Log.d("QRString",QRValue);
 
-                final Bitmap bitmap = TextToImageEncode(QRValue);
+                final Bitmap bitmap = GenUtils.TextToImageEncode(QRValue, getContext());
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

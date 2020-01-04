@@ -18,7 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
+
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -55,6 +57,7 @@ public class MainActivity extends Fragment {
     //other variables
     Button clearButton;
     Button startButton;
+    Button settingsButton;
 
     boolean isQRButton = false;
     String leftOrRight;
@@ -87,6 +90,7 @@ public class MainActivity extends Fragment {
         NoShowSwitch = context.findViewById(R.id.NoShowSwitch);
         clearButton = context.findViewById(R.id.ClearButton);
         startButton = context.findViewById(R.id.StartButton);
+        settingsButton = context.findViewById(R.id.SettingsButton);
 
         //setting group buttons to default state
         blueDefault();
@@ -250,7 +254,7 @@ public class MainActivity extends Fragment {
         });
 
         //click methods
-        Sett.setOnClickListener(new View.OnClickListener() {
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Settings.class);
@@ -325,7 +329,6 @@ public class MainActivity extends Fragment {
                     @Override
                     public void onClick(View view) {
                         setupHashMap.put("AllianceColor", "Blue");
-                        GenUtils.hideKeyboard(context);
                         if (isBlueAlliance == 0) {
                             redDefault();
                             blueButton.setBackgroundColor(GenUtils.getAColor(context, R.color.blue));
@@ -347,7 +350,6 @@ public class MainActivity extends Fragment {
                     @Override
                     public void onClick(View view) {
                         setupHashMap.put("AllianceColor", "Red");
-                        GenUtils.hideKeyboard(context);
                         if (isRedAlliance == 0) {
                             blueDefault();
                             redButton.setBackgroundColor(GenUtils.getAColor(context, R.color.red));
