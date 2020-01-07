@@ -2,12 +2,13 @@ package com.mercury1089.scoutingapp2019.utils;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.R;
 
 import java.util.HashMap;
+
+import androidx.core.content.ContextCompat;
 
 public class GenUtils {
 
