@@ -31,9 +31,6 @@
         android:layout_marginTop="8dp"
 
 
-        android:onClick="SettingsClick"
-
-
         android:text="@string/Settings"
 
 
@@ -62,9 +59,6 @@
 
 
         android:enabled="false"
-
-
-        android:onClick="ClearClick"
 
 
         android:text="@string/Clear"
@@ -362,7 +356,6 @@
             android:id="@+id/BlueButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="blueClick"
             android:tag="BlueToggle"
             android:text="@string/Blue"
 
@@ -374,7 +367,6 @@
             android:id="@+id/RedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="redClick"
             android:tag="RedToggle"
             android:text="@string/Red"
             android:textSize="12sp"

@@ -27,24 +27,24 @@ import at.markushi.ui.CircleButton;
 public class Sandstorm extends MainActivity {
     //CARGO SHIP
     //panel location buttons
-    private CircleButton CargoShipPanelFront1;
-    private CircleButton CargoShipPanelFront2;
-    private CircleButton CargoShipPanelLeft1;
-    private CircleButton CargoShipPanelLeft2;
-    private CircleButton CargoShipPanelLeft3;
-    private CircleButton CargoShipPanelRight1;
-    private CircleButton CargoShipPanelRight2;
-    private CircleButton CargoShipPanelRight3;
+    private CircleButton cargoShipPanelFront1;
+    private CircleButton cargoShipPanelFront2;
+    private CircleButton cargoShipPanelLeft1;
+    private CircleButton cargoShipPanelLeft2;
+    private CircleButton cargoShipPanelLeft3;
+    private CircleButton cargoShipPanelRight1;
+    private CircleButton cargoShipPanelRight2;
+    private CircleButton cargoShipPanelRight3;
 
     //cargo location buttons
-    private CircleButton CargoShipCargoFront1;
-    private CircleButton CargoShipCargoFront2;
-    private CircleButton CargoShipCargoLeft1;
-    private CircleButton CargoShipCargoLeft2;
-    private CircleButton CargoShipCargoLeft3;
-    private CircleButton CargoShipCargoRight1;
-    private CircleButton CargoShipCargoRight2;
-    private CircleButton CargoShipCargoRight3;
+    private CircleButton cargoShipCargoFront1;
+    private CircleButton cargoShipCargoFront2;
+    private CircleButton cargoShipCargoLeft1;
+    private CircleButton cargoShipCargoLeft2;
+    private CircleButton cargoShipCargoLeft3;
+    private CircleButton cargoShipCargoRight1;
+    private CircleButton cargoShipCargoRight2;
+    private CircleButton cargoShipCargoRight3;
 
     //cargo ship score counters
     private int CSPF1Counter = 0;
@@ -69,17 +69,17 @@ public class Sandstorm extends MainActivity {
     private HashMap<String, String> scoreHashMap;
 
     //navigation buttons
-    private BootstrapButton SetupButton;
-    private BootstrapButton SandstormButton;
-    private BootstrapButton TeleopButton;
-    private BootstrapButton ClimbButton;
+    private BootstrapButton setupButton;
+    private BootstrapButton sandstormButton;
+    private BootstrapButton teleopButton;
+    private BootstrapButton climbButton;
 
     //other variables
     private Timer timer;
-    private Button UndoButton;
+    private Button undoButton;
     private ConstraintLayout constraintLayout;
     private String UNDO;
-    private Switch FellOverSwitch;
+    private Switch fellOverSwitch;
     private Switch HABLineSwitch;
 
     Activity context;
@@ -97,30 +97,30 @@ public class Sandstorm extends MainActivity {
         super.onStart();
 
         //linking variables to XML elements on the screen
-        SetupButton = context.findViewById(R.id.SetupButton);
-        SandstormButton = context.findViewById(R.id.SandstormButton);
-        TeleopButton = context.findViewById(R.id.TeleopButton);
-        ClimbButton = context.findViewById(R.id.ClimbButton);
+        setupButton = context.findViewById(R.id.SetupButton);
+        sandstormButton = context.findViewById(R.id.SandstormButton);
+        teleopButton = context.findViewById(R.id.TeleopButton);
+        climbButton = context.findViewById(R.id.ClimbButton);
 
         HABLineSwitch = context.findViewById(R.id.CrossedHABLineSwitch);
-        FellOverSwitch = context.findViewById(R.id.FellOverSwitch);
+        fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
 
-        CargoShipPanelFront1 = context.findViewById(R.id.CargoShipPanelFront1);
-        CargoShipPanelFront2 = context.findViewById(R.id.CargoShipPanelFront2);
-        CargoShipPanelLeft1 = context.findViewById(R.id.CargoShipPanelLeft1);
-        CargoShipPanelLeft2 = context.findViewById(R.id.CargoShipPanelLeft2);
-        CargoShipPanelLeft3 = context.findViewById(R.id.CargoShipPanelLeft3);
-        CargoShipPanelRight1 = context.findViewById(R.id.CargoShipPanelRight1);
-        CargoShipPanelRight2 = context.findViewById(R.id.CargoShipPanelRight2);
-        CargoShipPanelRight3 = context.findViewById(R.id.CargoShipPanelRight3);
-        CargoShipCargoFront1 = context.findViewById(R.id.CargoShipCargoFront1);
-        CargoShipCargoFront2 = context.findViewById(R.id.CargoShipCargoFront2);
-        CargoShipCargoLeft1 = context.findViewById(R.id.CargoShipCargoLeft1);
-        CargoShipCargoLeft2 = context.findViewById(R.id.CargoShipCargoLeft2);
-        CargoShipCargoLeft3 = context.findViewById(R.id.CargoShipCargoLeft3);
-        CargoShipCargoRight1 = context.findViewById(R.id.CargoShipCargoRight1);
-        CargoShipCargoRight2 = context.findViewById(R.id.CargoShipCargoRight2);
-        CargoShipCargoRight3 = context.findViewById(R.id.CargoShipCargoRight3);
+        cargoShipPanelFront1 = context.findViewById(R.id.CargoShipPanelFront1);
+        cargoShipPanelFront2 = context.findViewById(R.id.CargoShipPanelFront2);
+        cargoShipPanelLeft1 = context.findViewById(R.id.CargoShipPanelLeft1);
+        cargoShipPanelLeft2 = context.findViewById(R.id.CargoShipPanelLeft2);
+        cargoShipPanelLeft3 = context.findViewById(R.id.CargoShipPanelLeft3);
+        cargoShipPanelRight1 = context.findViewById(R.id.CargoShipPanelRight1);
+        cargoShipPanelRight2 = context.findViewById(R.id.CargoShipPanelRight2);
+        cargoShipPanelRight3 = context.findViewById(R.id.CargoShipPanelRight3);
+        cargoShipCargoFront1 = context.findViewById(R.id.CargoShipCargoFront1);
+        cargoShipCargoFront2 = context.findViewById(R.id.CargoShipCargoFront2);
+        cargoShipCargoLeft1 = context.findViewById(R.id.CargoShipCargoLeft1);
+        cargoShipCargoLeft2 = context.findViewById(R.id.CargoShipCargoLeft2);
+        cargoShipCargoLeft3 = context.findViewById(R.id.CargoShipCargoLeft3);
+        cargoShipCargoRight1 = context.findViewById(R.id.CargoShipCargoRight1);
+        cargoShipCargoRight2 = context.findViewById(R.id.CargoShipCargoRight2);
+        cargoShipCargoRight3 = context.findViewById(R.id.CargoShipCargoRight3);
 
         TextView CSPF1_Text = context.findViewById(R.id.CSPF1);
         TextView CSPF2_Text = context.findViewById(R.id.CSPF2);
@@ -140,33 +140,33 @@ public class Sandstorm extends MainActivity {
         TextView CSPR3_Text = context.findViewById(R.id.CSPR3);
 
         // grouping screen elements from the scoring map based on location
-        LocationGroup CSPF1 = new LocationGroup("CSPF1", context, CSPF1_Text, CargoShipPanelFront1, CSPF1Counter);
-        LocationGroup CSPF2 = new LocationGroup("CSPF2", context, CSPF2_Text, CargoShipPanelFront2, CSPF2Counter);
-        LocationGroup CSCF1 = new LocationGroup("CSCF1", context, CSCF1_Text, CargoShipCargoFront1, CSCF1Counter);
-        LocationGroup CSCF2 = new LocationGroup("CSCF2", context, CSCF2_Text, CargoShipCargoFront2, CSCF2Counter);
-        LocationGroup CSPL1= new LocationGroup("CSPL1", context, CSPL1_Text, CargoShipPanelLeft1, CSPL1Counter);
-        LocationGroup CSPL2 = new LocationGroup("CSPL2", context, CSPL2_Text, CargoShipPanelLeft2, CSPL2Counter);
-        LocationGroup CSPL3 = new LocationGroup("CSPL3", context, CSPL3_Text, CargoShipPanelLeft3, CSPL3Counter);
-        LocationGroup CSPR1= new LocationGroup("CSPR1", context, CSPR1_Text, CargoShipPanelRight1, CSPR1Counter);
-        LocationGroup CSPR2 = new LocationGroup("CSPR2", context, CSPR2_Text, CargoShipPanelRight2, CSPR2Counter);
-        LocationGroup CSPR3 = new LocationGroup("CSPR3", context, CSPR3_Text, CargoShipPanelRight3, CSPR3Counter);
-        LocationGroup CSCL1= new LocationGroup("CSCL1", context, CSCL1_Text, CargoShipCargoLeft1, CSCL1Counter);
-        LocationGroup CSCL2 = new LocationGroup("CSCL2", context, CSCL2_Text, CargoShipCargoLeft2, CSCL2Counter);
-        LocationGroup CSCL3 = new LocationGroup("CSCL3", context, CSCL3_Text, CargoShipCargoLeft3, CSCL3Counter);
-        LocationGroup CSCR1= new LocationGroup("CSCR1", context, CSCR1_Text, CargoShipCargoRight1, CSCR1Counter);
-        LocationGroup CSCR2 = new LocationGroup("CSCR2", context, CSCR2_Text, CargoShipCargoRight2, CSCR2Counter);
-        LocationGroup CSCR3 = new LocationGroup("CSCR3", context, CSCR3_Text, CargoShipCargoRight3, CSCR3Counter);
+        LocationGroup CSPF1 = new LocationGroup("CSPF1", context, CSPF1_Text, cargoShipPanelFront1, CSPF1Counter);
+        LocationGroup CSPF2 = new LocationGroup("CSPF2", context, CSPF2_Text, cargoShipPanelFront2, CSPF2Counter);
+        LocationGroup CSCF1 = new LocationGroup("CSCF1", context, CSCF1_Text, cargoShipCargoFront1, CSCF1Counter);
+        LocationGroup CSCF2 = new LocationGroup("CSCF2", context, CSCF2_Text, cargoShipCargoFront2, CSCF2Counter);
+        LocationGroup CSPL1= new LocationGroup("CSPL1", context, CSPL1_Text, cargoShipPanelLeft1, CSPL1Counter);
+        LocationGroup CSPL2 = new LocationGroup("CSPL2", context, CSPL2_Text, cargoShipPanelLeft2, CSPL2Counter);
+        LocationGroup CSPL3 = new LocationGroup("CSPL3", context, CSPL3_Text, cargoShipPanelLeft3, CSPL3Counter);
+        LocationGroup CSPR1= new LocationGroup("CSPR1", context, CSPR1_Text, cargoShipPanelRight1, CSPR1Counter);
+        LocationGroup CSPR2 = new LocationGroup("CSPR2", context, CSPR2_Text, cargoShipPanelRight2, CSPR2Counter);
+        LocationGroup CSPR3 = new LocationGroup("CSPR3", context, CSPR3_Text, cargoShipPanelRight3, CSPR3Counter);
+        LocationGroup CSCL1= new LocationGroup("CSCL1", context, CSCL1_Text, cargoShipCargoLeft1, CSCL1Counter);
+        LocationGroup CSCL2 = new LocationGroup("CSCL2", context, CSCL2_Text, cargoShipCargoLeft2, CSCL2Counter);
+        LocationGroup CSCL3 = new LocationGroup("CSCL3", context, CSCL3_Text, cargoShipCargoLeft3, CSCL3Counter);
+        LocationGroup CSCR1= new LocationGroup("CSCR1", context, CSCR1_Text, cargoShipCargoRight1, CSCR1Counter);
+        LocationGroup CSCR2 = new LocationGroup("CSCR2", context, CSCR2_Text, cargoShipCargoRight2, CSCR2Counter);
+        LocationGroup CSCR3 = new LocationGroup("CSCR3", context, CSCR3_Text, cargoShipCargoRight3, CSCR3Counter);
 
         setupHashMap = new HashMap<>();
         scoreHashMap = new HashMap<>();
 
         timer = new Timer();
-        UndoButton = context.findViewById(R.id.UndoButton);
+        undoButton = context.findViewById(R.id.UndoButton);
         constraintLayout = context.findViewById(R.id.layout);
 
         //disable scoring diagram
         GenUtils.disableScoringDiagram('A');
-        UndoButton.setEnabled(false);
+        undoButton.setEnabled(false);
 
         //initialize hash maps and fill in default data
         final Serializable setupData = context.getIntent().getSerializableExtra("setupHashMap");
@@ -202,7 +202,7 @@ public class Sandstorm extends MainActivity {
                         Intent intent = new Intent(context, Teleop.class);
                         intent.putExtra("setupHashMap", setupHashMap);
                         intent.putExtra("scoreHashMap", scoreHashMap);
-                        if (FellOverSwitch.isChecked())
+                        if (fellOverSwitch.isChecked())
                             intent.putExtra("fellOver","True");
                         else
                             intent.putExtra("fellOver","");
@@ -329,10 +329,10 @@ public class Sandstorm extends MainActivity {
 
 
         //making only Sandstorm Button look active from top toggle
-        GenUtils.defaultButtonState(context, SetupButton);
-        GenUtils.selectedButtonState(context, SandstormButton);
-        GenUtils.defaultButtonState(context, TeleopButton);
-        GenUtils.defaultButtonState(context, ClimbButton);
+        GenUtils.defaultButtonState(context, setupButton);
+        GenUtils.selectedButtonState(context, sandstormButton);
+        GenUtils.defaultButtonState(context, teleopButton);
+        GenUtils.defaultButtonState(context, climbButton);
 
 
         //set listeners for buttons and fill the hashmap with data
@@ -340,18 +340,18 @@ public class Sandstorm extends MainActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     UNDO = "HAB";
-                    UndoButton.setEnabled(true);
+                    undoButton.setEnabled(true);
                     setupHashMap.put("HABLine",String.valueOf(1));
                 } else
                     setupHashMap.put("HABLine",String.valueOf(0));
             }
         });
 
-        FellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        fellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     UNDO = "FellOver";
-                    UndoButton.setEnabled(true);
+                    undoButton.setEnabled(true);
                     setupHashMap.put("FellOver",String.valueOf(1));
                     HABLineSwitch.setEnabled(false);
                     GenUtils.disableScoringDiagram('A');
@@ -362,7 +362,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        SetupButton.setOnClickListener(new View.OnClickListener() {
+        setupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity.class);
@@ -372,11 +372,11 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        TeleopButton.setOnClickListener(new View.OnClickListener() {
+        teleopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Teleop.class);
-                if (FellOverSwitch.isChecked())
+                if (fellOverSwitch.isChecked())
                     intent.putExtra("fellOver","True");
                 else
                     intent.putExtra("fellOver","");
@@ -387,7 +387,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        ClimbButton.setOnClickListener(new View.OnClickListener() {
+        climbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Climb.class);
@@ -398,7 +398,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelFront1.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelFront1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPF1";
@@ -406,7 +406,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelFront2.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelFront2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPF2";
@@ -414,7 +414,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelLeft1.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelLeft1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPL1";
@@ -422,7 +422,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelLeft2.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelLeft2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPL2";
@@ -430,7 +430,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelLeft3.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelLeft3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPL3";
@@ -438,7 +438,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelRight1.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelRight1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPR1";
@@ -446,7 +446,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelRight2.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelRight2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPR2";
@@ -454,7 +454,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipPanelRight3.setOnClickListener(new View.OnClickListener() {
+        cargoShipPanelRight3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSPR3";
@@ -462,7 +462,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoFront1.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoFront1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCF1";
@@ -470,7 +470,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoFront2.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoFront2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCF2";
@@ -478,7 +478,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoLeft1.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoLeft1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCL1";
@@ -486,7 +486,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoLeft2.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoLeft2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCL2";
@@ -494,7 +494,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoLeft3.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoLeft3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCL3";
@@ -502,7 +502,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoRight1.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoRight1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCR1";
@@ -510,7 +510,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoRight2.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoRight2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCR2";
@@ -518,7 +518,7 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        CargoShipCargoRight3.setOnClickListener(new View.OnClickListener() {
+        cargoShipCargoRight3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UNDO = "CSCR3";
@@ -526,15 +526,15 @@ public class Sandstorm extends MainActivity {
             }
         });
 
-        UndoButton.setOnClickListener(new View.OnClickListener() {
+        undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UndoButton.setEnabled(false);
+                undoButton.setEnabled(false);
                 switch (UNDO) {
                     case "FellOver":
                         setupHashMap.put("FellOver", String.valueOf(0));
                         HABLineSwitch.setEnabled(true);
-                        FellOverSwitch.setChecked(!FellOverSwitch.isChecked());
+                        fellOverSwitch.setChecked(!fellOverSwitch.isChecked());
                         break;
                     case "HAB":
                         setupHashMap.put("HABLine", String.valueOf(0));
@@ -600,7 +600,7 @@ public class Sandstorm extends MainActivity {
         lg.enableLocation();
         scoreHashMap.put(lg.getCounterText().getTag().toString(), String.valueOf(lg.getCounter()));
         GenUtils.disableScoringDiagram('A');
-        UndoButton.setEnabled(true);
+        undoButton.setEnabled(true);
         HABLineSwitch.setChecked(true);
     }
 
