@@ -56,9 +56,6 @@ public class Auton extends Fragment {
         //Waiting for layout --> constraintLayout = context.findViewById(R.id.layout);
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
 
-        //disable scoring diagram
-        GenUtils.disableScoringDiagram('A');
-
         //initialize hash maps and fill in default data
         final Serializable setupData = context.getIntent().getSerializableExtra("setupHashMap");
         setupHashMap = context.setupHashMap;
@@ -100,7 +97,6 @@ public class Auton extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     setupHashMap.put("FellOver",String.valueOf(1));
-                    GenUtils.disableScoringDiagram('A');
                 } else {
                     setupHashMap.put("FellOver",String.valueOf(0));
                 }
