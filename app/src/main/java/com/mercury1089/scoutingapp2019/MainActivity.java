@@ -36,16 +36,16 @@ public class MainActivity extends Fragment {
     private int isRedAlliance = 0; //0 or 1
 
     //variables that store elements of the screen for the output variables
-    private EditText ScouterNameInput;
+    private EditText scouterNameInput;
     private EditText matchNumberInput;
     private EditText teamNumberInput;
     private EditText firstAlliancePartnerInput;
     private EditText secondAlliancePartnerInput;
     private BootstrapButton blueButton;
     private BootstrapButton redButton;
+    private Button settingsButton;
 
-
-    private Switch NoShowSwitch;
+    private Switch noShowSwitch;
 
     private HashMap<String, String> setupHashMap;
 
@@ -75,19 +75,20 @@ public class MainActivity extends Fragment {
         super.onStart();
 
         //initializers
-        ScouterNameInput = context.findViewById(R.id.ScouterNameInput);
+        scouterNameInput = context.findViewById(R.id.ScouterNameInput);
         matchNumberInput = context.findViewById(R.id.MatchNumberInput);
         teamNumberInput = context.findViewById(R.id.TeamNumberInput);
         firstAlliancePartnerInput = context.findViewById(R.id.FirstAlliancePartnerInput);
         secondAlliancePartnerInput = context.findViewById(R.id.SecondAlliancePartnerInput);
         blueButton = context.findViewById(R.id.BlueButton);
         redButton = context.findViewById(R.id.RedButton);
+        settingsButton = context.findViewById(R.id.SettingsButton);
 
         setupHashMap = new HashMap<>();
         setupHashMap.put("NoShow", "0");
         setupHashMap.put("LeftOrRight", context.getIntent().getStringExtra("LEFTORRIGHT"));
         setupHashMap.put("AllianceColor", "Neither");
-        NoShowSwitch = context.findViewById(R.id.NoShowSwitch);
+        noShowSwitch = context.findViewById(R.id.NoShowSwitch);
         clearButton = context.findViewById(R.id.ClearButton);
         startButton = context.findViewById(R.id.StartButton);
         settingsButton = context.findViewById(R.id.SettingsButton);
@@ -115,17 +116,17 @@ public class MainActivity extends Fragment {
         clearButtonCheck();
 
         if (setupHashMap != null && setupHashMap.get("NoShow").equals("1")) {
-            NoShowSwitch.setChecked(true);
+            noShowSwitch.setChecked(true);
             startButtonCheck();
             clearButtonCheck();
             setupHashMap.put("NoShow", "1");
             startButton.setText(R.string.GenerateQRCode);
             isQRButton = true;
         } else if (setupHashMap.get("NoShow") != null && setupHashMap.get("NoShow").equals("0"))
-            NoShowSwitch.setChecked(false);
+            noShowSwitch.setChecked(false);
 
         //starting listener to check the status of the switch
-        NoShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        noShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -141,7 +142,7 @@ public class MainActivity extends Fragment {
             }
         });
 
-        ScouterNameInput.addTextChangedListener(new TextWatcher() {
+        scouterNameInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -150,7 +151,7 @@ public class MainActivity extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 startButtonCheck();
                 clearButtonCheck();
-                setupHashMap.put(ScouterNameInput.getTag().toString(), ScouterNameInput.getText().toString());
+                setupHashMap.put(scouterNameInput.getTag().toString(), scouterNameInput.getText().toString());
             }
 
             @Override
@@ -281,7 +282,7 @@ public class MainActivity extends Fragment {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        ScouterNameInput.setText(setupHashMap.get(ScouterNameInput.getTag().toString()));
+                        scouterNameInput.setText(setupHashMap.get(scouterNameInput.getTag().toString()));
                         matchNumberInput.setText(setupHashMap.get(matchNumberInput.getTag().toString()));
                         teamNumberInput.setText(setupHashMap.get(teamNumberInput.getTag().toString()));
                         firstAlliancePartnerInput.setText(setupHashMap.get(firstAlliancePartnerInput.getTag().toString()));
@@ -297,14 +298,14 @@ public class MainActivity extends Fragment {
                         }
 
                         if (setupHashMap != null && setupHashMap.get("NoShow").equals("1")) {
-                            NoShowSwitch.setChecked(true);
+                            noShowSwitch.setChecked(true);
                             startButtonCheck();
                             clearButtonCheck();
                             setupHashMap.put("NoShow", "1");
                             startButton.setText(R.string.GenerateQRCode);
                             isQRButton = true;
                         } else if (setupHashMap.get("NoShow") != null && setupHashMap.get("NoShow").equals("0"))
-                            NoShowSwitch.setChecked(false);
+                            noShowSwitch.setChecked(false);
                     }
                 });
 
@@ -313,12 +314,12 @@ public class MainActivity extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         setupHashMap = QRStringBuilder.defaultSetupHashMap(leftOrRight);
-                        ScouterNameInput.setText("");
+                        scouterNameInput.setText("");
                         matchNumberInput.setText("");
                         teamNumberInput.setText("");
                         firstAlliancePartnerInput.setText("");
                         secondAlliancePartnerInput.setText("");
-                        NoShowSwitch.setChecked(false);
+                        noShowSwitch.setChecked(false);
                         blueDefault();
                         redDefault();
                         clearButton.setEnabled(false);
@@ -334,7 +335,7 @@ public class MainActivity extends Fragment {
                             blueButton.setBackgroundColor(GenUtils.getAColor(context, R.color.blue));
                             blueButton.setTextColor(GenUtils.getAColor(context, R.color.light));
                             isBlueAlliance = 1;
-                            if (!NoShowSwitch.isChecked())
+                            if (!noShowSwitch.isChecked())
                                 isQRButton = false;
                         }
                         else {
@@ -370,8 +371,8 @@ public class MainActivity extends Fragment {
 
     //call methods
     private void startButtonCheck() {
-        if (NoShowSwitch.isChecked())
-            if (ScouterNameInput.getText().length() > 0
+        if (noShowSwitch.isChecked())
+            if (scouterNameInput.getText().length() > 0
                     && matchNumberInput.getText().length() > 0
                     && teamNumberInput.getText().length() > 0
                     && (setupHashMap.get("AllianceColor").equals("Blue")
@@ -380,7 +381,7 @@ public class MainActivity extends Fragment {
             else
                 startButton.setEnabled(false);
         else
-        if (ScouterNameInput.getText().length() > 0
+        if (scouterNameInput.getText().length() > 0
                 && matchNumberInput.getText().length() > 0
                 && teamNumberInput.getText().length() > 0
                 && firstAlliancePartnerInput.getText().length() > 0
@@ -393,14 +394,14 @@ public class MainActivity extends Fragment {
     }
 
     private void clearButtonCheck() {
-        if (ScouterNameInput.getText().length() > 0
+        if (scouterNameInput.getText().length() > 0
                 || teamNumberInput.getText().length() > 0
                 || matchNumberInput.getText().length() > 0
                 || firstAlliancePartnerInput.getText().length() > 0
                 || secondAlliancePartnerInput.getText().length() > 0
                 || (setupHashMap.get("AllianceColor").equals("Blue")
                 || setupHashMap.get("AllianceColor").equals("Red"))
-                || NoShowSwitch.isChecked())
+                || noShowSwitch.isChecked())
             clearButton.setEnabled(true);
         else
             clearButton.setEnabled(false);
@@ -525,12 +526,12 @@ public class MainActivity extends Fragment {
                                 dialog.dismiss();
                                 //clear everything except field orientation
                                 setupHashMap = QRStringBuilder.defaultSetupHashMap(setupHashMap.get("LeftOrRight"));
-                                ScouterNameInput.setText("");
+                                scouterNameInput.setText("");
                                 matchNumberInput.setText("");
                                 teamNumberInput.setText("");
                                 firstAlliancePartnerInput.setText("");
                                 secondAlliancePartnerInput.setText("");
-                                NoShowSwitch.setChecked(false);
+                                noShowSwitch.setChecked(false);
                                 blueDefault();
                                 redDefault();
                             }

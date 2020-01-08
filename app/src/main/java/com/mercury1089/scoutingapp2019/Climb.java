@@ -17,10 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
 import java.io.Serializable;
@@ -30,16 +27,16 @@ import static com.mercury1089.scoutingapp2019.utils.QRStringBuilder.MakeQRString
 
 public class Climb extends Fragment {
     //bootstrap buttons
-    private BootstrapButton OnHABButton;
-    private BootstrapButton OffHABButton;
+    private BootstrapButton onHABButton;
+    private BootstrapButton offHABButton;
 
     //navigation buttons
-    BootstrapButton SetupButton;
-    BootstrapButton SandstormButton;
-    BootstrapButton TeleopButton;
-    BootstrapButton ClimbButton;
+    BootstrapButton setupButton;
+    BootstrapButton sandstormButton;
+    BootstrapButton teleopButton;
+    BootstrapButton climbButton;
 
-    private Button GenerateQRButton;
+    private Button generateQRButton;
 
     //boolean variables
     private boolean isOnHAB = false;
@@ -49,8 +46,6 @@ public class Climb extends Fragment {
     private HashMap<String, String> scoreHashMap;
 
     private ProgressDialog progressDialog;
-
-
 
     public String QRValue = "";
 
@@ -66,32 +61,32 @@ public class Climb extends Fragment {
     public void onStart(){
         super.onStart();
 
-        SetupButton = context.findViewById(R.id.ClimbSetupButton);
-        SandstormButton = context.findViewById(R.id.ClimbSandstormButton);
-        TeleopButton = context.findViewById(R.id.ClimbTeleopButton);
-        ClimbButton = context.findViewById(R.id.ClimbClimbButton);
+        setupButton = context.findViewById(R.id.ClimbSetupButton);
+        sandstormButton = context.findViewById(R.id.ClimbSandstormButton);
+        teleopButton = context.findViewById(R.id.ClimbTeleopButton);
+        climbButton = context.findViewById(R.id.ClimbClimbButton);
 
-        SetupButton.setEnabled(false);
-        SandstormButton.setEnabled(false);
-        TeleopButton.setEnabled(false);
+        setupButton.setEnabled(false);
+        sandstormButton.setEnabled(false);
+        teleopButton.setEnabled(false);
 
-        OnHABButton = context.findViewById(R.id.OnHabButton);
-        OffHABButton = context.findViewById(R.id.OffHabButton);
+        onHABButton = context.findViewById(R.id.OnHabButton);
+        offHABButton = context.findViewById(R.id.OffHabButton);
 
-        GenerateQRButton = context.findViewById(R.id.ClimbGenerateQRButton);
+        generateQRButton = context.findViewById(R.id.ClimbGenerateQRButton);
 
-        defaultButtonState(SetupButton);
-        defaultButtonState(SandstormButton);
-        defaultButtonState(TeleopButton);
-        selectedButtonColors(ClimbButton);
+        defaultButtonState(setupButton);
+        defaultButtonState(sandstormButton);
+        defaultButtonState(teleopButton);
+        selectedButtonColors(climbButton);
 
-        defaultButtonState(OnHABButton);
-        defaultButtonState(OffHABButton);
+        defaultButtonState(onHABButton);
+        defaultButtonState(offHABButton);
 
-        GenerateQRButton.setEnabled(true);
+        generateQRButton.setEnabled(true);
 
-        GenerateQRButton.setBackgroundColor(getAColor(context, R.color.light));
-        GenerateQRButton.setTextColor(getAColor(context, R.color.grey));
+        generateQRButton.setBackgroundColor(getAColor(context, R.color.light));
+        generateQRButton.setTextColor(getAColor(context, R.color.grey));
 
         Serializable setupData = context.getIntent().getSerializableExtra("setupHashMap");
         setupHashMap = (HashMap<String, String>) setupData;
@@ -108,7 +103,7 @@ public class Climb extends Fragment {
         Serializable scoreData = context.getIntent().getSerializableExtra("scoreHashMap");
         scoreHashMap = (HashMap<String, String>) scoreData;
 
-        SetupButton.setOnClickListener(new View.OnClickListener() {
+        setupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity.class);
@@ -118,7 +113,7 @@ public class Climb extends Fragment {
             }
         });
 
-        SandstormButton.setOnClickListener(new View.OnClickListener() {
+        sandstormButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Sandstorm.class);
@@ -128,7 +123,7 @@ public class Climb extends Fragment {
             }
         });
 
-        TeleopButton.setOnClickListener(new View.OnClickListener() {
+        teleopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Teleop.class);
@@ -138,17 +133,17 @@ public class Climb extends Fragment {
             }
         });
 
-        OnHABButton.setOnClickListener(new View.OnClickListener() {
+        onHABButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 isOnHAB = !isOnHAB;
                 if (!isOnHAB) {
-                    defaultButtonState(OnHABButton);
+                    defaultButtonState(onHABButton);
                     yesOrNOButtons('E');
                     isOnHAB = false;
                 } else {
-                    defaultButtonState(OffHABButton);
-                    selectedButtonColors(OnHABButton);
+                    defaultButtonState(offHABButton);
+                    selectedButtonColors(onHABButton);
                     isOnHAB = true;
                     isOffHAB = false;
                 }
@@ -156,17 +151,17 @@ public class Climb extends Fragment {
             }
         });
 
-        OffHABButton.setOnClickListener(new View.OnClickListener() {
+        offHABButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 isOffHAB = !isOffHAB;
                 if (!isOffHAB) {
-                    defaultButtonState(OnHABButton);
+                    defaultButtonState(onHABButton);
                     isOffHAB = false;
                     yesOrNOButtons('E');
                 } else {
-                    defaultButtonState(OnHABButton);
-                    selectedButtonColors(OffHABButton);
+                    defaultButtonState(onHABButton);
+                    selectedButtonColors(offHABButton);
                     isOnHAB = false;
                     isOffHAB = true;
                 }
@@ -174,7 +169,7 @@ public class Climb extends Fragment {
             }
         });
 
-        GenerateQRButton.setOnClickListener(new View.OnClickListener() {
+        generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressDialog = new ProgressDialog(context, R.style.LoadingDialogStyle);
@@ -186,7 +181,6 @@ public class Climb extends Fragment {
                 QRRunnable qrRunnable = new QRRunnable();
                 new Thread(qrRunnable).start();
             }
-
         });
     }
 
@@ -209,24 +203,24 @@ public class Climb extends Fragment {
     }
 
     public void disableAllButtons() {
-        OnHABButton.setEnabled(false);
-        OffHABButton.setEnabled(false);
+        onHABButton.setEnabled(false);
+        offHABButton.setEnabled(false);
 
-        disabledButtonColors(OnHABButton);
-        disabledButtonColors(OffHABButton);
+        disabledButtonColors(onHABButton);
+        disabledButtonColors(offHABButton);
     }
 
     public void yesOrNOButtons(char enabledOrDisabled) {
         if (enabledOrDisabled == 'E') {
-            OnHABButton.setEnabled(true);
-            OffHABButton.setEnabled(true);
-            defaultButtonState(OnHABButton);
-            defaultButtonState(OffHABButton);
+            onHABButton.setEnabled(true);
+            offHABButton.setEnabled(true);
+            defaultButtonState(onHABButton);
+            defaultButtonState(offHABButton);
         } else {
-            OnHABButton.setEnabled(false);
-            OffHABButton.setEnabled(false);
-            disabledButtonColors(OnHABButton);
-            disabledButtonColors(OffHABButton);
+            onHABButton.setEnabled(false);
+            offHABButton.setEnabled(false);
+            disabledButtonColors(onHABButton);
+            disabledButtonColors(offHABButton);
 
         }
         isOnHAB = false;
@@ -235,12 +229,12 @@ public class Climb extends Fragment {
 
     public void generateQR (char enabledOrDisabled) {
         if (enabledOrDisabled == 'E') {
-            GenerateQRButton.setEnabled(true);
-            activeButtonColors(GenerateQRButton);
+            generateQRButton.setEnabled(true);
+            activeButtonColors(generateQRButton);
         } else {
-            GenerateQRButton.setEnabled(false);
-            GenerateQRButton.setBackgroundColor(getAColor(context, R.color.savedefault));
-            GenerateQRButton.setTextColor(getAColor(context, R.color.textdefault));
+            generateQRButton.setEnabled(false);
+            generateQRButton.setBackgroundColor(getAColor(context, R.color.savedefault));
+            generateQRButton.setTextColor(getAColor(context, R.color.textdefault));
         }
     }
 
@@ -257,7 +251,7 @@ public class Climb extends Fragment {
                 QRValue = MakeQRString(setupHashMap, scoreHashMap);
                 Log.d("QRString",QRValue);
 
-                final Bitmap bitmap = GenUtils.TextToImageEncode(QRValue, getContext());
+                final Bitmap bitmap = GenUtils.TextToImageEncode(getContext(), QRValue);
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -265,7 +259,7 @@ public class Climb extends Fragment {
 
                         View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
-                        Switch CheckSwitch = view1.findViewById(R.id.checkSwitch);
+                        Switch checkSwitch = view1.findViewById(R.id.checkSwitch);
                         TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
                         final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
@@ -279,7 +273,7 @@ public class Climb extends Fragment {
 
                         dialog.show();
 
-                        CheckSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        checkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                    if (isChecked) {

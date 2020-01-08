@@ -25,7 +25,7 @@ public class Settings extends AppCompatActivity {
     private boolean HasBeenCleared;
     private boolean isFirstTime;
     private String leftOrRight;
-    private Button CancelButton;
+    private Button cancelButton;
     private Serializable setupData;
 
     private HashMap<String, String> setupHashMap;
@@ -41,7 +41,7 @@ public class Settings extends AppCompatActivity {
         rightButton = findViewById(R.id.FieldSideRight);
         localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         saveButton = findViewById(R.id.SaveButton);
-        CancelButton = findViewById(R.id.CancelButton);
+        cancelButton = findViewById(R.id.CancelButton);
 
         //default values
         isLeft = false;
@@ -66,7 +66,7 @@ public class Settings extends AppCompatActivity {
             mainLeftOrRight = getIntent().getStringExtra("mainLeftOrRight");
         }
         else {
-            CancelButton.setEnabled(false);
+            cancelButton.setEnabled(false);
             isFirstTime = true;
         }
         if (mainLeftOrRight.equals("Left")) {
@@ -94,13 +94,13 @@ public class Settings extends AppCompatActivity {
         if (!isRight) {
             rightSelected();
             if (!isFirstTime)
-                CancelButton.setEnabled(true);
+                cancelButton.setEnabled(true);
         }
         else {
             leftOrRight = "";
             rightDefault();
             disable(saveButton);
-            disable(CancelButton);
+            disable(cancelButton);
         }
     }
 
@@ -108,12 +108,12 @@ public class Settings extends AppCompatActivity {
         if (!isLeft) {
             leftSelected();
             if (!isFirstTime)
-                CancelButton.setEnabled(true);
+                cancelButton.setEnabled(true);
         } else {
             leftOrRight = "";
             leftDefault();
             disable(saveButton);
-            disable(CancelButton);
+            disable(cancelButton);
         }
     }
 
@@ -123,11 +123,11 @@ public class Settings extends AppCompatActivity {
             localStorageResetButton.setBackgroundColor(GenUtils.getAColor(Settings.this, R.color.genutils_orange));
             localStorageResetButton.setTextColor(GenUtils.getAColor(Settings.this, R.color.light));
             isFirstTime = true;
-            disable(CancelButton);
+            disable(cancelButton);
         } else {
             localStorageResetDefault();
             if (!isFirstTime)
-                CancelButton.setEnabled(true);
+                cancelButton.setEnabled(true);
         }
     }
 
