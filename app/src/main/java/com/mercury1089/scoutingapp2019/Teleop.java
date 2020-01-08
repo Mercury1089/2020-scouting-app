@@ -49,15 +49,11 @@ public class Teleop extends Fragment {
         //Waiting for layout --> constraintLayout = context.findViewById(R.id.layout);
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
 
-        //disable scoring diagram
-        GenUtils.disableScoringDiagram('A');
-
         //set listeners for buttons and fill the hashmap with data
         fellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     setupHashMap.put("FellOver",String.valueOf(1));
-                    GenUtils.disableScoringDiagram('A');
                 } else {
                     setupHashMap.put("FellOver",String.valueOf(0));
                 }
