@@ -87,10 +87,7 @@ public class Sandstorm extends MainActivity {
                              Bundle savedInstanceState) {
         context = getActivity();
         //Inflate the layout for this fragment
-        if (setupHashMap.get("LeftOrRight").equals("Left"))
-            return inflater.inflate(R.layout.activity_sandstorm, container, false);
-        else
-            return inflater.inflate(R.layout.activity_sandstorm_right, container, false);
+        return inflater.inflate(R.layout.activity_sandstorm, container, false);
     }
 
     public void onStart(){

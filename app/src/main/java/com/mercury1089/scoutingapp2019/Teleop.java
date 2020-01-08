@@ -81,10 +81,7 @@ public class Teleop extends MainActivity {
                              Bundle savedInstanceState) {
         context = getActivity();
         //Inflate the layout for this fragment
-        if (setupHashMap.get("LeftOrRight").equals("Left"))
-            return inflater.inflate(R.layout.activity_teleop, container, false);
-        else
-            return inflater.inflate(R.layout.activity_teleop_right, container, false);
+        return inflater.inflate(R.layout.activity_teleop, container, false);
     }
 
     public void onStart(){
