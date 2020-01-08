@@ -13,17 +13,17 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 
-public class Teleop extends Fragment {
+public class Endgame extends Fragment {
     //hashmaps for sending QR data between screens
     private HashMap<String, String> setupHashMap;
-    private HashMap<String, String> teleopHashMap;
+    private HashMap<String, String> endgameHashMap;
 
     //other variables
     private ConstraintLayout constraintLayout;
     private Switch fellOverSwitch;
 
-    public static Teleop newInstance() {
-        Teleop fragment = new Teleop();
+    public static Endgame newInstance() {
+        Endgame fragment = new Endgame();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -33,7 +33,7 @@ public class Teleop extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = (MatchActivity) getActivity();
-        return inflater.inflate(R.layout.fragment_teleop, container, false);
+        return inflater.inflate(R.layout.fragment_endgame, container, false);
     }
 
     public void onStart(){
@@ -44,20 +44,16 @@ public class Teleop extends Fragment {
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
 
         setupHashMap = new HashMap<>();
-        teleopHashMap = context.teleopHashMap;
+        endgameHashMap = context.endgameHashMap;
 
         //Waiting for layout --> constraintLayout = context.findViewById(R.id.layout);
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
-
-        //disable scoring diagram
-        GenUtils.disableScoringDiagram('A');
 
         //set listeners for buttons and fill the hashmap with data
         fellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     setupHashMap.put("FellOver",String.valueOf(1));
-                    GenUtils.disableScoringDiagram('A');
                 } else {
                     setupHashMap.put("FellOver",String.valueOf(0));
                 }
@@ -68,9 +64,9 @@ public class Teleop extends Fragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus){
                 if(v == getView() && hasFocus){
-                    teleopHashMap = context.teleopHashMap;
+                    endgameHashMap = context.endgameHashMap;
                 } else if(!hasFocus){
-                    context.teleopHashMap = teleopHashMap;
+                    context.endgameHashMap = endgameHashMap;
                 }
             }
         });

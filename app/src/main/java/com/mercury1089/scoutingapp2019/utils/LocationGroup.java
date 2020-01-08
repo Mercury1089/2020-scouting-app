@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.TextView;
 
 import com.mercury1089.scoutingapp2019.R;
-import com.mercury1089.scoutingapp2019.Sandstorm;
 
 import at.markushi.ui.CircleButton;
 

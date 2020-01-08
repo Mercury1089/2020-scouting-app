@@ -1,9 +1,9 @@
 <resources>
-    <!-- MainActivity-->
+    <!-- MatchActivity-->
 
     <string name="Undo">UNDO</string>
-    <string name="app_name">ScoutingApp2020</string>
-    <string name="Settings">&lt;/&gt;</string>
+    <string name="app_name">Scouting App 2020</string>
+    <string name="Settings">SETTINGS</string>
     <string name="Clear"> CLEAR </string>
     <string name="SetupTitle">SETUP</string>
     <string name="SetupDirections">Complete the fields below before the start of each match.</string>
@@ -19,6 +19,10 @@
     <string name="StartButtonDirections">DO NOT press the START button until you hear the charge sound!</string>
     <string name="Start">START</string>
     <string name="GenerateQRCode">GENERATE QR CODE</string>
+    <string name="Pregame">PREGAME</string>
+    <string name="Auton">AUTON</string>
+    <string name="Endgame">ENDGAME</string>
+    <string name="Match_Pregame">MATCH PREGAME</string>
 
 
     <!-- Settings -->
@@ -38,7 +42,10 @@
     <string name="C">C</string>
     <string name="P">P</string>
     <string name="FellOver">Fell Over</string>
+
+
     <!-- space = &#32;-->
+
     <string name="T1">T1</string>
     <string name="T2">T2</string>
     <string name="T3">T3</string>
@@ -46,10 +53,13 @@
 
 
     <!-- Top Toggle -->
+
     <string name="Setup">Setup</string>
     <string name="Sandstorm">Sandstorm</string>
     <string name="Teleop">Teleop</string>
     <string name="Climb">Climb</string>
     <string name="title_activity_sandstorm__left">Sandstorm_Left</string>
+
+
 
 </resources>
