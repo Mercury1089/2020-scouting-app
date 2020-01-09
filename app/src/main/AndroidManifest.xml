@@ -10,11 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MatchActivity" />
-        <activity android:name=".Pregame" />
-        <activity android:name=".Auton" />
-        <activity android:name=".Teleop" />
-        <activity android:name=".Endgame" />
-        <activity android:name=".Settings">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

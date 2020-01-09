@@ -34,14 +34,10 @@ public class MatchActivity extends AppCompatActivity {
     Bitmap bitmap;
     String QRValue;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_match, container, false);
-    }
-
-    public void onStart() {
-        super.onStart();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_match);
 
         //initializers
         settingsButton = findViewById(R.id.SettingsButton);

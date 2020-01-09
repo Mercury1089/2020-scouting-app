@@ -17,14 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
     public HashMap<String, String> setupHashMap;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_main, container, false);
-    }
-
-    public void onStart() {
-        super.onStart();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         //initializers
         settingsButton = findViewById(R.id.SettingsButton);
