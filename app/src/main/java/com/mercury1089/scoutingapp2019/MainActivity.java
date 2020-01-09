@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import java.util.HashMap;
 
@@ -30,14 +32,18 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Settings.newInstance();
+                //setContentView(R.layout.fragment_settings);
+                //setContentView(findViewById(R.id.MatchPregame));
+                findViewById(R.id.MatchPregame).setVisibility(View.VISIBLE);
             }
         });
 
         pregameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Pregame.newInstance();
+                //setContentView(R.layout.fragment_settings);
+                //setContentView(findViewById(R.id.MatchPregame));
+                findViewById(R.id.MatchPregame).setVisibility(View.VISIBLE);
             }
         });
     }
