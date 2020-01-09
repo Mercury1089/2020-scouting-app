@@ -2,6 +2,7 @@ package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -70,10 +71,10 @@ public class Pregame extends Fragment {
         return fragment;
     }
 
-    private MainActivity context;
+    private Activity context;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
+        context = getActivity();
         //Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pregame, container, false);
     }
@@ -96,7 +97,7 @@ public class Pregame extends Fragment {
 
 
         setupHashMap = new HashMap<>();
-        setupHashMap = context.setupHashMap;
+        //setupHashMap = context.setupHashMap;
         setupHashMap.put("NoShow", "0");
         setupHashMap.put("LeftOrRight", context.getIntent().getStringExtra("LEFTORRIGHT"));
         setupHashMap.put("AllianceColor", "Neither");
@@ -256,7 +257,7 @@ public class Pregame extends Fragment {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.setupHashMap = setupHashMap;
+                //context.setupHashMap = setupHashMap;
                 getFragmentManager().beginTransaction().remove(Pregame.this);
                 getFragmentManager().beginTransaction().commit();
             }

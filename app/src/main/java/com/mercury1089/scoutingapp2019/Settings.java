@@ -37,7 +37,7 @@ public class Settings extends Fragment {
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
-    public void onStart(Bundle savedInstanceState) {
+    public void onStart() {
         super.onStart();
 
         //setting variables to screen elements for changing their properties
@@ -52,7 +52,6 @@ public class Settings extends Fragment {
         isFirstTime = false;
         leftOrRight = "left";
         leftSelected();
-        String mainLeftOrRight = "";
 
         //create hashmap for data transfer between screens
         setupHashMap = context.setupHashMap;
