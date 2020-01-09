@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -57,7 +58,6 @@ public class MainActivity extends Fragment {
     //other variables
     Button clearButton;
     Button startButton;
-    Button settingsButton;
 
     boolean isQRButton = false;
     String leftOrRight;
