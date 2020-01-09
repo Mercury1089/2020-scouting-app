@@ -25,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
 
         //setting variables to screen elements for changing their properties
         leftButton = findViewById(R.id.FieldSideLeft);
@@ -130,6 +131,8 @@ public class SettingsActivity extends AppCompatActivity {
             setupHashMap.put("AllianceColor","");
             setupHashMap.put("LeftOrRight","left");
             Toast.makeText(this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
+            isLocalStorageClicked = false;
+            cancelButton.setEnabled(true);
         }
         else {
             //save values and go to the setup screen (MainActivity)

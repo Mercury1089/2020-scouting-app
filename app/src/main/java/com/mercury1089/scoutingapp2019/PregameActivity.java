@@ -59,16 +59,17 @@ public class PregameActivity extends AppCompatActivity {
     String QRValue;
 
     //other variables
-    Button clearButton;
-    Button startButton;
-    Button settingsButton;
+    BootstrapButton clearButton;
+    BootstrapButton startButton;
+    BootstrapButton settingsButton;
 
     boolean isQRButton = false;
     String leftOrRight;
     private ProgressDialog progressDialog;
 
-    public void onStart() {
-        super.onStart();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pregame);
 
         //initializers
         scouterNameInput = findViewById(R.id.ScouterNameInput);
@@ -83,10 +84,11 @@ public class PregameActivity extends AppCompatActivity {
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
 
+        setupHashMap = new HashMap<>();
         Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
-        if(setupData != null){
+        if(setupData != null) {
             setupHashMap = (HashMap<String, String>) setupData;
-        }else {
+        } else {
             setupHashMap.put("NoShow", "0");
             setupHashMap.put("LeftOrRight", "left");
             setupHashMap.put("AllianceColor", "Red");
@@ -99,7 +101,7 @@ public class PregameActivity extends AppCompatActivity {
         startButtonCheck();
         clearButtonCheck();
 
-        noShow = setupHashMap.get("NowShow");
+        noShow = setupHashMap.get("NoShow");
         if(noShow.equals("1")){
             NoShowSwitch.setChecked((true));
             startButtonCheck();
@@ -212,39 +214,15 @@ public class PregameActivity extends AppCompatActivity {
             }
         });
 
-        //set listener for QR Code generator
-        /*
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isQRButton) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialog = new ProgressDialog(context, R.style.LoadingDialogStyle);
-                            progressDialog.setMessage("Please Wait");
-                            progressDialog.setCancelable(false);
-                            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                            progressDialog.show();
-                        }
-                    });
-                    QRRunnable qrRunnable = new QRRunnable();
-                    new Thread(qrRunnable).start();
-                } else {
-                    if (setupHashMap.get("LeftOrRight") != null) {
-                        Intent intent = new Intent(context, MatchActivity.class);
-                        intent.putExtra("setupHashMap", setupHashMap);
-                        startActivity(intent);
-                    }
-                }
-            }
-        });*/
 
         //click methods
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //setupHashMap = setupHashMap;
+                Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
+                intent.putExtra("setupHashMap", setupHashMap);
+                startActivity(intent);
             }
         });
 

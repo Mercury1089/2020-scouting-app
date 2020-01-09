@@ -92,7 +92,7 @@ public class Auton extends Fragment {
         timer.schedule(switchToTeleop, 15000);
 
         //set listeners for buttons and fill the hashmap with data
-
+        /*
         fellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -101,7 +101,7 @@ public class Auton extends Fragment {
                     setupHashMap.put("FellOver",String.valueOf(0));
                 }
             }
-        });
+        });*/
 
         getView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

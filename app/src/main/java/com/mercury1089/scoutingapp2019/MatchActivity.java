@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.viewpager.widget.ViewPager;
+
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -23,7 +26,9 @@ public class MatchActivity extends AppCompatActivity {
 
     //variables that store elements of the screen for the output variables
     private BootstrapButton settingsButton;
-    private TabLayout tabs = findViewById(R.id.tabs);
+    private TabLayout tabs;
+    private ViewPager viewPager;
+    SectionsPagerAdapter sectionsPagerAdapter;
     public HashMap<String, String> setupHashMap;
     public HashMap<String, String> autonHashMap;
     public HashMap<String, String> teleopHashMap;
@@ -40,8 +45,14 @@ public class MatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match);
 
         //initializers
+        tabs = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.view_pager);
         settingsButton = findViewById(R.id.SettingsButton);
         tabs = findViewById(R.id.tabs);
+        sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs.setupWithViewPager(viewPager);
 
         setupHashMap = new HashMap<>();
         autonHashMap = new HashMap<>();
@@ -103,6 +114,10 @@ public class MatchActivity extends AppCompatActivity {
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
     }
+    /*
+    public void autonClicked(View view){
+        setContentView(view);
+    }*/
 
     class QRRunnable implements Runnable {
         @Override
