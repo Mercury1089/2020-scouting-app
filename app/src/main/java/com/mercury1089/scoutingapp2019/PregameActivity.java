@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -28,9 +29,11 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
+
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Pregame extends Fragment {
+public class PregameActivity extends AppCompatActivity {
     //variables that should be outputted
     private int isBlueAlliance = 0; //0 or 1
     private int isRedAlliance = 0; //0 or 1
@@ -64,43 +67,30 @@ public class Pregame extends Fragment {
     String leftOrRight;
     private ProgressDialog progressDialog;
 
-    public static Pregame newInstance() {
-        Pregame fragment = new Pregame();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    private Activity context;
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        context = getActivity();
-        //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pregame, container, false);
-    }
-
     public void onStart() {
         super.onStart();
 
         //initializers
-        scouterNameInput = context.findViewById(R.id.ScouterNameInput);
-        matchNumberInput = context.findViewById(R.id.MatchNumberInput);
-        teamNumberInput = context.findViewById(R.id.TeamNumberInput);
-        firstAlliancePartnerInput = context.findViewById(R.id.FirstAlliancePartnerInput);
-        secondAlliancePartnerInput = context.findViewById(R.id.SecondAlliancePartnerInput);
-        blueButton = context.findViewById(R.id.BlueButton);
-        redButton = context.findViewById(R.id.RedButton);
-        NoShowSwitch = context.findViewById(R.id.NoShowSwitch);
-        clearButton = context.findViewById(R.id.ClearButton);
-        startButton = context.findViewById(R.id.StartButton);
-        settingsButton = context.findViewById(R.id.SettingsButton);
+        scouterNameInput = findViewById(R.id.ScouterNameInput);
+        matchNumberInput = findViewById(R.id.MatchNumberInput);
+        teamNumberInput = findViewById(R.id.TeamNumberInput);
+        firstAlliancePartnerInput = findViewById(R.id.FirstAlliancePartnerInput);
+        secondAlliancePartnerInput = findViewById(R.id.SecondAlliancePartnerInput);
+        blueButton = findViewById(R.id.BlueButton);
+        redButton = findViewById(R.id.RedButton);
+        NoShowSwitch = findViewById(R.id.NoShowSwitch);
+        clearButton = findViewById(R.id.ClearButton);
+        startButton = findViewById(R.id.StartButton);
+        settingsButton = findViewById(R.id.SettingsButton);
 
-
-        setupHashMap = new HashMap<>();
-        //setupHashMap = context.setupHashMap;
-        setupHashMap.put("NoShow", "0");
-        setupHashMap.put("LeftOrRight", context.getIntent().getStringExtra("LEFTORRIGHT"));
-        setupHashMap.put("AllianceColor", "Neither");
+        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
+        if(setupData != null){
+            setupHashMap = (HashMap<String, String>) setupData;
+        }else {
+            setupHashMap.put("NoShow", "0");
+            setupHashMap.put("LeftOrRight", "left");
+            setupHashMap.put("AllianceColor", "Red");
+        }
 
         //setting group buttons to default state
         blueDefault();
@@ -109,19 +99,15 @@ public class Pregame extends Fragment {
         startButtonCheck();
         clearButtonCheck();
 
-
-
-        if(setupHashMap != null && setupHashMap.get("NoShow") != null){
-            noShow = setupHashMap.get("NoShow");
-            if(noShow.equals("1")){
-                NoShowSwitch.setChecked((true));
-                startButtonCheck();
-                clearButtonCheck();
-                startButton.setText(R.string.GenerateQRCode);
-                isQRButton = true;
-            }else{
-                NoShowSwitch.setChecked(false);
-            }
+        noShow = setupHashMap.get("NowShow");
+        if(noShow.equals("1")){
+            NoShowSwitch.setChecked((true));
+            startButtonCheck();
+            clearButtonCheck();
+            startButton.setText(R.string.GenerateQRCode);
+            isQRButton = true;
+        }else{
+            NoShowSwitch.setChecked(false);
         }
 
         //starting listener to check the status of the switch
@@ -227,11 +213,12 @@ public class Pregame extends Fragment {
         });
 
         //set listener for QR Code generator
+        /*
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isQRButton) {
-                    context.runOnUiThread(new Runnable() {
+                    runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             progressDialog = new ProgressDialog(context, R.style.LoadingDialogStyle);
@@ -251,22 +238,20 @@ public class Pregame extends Fragment {
                     }
                 }
             }
-        });
+        });*/
 
         //click methods
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //context.setupHashMap = setupHashMap;
-                getFragmentManager().beginTransaction().remove(Pregame.this);
-                getFragmentManager().beginTransaction().commit();
+                //setupHashMap = setupHashMap;
             }
         });
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(context);
+                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
                 View view1 = getLayoutInflater().inflate(R.layout.confirm_popup, null);
 
                 BootstrapButton clearConfirm = view1.findViewById(R.id.GoToClimb);
@@ -288,11 +273,11 @@ public class Pregame extends Fragment {
 
                         //showing saved values from before
                         if (setupHashMap.get("AllianceColor").equals("Blue")) {
-                            blueButton.setBackgroundColor(GenUtils.getAColor(context, R.color.blue));
-                            blueButton.setTextColor(GenUtils.getAColor(context, R.color.light));
+                            blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.blue));
+                            blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
                         } else if (setupHashMap.get("AllianceColor").equals("Red")) {
-                            redButton.setBackgroundColor(GenUtils.getAColor(context, R.color.red));
-                            redButton.setTextColor(GenUtils.getAColor(context, R.color.light));
+                            redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.red));
+                            redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
                         }
 
                         if (setupHashMap != null && setupHashMap.get("NoShow").equals("1")) {
@@ -330,8 +315,8 @@ public class Pregame extends Fragment {
                         setupHashMap.put("AllianceColor", "Blue");
                         if (isBlueAlliance == 0) {
                             redDefault();
-                            blueButton.setBackgroundColor(GenUtils.getAColor(context, R.color.blue));
-                            blueButton.setTextColor(GenUtils.getAColor(context, R.color.light));
+                            blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.blue));
+                            blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
                             isBlueAlliance = 1;
                             if (!NoShowSwitch.isChecked())
                                 isQRButton = false;
@@ -351,8 +336,8 @@ public class Pregame extends Fragment {
                         setupHashMap.put("AllianceColor", "Red");
                         if (isRedAlliance == 0) {
                             blueDefault();
-                            redButton.setBackgroundColor(GenUtils.getAColor(context, R.color.red));
-                            redButton.setTextColor(GenUtils.getAColor(context, R.color.light));
+                            redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.red));
+                            redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
                             isRedAlliance = 1;
                         }
                         else {
@@ -407,14 +392,14 @@ public class Pregame extends Fragment {
 
     private void blueDefault () {
         isBlueAlliance = 0;
-        blueButton.setBackgroundColor(GenUtils.getAColor(context, R.color.light));
-        blueButton.setTextColor(GenUtils.getAColor(context, R.color.grey));
+        blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
+        blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
     }
 
     private void redDefault () {
         isRedAlliance = 0;
-        redButton.setBackgroundColor(GenUtils.getAColor(context, R.color.light));
-        redButton.setTextColor(GenUtils.getAColor(context, R.color.grey));
+        redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
+        redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
     }
 
     //template for implementing a button click for a rectangle for starting position
@@ -446,7 +431,7 @@ public class Pregame extends Fragment {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(context, R.color.colorPrimaryDark) : GenUtils.getAColor(context, R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(PregameActivity.this, R.color.colorPrimaryDark) : GenUtils.getAColor(PregameActivity.this, R.color.bootstrap_dropdown_divider);
             }
         }
 
@@ -478,10 +463,10 @@ public class Pregame extends Fragment {
 
             try {
                 bitmap = TextToImageEncode(QRValue);
-                context.runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
+                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(PregameActivity.this);
                         View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
                         Switch CheckSwitch = view1.findViewById(R.id.checkSwitch);
@@ -496,8 +481,8 @@ public class Pregame extends Fragment {
                         teamNumber.setText("Team Number: " + setupHashMap.get("TeamNumber"));
                         matchNumber.setText("Match Number: " + setupHashMap.get("MatchNumber"));
                         goBackToMain.setEnabled(false);
-                        goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.savedefault)));
-                        goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
+                        goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.savedefault)));
+                        goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
 
                         dialog.show();
 
@@ -506,13 +491,13 @@ public class Pregame extends Fragment {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if (isChecked) {
                                     goBackToMain.setEnabled(true);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.blue)));
-                                    goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.light));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.blue)));
+                                    goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
                                 }
                                 else{
                                     goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.defaultdisabled)));
-                                    goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.defaultdisabled)));
+                                    goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.textdefault));
                                 }
                             }
 

@@ -1,17 +1,16 @@
 package com.mercury1089.scoutingapp2019;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import java.io.Serializable;
 import java.util.HashMap;
-import androidx.fragment.app.Fragment;
 
-public class Settings extends Fragment {
+import androidx.appcompat.app.AppCompatActivity;
+public class SettingsActivity extends AppCompatActivity {
 
     private BootstrapButton leftButton;
     private BootstrapButton rightButton;
@@ -24,28 +23,15 @@ public class Settings extends Fragment {
 
     private HashMap<String, String> setupHashMap;
 
-    public static Settings newInstance() {
-        Settings fragment = new Settings();
-        return fragment;
-    }
-
-    private MainActivity context;
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
-        //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
-    }
-
-    public void onStart() {
-        super.onStart();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         //setting variables to screen elements for changing their properties
-        leftButton = context.findViewById(R.id.FieldSideLeft);
-        rightButton = context.findViewById(R.id.FieldSideRight);
-        localStorageResetButton = context.findViewById(R.id.LocalStorageResetButton);
-        saveButton = context.findViewById(R.id.SaveButton);
-        cancelButton = context.findViewById(R.id.CancelButton);
+        leftButton = findViewById(R.id.FieldSideLeft);
+        rightButton = findViewById(R.id.FieldSideRight);
+        localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
+        saveButton = findViewById(R.id.SaveButton);
+        cancelButton = findViewById(R.id.CancelButton);
 
         //default values
         isLocalStorageClicked = false;
@@ -54,7 +40,10 @@ public class Settings extends Fragment {
         leftSelected();
 
         //create hashmap for data transfer between screens
-        setupHashMap = context.setupHashMap;
+        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
+        if(setupData != null){
+            setupHashMap = (HashMap<String, String>) setupData;
+        }
     }
 
     //lets users click an arrow to go to the next textbox
@@ -74,27 +63,27 @@ public class Settings extends Fragment {
 
     private void rightSelected(){
         leftOrRight = "right";
-        GenUtils.selectedButtonState(context, rightButton);
-        GenUtils.defaultButtonState(context, leftButton);
-        GenUtils.defaultButtonState(context, localStorageResetButton);
+        GenUtils.selectedButtonState(this, rightButton);
+        GenUtils.defaultButtonState(this, leftButton);
+        GenUtils.defaultButtonState(this, localStorageResetButton);
     }
 
     private void leftSelected(){
         leftOrRight = "left";
-        GenUtils.selectedButtonState(context, rightButton);
-        GenUtils.defaultButtonState(context, leftButton);
-        GenUtils.defaultButtonState(context, localStorageResetButton);
+        GenUtils.selectedButtonState(this, rightButton);
+        GenUtils.defaultButtonState(this, leftButton);
+        GenUtils.defaultButtonState(this, localStorageResetButton);
     }
 
     private void disable (BootstrapButton button) {
-        button.setBackgroundColor(GenUtils.getAColor(context, (R.color.savedefault)));
-        button.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
+        button.setBackgroundColor(GenUtils.getAColor(this, (R.color.savedefault)));
+        button.setTextColor(GenUtils.getAColor(this, R.color.savetextdefault));
         button.setEnabled(false);
     }
 
     private void enable (BootstrapButton button) {
-        button.setBackgroundColor(GenUtils.getAColor(context, R.color.genutils_green));
-        button.setTextColor(GenUtils.getAColor(context, R.color.light));
+        button.setBackgroundColor(GenUtils.getAColor(this, R.color.genutils_green));
+        button.setTextColor(GenUtils.getAColor(this, R.color.light));
         button.setEnabled(true);
     }
 
@@ -119,12 +108,12 @@ public class Settings extends Fragment {
     public void localStorageResetClick (View view) {
         if (!isLocalStorageClicked) {
             isLocalStorageClicked = true;
-            GenUtils.selectedButtonState(context, localStorageResetButton);
+            GenUtils.selectedButtonState(this, localStorageResetButton);
             isFirstTime = true;
             disable(cancelButton);
         } else {
             isLocalStorageClicked = false;
-            GenUtils.defaultButtonState(context, localStorageResetButton);
+            GenUtils.defaultButtonState(this, localStorageResetButton);
             if (!isFirstTime)
                 cancelButton.setEnabled(true);
         }
@@ -140,21 +129,26 @@ public class Settings extends Fragment {
             setupHashMap.put("NoShow","0");
             setupHashMap.put("AllianceColor","");
             setupHashMap.put("LeftOrRight","left");
-            Toast.makeText(context, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
         }
         else {
             //save values and go to the setup screen (MainActivity)
             setupHashMap.put("NoShow","0");
             setupHashMap.put("AllianceColor","");
             setupHashMap.put("LeftOrRight",leftOrRight);
-            context.setupHashMap = setupHashMap;
-            getFragmentManager().beginTransaction().remove(this);
-            getFragmentManager().beginTransaction().commit();
+            Intent intent = new Intent(this, PregameActivity.class);
+            intent.putExtra("setupHashMap", setupHashMap);
+            startActivity(intent);
         }
     }
 
     public void cancelClick (View view) {
-        getFragmentManager().beginTransaction().remove(this);
-        getFragmentManager().beginTransaction().commit();
+        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
+        if(setupData != null){
+            setupHashMap = (HashMap<String, String>) setupData;
+        }
+        Intent intent = new Intent(this, PregameActivity.class);
+        intent.putExtra("setupHashMap", setupHashMap);
+        startActivity(intent);
     }
 }

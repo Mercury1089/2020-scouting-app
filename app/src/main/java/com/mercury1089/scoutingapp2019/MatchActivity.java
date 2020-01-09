@@ -6,9 +6,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -17,6 +15,8 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
+
+import java.io.Serializable;
 import java.util.HashMap;
 
 public class MatchActivity extends AppCompatActivity {
@@ -45,12 +45,19 @@ public class MatchActivity extends AppCompatActivity {
 
         setupHashMap = new HashMap<>();
         autonHashMap = new HashMap<>();
+        teleopHashMap = new HashMap<>();
+        endgameHashMap = new HashMap<>();
+
+        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
+        if(setupData != null){
+            setupHashMap = (HashMap<String, String>) setupData;
+        }
 
         //click methods
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MatchActivity.this, Settings.class);
+                Intent intent = new Intent(MatchActivity.this, SettingsActivity.class);
                 intent.putExtra("setupHashMap", setupHashMap);
                 startActivity(intent);
             }
