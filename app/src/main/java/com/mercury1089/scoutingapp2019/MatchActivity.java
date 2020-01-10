@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class MatchActivity extends AppCompatActivity {
 
     //variables that store elements of the screen for the output variables
-    private BootstrapButton settingsButton;
+    private BootstrapButton exitButton;
     private TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
@@ -41,7 +41,7 @@ public class MatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match);
 
         //initializers
-        settingsButton = findViewById(R.id.SettingsButton);
+        exitButton = findViewById(R.id.ExitButton);
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
@@ -57,13 +57,35 @@ public class MatchActivity extends AppCompatActivity {
         endgameHashMap = new HashMap<>();
 
         //click methods
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                SetupData.putSetupHashMap(setupHashMap);
-                Intent intent = new Intent(MatchActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                finish();
+            public void onClick(View v) {
+                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
+                View view = getLayoutInflater().inflate(R.layout.clear_confirm_popup, null);
+
+                BootstrapButton clearConfirm = view.findViewById(R.id.ClearConfirm);
+                BootstrapButton cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                final AlertDialog dialog = cancelDialog.create();
+
+                dialog.setView(view);
+                dialog.show();
+
+                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                clearConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(MatchActivity.this, PregameActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
             }
         });
     }
@@ -85,7 +107,7 @@ public class MatchActivity extends AppCompatActivity {
         try {
             bitMatrix = new MultiFormatWriter().encode(
                     Value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    BarcodeFormat.QR_CODE,
                     QRCodeSize, QRCodeSize, null
             );
         } catch (IllegalArgumentException illegalArgumentException) {

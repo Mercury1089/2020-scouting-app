@@ -26,14 +26,14 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        //setting variables to screen elements for changing their properties
+        //assigning variables to their equivalent screen elements
         leftButton = findViewById(R.id.FieldSideLeft);
         rightButton = findViewById(R.id.FieldSideRight);
         localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         saveButton = findViewById(R.id.SaveButton);
         cancelButton = findViewById(R.id.CancelButton);
 
-        //create hashmap for data transfer between screens
+        //get global setupHashMap
         SetupData.checkNullOrEmpty();
         setupHashMap = SetupData.getSetupHashMap();
     }
@@ -115,24 +115,23 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void saveClick (View view) {
         if (isLocalStorageClicked) {
-            //clear everything (including values from other screens)
+            //clear the setupHashMap and set it back to the default values
+            SetupData.setDefaultValues();
+            setupHashMap = SetupData.getSetupHashMap();
             leftOrRight = "Left";
+            isLocalStorageClicked = false;
+
             leftSelected();
             GenUtils.disabledButtonState(this, saveButton);
-            setupHashMap.clear();
-            setupHashMap.put("NoShow","0");
-            setupHashMap.put("AllianceColor","");
-            setupHashMap.put("LeftOrRight","left");
-            Toast.makeText(this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
-            isLocalStorageClicked = false;
             cancelButton.setEnabled(true);
+
+            Toast.makeText(this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
         }
         else {
-            //save values and go to the setup screen (MainActivity)
-            setupHashMap.put("NoShow","0");
-            setupHashMap.put("AllianceColor","");
+            //save values and return to the PregameActivity
             setupHashMap.put("LeftOrRight",leftOrRight);
             SetupData.putSetupHashMap(setupHashMap);
+
             Intent intent = new Intent(this, PregameActivity.class);
             startActivity(intent);
         }

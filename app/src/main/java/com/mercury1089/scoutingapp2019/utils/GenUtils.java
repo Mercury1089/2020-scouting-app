@@ -2,22 +2,17 @@ package com.mercury1089.scoutingapp2019.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.R;
-
-import java.util.HashMap;
-
 import androidx.core.content.ContextCompat;
 
 public class GenUtils {
 
-    public final static int QRCodeSize = 500;
+    private final static int QRCodeSize = 500;
 
     public static int getAColor(Context context, int id) {
         return ContextCompat.getColor(context, id);
@@ -45,7 +40,7 @@ public class GenUtils {
         try {
             bitMatrix = new MultiFormatWriter().encode(
                     value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    BarcodeFormat.QR_CODE,
                     QRCodeSize, QRCodeSize, null
             );
         } catch (IllegalArgumentException illegalArgumentException) {

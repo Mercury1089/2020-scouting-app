@@ -1,7 +1,6 @@
 package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -39,10 +38,7 @@ public class PregameActivity extends AppCompatActivity {
     private EditText secondAlliancePartnerInput;
     private BootstrapButton blueButton;
     private BootstrapButton redButton;
-
-
     private Switch NoShowSwitch;
-
     private HashMap<String, String> setupHashMap;
 
     //for QR code generator
@@ -215,10 +211,10 @@ public class PregameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
-                View view1 = getLayoutInflater().inflate(R.layout.confirm_popup, null);
+                View view1 = getLayoutInflater().inflate(R.layout.clear_confirm_popup, null);
 
-                BootstrapButton clearConfirm = view1.findViewById(R.id.GoToClimb);
-                BootstrapButton cancelConfirm = view1.findViewById(R.id.cancelconfirm);
+                BootstrapButton clearConfirm = view1.findViewById(R.id.ClearConfirm);
+                BootstrapButton cancelConfirm = view1.findViewById(R.id.CancelConfirm);
                 final AlertDialog dialog = cancelDialog.create();
 
                 dialog.setView(view1);

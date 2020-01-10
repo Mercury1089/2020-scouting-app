@@ -59,11 +59,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/SettingsButton"
+        android:id="@+id/ExitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
-        android:text="@string/Settings"
+        android:text="@string/Exit"
         app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -81,8 +81,7 @@
             android:id="@+id/autonTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Auton"
-            android:onClick="autonClicked"/>
+            android:text="@string/Auton" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/teleopTab"

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import java.util.HashMap;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 
 public class Endgame extends Fragment {
-    //hashmaps for sending QR data between screens
+    //HashMaps for sending QR data between screens
     private HashMap<String, String> setupHashMap;
     private HashMap<String, String> endgameHashMap;
 
@@ -29,7 +28,7 @@ public class Endgame extends Fragment {
         return fragment;
     }
 
-    MatchActivity context;
+    private MatchActivity context;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = (MatchActivity) getActivity();
@@ -42,12 +41,8 @@ public class Endgame extends Fragment {
         //linking variables to XML elements on the screen
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
-
-        setupHashMap = new HashMap<>();
+        setupHashMap = context.setupHashMap;
         endgameHashMap = context.endgameHashMap;
-
-        //Waiting for layout --> constraintLayout = context.findViewById(R.id.layout);
-        //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -60,16 +55,19 @@ public class Endgame extends Fragment {
                 }
             }
         });*/
+    }
 
-        getView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus){
-                if(v == getView() && hasFocus){
-                    endgameHashMap = context.endgameHashMap;
-                } else if(!hasFocus){
-                    context.endgameHashMap = endgameHashMap;
-                }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        // Make sure that we are currently visible
+        if (this.isVisible()) {
+            // If we are becoming invisible, then...
+            if (!isVisibleToUser) {
+                context.setupHashMap = setupHashMap;
+                context.endgameHashMap = endgameHashMap;
             }
-        });
+        }
     }
 }

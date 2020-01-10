@@ -1,13 +1,11 @@
 package com.mercury1089.scoutingapp2019;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import java.util.HashMap;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -15,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 
 public class Teleop extends Fragment {
-    //hashmaps for sending QR data between screens
+    //HashMaps for sending QR data between screens
     private HashMap<String, String> setupHashMap;
     private HashMap<String, String> teleopHashMap;
 
@@ -30,10 +28,10 @@ public class Teleop extends Fragment {
         return fragment;
     }
 
-    Activity context;
+    private MatchActivity context;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        context = getActivity();
+        context = (MatchActivity) getActivity();
         return inflater.inflate(R.layout.fragment_teleop, container, false);
     }
 
@@ -43,12 +41,8 @@ public class Teleop extends Fragment {
         //linking variables to XML elements on the screen
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
-
-        setupHashMap = new HashMap<>();
-        //teleopHashMap = context.teleopHashMap;
-
-        //Waiting for layout --> constraintLayout = context.findViewById(R.id.layout);
-        //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
+        setupHashMap = context.setupHashMap;
+        teleopHashMap = context.teleopHashMap;
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -61,16 +55,19 @@ public class Teleop extends Fragment {
                 }
             }
         });*/
+    }
 
-        getView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus){
-                if(v == getView() && hasFocus){
-                    //teleopHashMap = context.teleopHashMap;
-                } else if(!hasFocus){
-                    //context.teleopHashMap = teleopHashMap;
-                }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        // Make sure that we are currently visible
+        if (this.isVisible()) {
+            // If we are becoming invisible, then...
+            if (!isVisibleToUser) {
+                context.setupHashMap = setupHashMap;
+                context.teleopHashMap = teleopHashMap;
             }
-        });
+        }
     }
 }

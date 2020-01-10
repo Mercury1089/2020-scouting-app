@@ -1,65 +1,85 @@
 <resources>
-    <!-- MatchActivity-->
 
-    <string name="Undo">UNDO</string>
-    <string name="app_name">Scouting App 2020</string>
-    <string name="Settings">SETTINGS</string>
-    <string name="Clear"> CLEAR </string>
-    <string name="SetupTitle">SETUP</string>
-    <string name="SetupDirections">Complete the fields below before the start of each match.</string>
-    <string name="ScouterName">Scouter Name:</string>
-    <string name="MatchNumber">Match Number:</string>
-    <string name="TeamNumber">Team Number:</string>
-    <string name="NoShow">No Show</string>
-    <string name="AlliancePartners">Alliance Partners</string>
-    <string name="AllianceColor">Alliance Color</string>
-    <string name="Red">Red</string>
-    <string name="Blue">Blue</string>
-    <string name="PrepopulatedTitle">PREPOPULATED</string>
-    <string name="StartButtonDirections">DO NOT press the START button until you hear the charge sound!</string>
-    <string name="Start">START</string>
-    <string name="GenerateQRCode">GENERATE QR CODE</string>
-    <string name="Pregame">PREGAME</string>
-    <string name="Auton">AUTON</string>
-    <string name="Endgame">ENDGAME</string>
-    <string name="Match_Pregame">MATCH PREGAME</string>
+<!-- References -->
+    <!-- space = &#32; -->
 
 
-    <!-- SettingsActivity -->
+<!-- Titles -->
+    <!-- Activity Titles -->
+        <string name="app_name">Scouting App 2020</string>
+        <string name="PregameTitle">Pregame</string>
+        <string name="SettingsTitle">Settings</string>
 
-    <string name="settings">Settings</string>
-    <string name="LeftRightDirections">Which side of the field is blue?</string>
-    <string name="Left">Left</string>
-    <string name="Right">Right</string>
-    <string name="QRProblems">Having QR problems?</string>
-    <string name="ResetLocalStorage">&#32;&#32;&#32;&#32;RESET LOCAL STORAGE&#32;&#32;&#32;&#32;</string>
-    <string name="Save">Save</string>
-
-
-    <!-- Sandstorm/Teleop -->
-
-    <string name="zero">0</string>
-    <string name="C">C</string>
-    <string name="P">P</string>
-    <string name="FellOver">Fell Over</string>
+    <!-- Tabs -->
+        <string name="Setup">Setup</string>
+        <string name="Auton">Auton</string>
+        <string name="Teleop">Teleop</string>
+        <string name="Endgame">Endgame</string>
 
 
-    <!-- space = &#32;-->
+<!-- PregameActivity -->
+    <!-- ID Fields -->
+        <string name="ScouterNameID">Scouter Name:</string>
+        <string name="MatchNumberID">Match Number:</string>
+        <string name="TeamNumberID">Team Number:</string>
+        <string name="AlliancePartnersID">Alliance Partners</string>
+        <string name="AllianceColorID">Alliance Color</string>
 
-    <string name="T1">T1</string>
-    <string name="T2">T2</string>
-    <string name="T3">T3</string>
-    <string name="HABLine">Crossed HAB Line</string>
+    <!-- Directions -->
+        <string name="SetupDirections">Complete the fields below before the start of each match.</string>
+        <string name="StartButtonDirections">DO NOT press the START button until you hear the charge sound!</string>
+
+    <!-- Button Texts -->
+        <string name="Blue">Blue</string>
+        <string name="Red">Red</string>
+        <string name="NoShow">No Show</string>
+        <string name="Clear">Clear</string>
+        <string name="Start">Start</string>
+        <string name="GenerateQRCode">GENERATE QR CODE</string>
 
 
-    <!-- Top Toggle -->
+<!-- SettingsActivity -->
+    <!-- ID Fields -->
+        <string name="QRProblems">Having QR problems?</string>
+        <string name="ClearWarning">Are you sure that you want to clear everything?</string>
 
-    <string name="Setup">Setup</string>
-    <string name="Sandstorm">Sandstorm</string>
-    <string name="Teleop">Teleop</string>
-    <string name="Climb">Climb</string>
-    <string name="title_activity_sandstorm__left">Sandstorm_Left</string>
+    <!-- Directions -->
+        <string name="LeftRightDirections">Which side of the field is blue?</string>
 
+    <!-- Button Texts -->
+        <string name="ResetLocalStorage">&#32;&#32;&#32;&#32;RESET LOCAL STORAGE&#32;&#32;&#32;&#32;</string>
+        <string name="Save">Save</string>
+        <string name="Cancel">Cancel</string>
+        <string name="Left">Left</string>
+        <string name="Right">Right</string>
+
+
+<!-- MatchActivity -->
+    <!-- Universal -->
+        <string name="Exit">Exit</string>
+        <string name="FellOver">Fell Over</string>
+
+    <!-- Exit Popup -->
+        <string name="ExitWarning">Are you sure that you want to leave?\nAll data will be lost!</string>
+
+    <!-- Auton -->
+
+
+    <!-- Teleop -->
+
+
+    <!-- Endgame -->
+
+
+
+<!-- QR Code Display -->
+    <!-- Info -->
+        <string name="QRCodeID">Here is your QR Code:</string>
+        <string name="QRCode">QR Code</string>
+
+    <!-- Button Text -->
+        <string name="Recharge">Recharge for Next Match</string>
+        <string name="Scanned">Scanned?</string>
 
 
 </resources>

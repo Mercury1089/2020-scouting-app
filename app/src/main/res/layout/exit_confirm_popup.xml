@@ -8,12 +8,12 @@
     android:minHeight="900dp">
 
     <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/GoToClimb"
+        android:id="@+id/ExitConfirm"
         android:layout_width="410dp"
         android:layout_height="75dp"
         android:layout_marginTop="32dp"
         android:background="@color/lightscarletorange"
-        android:text="Clear"
+        android:text="@string/Exit"
         android:textSize="18sp"
         app:bootstrapBrand="danger"
         app:bootstrapSize="lg"
@@ -26,26 +26,27 @@
         app:showOutline="false" />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/cancelconfirm"
+        android:id="@+id/CancelConfirm"
         android:layout_width="410dp"
         android:layout_height="75dp"
         android:layout_marginTop="16dp"
-        android:text="Cancel"
+        android:text="@string/Cancel"
         android:textSize="18sp"
         app:bootstrapBrand="info"
         app:bootstrapSize="lg"
         app:buttonMode="regular"
-        app:layout_constraintStart_toStartOf="@+id/GoToClimb"
-        app:layout_constraintTop_toBottomOf="@+id/GoToClimb"
+        app:layout_constraintStart_toStartOf="@+id/ExitConfirm"
+        app:layout_constraintTop_toBottomOf="@+id/ExitConfirm"
         app:roundedCorners="true" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="330dp"
         android:fontFamily="sans-serif-light"
-        android:text="Are you sure that you want to clear everything?"
+        android:gravity="center_horizontal"
+        android:text="@string/ExitWarning"
         android:textColor="@color/bootstrap_brand_secondary_border"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

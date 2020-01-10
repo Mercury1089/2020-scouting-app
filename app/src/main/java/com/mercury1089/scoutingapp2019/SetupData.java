@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class SetupData {
     private static HashMap<String, String> setupHashMap;
 
-    /*
+    /**
     *
     * Used to access the setup HashMap from an activity
     *
@@ -14,7 +14,7 @@ public class SetupData {
         // Nothing to see here
     }
 
-    /*
+    /**
     *
     * Used to get the setupHashMap
     * Call when an activity starts and assign to global variable
@@ -24,7 +24,7 @@ public class SetupData {
         return setupHashMap;
     }
 
-    /*
+    /**
     *
     * Used to set the global setupHashMap
     * Call before leaving an activity to update the global setupHashMap
@@ -34,7 +34,7 @@ public class SetupData {
         setupHashMap = setupData;
     }
 
-    /*
+    /**
     *
     * Used to reset all the setupHashMap values to their default values
     * Fill in default values to prevent null pointer exceptions
@@ -50,7 +50,7 @@ public class SetupData {
         setupHashMap.put("AllianceColor","Blue");
     }
 
-    /*
+    /**
     *
     * Checks if the setupHashMap is empty or null
     * if it is null, it instantiates it and calls setDefaultValues()
