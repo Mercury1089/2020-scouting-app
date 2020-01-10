@@ -6,10 +6,9 @@ import android.view.View;
 import android.widget.Toast;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-import java.io.Serializable;
 import java.util.HashMap;
-
 import androidx.appcompat.app.AppCompatActivity;
+
 public class SettingsActivity extends AppCompatActivity {
 
     private BootstrapButton leftButton;
@@ -34,17 +33,17 @@ public class SettingsActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.SaveButton);
         cancelButton = findViewById(R.id.CancelButton);
 
-        //default values
-        isLocalStorageClicked = false;
-        isFirstTime = false;
-        leftOrRight = "left";
-        leftSelected();
-
         //create hashmap for data transfer between screens
-        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
-        if(setupData != null){
-            setupHashMap = (HashMap<String, String>) setupData;
-        }
+        SetupData.checkNullOrEmpty();
+        setupHashMap = SetupData.getSetupHashMap();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        leftSelected();
+        GenUtils.disabledButtonState(this, saveButton);
+        cancelButton.setEnabled(true);
     }
 
     //lets users click an arrow to go to the next textbox
@@ -76,12 +75,6 @@ public class SettingsActivity extends AppCompatActivity {
         GenUtils.defaultButtonState(this, localStorageResetButton);
     }
 
-    private void disable (BootstrapButton button) {
-        button.setBackgroundColor(GenUtils.getAColor(this, (R.color.savedefault)));
-        button.setTextColor(GenUtils.getAColor(this, R.color.savetextdefault));
-        button.setEnabled(false);
-    }
-
     private void enable (BootstrapButton button) {
         button.setBackgroundColor(GenUtils.getAColor(this, R.color.genutils_green));
         button.setTextColor(GenUtils.getAColor(this, R.color.light));
@@ -111,7 +104,7 @@ public class SettingsActivity extends AppCompatActivity {
             isLocalStorageClicked = true;
             GenUtils.selectedButtonState(this, localStorageResetButton);
             isFirstTime = true;
-            disable(cancelButton);
+            GenUtils.disabledButtonState(this, cancelButton);
         } else {
             isLocalStorageClicked = false;
             GenUtils.defaultButtonState(this, localStorageResetButton);
@@ -125,7 +118,7 @@ public class SettingsActivity extends AppCompatActivity {
             //clear everything (including values from other screens)
             leftOrRight = "Left";
             leftSelected();
-            disable(saveButton);
+            GenUtils.disabledButtonState(this, saveButton);
             setupHashMap.clear();
             setupHashMap.put("NoShow","0");
             setupHashMap.put("AllianceColor","");
@@ -139,19 +132,14 @@ public class SettingsActivity extends AppCompatActivity {
             setupHashMap.put("NoShow","0");
             setupHashMap.put("AllianceColor","");
             setupHashMap.put("LeftOrRight",leftOrRight);
+            SetupData.putSetupHashMap(setupHashMap);
             Intent intent = new Intent(this, PregameActivity.class);
-            intent.putExtra("setupHashMap", setupHashMap);
             startActivity(intent);
         }
     }
 
     public void cancelClick (View view) {
-        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
-        if(setupData != null){
-            setupHashMap = (HashMap<String, String>) setupData;
-        }
         Intent intent = new Intent(this, PregameActivity.class);
-        intent.putExtra("setupHashMap", setupHashMap);
         startActivity(intent);
     }
 }

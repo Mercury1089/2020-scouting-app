@@ -9,17 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-
-import java.io.Serializable;
 import java.util.HashMap;
 
 public class MatchActivity extends AppCompatActivity {
@@ -28,7 +24,7 @@ public class MatchActivity extends AppCompatActivity {
     private BootstrapButton settingsButton;
     private TabLayout tabs;
     private ViewPager viewPager;
-    SectionsPagerAdapter sectionsPagerAdapter;
+    private SectionsPagerAdapter sectionsPagerAdapter;
     public HashMap<String, String> setupHashMap;
     public HashMap<String, String> autonHashMap;
     public HashMap<String, String> teleopHashMap;
@@ -45,32 +41,29 @@ public class MatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match);
 
         //initializers
-        tabs = findViewById(R.id.tabs);
-        viewPager = findViewById(R.id.view_pager);
         settingsButton = findViewById(R.id.SettingsButton);
-        tabs = findViewById(R.id.tabs);
+
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
+        tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        setupHashMap = new HashMap<>();
+        SetupData.checkNullOrEmpty();
+        setupHashMap = SetupData.getSetupHashMap();
+
         autonHashMap = new HashMap<>();
         teleopHashMap = new HashMap<>();
         endgameHashMap = new HashMap<>();
-
-        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
-        if(setupData != null){
-            setupHashMap = (HashMap<String, String>) setupData;
-        }
 
         //click methods
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SetupData.putSetupHashMap(setupHashMap);
                 Intent intent = new Intent(MatchActivity.this, SettingsActivity.class);
-                intent.putExtra("setupHashMap", setupHashMap);
                 startActivity(intent);
+                finish();
             }
         });
     }

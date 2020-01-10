@@ -33,6 +33,12 @@ public class GenUtils {
         button.setTextColor(GenUtils.getAColor(context, R.color.light));
         button.setRounded(true);
     }
+    public static void disabledButtonState(Context context, BootstrapButton button) {
+        button.setBackgroundColor(GenUtils.getAColor(context, R.color.grey));
+        button.setTextColor(GenUtils.getAColor(context, R.color.light));
+        button.setRounded(true);
+        button.setEnabled(false);
+    }
 
     public static Bitmap TextToImageEncode(Context context, String value) throws WriterException {
         BitMatrix bitMatrix;

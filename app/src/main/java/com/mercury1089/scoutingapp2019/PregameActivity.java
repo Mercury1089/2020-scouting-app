@@ -2,7 +2,6 @@ package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,27 +9,20 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-
-import java.io.Serializable;
 import java.util.HashMap;
 
 public class PregameActivity extends AppCompatActivity {
@@ -84,15 +76,8 @@ public class PregameActivity extends AppCompatActivity {
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
 
-        setupHashMap = new HashMap<>();
-        Serializable setupData = getIntent().getSerializableExtra("setupHashMap");
-        if(setupData != null) {
-            setupHashMap = (HashMap<String, String>) setupData;
-        } else {
-            setupHashMap.put("NoShow", "0");
-            setupHashMap.put("LeftOrRight", "left");
-            setupHashMap.put("AllianceColor", "Red");
-        }
+        SetupData.checkNullOrEmpty();
+        setupHashMap = SetupData.getSetupHashMap();
 
         //setting group buttons to default state
         blueDefault();
@@ -220,8 +205,8 @@ public class PregameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //setupHashMap = setupHashMap;
+                SetupData.putSetupHashMap(setupHashMap);
                 Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
-                intent.putExtra("setupHashMap", setupHashMap);
                 startActivity(intent);
             }
         });
