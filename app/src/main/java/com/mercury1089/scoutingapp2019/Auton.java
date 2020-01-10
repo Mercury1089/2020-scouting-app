@@ -1,22 +1,28 @@
 package com.mercury1089.scoutingapp2019;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TabHost;
+import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.LocationGroup;
 import com.mercury1089.scoutingapp2019.utils.LocationGroupList;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 
 public class Auton extends Fragment {
@@ -26,6 +32,7 @@ public class Auton extends Fragment {
 
     //other variables
     private Timer timer;
+    private boolean firstTime = true;
     private ConstraintLayout constraintLayout;
     private Switch fellOverSwitch;
 
@@ -56,38 +63,31 @@ public class Auton extends Fragment {
 
         //initialize hash maps and fill in default data
         setupHashMap = context.setupHashMap;
-        autonHashMap = context.autonHashMap;
+        SetupData.checkNullOrEmpty(SetupData.HASH.AUTON);
+        autonHashMap = SetupData.getAutonHashMap();
 
         //switch to the next screen with data after 15 seconds
         TimerTask switchToTeleop = new TimerTask() {
             @Override
             public void run() {
-                /*context.runOnUiThread(new Runnable() {
+                Handler handler = new Handler(context.getMainLooper());
+                Runnable switchToTeleop = new Runnable() {
                     @Override
                     public void run() {
-                        //Template for iterating through screen elements
-                        for (int i = 0; i < constraintLayout.getChildCount(); i++) {
-                            if (constraintLayout.getChildAt(i) instanceof TextView) {
-                                TextView textView = (TextView) constraintLayout.getChildAt(i);
-                                if (textView.getTag() != null) {
-                                    if (!textView.getTag().equals("") && !textView.getTag().equals("label")) {
-                                        if (!textView.getText().toString().equals("P") && !textView.getText().toString().equals("C")) {
-                                            scoreHashMap.put(textView.getTag().toString(), textView.getText().toString());
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        for (LocationGroup lg : LocationGroupList.list.values())
-                            if (lg.getCounter() > 0)
-                                autonHashMap.put(lg.getCounterText().getTag().toString(), lg.getCounterText().getText().toString());
+                        Toast.makeText(context, "Switching to Teleop...", Toast.LENGTH_SHORT).show();
+                        TabLayout tabs = context.findViewById(R.id.tabs);
+                        ViewPager viewPager = context.findViewById(R.id.view_pager);
+                        viewPager.setCurrentItem(1);
+                        tabs.setupWithViewPager(viewPager);
                     }
-                });*/
-                TabHost host = (TabHost) context.findViewById(android.R.id.tabs);
-                host.setCurrentTab(1);
+                };
+                handler.post(switchToTeleop);
             }
         };
-        timer.schedule(switchToTeleop, 15000);
+        if(firstTime) {
+            timer.schedule(switchToTeleop, 15000);
+            firstTime = false;
+        }
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -111,7 +111,7 @@ public class Auton extends Fragment {
             // If we are becoming invisible, then...
             if (!isVisibleToUser) {
                 context.setupHashMap = setupHashMap;
-                context.autonHashMap = autonHashMap;
+                SetupData.putAutonHashMap(autonHashMap);
             }
         }
     }

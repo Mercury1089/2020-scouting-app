@@ -4,6 +4,18 @@ import java.util.HashMap;
 
 public class SetupData {
     private static HashMap<String, String> setupHashMap;
+    private static HashMap<String, String> autonHashMap;
+    private static HashMap<String, String> teleopHashMap;
+    private static HashMap<String, String> endgameHashMap;
+
+    /**
+     *
+     * Enum for reference to each HashMap
+     *
+     */
+    public enum HASH{
+        SETUP, AUTON, TELEOP, ENDGAAME
+    }
 
     /**
     *
@@ -23,6 +35,15 @@ public class SetupData {
     public static HashMap<String, String> getSetupHashMap(){
         return setupHashMap;
     }
+    public static HashMap<String, String> getAutonHashMap(){
+        return autonHashMap;
+    }
+    public static HashMap<String, String> getTeleopHashMap(){
+        return teleopHashMap;
+    }
+    public static HashMap<String, String> getEndgameHashMap(){
+        return endgameHashMap;
+    }
 
     /**
     *
@@ -34,20 +55,45 @@ public class SetupData {
         setupHashMap = setupData;
     }
 
+    public static void putAutonHashMap(HashMap<String, String> autonData){
+        autonHashMap = autonData;
+    }
+
+    public static void putTeleopHashMap(HashMap<String, String> teleopData){
+        autonHashMap = teleopData;
+    }
+
+    public static void putEndgameHashMap(HashMap<String, String> endgameData){
+        autonHashMap = endgameData;
+    }
+
     /**
     *
     * Used to reset all the setupHashMap values to their default values
     * Fill in default values to prevent null pointer exceptions
     *
      */
-    public static void setDefaultValues(){
-        setupHashMap.put("NoShow","0");
-        setupHashMap.put("ScouterName","John Doe");
-        setupHashMap.put("MatchNumber","00");
-        setupHashMap.put("TeamNumber","1089");
-        setupHashMap.put("AlliancePartner1","1089");
-        setupHashMap.put("AlliancePartner2","1089");
-        setupHashMap.put("AllianceColor","Blue");
+    public static void setDefaultValues(HASH map){
+        switch(map) {
+            case SETUP:
+                setupHashMap.put("NoShow", "0");
+                setupHashMap.put("ScouterName", "John Doe");
+                setupHashMap.put("MatchNumber", "00");
+                setupHashMap.put("TeamNumber", "1089");
+                setupHashMap.put("AlliancePartner1", "1089");
+                setupHashMap.put("AlliancePartner2", "1089");
+                setupHashMap.put("AllianceColor", "Blue");
+                break;
+            case AUTON:
+                //include all the items that will be in the autonHashMap
+                break;
+            case TELEOP:
+                //include all the items that will be in the teleopHashMap
+                break;
+            case ENDGAAME:
+                //include all the items that will be in the endgameHashMap
+                break;
+        }
     }
 
     /**
@@ -57,11 +103,43 @@ public class SetupData {
     * if it is empty, it calls setDefaultValues()
     *
      */
-    public static void checkNullOrEmpty(){
-        if(setupHashMap == null)
-            setupHashMap = new HashMap<>();
+    public static boolean checkNullOrEmpty(HASH map){
+        switch(map){
+            case SETUP:
+                if(setupHashMap == null)
+                    setupHashMap = new HashMap<>();
+                if(setupHashMap.isEmpty()) {
+                    setDefaultValues(HASH.SETUP);
+                    return true;
+                }
+            case AUTON:
+                if(autonHashMap == null)
+                    autonHashMap = new HashMap<>();
+                if(autonHashMap.isEmpty()) {
+                    setDefaultValues(HASH.AUTON);
+                    return true;
+                }
+            case TELEOP:
+                if(teleopHashMap == null) {
+                    teleopHashMap = new HashMap<>();
+                    return true;
+                }
 
-        if(setupHashMap.isEmpty())
-            setDefaultValues();
+                if(teleopHashMap.isEmpty()) {
+                    setDefaultValues(HASH.TELEOP);
+                    return true;
+                }
+            case ENDGAAME:
+                if(endgameHashMap == null) {
+                    endgameHashMap = new HashMap<>();
+                    return true;
+                }
+
+                if(endgameHashMap.isEmpty()) {
+                    setDefaultValues(HASH.ENDGAAME);
+                    return true;
+                }
+        }
+        return false;
     }
 }

@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -49,21 +51,17 @@ public class MatchActivity extends AppCompatActivity {
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        SetupData.checkNullOrEmpty();
+        SetupData.checkNullOrEmpty(SetupData.HASH.SETUP);
         setupHashMap = SetupData.getSetupHashMap();
-
-        autonHashMap = new HashMap<>();
-        teleopHashMap = new HashMap<>();
-        endgameHashMap = new HashMap<>();
 
         //click methods
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
-                View view = getLayoutInflater().inflate(R.layout.clear_confirm_popup, null);
+                View view = getLayoutInflater().inflate(R.layout.exit_confirm_popup, null);
 
-                BootstrapButton clearConfirm = view.findViewById(R.id.ClearConfirm);
+                BootstrapButton exitConfirm = view.findViewById(R.id.ExitConfirm);
                 BootstrapButton cancelConfirm = view.findViewById(R.id.CancelConfirm);
                 final AlertDialog dialog = cancelDialog.create();
 
@@ -77,7 +75,7 @@ public class MatchActivity extends AppCompatActivity {
                     }
                 });
 
-                clearConfirm.setOnClickListener(new View.OnClickListener() {
+                exitConfirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
@@ -88,6 +86,12 @@ public class MatchActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    //back button
+    @Override
+    public void onBackPressed() {
+        exitButton.performClick();
     }
 
     //call methods

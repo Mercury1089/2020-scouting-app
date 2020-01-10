@@ -42,7 +42,8 @@ public class Endgame extends Fragment {
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
-        endgameHashMap = context.endgameHashMap;
+        SetupData.checkNullOrEmpty(SetupData.HASH.ENDGAAME);
+        endgameHashMap = SetupData.getEndgameHashMap();
 
         //set listeners for buttons and fill the hashmap with data
         /*

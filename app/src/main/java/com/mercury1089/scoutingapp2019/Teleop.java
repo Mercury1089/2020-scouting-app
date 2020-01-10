@@ -42,7 +42,8 @@ public class Teleop extends Fragment {
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
-        teleopHashMap = context.teleopHashMap;
+        SetupData.checkNullOrEmpty(SetupData.HASH.TELEOP);
+        teleopHashMap = SetupData.getTeleopHashMap();
 
         //set listeners for buttons and fill the hashmap with data
         /*

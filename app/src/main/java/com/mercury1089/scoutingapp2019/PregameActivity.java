@@ -72,7 +72,7 @@ public class PregameActivity extends AppCompatActivity {
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
 
-        SetupData.checkNullOrEmpty();
+        SetupData.checkNullOrEmpty(SetupData.HASH.SETUP);
         setupHashMap = SetupData.getSetupHashMap();
 
         //setting group buttons to default state
@@ -197,6 +197,15 @@ public class PregameActivity extends AppCompatActivity {
 
 
         //click methods
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public  void onClick(View view){
+                SetupData.putSetupHashMap(setupHashMap);
+                Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
+                startActivity(intent);
+            }
+        });
+
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -207,7 +216,7 @@ public class PregameActivity extends AppCompatActivity {
             }
         });
 
-        startButton.setOnClickListener(new View.OnClickListener() {
+        clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
@@ -224,7 +233,7 @@ public class PregameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        scouterNameInput.setText(setupHashMap.get(scouterNameInput.getTag().toString()));
+                        /*scouterNameInput.setText(setupHashMap.get(scouterNameInput.getTag().toString()));
                         matchNumberInput.setText(setupHashMap.get(matchNumberInput.getTag().toString()));
                         teamNumberInput.setText(setupHashMap.get(teamNumberInput.getTag().toString()));
                         firstAlliancePartnerInput.setText(setupHashMap.get(firstAlliancePartnerInput.getTag().toString()));
@@ -247,7 +256,7 @@ public class PregameActivity extends AppCompatActivity {
                             startButton.setText(R.string.GenerateQRCode);
                             isQRButton = true;
                         } else if (setupHashMap.get("NoShow") != null && setupHashMap.get("NoShow").equals("0"))
-                            NoShowSwitch.setChecked(false);
+                            NoShowSwitch.setChecked(false);*/
                     }
                 });
 
