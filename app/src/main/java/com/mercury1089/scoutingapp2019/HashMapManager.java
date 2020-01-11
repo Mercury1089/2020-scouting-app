@@ -2,7 +2,7 @@ package com.mercury1089.scoutingapp2019;
 
 import java.util.HashMap;
 
-public class SetupData {
+public class HashMapManager {
     private static HashMap<String, String> setupHashMap;
     private static HashMap<String, String> autonHashMap;
     private static HashMap<String, String> teleopHashMap;
@@ -22,7 +22,7 @@ public class SetupData {
     * Used to access the setup HashMap from an activity
     *
      */
-    public SetupData(){
+    public HashMapManager(){
         // Nothing to see here
     }
 
@@ -184,7 +184,7 @@ public class SetupData {
      *
      */
 
-    public void setupNextMatch(){
+    public static void setupNextMatch(){
         String scouterName = setupHashMap.get("ScouterName");
         String matchNumber = setupHashMap.get("MatchNumber");
         setDefaultValues(HASH.SETUP);
@@ -192,6 +192,6 @@ public class SetupData {
         setDefaultValues(HASH.TELEOP);
         setDefaultValues(HASH.ENDGAAME);
         setupHashMap.put("ScouterName", scouterName);
-        setupHashMap.put("MatchNumber", matchNumber);
+        setupHashMap.put("MatchNumber", "" + (Integer.parseInt(matchNumber) + 1));
     }
 }

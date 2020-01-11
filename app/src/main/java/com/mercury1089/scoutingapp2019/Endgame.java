@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
+
 import java.util.HashMap;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -42,8 +41,8 @@ public class Endgame extends Fragment {
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
-        SetupData.checkNullOrEmpty(SetupData.HASH.ENDGAAME);
-        endgameHashMap = SetupData.getEndgameHashMap();
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.ENDGAAME);
+        endgameHashMap = HashMapManager.getEndgameHashMap();
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -67,7 +66,7 @@ public class Endgame extends Fragment {
             // If we are becoming invisible, then...
             if (!isVisibleToUser) {
                 context.setupHashMap = setupHashMap;
-                SetupData.putEndgameHashMap(endgameHashMap);
+                HashMapManager.putEndgameHashMap(endgameHashMap);
             }
         }
     }

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -51,8 +50,8 @@ public class MatchActivity extends AppCompatActivity {
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        SetupData.checkNullOrEmpty(SetupData.HASH.SETUP);
-        setupHashMap = SetupData.getSetupHashMap();
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
+        setupHashMap = HashMapManager.getSetupHashMap();
 
         //click methods
         exitButton.setOnClickListener(new View.OnClickListener() {
@@ -79,10 +78,9 @@ public class MatchActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        SetupData.setDefaultValues(SetupData.HASH.AUTON);
-                        SetupData.setDefaultValues(SetupData.HASH.TELEOP);
-                        SetupData.setDefaultValues(SetupData.HASH.ENDGAAME);
-
+                        HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
+                        HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
+                        HashMapManager.setDefaultValues(HashMapManager.HASH.ENDGAAME);
                         Intent intent = new Intent(MatchActivity.this, PregameActivity.class);
                         startActivity(intent);
                         finish();

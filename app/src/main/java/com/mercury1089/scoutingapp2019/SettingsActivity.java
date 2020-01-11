@@ -34,8 +34,8 @@ public class SettingsActivity extends AppCompatActivity {
         cancelButton = findViewById(R.id.CancelButton);
 
         //get global setupHashMap
-        SetupData.checkNullOrEmpty(SetupData.HASH.SETUP);
-        setupHashMap = SetupData.getSetupHashMap();
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
+        setupHashMap = HashMapManager.getSetupHashMap();
     }
 
     @Override
@@ -116,8 +116,8 @@ public class SettingsActivity extends AppCompatActivity {
     public void saveClick (View view) {
         if (isLocalStorageClicked) {
             //clear the setupHashMap and set it back to the default values
-            SetupData.setDefaultValues(SetupData.HASH.SETUP);
-            setupHashMap = SetupData.getSetupHashMap();
+            HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
+            setupHashMap = HashMapManager.getSetupHashMap();
             leftOrRight = "Left";
             isLocalStorageClicked = false;
 
@@ -130,7 +130,7 @@ public class SettingsActivity extends AppCompatActivity {
         else {
             //save values and return to the PregameActivity
             setupHashMap.put("LeftOrRight",leftOrRight);
-            SetupData.putSetupHashMap(setupHashMap);
+            HashMapManager.putSetupHashMap(setupHashMap);
 
             Intent intent = new Intent(this, PregameActivity.class);
             startActivity(intent);

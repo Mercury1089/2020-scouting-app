@@ -72,8 +72,8 @@ public class PregameActivity extends AppCompatActivity {
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
 
-        SetupData.checkNullOrEmpty(SetupData.HASH.SETUP);
-        setupHashMap = SetupData.getSetupHashMap();
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
+        setupHashMap = HashMapManager.getSetupHashMap();
 
         //setting group buttons to default state
         blueDefault();
@@ -211,7 +211,7 @@ public class PregameActivity extends AppCompatActivity {
                 if(isQRButton){
                     //Later
                 } else {
-                    SetupData.putSetupHashMap(setupHashMap);
+                    HashMapManager.putSetupHashMap(setupHashMap);
                     Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
                     startActivity(intent);
                 }
@@ -221,7 +221,7 @@ public class PregameActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SetupData.putSetupHashMap(setupHashMap);
+                HashMapManager.putSetupHashMap(setupHashMap);
                 Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
@@ -251,8 +251,8 @@ public class PregameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        SetupData.setDefaultValues(SetupData.HASH.SETUP);
-                        setupHashMap = SetupData.getSetupHashMap();
+                        HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
+                        setupHashMap = HashMapManager.getSetupHashMap();
                         scouterNameInput.setText("");
                         matchNumberInput.setText("");
                         teamNumberInput.setText("");

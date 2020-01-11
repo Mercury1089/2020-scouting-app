@@ -4,11 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
+
 import java.util.HashMap;
-import java.util.Set;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -44,8 +42,8 @@ public class Teleop extends Fragment {
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
-        SetupData.checkNullOrEmpty(SetupData.HASH.TELEOP);
-        teleopHashMap = SetupData.getTeleopHashMap();
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
+        teleopHashMap = HashMapManager.getTeleopHashMap();
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -69,7 +67,7 @@ public class Teleop extends Fragment {
             // If we are becoming invisible, then...
             if (!isVisibleToUser) {
                 context.setupHashMap = setupHashMap;
-                SetupData.putTeleopHashMap(teleopHashMap);
+                HashMapManager.putTeleopHashMap(teleopHashMap);
             }
         }
     }

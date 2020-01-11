@@ -5,11 +5,10 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
+
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,8 +54,8 @@ public class Auton extends Fragment {
 
         //initialize hash maps and fill in default data
         setupHashMap = context.setupHashMap;
-        SetupData.checkNullOrEmpty(SetupData.HASH.AUTON);
-        autonHashMap = SetupData.getAutonHashMap();
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.AUTON);
+        autonHashMap = HashMapManager.getAutonHashMap();
 
         //switch to the next screen with data after 15 seconds
         TimerTask switchToTeleop = new TimerTask() {
@@ -77,7 +76,7 @@ public class Auton extends Fragment {
             }
         };
         if(firstTime) {
-            timer.schedule(switchToTeleop, 15000);
+            timer.schedule(switchToTeleop, 5000);
             firstTime = false;
         }
 
@@ -103,10 +102,20 @@ public class Auton extends Fragment {
             // If we are becoming invisible, then...
             if (!isVisibleToUser) {
                 context.setupHashMap = setupHashMap;
-                SetupData.putAutonHashMap(autonHashMap);
+                HashMapManager.putAutonHashMap(autonHashMap);
                 timer.cancel();
                 timer = new Timer();
             }
         }
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+
+        context.setupHashMap = setupHashMap;
+        HashMapManager.putAutonHashMap(autonHashMap);
+        timer.cancel();
+        timer = new Timer();
     }
 }
