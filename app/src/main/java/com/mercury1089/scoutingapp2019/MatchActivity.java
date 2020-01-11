@@ -79,6 +79,10 @@ public class MatchActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
+                        SetupData.setDefaultValues(SetupData.HASH.AUTON);
+                        SetupData.setDefaultValues(SetupData.HASH.TELEOP);
+                        SetupData.setDefaultValues(SetupData.HASH.ENDGAAME);
+
                         Intent intent = new Intent(MatchActivity.this, PregameActivity.class);
                         startActivity(intent);
                         finish();

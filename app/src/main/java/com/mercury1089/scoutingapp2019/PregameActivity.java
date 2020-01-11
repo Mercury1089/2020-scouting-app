@@ -26,9 +26,9 @@ import java.util.HashMap;
 
 public class PregameActivity extends AppCompatActivity {
     //variables that should be outputted
-    private int isBlueAlliance = 0; //0 or 1
-    private int isRedAlliance = 0; //0 or 1
-    private String noShow = "0"; //0 or 1
+    //private int isBlueAlliance = 0; //0 or 1
+    //private int isRedAlliance = 0; //0 or 1
+    private String noShow; //0 or 1
 
     //variables that store elements of the screen for the output variables
     private EditText scouterNameInput;
@@ -79,11 +79,16 @@ public class PregameActivity extends AppCompatActivity {
         blueDefault();
         redDefault();
 
+        scouterNameInput.setText(setupHashMap.get("ScouterName"));
+        matchNumberInput.setText(setupHashMap.get("MatchNumber"));
+        teamNumberInput.setText(setupHashMap.get("TeamNumber"));
+        firstAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner1"));
+        secondAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner2"));
+
         startButtonCheck();
         clearButtonCheck();
 
-        noShow = setupHashMap.get("NoShow");
-        if(noShow.equals("1")){
+        if(setupHashMap.get("NoShow").equals("1")){
             NoShowSwitch.setChecked((true));
             startButtonCheck();
             clearButtonCheck();
@@ -91,14 +96,17 @@ public class PregameActivity extends AppCompatActivity {
             isQRButton = true;
         }else{
             NoShowSwitch.setChecked(false);
+            startButtonCheck();
+            clearButtonCheck();
         }
 
         //starting listener to check the status of the switch
         NoShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                startButtonCheck();
+                clearButtonCheck();
                 if (isChecked) {
-                    startButtonCheck();
                     setupHashMap.put("NoShow", "1");
                     startButton.setText(R.string.GenerateQRCode);
                     isQRButton = true;
@@ -119,7 +127,7 @@ public class PregameActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 startButtonCheck();
                 clearButtonCheck();
-                setupHashMap.put(scouterNameInput.getTag().toString(), scouterNameInput.getText().toString());
+                setupHashMap.put("ScouterName", scouterNameInput.getText().toString());
             }
 
             @Override
@@ -136,7 +144,7 @@ public class PregameActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 startButtonCheck();
                 clearButtonCheck();
-                setupHashMap.put(matchNumberInput.getTag().toString(), matchNumberInput.getText().toString());
+                setupHashMap.put("MatchNumber", matchNumberInput.getText().toString());
             }
 
             @Override
@@ -153,7 +161,7 @@ public class PregameActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 startButtonCheck();
                 clearButtonCheck();
-                setupHashMap.put(teamNumberInput.getTag().toString(), teamNumberInput.getText().toString());
+                setupHashMap.put("TeamNumber", teamNumberInput.getText().toString());
             }
 
             @Override
@@ -170,7 +178,7 @@ public class PregameActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 startButtonCheck();
                 clearButtonCheck();
-                setupHashMap.put("FirstAlliancePartner", firstAlliancePartnerInput.getText().toString());
+                setupHashMap.put("AlliancePartner1", firstAlliancePartnerInput.getText().toString());
             }
 
             @Override
@@ -187,7 +195,7 @@ public class PregameActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 startButtonCheck();
                 clearButtonCheck();
-                setupHashMap.put("SecondAlliancePartner", secondAlliancePartnerInput.getText().toString());
+                setupHashMap.put("AlliancePartner2", secondAlliancePartnerInput.getText().toString());
             }
 
             @Override
@@ -200,16 +208,19 @@ public class PregameActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View view){
-                SetupData.putSetupHashMap(setupHashMap);
-                Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
-                startActivity(intent);
+                if(isQRButton){
+                    //Later
+                } else {
+                    SetupData.putSetupHashMap(setupHashMap);
+                    Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //setupHashMap = setupHashMap;
                 SetupData.putSetupHashMap(setupHashMap);
                 Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                 startActivity(intent);
@@ -233,30 +244,6 @@ public class PregameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        /*scouterNameInput.setText(setupHashMap.get(scouterNameInput.getTag().toString()));
-                        matchNumberInput.setText(setupHashMap.get(matchNumberInput.getTag().toString()));
-                        teamNumberInput.setText(setupHashMap.get(teamNumberInput.getTag().toString()));
-                        firstAlliancePartnerInput.setText(setupHashMap.get(firstAlliancePartnerInput.getTag().toString()));
-                        secondAlliancePartnerInput.setText(setupHashMap.get(secondAlliancePartnerInput.getTag().toString()));
-
-                        //showing saved values from before
-                        if (setupHashMap.get("AllianceColor").equals("Blue")) {
-                            blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.blue));
-                            blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                        } else if (setupHashMap.get("AllianceColor").equals("Red")) {
-                            redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.red));
-                            redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                        }
-
-                        if (setupHashMap != null && setupHashMap.get("NoShow").equals("1")) {
-                            NoShowSwitch.setChecked(true);
-                            startButtonCheck();
-                            clearButtonCheck();
-                            setupHashMap.put("NoShow", "1");
-                            startButton.setText(R.string.GenerateQRCode);
-                            isQRButton = true;
-                        } else if (setupHashMap.get("NoShow") != null && setupHashMap.get("NoShow").equals("0"))
-                            NoShowSwitch.setChecked(false);*/
                     }
                 });
 
@@ -264,54 +251,14 @@ public class PregameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        setupHashMap = QRStringBuilder.defaultSetupHashMap(leftOrRight);
+                        SetupData.setDefaultValues(SetupData.HASH.SETUP);
+                        setupHashMap = SetupData.getSetupHashMap();
                         scouterNameInput.setText("");
                         matchNumberInput.setText("");
                         teamNumberInput.setText("");
                         firstAlliancePartnerInput.setText("");
                         secondAlliancePartnerInput.setText("");
                         NoShowSwitch.setChecked(false);
-                        blueDefault();
-                        redDefault();
-                        clearButton.setEnabled(false);
-                    }
-                });
-
-                blueButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setupHashMap.put("AllianceColor", "Blue");
-                        if (isBlueAlliance == 0) {
-                            redDefault();
-                            blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.blue));
-                            blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                            isBlueAlliance = 1;
-                            if (!NoShowSwitch.isChecked())
-                                isQRButton = false;
-                        }
-                        else {
-                            blueDefault();
-                            setupHashMap.put("AllianceColor", "Neither");
-                        }
-                        startButtonCheck();
-                        clearButtonCheck();
-                    }
-                });
-
-                redButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setupHashMap.put("AllianceColor", "Red");
-                        if (isRedAlliance == 0) {
-                            blueDefault();
-                            redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.red));
-                            redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                            isRedAlliance = 1;
-                        }
-                        else {
-                            redDefault();
-                            setupHashMap.put("AllianceColor", "Neither");
-                        }
                         startButtonCheck();
                         clearButtonCheck();
                     }
@@ -322,50 +269,34 @@ public class PregameActivity extends AppCompatActivity {
 
     //call methods
     private void startButtonCheck() {
-        if (NoShowSwitch.isChecked())
-            if (scouterNameInput.getText().length() > 0
-                    && matchNumberInput.getText().length() > 0
-                    && teamNumberInput.getText().length() > 0
-                    && (setupHashMap.get("AllianceColor").equals("Blue")
-                    || setupHashMap.get("AllianceColor").equals("Red")))
-                startButton.setEnabled(true);
-            else
-                startButton.setEnabled(false);
-        else
-        if (scouterNameInput.getText().length() > 0
-                && matchNumberInput.getText().length() > 0
-                && teamNumberInput.getText().length() > 0
-                && firstAlliancePartnerInput.getText().length() > 0
-                && secondAlliancePartnerInput.getText().length() > 0
-                && (setupHashMap.get("AllianceColor").equals("Blue")
-                || setupHashMap.get("AllianceColor").equals("Red")) )
+        if(scouterNameInput.getText().length() > 0 &&
+                matchNumberInput.getText().length() > 0 &&
+                teamNumberInput.getText().length() > 0 &&
+                firstAlliancePartnerInput.getText().length() > 0 &&
+                secondAlliancePartnerInput.getText().length() > 0)
             startButton.setEnabled(true);
         else
             startButton.setEnabled(false);
     }
 
     private void clearButtonCheck() {
-        if (scouterNameInput.getText().length() > 0
-                || teamNumberInput.getText().length() > 0
-                || matchNumberInput.getText().length() > 0
-                || firstAlliancePartnerInput.getText().length() > 0
-                || secondAlliancePartnerInput.getText().length() > 0
-                || (setupHashMap.get("AllianceColor").equals("Blue")
-                || setupHashMap.get("AllianceColor").equals("Red"))
-                || NoShowSwitch.isChecked())
+        if(scouterNameInput.getText().length() > 0 ||
+                matchNumberInput.getText().length() > 0 ||
+                teamNumberInput.getText().length() > 0 ||
+                NoShowSwitch.isChecked() ||
+                firstAlliancePartnerInput.getText().length() > 0 ||
+                secondAlliancePartnerInput.getText().length() > 0)
             clearButton.setEnabled(true);
         else
             clearButton.setEnabled(false);
     }
 
     private void blueDefault () {
-        isBlueAlliance = 0;
         blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
         blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
     }
 
     private void redDefault () {
-        isRedAlliance = 0;
         redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
         redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
     }

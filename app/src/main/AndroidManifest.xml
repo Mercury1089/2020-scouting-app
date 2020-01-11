@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PregameActivity" />
+        <activity android:name=".MatchActivity" />
         <activity android:name=".SettingsActivity"/>
-        <activity android:name=".MatchActivity">
+        <activity android:name=".PregameActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

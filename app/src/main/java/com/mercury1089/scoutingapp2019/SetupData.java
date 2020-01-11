@@ -35,36 +35,75 @@ public class SetupData {
     public static HashMap<String, String> getSetupHashMap(){
         return setupHashMap;
     }
+
+    /**
+     *
+     * Used to get the autonHashMap
+     * Call when an activity starts and assign to global variable
+     *
+     */
     public static HashMap<String, String> getAutonHashMap(){
         return autonHashMap;
     }
+
+    /**
+     *
+     * Used to get the teleopHashMap
+     * Call when an activity starts and assign to global variable
+     *
+     */
     public static HashMap<String, String> getTeleopHashMap(){
         return teleopHashMap;
     }
+
+    /**
+     *
+     * Used to get the endgameHashMap
+     * Call when an activity starts and assign to global variable
+     *
+     */
     public static HashMap<String, String> getEndgameHashMap(){
         return endgameHashMap;
     }
 
     /**
     *
-    * Used to set the global setupHashMap
-    * Call before leaving an activity to update the global setupHashMap
+    * Used to set the app wide setupHashMap
+    * Call before leaving an activity to update the app wide setupHashMap
     *
      */
     public static void putSetupHashMap(HashMap<String, String> setupData){
         setupHashMap = setupData;
     }
 
+    /**
+     *
+     * Used to set the app wide autonHashMap
+     * Call before leaving an activity to update the app wide autonHashMap
+     *
+     */
     public static void putAutonHashMap(HashMap<String, String> autonData){
         autonHashMap = autonData;
     }
 
+    /**
+     *
+     * Used to set the app wide teleopHashMap
+     * Call before leaving an activity to update the app wide teleopHashMap
+     *
+     */
     public static void putTeleopHashMap(HashMap<String, String> teleopData){
-        autonHashMap = teleopData;
+        teleopHashMap = teleopData;
     }
 
+    /**
+     *
+     * Used to set the app wide endgameHashMap
+     * Call before leaving an activity to update the app wide endgameHashMap
+     *
+     */
     public static void putEndgameHashMap(HashMap<String, String> endgameData){
-        autonHashMap = endgameData;
+        endgameHashMap = endgameData;
     }
 
     /**
@@ -77,11 +116,11 @@ public class SetupData {
         switch(map) {
             case SETUP:
                 setupHashMap.put("NoShow", "0");
-                setupHashMap.put("ScouterName", "John Doe");
-                setupHashMap.put("MatchNumber", "00");
-                setupHashMap.put("TeamNumber", "1089");
-                setupHashMap.put("AlliancePartner1", "1089");
-                setupHashMap.put("AlliancePartner2", "1089");
+                setupHashMap.put("ScouterName", "");
+                setupHashMap.put("MatchNumber", "");
+                setupHashMap.put("TeamNumber", "");
+                setupHashMap.put("AlliancePartner1", "");
+                setupHashMap.put("AlliancePartner2", "");
                 setupHashMap.put("AllianceColor", "Blue");
                 break;
             case AUTON:
@@ -103,6 +142,7 @@ public class SetupData {
     * if it is empty, it calls setDefaultValues()
     *
      */
+
     public static boolean checkNullOrEmpty(HASH map){
         switch(map){
             case SETUP:
@@ -120,26 +160,36 @@ public class SetupData {
                     return true;
                 }
             case TELEOP:
-                if(teleopHashMap == null) {
+                if(teleopHashMap == null)
                     teleopHashMap = new HashMap<>();
-                    return true;
-                }
-
                 if(teleopHashMap.isEmpty()) {
                     setDefaultValues(HASH.TELEOP);
                     return true;
                 }
             case ENDGAAME:
-                if(endgameHashMap == null) {
+                if(endgameHashMap == null)
                     endgameHashMap = new HashMap<>();
-                    return true;
-                }
-
                 if(endgameHashMap.isEmpty()) {
                     setDefaultValues(HASH.ENDGAAME);
                     return true;
                 }
         }
         return false;
+    }
+
+    /**
+     *
+     * resets all of the values of all of the HashMaps except for scouterName
+     * It also increments the match number
+     *
+     */
+
+    public void setupNextMatch(){
+        String scouterName = setupHashMap.get("ScouterName");
+        setDefaultValues(HASH.SETUP);
+        setDefaultValues(HASH.AUTON);
+        setDefaultValues(HASH.TELEOP);
+        setDefaultValues(HASH.ENDGAAME);
+        setupHashMap.put("ScouterName", scouterName);
     }
 }

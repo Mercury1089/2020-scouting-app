@@ -67,7 +67,7 @@ public class Endgame extends Fragment {
             // If we are becoming invisible, then...
             if (!isVisibleToUser) {
                 context.setupHashMap = setupHashMap;
-                context.endgameHashMap = endgameHashMap;
+                SetupData.putEndgameHashMap(endgameHashMap);
             }
         }
     }

@@ -8,6 +8,8 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import java.util.HashMap;
+import java.util.Set;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -67,7 +69,7 @@ public class Teleop extends Fragment {
             // If we are becoming invisible, then...
             if (!isVisibleToUser) {
                 context.setupHashMap = setupHashMap;
-                context.teleopHashMap = teleopHashMap;
+                SetupData.putTeleopHashMap(teleopHashMap);
             }
         }
     }

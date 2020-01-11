@@ -2,22 +2,15 @@ package com.mercury1089.scoutingapp2019;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.TabHost;
 import android.widget.Toast;
-
 import com.google.android.material.tabs.TabLayout;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-import com.mercury1089.scoutingapp2019.utils.LocationGroup;
-import com.mercury1089.scoutingapp2019.utils.LocationGroupList;
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,12 +19,12 @@ import androidx.viewpager.widget.ViewPager;
 
 
 public class Auton extends Fragment {
-    //hashmaps for sending QR data between screens
+    //HashMaps for sending QR data between screens
     private HashMap<String, String> setupHashMap;
     private HashMap<String, String> autonHashMap;
 
     //other variables
-    private Timer timer;
+    private static Timer timer = new Timer();
     private boolean firstTime = true;
     private ConstraintLayout constraintLayout;
     private Switch fellOverSwitch;
@@ -57,7 +50,6 @@ public class Auton extends Fragment {
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
 
-        timer = new Timer();
         //Waiting for layout --> constraintLayout = context.findViewById(R.id.layout);
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
 
@@ -112,6 +104,8 @@ public class Auton extends Fragment {
             if (!isVisibleToUser) {
                 context.setupHashMap = setupHashMap;
                 SetupData.putAutonHashMap(autonHashMap);
+                timer.cancel();
+                timer = new Timer();
             }
         }
     }
