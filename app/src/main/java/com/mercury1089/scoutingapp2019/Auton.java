@@ -112,10 +112,10 @@ public class Auton extends Fragment {
     @Override
     public void onStop(){
         super.onStop();
-
         context.setupHashMap = setupHashMap;
         HashMapManager.putAutonHashMap(autonHashMap);
         timer.cancel();
+        timer.purge();
         timer = new Timer();
     }
 }

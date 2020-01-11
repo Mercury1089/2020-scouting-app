@@ -192,6 +192,6 @@ public class HashMapManager {
         setDefaultValues(HASH.TELEOP);
         setDefaultValues(HASH.ENDGAAME);
         setupHashMap.put("ScouterName", scouterName);
-        setupHashMap.put("MatchNumber", "" + (Integer.parseInt(matchNumber) + 1));
+        setupHashMap.put("MatchNumber", Integer.toString((Integer.parseInt(matchNumber) + 1)));
     }
 }

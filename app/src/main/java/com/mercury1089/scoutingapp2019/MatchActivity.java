@@ -81,6 +81,7 @@ public class MatchActivity extends AppCompatActivity {
                         HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
                         HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
                         HashMapManager.setDefaultValues(HashMapManager.HASH.ENDGAAME);
+                        HashMapManager.setupNextMatch();
                         Intent intent = new Intent(MatchActivity.this, PregameActivity.class);
                         startActivity(intent);
                         finish();
