@@ -186,10 +186,12 @@ public class SetupData {
 
     public void setupNextMatch(){
         String scouterName = setupHashMap.get("ScouterName");
+        String matchNumber = setupHashMap.get("MatchNumber");
         setDefaultValues(HASH.SETUP);
         setDefaultValues(HASH.AUTON);
         setDefaultValues(HASH.TELEOP);
         setDefaultValues(HASH.ENDGAAME);
         setupHashMap.put("ScouterName", scouterName);
+        setupHashMap.put("MatchNumber", matchNumber);
     }
 }
