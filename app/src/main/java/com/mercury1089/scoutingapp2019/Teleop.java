@@ -1,5 +1,6 @@
 package com.mercury1089.scoutingapp2019;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,14 +73,9 @@ public class Teleop extends Fragment {
             } else {
                 context.setupHashMap = setupHashMap;
                 HashMapManager.putTeleopHashMap(teleopHashMap);
+                Intent intent = new Intent(context, SettingsActivity.class);
+                startActivity(intent);
             }
         }
-    }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        context.setupHashMap = setupHashMap;
-        HashMapManager.putTeleopHashMap(teleopHashMap);
     }
 }

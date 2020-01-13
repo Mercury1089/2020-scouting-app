@@ -74,11 +74,4 @@ public class Endgame extends Fragment {
             }
         }
     }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        context.setupHashMap = setupHashMap;
-        HashMapManager.putEndgameHashMap(endgameHashMap);
-    }
 }

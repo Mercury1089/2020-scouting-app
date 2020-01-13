@@ -66,11 +66,7 @@ public class Auton extends Fragment {
                 Runnable switchToTeleop = new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(context, "Switching to Teleop...", Toast.LENGTH_SHORT).show();
-                        TabLayout tabs = context.findViewById(R.id.tabs);
-                        ViewPager viewPager = context.findViewById(R.id.view_pager);
-                        viewPager.setCurrentItem(1);
-                        tabs.setupWithViewPager(viewPager);
+                        Toast.makeText(context, "End Auton", Toast.LENGTH_SHORT).show();
                     }
                 };
                 handler.post(switchToTeleop);
