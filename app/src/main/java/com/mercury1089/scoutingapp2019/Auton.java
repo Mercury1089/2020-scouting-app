@@ -1,5 +1,6 @@
 package com.mercury1089.scoutingapp2019;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -76,7 +77,7 @@ public class Auton extends Fragment {
             }
         };
         if(firstTime) {
-            timer.schedule(switchToTeleop, 5000);
+            timer.schedule(switchToTeleop, 15000);
             firstTime = false;
         }
 
@@ -100,7 +101,11 @@ public class Auton extends Fragment {
         // Make sure that we are currently visible
         if (this.isVisible()) {
             // If we are becoming invisible, then...
-            if (!isVisibleToUser) {
+            if (isVisibleToUser) {
+                setupHashMap = context.setupHashMap;
+                autonHashMap = HashMapManager.getAutonHashMap();
+                //set all objects in the fragment to their values from the HashMaps
+            } else {
                 context.setupHashMap = setupHashMap;
                 HashMapManager.putAutonHashMap(autonHashMap);
                 timer.cancel();
@@ -115,7 +120,6 @@ public class Auton extends Fragment {
         context.setupHashMap = setupHashMap;
         HashMapManager.putAutonHashMap(autonHashMap);
         timer.cancel();
-        timer.purge();
         timer = new Timer();
     }
 }

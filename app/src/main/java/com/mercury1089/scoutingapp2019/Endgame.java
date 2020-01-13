@@ -64,10 +64,21 @@ public class Endgame extends Fragment {
         // Make sure that we are currently visible
         if (this.isVisible()) {
             // If we are becoming invisible, then...
-            if (!isVisibleToUser) {
+            if (isVisibleToUser) {
+                setupHashMap = context.setupHashMap;
+                endgameHashMap = HashMapManager.getEndgameHashMap();
+                //set all objects in the fragment to their values from the HashMaps
+            } else {
                 context.setupHashMap = setupHashMap;
                 HashMapManager.putEndgameHashMap(endgameHashMap);
             }
         }
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        context.setupHashMap = setupHashMap;
+        HashMapManager.putEndgameHashMap(endgameHashMap);
     }
 }

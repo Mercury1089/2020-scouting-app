@@ -65,10 +65,21 @@ public class Teleop extends Fragment {
         // Make sure that we are currently visible
         if (this.isVisible()) {
             // If we are becoming invisible, then...
-            if (!isVisibleToUser) {
+            if (isVisibleToUser) {
+                setupHashMap = context.setupHashMap;
+                teleopHashMap = HashMapManager.getTeleopHashMap();
+                //set all objects in the fragment to their values from the HashMaps
+            } else {
                 context.setupHashMap = setupHashMap;
                 HashMapManager.putTeleopHashMap(teleopHashMap);
             }
         }
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        context.setupHashMap = setupHashMap;
+        HashMapManager.putTeleopHashMap(teleopHashMap);
     }
 }
