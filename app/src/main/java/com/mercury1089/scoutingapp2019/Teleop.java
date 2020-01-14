@@ -73,8 +73,6 @@ public class Teleop extends Fragment {
             } else {
                 context.setupHashMap = setupHashMap;
                 HashMapManager.putTeleopHashMap(teleopHashMap);
-                Intent intent = new Intent(context, SettingsActivity.class);
-                startActivity(intent);
             }
         }
     }
