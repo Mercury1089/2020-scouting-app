@@ -15,6 +15,7 @@
         android:background="@color/lightscarletorange"
         android:text="@string/Clear"
         android:textSize="18sp"
+        app:roundedCorners="true"
         app:bootstrapBrand="danger"
         app:bootstrapSize="lg"
         app:buttonMode="regular"
@@ -22,7 +23,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:roundedCorners="true"
         app:showOutline="false" />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
@@ -32,6 +32,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/Cancel"
         android:textSize="18sp"
+        app:roundedCorners="true"
         app:bootstrapBrand="info"
         app:bootstrapSize="lg"
         app:buttonMode="regular"

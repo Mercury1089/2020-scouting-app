@@ -25,7 +25,7 @@
     <color name="button_disabled"> #525F78 </color>
     <color name="heading_active"> #828FAC </color>
     <color name="heading_disabled"> #2F3A4F </color>
-    <color name="text_active"> #C5C9D2 </color>
+    <color name="text_default"> #C5C9D2 </color>
     <color name="text_disabled"> #4D5A72 </color>
     <color name="text_alert"> #FFD966 </color>
     <color name="switch_active"> #8593B0 </color>
