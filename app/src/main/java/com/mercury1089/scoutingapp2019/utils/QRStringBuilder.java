@@ -1,12 +1,12 @@
 package com.mercury1089.scoutingapp2019.utils;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class QRStringBuilder {
 
     private static StringBuilder QRString = new StringBuilder();
 
-    public static void appendToQRString(HashMap hm){
+    public static void appendToQRString(LinkedHashMap hm){
         Object[] keySet = hm.keySet().toArray();
         for (Object key : keySet) {
             key = "" + key;

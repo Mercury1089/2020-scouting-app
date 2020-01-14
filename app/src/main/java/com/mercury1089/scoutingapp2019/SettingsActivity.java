@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
     private String leftOrRight;
     private BootstrapButton cancelButton;
 
-    private HashMap<String, String> setupHashMap;
+    private LinkedHashMap<String, String> setupHashMap;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

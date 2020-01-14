@@ -14,7 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -25,11 +25,10 @@ import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
 
-
 public class Endgame extends Fragment {
     //HashMaps for sending QR data between screens
-    private HashMap<String, String> setupHashMap;
-    private HashMap<String, String> endgameHashMap;
+    private LinkedHashMap<String, String> setupHashMap;
+    private LinkedHashMap<String, String> endgameHashMap;
 
     //BootstrapButtons
     private BootstrapButton generateQRButton;
@@ -39,7 +38,6 @@ public class Endgame extends Fragment {
     private Switch fellOverSwitch;
     private ProgressDialog progressDialog;
     public final static int QRCodeSize = 500;
-    Bitmap bitmap;
 
     public static Endgame newInstance() {
         Endgame fragment = new Endgame();

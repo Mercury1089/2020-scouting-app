@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -16,8 +14,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MatchActivity extends AppCompatActivity {
 
@@ -26,10 +23,10 @@ public class MatchActivity extends AppCompatActivity {
     private TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
-    public HashMap<String, String> setupHashMap;
-    public HashMap<String, String> autonHashMap;
-    public HashMap<String, String> teleopHashMap;
-    public HashMap<String, String> endgameHashMap;
+    public LinkedHashMap<String, String> setupHashMap;
+    public LinkedHashMap<String, String> autonHashMap;
+    public LinkedHashMap<String, String> teleopHashMap;
+    public LinkedHashMap<String, String> endgameHashMap;
 
     //for QR code generator
     public final static int QRCodeSize = 500;
