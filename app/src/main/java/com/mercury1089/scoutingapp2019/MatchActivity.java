@@ -139,46 +139,4 @@ public class MatchActivity extends AppCompatActivity {
     public void autonClicked(View view){
         setContentView(view);
     }*/
-
-    class QRRunnable implements Runnable {
-        @Override
-        public void run() {
-            /*QRString.append(setupHashMap.get("ScouterName")).append(",");
-            QRString.append(setupHashMap.get("MatchNumber")).append(",");
-            QRString.append(setupHashMap.get("TeamNumber")).append(",");
-            QRString.append(setupHashMap.get("FirstAlliancePartner")).append(",");
-            QRString.append(setupHashMap.get("SecondAlliancePartner")).append(",");
-            QRString.append(setupHashMap.get("AllianceColor")).append(",");
-            QRString.append(setupHashMap.get("LeftOrRight")).append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append(setupHashMap.get("NoShow")).append(",");
-            QRString.append("").append(",");*/
-            QRValue = QRStringBuilder.MakeQRString(setupHashMap, null);
-
-            try {
-                bitmap = TextToImageEncode(QRValue);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(MatchActivity.this);
-                        View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
-                        ImageView imageView = view1.findViewById(R.id.imageView);
-                        imageView.setImageBitmap(bitmap);
-                        qrDialog.setView(view1);
-                        final AlertDialog dialog = qrDialog.create();
-
-                        dialog.show();
-                    }
-                });
-            } catch (WriterException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }

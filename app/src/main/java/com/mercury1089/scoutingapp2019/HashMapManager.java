@@ -3,10 +3,10 @@ package com.mercury1089.scoutingapp2019;
 import java.util.HashMap;
 
 public class HashMapManager {
-    private static HashMap<String, String> setupHashMap;
-    private static HashMap<String, String> autonHashMap;
-    private static HashMap<String, String> teleopHashMap;
-    private static HashMap<String, String> endgameHashMap;
+    private static HashMap<String, String> setupHashMap = new HashMap<>();
+    private static HashMap<String, String> autonHashMap = new HashMap<>();
+    private static HashMap<String, String> teleopHashMap = new HashMap<>();
+    private static HashMap<String, String> endgameHashMap = new HashMap<>();
 
     /**
      *
@@ -125,12 +125,15 @@ public class HashMapManager {
                 break;
             case AUTON:
                 //include all the items that will be in the autonHashMap
+                autonHashMap.put("Default", "0");
                 break;
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
+                teleopHashMap.put("Default", "0");
                 break;
             case ENDGAAME:
                 //include all the items that will be in the endgameHashMap
+                endgameHashMap.put("Default", "0");
                 break;
         }
     }

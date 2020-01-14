@@ -44,7 +44,7 @@ public class PregameActivity extends AppCompatActivity {
     //for QR code generator
     public final static int QRCodeSize = 500;
     Bitmap bitmap;
-    String QRValue;
+    ProgressDialog progressDialog;
 
     //other variables
     BootstrapButton clearButton;
@@ -53,7 +53,6 @@ public class PregameActivity extends AppCompatActivity {
 
     boolean isQRButton = false;
     String leftOrRight;
-    private ProgressDialog progressDialog;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,8 +207,17 @@ public class PregameActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View view){
-                if(isQRButton){
-                    //Later
+                if(isQRButton) {
+                    progressDialog = new ProgressDialog(PregameActivity.this, R.style.LoadingDialogStyle);
+                    progressDialog.setMessage("Please Wait");
+                    progressDialog.setCancelable(false);
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.show();
+
+                    HashMapManager.putSetupHashMap(setupHashMap);
+
+                    PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
+                    new Thread(qrRunnable).start();
                 } else {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
@@ -311,7 +319,7 @@ public class PregameActivity extends AppCompatActivity {
     }*/
 
     //QR Generation
-    Bitmap TextToImageEncode(String Value) throws WriterException {
+    private Bitmap TextToImageEncode(String Value) throws WriterException {
         BitMatrix bitMatrix;
         try {
             bitMatrix = new MultiFormatWriter().encode(
@@ -342,29 +350,23 @@ public class PregameActivity extends AppCompatActivity {
     class QRRunnable implements Runnable {
         @Override
         public void run() {
-            /*QRString.append(setupHashMap.get("ScouterName")).append(",");
-            QRString.append(setupHashMap.get("MatchNumber")).append(",");
-            QRString.append(setupHashMap.get("TeamNumber")).append(",");
-            QRString.append(setupHashMap.get("FirstAlliancePartner")).append(",");
-            QRString.append(setupHashMap.get("SecondAlliancePartner")).append(",");
-            QRString.append(setupHashMap.get("AllianceColor")).append(",");
-            QRString.append(setupHashMap.get("LeftOrRight")).append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append("").append(",");
-            QRString.append(setupHashMap.get("NoShow")).append(",");
-            QRString.append("").append(",");*/
-            QRValue = QRStringBuilder.MakeQRString(setupHashMap, null);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.ENDGAAME);
+
+            QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
+            QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
+            QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
+            QRStringBuilder.appendToQRString(HashMapManager.getEndgameHashMap());
 
             try {
-                bitmap = TextToImageEncode(QRValue);
+                bitmap = TextToImageEncode(QRStringBuilder.getQRString());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        //PregameActivity.QRCodeGenerator qrCodeGenerator = new PregameActivity.QRCodeGenerator();
+                        //qrCodeGenerator.execute();
+
                         final AlertDialog.Builder qrDialog = new AlertDialog.Builder(PregameActivity.this);
                         View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
@@ -376,30 +378,29 @@ public class PregameActivity extends AppCompatActivity {
                         qrDialog.setView(view1);
                         final AlertDialog dialog = qrDialog.create();
 
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                         teamNumber.setText("Team Number: " + setupHashMap.get("TeamNumber"));
                         matchNumber.setText("Match Number: " + setupHashMap.get("MatchNumber"));
                         goBackToMain.setEnabled(false);
                         goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.savedefault)));
                         goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
 
+                        progressDialog.dismiss();
+
                         dialog.show();
 
                         CheckSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if (isChecked) {
                                     goBackToMain.setEnabled(true);
                                     goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.blue)));
                                     goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                                }
-                                else{
+                                } else {
                                     goBackToMain.setEnabled(false);
                                     goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.defaultdisabled)));
                                     goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.textdefault));
                                 }
                             }
-
                         });
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
@@ -407,22 +408,18 @@ public class PregameActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 dialog.dismiss();
                                 //clear everything except field orientation
-                                setupHashMap = QRStringBuilder.defaultSetupHashMap(setupHashMap.get("LeftOrRight"));
-                                scouterNameInput.setText("");
-                                matchNumberInput.setText("");
-                                teamNumberInput.setText("");
-                                firstAlliancePartnerInput.setText("");
-                                secondAlliancePartnerInput.setText("");
-                                NoShowSwitch.setChecked(false);
-                                blueDefault();
-                                redDefault();
+                                HashMapManager.setupNextMatch();
+                                setupHashMap = HashMapManager.getSetupHashMap();
+                                scouterNameInput.setText(setupHashMap.get("ScouterName"));
+                                matchNumberInput.setText(setupHashMap.get("MatchNumber"));
+                                teamNumberInput.setText(setupHashMap.get("TeamNumber"));
+                                firstAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner1"));
+                                secondAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner2"));
                             }
                         });
                     }
                 });
-            } catch (WriterException e) {
-                e.printStackTrace();
-            }
+            } catch (WriterException e){}
         }
     }
 }
