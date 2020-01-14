@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -58,7 +59,7 @@ public class Endgame extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
-        generateQRButton = context.findViewById(R.id.GenerateQRCodeButton);
+        generateQRButton = getView().findViewById(R.id.GenerateQRCodeButton);
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
@@ -168,7 +169,7 @@ public class Endgame extends Fragment {
                         Switch CheckSwitch = view1.findViewById(R.id.checkSwitch);
                         TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
-                        final BootstrapButton goBackToMain = view1.findViewById(R.id.GoBackButton);
+                        final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
                         imageView.setImageBitmap(bitmap);
                         qrDialog.setView(view1);
                         final AlertDialog dialog = qrDialog.create();
@@ -204,6 +205,7 @@ public class Endgame extends Fragment {
                                 dialog.dismiss();
                                 HashMapManager.setupNextMatch();
                                 Intent intent = new Intent(context, PregameActivity.class);
+                                startActivity(intent);
                             }
                         });
                     }
