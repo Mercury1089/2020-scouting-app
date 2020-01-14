@@ -6,49 +6,39 @@
 
 
 
-    <color name="colorPrimary">#008577</color>
-
-
-
-    <color name="colorPrimaryDark">#00574B</color>
-
-
-
-    <color name="colorAccent">#D81B60</color>
-
-
-
     <color name="light"> @color/bootstrap_dropdown_divider </color>
-
     <color name="white">#FFFFFF</color>
-
     <color name="grey"> @color/bootstrap_gray </color>
-
     <color name="blue">@color/bootstrap_brand_info</color>
-
     <color name="red"> @color/bootstrap_brand_danger </color>
-
     <color name="black">#000000</color>
-
     <color name="darkgray">#2B2B2E</color>
-
     <color name="orange"> @android:color/holo_orange_dark </color>
+
+    <!-- dark theme ui -->
+    <color name="bg_general"> #232C3D </color>
+    <color name="bg_scoring_popup">#0A0E14</color>
+    <color name="button_blue"> #19ABF2 </color>
+    <color name="button_red"> #F72855 </color>
+    <color name="button_active"> #F48862 </color>
+    <color name="button_default"> #525F78 </color>
+    <color name="button_disabled"> #525F78 </color>
+    <color name="heading_active"> #828FAC </color>
+    <color name="heading_disabled"> #2F3A4F </color>
+    <color name="text_active"> #C5C9D2 </color>
+    <color name="text_disabled"> #4D5A72 </color>
+    <color name="text_alert"> #FFD966 </color>
+    <color name="switch_active"> #8593B0 </color>
+    <color name="switch_default"> #8593B0 </color>
+    <color name="switch_disabled"> #525F78 </color>
+    <color name="border_warning"> #F72855 </color>
+
+
 
     <!-- for settings save button -->
     <color name="savetextdefault">#404344</color>
     <color name="savedefault">#5A5D5E</color>
     <color name="saveactive">#84C43C</color>
-
-    <!-- for circle buttons -->
-    
-    <color name="defaultdisabled">#801E1E1E</color>
-    <color name="panelenabled">#FFFFD9</color>
-    <color name="cargoenabled">#DDAC6B</color>
-    <color name="textdefault">#9B9B9B</color>
-    <color name="panelscoreddisabled">#EBE188</color>
-    <color name="cargoscoreddisabled">#F5C067</color>
-    <color name="panelscoredenabled">#F8E71C</color>
-    <color name="cargoscoredenabled">#FF9800</color>
 
     <!-- theme change -->
     <color name="darkerblue">#292E52</color>
