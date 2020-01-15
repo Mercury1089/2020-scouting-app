@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/Endgame"
-        android:name="com.mercury1089.scoutingapp2019.Endgame"
+        android:name="com.mercury1089.scoutingapp2019.Climb"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs"
         app:layout_constraintVertical_bias="1.0"
-        tools:layout="@layout/fragment_endgame" />
+        tools:layout="@layout/fragment_climb" />
 
     <TextView
         android:id="@+id/title"

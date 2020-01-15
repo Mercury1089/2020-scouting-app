@@ -26,7 +26,7 @@ public class MatchActivity extends AppCompatActivity {
     public LinkedHashMap<String, String> setupHashMap;
     public LinkedHashMap<String, String> autonHashMap;
     public LinkedHashMap<String, String> teleopHashMap;
-    public LinkedHashMap<String, String> endgameHashMap;
+    public LinkedHashMap<String, String> climbHashMap;
 
     //for QR code generator
     public final static int QRCodeSize = 500;
@@ -124,7 +124,7 @@ public class MatchActivity extends AppCompatActivity {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(MatchActivity.this, R.color.colorPrimaryDark) : GenUtils.getAColor(MatchActivity.this, R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(MatchActivity.this, R.color.design_default_color_primary_dark) : GenUtils.getAColor(MatchActivity.this, R.color.bootstrap_dropdown_divider);
             }
         }
 

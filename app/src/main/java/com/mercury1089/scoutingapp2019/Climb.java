@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +24,10 @@ import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
 
-public class Endgame extends Fragment {
+public class Climb extends Fragment {
     //HashMaps for sending QR data between screens
     private LinkedHashMap<String, String> setupHashMap;
-    private LinkedHashMap<String, String> endgameHashMap;
+    private LinkedHashMap<String, String> climbHashMap;
 
     //BootstrapButtons
     private BootstrapButton generateQRButton;
@@ -39,8 +38,8 @@ public class Endgame extends Fragment {
     private ProgressDialog progressDialog;
     public final static int QRCodeSize = 500;
 
-    public static Endgame newInstance() {
-        Endgame fragment = new Endgame();
+    public static Climb newInstance() {
+        Climb fragment = new Climb();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -50,7 +49,7 @@ public class Endgame extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = (MatchActivity) getActivity();
-        return inflater.inflate(R.layout.fragment_endgame, container, false);
+        return inflater.inflate(R.layout.fragment_climb, container, false);
     }
 
     public void onStart(){
@@ -62,7 +61,7 @@ public class Endgame extends Fragment {
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.ENDGAAME);
-        endgameHashMap = HashMapManager.getEndgameHashMap();
+        climbHashMap = HashMapManager.getClimbHashMap();
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -86,9 +85,9 @@ public class Endgame extends Fragment {
                 progressDialog.show();
 
                 HashMapManager.putSetupHashMap(setupHashMap);
-                HashMapManager.putEndgameHashMap(endgameHashMap);
+                HashMapManager.putClimbHashMap(climbHashMap);
 
-                Endgame.QRRunnable qrRunnable = new Endgame.QRRunnable();
+                Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
                 new Thread(qrRunnable).start();
             }
         });
@@ -103,11 +102,11 @@ public class Endgame extends Fragment {
             // If we are becoming invisible, then...
             if (isVisibleToUser) {
                 setupHashMap = context.setupHashMap;
-                endgameHashMap = HashMapManager.getEndgameHashMap();
+                climbHashMap = HashMapManager.getClimbHashMap();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
                 context.setupHashMap = setupHashMap;
-                HashMapManager.putEndgameHashMap(endgameHashMap);
+                HashMapManager.putClimbHashMap(climbHashMap);
             }
         }
     }
@@ -132,7 +131,7 @@ public class Endgame extends Fragment {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(context, R.color.colorPrimaryDark) : GenUtils.getAColor(context, R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(context, R.color.design_default_color_primary_dark) : GenUtils.getAColor(context, R.color.bootstrap_dropdown_divider);
             }
         }
 
@@ -151,7 +150,7 @@ public class Endgame extends Fragment {
             QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getEndgameHashMap());
+            QRStringBuilder.appendToQRString(HashMapManager.getClimbHashMap());
 
             try {
                 Bitmap bitmap = TextToImageEncode(QRStringBuilder.getQRString());
@@ -191,8 +190,8 @@ public class Endgame extends Fragment {
                                     goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.light));
                                 } else {
                                     goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.defaultdisabled)));
-                                    goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.button_disabled)));
+                                    goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.button_disabled));
                                 }
                             }
                         });

@@ -22,7 +22,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 
 public class PregameActivity extends AppCompatActivity {
@@ -358,7 +358,7 @@ public class PregameActivity extends AppCompatActivity {
             QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getEndgameHashMap());
+            QRStringBuilder.appendToQRString(HashMapManager.getClimbHashMap());
 
             try {
                 bitmap = TextToImageEncode(QRStringBuilder.getQRString());

@@ -1,13 +1,12 @@
 package com.mercury1089.scoutingapp2019;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class HashMapManager {
     private static LinkedHashMap<String, String> setupHashMap = new LinkedHashMap<>();
     private static LinkedHashMap<String, String> autonHashMap = new LinkedHashMap<>();
     private static LinkedHashMap<String, String> teleopHashMap = new LinkedHashMap<>();
-    private static LinkedHashMap<String, String> endgameHashMap = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> climbHashMap = new LinkedHashMap<>();
 
     /**
      *
@@ -59,12 +58,12 @@ public class HashMapManager {
 
     /**
      *
-     * Used to get the endgameHashMap
+     * Used to get the climbHashMap
      * Call when an activity starts and assign to global variable
      *
      */
-    public static LinkedHashMap<String, String> getEndgameHashMap(){
-        return endgameHashMap;
+    public static LinkedHashMap<String, String> getClimbHashMap(){
+        return climbHashMap;
     }
 
     /**
@@ -99,12 +98,12 @@ public class HashMapManager {
 
     /**
      *
-     * Used to set the app wide endgameHashMap
-     * Call before leaving an activity to update the app wide endgameHashMap
+     * Used to set the app wide climbHashMap
+     * Call before leaving an activity to update the app wide climbHashMap
      *
      */
-    public static void putEndgameHashMap(LinkedHashMap<String, String> endgameData){
-        endgameHashMap = endgameData;
+    public static void putClimbHashMap(LinkedHashMap<String, String> climbData){
+        climbHashMap = climbData;
     }
 
     /**
@@ -134,8 +133,8 @@ public class HashMapManager {
                 teleopHashMap.put("HashMapName", "Teleop");
                 break;
             case ENDGAAME:
-                //include all the items that will be in the endgameHashMap
-                endgameHashMap.put("HashMapName", "Endgame");
+                //include all the items that will be in the climbHashMap
+                climbHashMap.put("HashMapName", "Climb");
                 break;
         }
     }
@@ -172,9 +171,9 @@ public class HashMapManager {
                     return true;
                 }
             case ENDGAAME:
-                if(endgameHashMap == null)
-                    endgameHashMap = new LinkedHashMap<>();
-                if(endgameHashMap.isEmpty()) {
+                if(climbHashMap == null)
+                    climbHashMap = new LinkedHashMap<>();
+                if(climbHashMap.isEmpty()) {
                     setDefaultValues(HASH.ENDGAAME);
                     return true;
                 }
