@@ -1,12 +1,12 @@
 package com.mercury1089.scoutingapp2019;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class HashMapManager {
-    private static HashMap<String, String> setupHashMap = new HashMap<>();
-    private static HashMap<String, String> autonHashMap = new HashMap<>();
-    private static HashMap<String, String> teleopHashMap = new HashMap<>();
-    private static HashMap<String, String> endgameHashMap = new HashMap<>();
+    private static LinkedHashMap<String, String> setupHashMap = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> autonHashMap = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> teleopHashMap = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> climbHashMap = new LinkedHashMap<>();
 
     /**
      *
@@ -32,7 +32,7 @@ public class HashMapManager {
     * Call when an activity starts and assign to global variable
     *
      */
-    public static HashMap<String, String> getSetupHashMap(){
+    public static LinkedHashMap<String, String> getSetupHashMap(){
         return setupHashMap;
     }
 
@@ -42,7 +42,7 @@ public class HashMapManager {
      * Call when an activity starts and assign to global variable
      *
      */
-    public static HashMap<String, String> getAutonHashMap(){
+    public static LinkedHashMap<String, String> getAutonHashMap(){
         return autonHashMap;
     }
 
@@ -52,18 +52,18 @@ public class HashMapManager {
      * Call when an activity starts and assign to global variable
      *
      */
-    public static HashMap<String, String> getTeleopHashMap(){
+    public static LinkedHashMap<String, String> getTeleopHashMap(){
         return teleopHashMap;
     }
 
     /**
      *
-     * Used to get the endgameHashMap
+     * Used to get the climbHashMap
      * Call when an activity starts and assign to global variable
      *
      */
-    public static HashMap<String, String> getEndgameHashMap(){
-        return endgameHashMap;
+    public static LinkedHashMap<String, String> getClimbHashMap(){
+        return climbHashMap;
     }
 
     /**
@@ -72,7 +72,7 @@ public class HashMapManager {
     * Call before leaving an activity to update the app wide setupHashMap
     *
      */
-    public static void putSetupHashMap(HashMap<String, String> setupData){
+    public static void putSetupHashMap(LinkedHashMap<String, String> setupData){
         setupHashMap = setupData;
     }
 
@@ -82,7 +82,7 @@ public class HashMapManager {
      * Call before leaving an activity to update the app wide autonHashMap
      *
      */
-    public static void putAutonHashMap(HashMap<String, String> autonData){
+    public static void putAutonHashMap(LinkedHashMap<String, String> autonData){
         autonHashMap = autonData;
     }
 
@@ -92,18 +92,18 @@ public class HashMapManager {
      * Call before leaving an activity to update the app wide teleopHashMap
      *
      */
-    public static void putTeleopHashMap(HashMap<String, String> teleopData){
+    public static void putTeleopHashMap(LinkedHashMap<String, String> teleopData){
         teleopHashMap = teleopData;
     }
 
     /**
      *
-     * Used to set the app wide endgameHashMap
-     * Call before leaving an activity to update the app wide endgameHashMap
+     * Used to set the app wide climbHashMap
+     * Call before leaving an activity to update the app wide climbHashMap
      *
      */
-    public static void putEndgameHashMap(HashMap<String, String> endgameData){
-        endgameHashMap = endgameData;
+    public static void putClimbHashMap(LinkedHashMap<String, String> climbData){
+        climbHashMap = climbData;
     }
 
     /**
@@ -115,25 +115,26 @@ public class HashMapManager {
     public static void setDefaultValues(HASH map){
         switch(map) {
             case SETUP:
-                setupHashMap.put("NoShow", "0");
+                setupHashMap.put("HashMapName", "Setup");
                 setupHashMap.put("ScouterName", "");
                 setupHashMap.put("MatchNumber", "");
                 setupHashMap.put("TeamNumber", "");
+                setupHashMap.put("NoShow", "0");
                 setupHashMap.put("AlliancePartner1", "");
                 setupHashMap.put("AlliancePartner2", "");
                 setupHashMap.put("AllianceColor", "Blue");
                 break;
             case AUTON:
                 //include all the items that will be in the autonHashMap
-                autonHashMap.put("Default", "0");
+                autonHashMap.put("HashMapName", "Auton");
                 break;
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
-                teleopHashMap.put("Default", "0");
+                teleopHashMap.put("HashMapName", "Teleop");
                 break;
             case ENDGAAME:
-                //include all the items that will be in the endgameHashMap
-                endgameHashMap.put("Default", "0");
+                //include all the items that will be in the climbHashMap
+                climbHashMap.put("HashMapName", "Climb");
                 break;
         }
     }
@@ -150,29 +151,29 @@ public class HashMapManager {
         switch(map){
             case SETUP:
                 if(setupHashMap == null)
-                    setupHashMap = new HashMap<>();
+                    setupHashMap = new LinkedHashMap<>();
                 if(setupHashMap.isEmpty()) {
                     setDefaultValues(HASH.SETUP);
                     return true;
                 }
             case AUTON:
                 if(autonHashMap == null)
-                    autonHashMap = new HashMap<>();
+                    autonHashMap = new LinkedHashMap<>();
                 if(autonHashMap.isEmpty()) {
                     setDefaultValues(HASH.AUTON);
                     return true;
                 }
             case TELEOP:
                 if(teleopHashMap == null)
-                    teleopHashMap = new HashMap<>();
+                    teleopHashMap = new LinkedHashMap<>();
                 if(teleopHashMap.isEmpty()) {
                     setDefaultValues(HASH.TELEOP);
                     return true;
                 }
             case ENDGAAME:
-                if(endgameHashMap == null)
-                    endgameHashMap = new HashMap<>();
-                if(endgameHashMap.isEmpty()) {
+                if(climbHashMap == null)
+                    climbHashMap = new LinkedHashMap<>();
+                if(climbHashMap.isEmpty()) {
                     setDefaultValues(HASH.ENDGAAME);
                     return true;
                 }
@@ -190,11 +191,13 @@ public class HashMapManager {
     public static void setupNextMatch(){
         String scouterName = setupHashMap.get("ScouterName");
         String matchNumber = setupHashMap.get("MatchNumber");
+        String allianceColor = setupHashMap.get("AllianceColor");
         setDefaultValues(HASH.SETUP);
         setDefaultValues(HASH.AUTON);
         setDefaultValues(HASH.TELEOP);
         setDefaultValues(HASH.ENDGAAME);
         setupHashMap.put("ScouterName", scouterName);
         setupHashMap.put("MatchNumber", Integer.toString((Integer.parseInt(matchNumber) + 1)));
+        setupHashMap.put("AllianceColor", allianceColor);
     }
 }

@@ -22,7 +22,8 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-import java.util.HashMap;
+
+import java.util.LinkedHashMap;
 
 public class PregameActivity extends AppCompatActivity {
     //variables that should be outputted
@@ -39,7 +40,7 @@ public class PregameActivity extends AppCompatActivity {
     private BootstrapButton blueButton;
     private BootstrapButton redButton;
     private Switch NoShowSwitch;
-    private HashMap<String, String> setupHashMap;
+    private LinkedHashMap<String, String> setupHashMap;
 
     //for QR code generator
     public final static int QRCodeSize = 500;
@@ -357,7 +358,7 @@ public class PregameActivity extends AppCompatActivity {
             QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getEndgameHashMap());
+            QRStringBuilder.appendToQRString(HashMapManager.getClimbHashMap());
 
             try {
                 bitmap = TextToImageEncode(QRStringBuilder.getQRString());

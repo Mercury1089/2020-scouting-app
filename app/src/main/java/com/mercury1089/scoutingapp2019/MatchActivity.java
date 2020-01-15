@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -16,8 +14,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MatchActivity extends AppCompatActivity {
 
@@ -26,10 +23,10 @@ public class MatchActivity extends AppCompatActivity {
     private TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
-    public HashMap<String, String> setupHashMap;
-    public HashMap<String, String> autonHashMap;
-    public HashMap<String, String> teleopHashMap;
-    public HashMap<String, String> endgameHashMap;
+    public LinkedHashMap<String, String> setupHashMap;
+    public LinkedHashMap<String, String> autonHashMap;
+    public LinkedHashMap<String, String> teleopHashMap;
+    public LinkedHashMap<String, String> climbHashMap;
 
     //for QR code generator
     public final static int QRCodeSize = 500;
@@ -127,7 +124,7 @@ public class MatchActivity extends AppCompatActivity {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(MatchActivity.this, R.color.colorPrimaryDark) : GenUtils.getAColor(MatchActivity.this, R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(MatchActivity.this, R.color.design_default_color_primary_dark) : GenUtils.getAColor(MatchActivity.this, R.color.bootstrap_dropdown_divider);
             }
         }
 
