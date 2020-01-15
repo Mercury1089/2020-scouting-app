@@ -1,46 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkerblue"
+    android:background="@color/bg_clear_confirm_popup"
     android:minWidth="400dp"
     android:minHeight="900dp">
 
-    <com.beardedhen.androidbootstrap.BootstrapButton
+    <Button
         android:id="@+id/ExitConfirm"
         android:layout_width="410dp"
         android:layout_height="75dp"
         android:layout_marginTop="32dp"
-        android:background="@color/lightscarletorange"
-        android:text="@string/Exit"
+        android:background="@drawable/button_active"
+        android:text="@string/ExitTitle"
+        android:textColor="@drawable/text_states"
         android:textSize="18sp"
-        app:bootstrapBrand="danger"
-        app:bootstrapSize="lg"
-        app:buttonMode="regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:roundedCorners="true"
-        app:showOutline="false" />
+        app:layout_constraintTop_toBottomOf="@+id/IDClearDirections" />
 
-    <com.beardedhen.androidbootstrap.BootstrapButton
+    <Button
         android:id="@+id/CancelConfirm"
         android:layout_width="410dp"
         android:layout_height="75dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/button_default"
         android:text="@string/Cancel"
+        android:textColor="@color/white"
         android:textSize="18sp"
-        app:bootstrapBrand="info"
-        app:bootstrapSize="lg"
-        app:buttonMode="regular"
         app:layout_constraintStart_toStartOf="@+id/ExitConfirm"
-        app:layout_constraintTop_toBottomOf="@+id/ExitConfirm"
-        app:roundedCorners="true" />
+        app:layout_constraintTop_toBottomOf="@+id/ExitConfirm" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/IDClearDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="330dp"
@@ -51,6 +46,20 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/IDExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="232dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:text="@string/ExitTitle"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

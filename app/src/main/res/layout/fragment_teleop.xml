@@ -1,11 +1,354 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/teleop"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bootstrap_gray_dark"
-    tools:context=".MatchActivity"/>
+    android:background="@color/bg_general"
+    tools:context=".MatchActivity">
+
+    <TextView
+        android:id="@+id/IDPossession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PossessionTitle"
+        android:textColor="@drawable/text_states"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+    <TextView
+        android:id="@+id/IDScoring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ScoringTitle"
+        android:textColor="@drawable/text_states"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="384dp" />
+
+    <TextView
+        android:id="@+id/IDPossessionDirections"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PossessionDirections"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="163dp" />
+
+    <TextView
+        android:id="@+id/IDScoringDirections"
+        android:layout_width="526dp"
+        android:layout_height="40dp"
+        android:text="@string/ScoringDirections"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="420dp" />
+
+    <TextView
+        android:id="@+id/IDPickedUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PickedUp"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="221dp" />
+
+    <TextView
+        android:id="@+id/PickedUpCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/badge_counter"
+        android:text="@string/DefaultValue"
+        android:textColor="@drawable/text_states"
+        app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
+        tools:layout_editor_absoluteY="221dp" />
+
+    <TextView
+        android:id="@+id/DroppedCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/badge_counter"
+        android:text="@string/DefaultValue"
+        android:textColor="@drawable/text_states"
+        app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
+        tools:layout_editor_absoluteY="318dp" />
+
+    <TextView
+        android:id="@+id/IDDropped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Dropped"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="318dp" />
+
+    <RadioGroup
+        android:id="@+id/ScoredToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="248dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
+        tools:layout_editor_absoluteX="96dp">
+
+        <RadioButton
+            android:id="@+id/ScoredButton"
+            android:layout_width="125dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_left_default"
+            android:button="@drawable/button_rounded_corners"
+            android:gravity="left|center_vertical"
+            android:text="@string/Scored"
+            android:textColor="@drawable/text_states"
+            android:textSize="18sp"
+            tools:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/MissedButton"
+            android:layout_width="125dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_right_default"
+            android:button="@drawable/button_rounded_corners"
+            android:gravity="left|center_vertical"
+            android:text="@string/Missed"
+            android:textColor="@drawable/text_states"
+            android:textSize="18sp"
+            tools:visibility="visible" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/PickedUpToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="180dp">
+
+        <RadioButton
+            android:id="@+id/PickedUpButton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_left_default"
+            android:button="@drawable/toggle_left_default"
+            android:enabled="true"
+            android:gravity="center"
+            android:text="@string/Plus"
+            android:textColor="@drawable/text_states"
+            android:textScaleX="@dimen/bootstrap_h2_hori_padding"
+            android:textSize="36sp"
+            tools:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/NotPickedUpButton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_right_default"
+            android:button="@drawable/button_rounded_corners"
+            android:gravity="center"
+            android:text="@string/Minus"
+            android:textColor="@drawable/text_states"
+            android:textSize="36sp"
+            tools:visibility="visible" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/DroppedToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
+        tools:layout_editor_absoluteX="127dp">
+
+        <RadioButton
+            android:id="@+id/DroppedButton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_left_default"
+            android:button="@drawable/button_rounded_corners"
+            android:gravity="center"
+            android:text="@string/Plus"
+            android:textColor="@drawable/text_states"
+            android:textSize="36sp"
+            tools:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/NotDroppedButton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_right_default"
+            android:button="@drawable/button_rounded_corners"
+            android:gravity="center"
+            android:text="@string/Minus"
+            android:textColor="@drawable/text_states"
+            android:textSize="36sp"
+            tools:visibility="visible" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/ScoredCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/badge_counter"
+        android:text="@string/DefaultValue"
+        android:textColor="@drawable/text_states"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDScoringDirections" />
+
+    <TextView
+        android:id="@+id/MissedCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/badge_counter"
+        android:text="@string/DefaultValue"
+        android:textColor="@drawable/text_states"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDScoringDirections" />
+
+    <TextView
+        android:id="@+id/IDMiscDirections"
+        android:layout_width="526dp"
+        android:layout_height="wrap_content"
+        android:text="@string/MiscDirections"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="800dp" />
+
+    <TextView
+        android:id="@+id/IDControlPanelDirections"
+        android:layout_width="526dp"
+        android:layout_height="wrap_content"
+        android:text="@string/MiscDirections"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="636dp" />
+
+    <TextView
+        android:id="@+id/IDFellOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/FellOver"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="841dp" />
+
+    <TextView
+        android:id="@+id/IDStage2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Stage2"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="669dp" />
+
+    <TextView
+        android:id="@+id/IDStage3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Stage3"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="720dp" />
+
+    <TextView
+        android:id="@+id/IDControlPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ControlPanelTitle"
+        android:textColor="@drawable/text_states"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="600dp" />
+
+    <TextView
+        android:id="@+id/IDMisc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MiscTitle"
+        android:textColor="@drawable/text_states"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="764dp" />
+
+    <Switch
+        android:id="@+id/FellOverSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:textColor="@drawable/text_states"
+        android:thumbTint="@color/switch_default"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="841dp" />
+
+    <Switch
+        android:id="@+id/Stage2Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:textColor="@drawable/text_states"
+        android:thumbTint="@color/switch_default"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="720dp" />
+
+    <Switch
+        android:id="@+id/Stage3Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:textColor="@drawable/text_states"
+        android:thumbTint="@color/switch_default"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="669dp" />
+
+    <Button
+        android:id="@+id/ClimbNextButton"
+        android:layout_width="473dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded_corners"
+        android:enabled="false"
+        android:text="@string/ClimbNext"
+        android:textColor="@drawable/text_states"
+        android:textIsSelectable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="883dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

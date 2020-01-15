@@ -64,11 +64,11 @@ public class PregameActivity extends AppCompatActivity {
         teamNumberInput = findViewById(R.id.TeamNumberInput);
         firstAlliancePartnerInput = findViewById(R.id.FirstAlliancePartnerInput);
         secondAlliancePartnerInput = findViewById(R.id.SecondAlliancePartnerInput);
-        blueButton = findViewById(R.id.BlueButton);
-        redButton = findViewById(R.id.RedButton);
+        blueButton = findViewById(R.id.ScoredButton);
+        redButton = findViewById(R.id.MissedButton);
         NoShowSwitch = findViewById(R.id.NoShowSwitch);
         clearButton = findViewById(R.id.ClearButton);
-        startButton = findViewById(R.id.StartButton);
+        startButton = findViewById(R.id.TeleopNextButton);
         settingsButton = findViewById(R.id.SettingsButton);
 
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);

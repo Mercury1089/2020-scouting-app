@@ -7,59 +7,24 @@
     android:id="@+id/mainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/"
+    android:background="@color/bg_general"
     tools:context=".MatchActivity">
 
 
     <TextView
-        android:id="@+id/IDPregame"
-        android:layout_width="74dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/PregameTitle"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:fontFamily="sans-serif-black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/IDSetupDirections"
-        android:layout_width="386dp"
+        android:layout_width="wrap_content"
         android:layout_height="23dp"
-        android:layout_marginTop="5dp"
         android:text="@string/SetupDirections"
-        android:textColor="@color/bootstrap_dropdown_divider"
+        android:textColor="@drawable/text_states"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/IDPregame"
-        app:layout_constraintTop_toBottomOf="@+id/IDPregame" />
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/SettingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="@string/SettingsTitle"
-        app:layout_constraintBottom_toBottomOf="@+id/IDSetupDirections"
-        app:layout_constraintStart_toEndOf="@+id/IDSetupDirections"
-        app:layout_constraintTop_toTopOf="@+id/IDPregame" />
-
-    <TextView
-        android:id="@+id/IDScouterName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/ScouterNameID"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/IDPregame"
-        app:layout_constraintTop_toBottomOf="@+id/IDSetupDirections" />
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="108dp" />
 
     <EditText
         android:id="@+id/ScouterNameInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:hint="@string/HINT_NAME"
@@ -67,142 +32,13 @@
         android:inputType="textPersonName"
         android:tag="ScouterName"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/IDScouterName"
-        app:layout_constraintTop_toBottomOf="@+id/IDScouterName" />
-
-    <Switch
-        android:id="@+id/NoShowSwitch"
-        android:layout_width="115dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
-        android:text="@string/NoShow"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintBottom_toBottomOf="@+id/TeamNumberInput"
-        app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
-        app:layout_constraintTop_toTopOf="@+id/TeamNumberInput" />
-
-    <TextView
-        android:id="@+id/IDMatchNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/MatchNumberID"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="@+id/IDScouterName"
-        app:layout_constraintTop_toBottomOf="@+id/ScouterNameInput" />
-
-    <EditText
-        android:id="@+id/MatchNumberInput"
-        android:layout_width="405dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edittext_rounded_corners"
-        android:ems="10"
-        android:hint="@string/HINT_MATCH_NUMBER"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="3"
-        android:tag="MatchNumber"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/IDMatchNumber"
-        app:layout_constraintTop_toBottomOf="@+id/IDMatchNumber" />
-
-    <TextView
-        android:id="@+id/IDTeamNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/TeamNumberID"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="@+id/IDMatchNumber"
-        app:layout_constraintTop_toBottomOf="@+id/MatchNumberInput" />
-
-    <EditText
-        android:id="@+id/TeamNumberInput"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edittext_rounded_corners"
-        android:ems="10"
-        android:hint="@string/HINT_TEAM_NUMBER"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="4"
-        android:tag="TeamNumber"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/IDTeamNumber"
-        app:layout_constraintTop_toBottomOf="@+id/IDTeamNumber" />
-
-    <TextView
-        android:id="@+id/IDAllianceColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/AllianceColorID"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
-
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-        android:id="@+id/AllianceColors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        app:bootstrapBrand="success"
-        app:bootstrapSize="lg"
-        app:layout_constraintStart_toStartOf="@+id/IDAllianceColor"
-        app:layout_constraintTop_toBottomOf="@+id/IDAllianceColor">
-
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/BlueButton"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:tag="BlueToggle"
-            android:text="@string/Blue"
-            tools:layout_editor_absoluteX="250dp"
-            tools:layout_editor_absoluteY="439dp" />
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/RedButton"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:tag="RedToggle"
-            android:text="@string/Red"
-            android:textSize="12sp"
-            tools:layout_editor_absoluteX="71dp"
-            tools:layout_editor_absoluteY="602dp" />
-
-
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/ClearButton"
-        android:layout_width="135dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="50dp"
-        android:enabled="false"
-        android:text="@string/Clear"
-        app:layout_constraintBottom_toBottomOf="@+id/ScouterNameInput"
-        app:layout_constraintStart_toEndOf="@+id/ScouterNameInput"
-        app:layout_constraintTop_toTopOf="@+id/ScouterNameInput" />
-
-    <TextView
-        android:id="@+id/IDAlliancePartners"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/AlliancePartnersID"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        app:layout_constraintStart_toStartOf="@+id/IDTeamNumber"
-        app:layout_constraintTop_toBottomOf="@+id/TeamNumberInput" />
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="156dp" />
 
     <EditText
         android:id="@+id/FirstAlliancePartnerInput"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:hint="@string/HINT_TEAM_NUMBER"
@@ -212,14 +48,48 @@
         android:nextFocusDown="@+id/SecondAlliancePartnerInput"
         android:tag="Alliance1"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/IDAlliancePartners"
-        app:layout_constraintTop_toBottomOf="@+id/IDAlliancePartners" />
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="389dp" />
+
+    <TextView
+        android:id="@+id/IDScouterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ScouterNameID"
+        android:textColor="@drawable/text_states"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="132dp" />
+
+    <Switch
+        android:id="@+id/NoShowSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:textColor="@drawable/text_states"
+        android:thumbTint="@color/switch_default"
+        tools:layout_editor_absoluteX="381dp"
+        tools:layout_editor_absoluteY="388dp" />
+    <!-- TODO: test if switch active states are properly changing thumb and track colors to orange-->
+
+    <TextView
+        android:id="@+id/IDMatchNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MatchNumberID"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="210dp" />
 
     <EditText
         android:id="@+id/SecondAlliancePartnerInput"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:hint="@string/HINT_TEAM_NUMBER"
@@ -228,32 +98,195 @@
         android:maxLength="4"
         android:tag="Alliance2"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/FirstAlliancePartnerInput"
-        app:layout_constraintStart_toEndOf="@+id/FirstAlliancePartnerInput"
-        app:layout_constraintTop_toTopOf="@+id/FirstAlliancePartnerInput" />
+        tools:layout_editor_absoluteX="204dp"
+        tools:layout_editor_absoluteY="389dp" />
+
+    <TextView
+        android:id="@+id/IDAlliancePartners"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AlliancePartnersID"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="364dp" />
+
+    <TextView
+        android:id="@+id/IDNoShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NoShow"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="435dp"
+        tools:layout_editor_absoluteY="396dp" />
+
+    <TextView
+        android:id="@+id/IDAllianceColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AllianceColorID"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="361dp"
+        tools:layout_editor_absoluteY="459dp" />
+
+    <RadioGroup
+        android:id="@+id/MissedToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:showDividers="middle"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="481dp">
+
+        <RadioButton
+            android:id="@+id/ScoredButton"
+            android:layout_width="100dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_left_default"
+            android:button="@drawable/button_rounded_corners"
+            android:gravity="center"
+            android:text="@string/Blue"
+            android:textColor="@drawable/text_states"
+            tools:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/MissedButton"
+            android:layout_width="100dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_right_default"
+            android:button="@drawable/button_rounded_corners"
+            android:gravity="center"
+            android:text="@string/Red"
+            android:textColor="@drawable/text_states"
+            tools:visibility="visible" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/IDSetup"
+        android:layout_width="74dp"
+        android:layout_height="0dp"
+        android:text="@string/SetupTitle"
+        android:textColor="@drawable/text_states"
+        app:fontFamily="sans-serif-black"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="86dp" />
+
+    <TextView
+        android:id="@+id/IDStartingPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="@string/StartingPositionTitle"
+        android:textColor="@drawable/text_states"
+        app:fontFamily="sans-serif-black"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="577dp" />
+
+    <TextView
+        android:id="@+id/IDStartingPositionDirections"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="@string/StartingPositionDirections"
+        android:textColor="@drawable/text_states"
+        app:fontFamily="sans-serif"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="607dp" />
+
+    <TextView
+        android:id="@+id/IDTeamNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/TeamNumberID"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="286dp" />
+
+    <EditText
+        android:id="@+id/TeamNumberInput"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ems="10"
+        android:hint="@string/HINT_TEAM_NUMBER"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="4"
+        android:tag="TeamNumber"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="310dp" />
+
+    <EditText
+        android:id="@+id/MatchNumberInput"
+        android:layout_width="405dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ems="10"
+        android:hint="@string/HINT_MATCH_NUMBER"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="3"
+        android:tag="MatchNumber"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="234dp" />
+
+    <TextView
+        android:id="@+id/IDAllianceColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AllianceColorID"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteY="962dp" />
+
+    <Button
+        android:id="@+id/ClearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded_corners"
+        android:text="@string/Clear"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/ClimbNextButton"
+        android:layout_width="473dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded_corners"
+        android:enabled="false"
+        android:text="@string/Start"
+        android:textColor="@drawable/text_states"
+        android:textIsSelectable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="883dp" />
 
     <TextView
         android:id="@+id/IDStartButtonDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:text="@string/StartButtonDirections"
 
-        android:textColor="@color/bootstrap_dropdown_divider"
+        android:textColor="@color/text_alert"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SecondAlliancePartnerInput" />
+        tools:layout_editor_absoluteY="846dp" />
 
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/StartButton"
-        android:layout_width="473dp"
+    <Button
+        android:id="@+id/SettingsButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:enabled="false"
-        android:text="@string/Start"
-        app:layout_constraintEnd_toEndOf="@+id/IDStartButtonDirections"
-        app:layout_constraintStart_toStartOf="@+id/IDStartButtonDirections"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartButtonDirections" />
+        android:background="@drawable/button_rounded_corners"
+        android:text="@string/SettingsTitle"
+        android:textColor="@drawable/text_states"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

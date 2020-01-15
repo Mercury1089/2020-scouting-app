@@ -33,10 +33,10 @@
         tools:layout_editor_absoluteY="274dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/IDSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RESET APP"
+        android:text="@string/SettingsTitle"
         android:textColor="@drawable/text_states"
         android:textSize="30sp"
         tools:layout_editor_absoluteX="89dp"

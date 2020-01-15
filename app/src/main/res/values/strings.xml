@@ -4,11 +4,18 @@
     <!-- space = &#32; -->
 
 
-<!-- Titles -->
-    <!-- Activity Titles -->
+<!-- Headings -->
+    <!-- Titles -->
         <string name="app_name">Scouting App 2020</string>
-        <string name="PregameTitle">Pregame</string>
-        <string name="SettingsTitle">Settings</string>
+        <string name="SettingsTitle">RESET APP</string>
+        <string name="SetupTitle">SETUP</string>
+        <string name="StartingPositionTitle">STARTING POSITION</string>
+        <string name="ClearTitle">CLEAR THIS SCREEN?</string>
+        <string name="ExitTitle">EXIT</string>
+        <string name="PossessionTitle">POSSESSION</string>
+        <string name="ScoringTitle">SCORING</string>
+        <string name="MiscTitle">MISC</string>
+        <string name="ControlPanelTitle">CONTROL PANEL</string>
 
     <!-- Tabs -->
         <string name="Setup">Setup</string>
@@ -20,14 +27,16 @@
 <!-- PregameActivity -->
     <!-- ID Fields -->
         <string name="ScouterNameID">Scouter Name:</string>
-        <string name="MatchNumberID">Match Number:</string>
-        <string name="TeamNumberID">Team Number:</string>
-        <string name="AlliancePartnersID">Alliance Partners</string>
-        <string name="AllianceColorID">Alliance Color</string>
+        <string name="MatchNumberID">Match #:</string>
+        <string name="TeamNumberID">Team #:</string>
+        <string name="AlliancePartnersID">Alliance Partners:</string>
+        <string name="AllianceColorID">Alliance Color:</string>
+        <string name="StartingPositionID">Alliance Color:</string>
 
     <!-- Directions -->
         <string name="SetupDirections">Complete the fields below before the start of each match.</string>
-        <string name="StartButtonDirections">DO NOT press the START button until you hear the charge sound!</string>
+        <string name="StartButtonDirections">Wait to press START until you hear the charge sound!</string>
+        <string name="StartingPositionDirections">Tap on the field diagram below to mark the robot’s starting position.</string>
 
     <!-- Button Texts -->
         <string name="Blue">Blue</string>
@@ -41,13 +50,12 @@
 <!-- SettingsActivity -->
     <!-- ID Fields -->
         <string name="QRProblems">Having QR problems?</string>
-        <string name="ClearWarning">Are you sure that you want to clear everything?</string>
+        <string name="ClearWarning">Are you sure you want to clear all data on the setup screen?</string>
 
     <!-- Directions -->
         <string name="LeftRightDirections">Which side of the field is blue?</string>
 
     <!-- Button Texts -->
-        <string name="ResetLocalStorage">&#32;&#32;&#32;&#32;RESET LOCAL STORAGE&#32;&#32;&#32;&#32;</string>
         <string name="Save">Save</string>
         <string name="Cancel">Cancel</string>
         <string name="Left">Left</string>
@@ -56,19 +64,36 @@
 
 <!-- MatchActivity -->
     <!-- Universal -->
-        <string name="Exit">Exit</string>
-        <string name="FellOver">Fell Over</string>
+        <string name="DefaultValue">000</string>
 
     <!-- Exit Popup -->
         <string name="ExitWarning">Are you sure that you want to leave?\nAll data will be lost!</string>
 
     <!-- Auton -->
-
+        <string name="AutonSeconds">AUTON SECONDS REMAINING</string>
+        <string name="PossessionDirections">Tap the + and - buttons to increase or decrease the counter for each option.</string>
+        <string name="PickedUp">PICKED UP</string>
+        <string name="Dropped">DROPPED</string>
+        <string name="Plus">+</string>
+        <string name="Minus">-</string>
+        <string name="ScoringDirections">Tap on either button to open additional options. In the option menu, tap as many + or - buttons as necessary to record scored and missed power cells.</string>
+        <string name="Scored">SCORED</string>
+        <string name="Missed">MISSED</string>
+        <string name="MiscDirections">Tap on the toggle to mark if/when each action occurs.</string>
+        <string name="CrossedLine">Crossed Initiation Line</string>
+        <string name="FellOver">Fell Over</string>
+        <string name="TeleopWarning">Teleop is starting soon.</string>
+        <string name="TeleopError">Advance to teleop as soon as possible.</string>
+        <string name="TeleopNext">NEXT: TELEOP</string>
 
     <!-- Teleop -->
+        <string name="ControlPanelDirections">Tap on the toggle to mark if/when the robot activates either stage.</string>
+        <string name="Stage2">Stage 2</string>
+        <string name="Stage3">Stage 3</string>
+        <string name="FellOverOrDied">Fell over / Died</string>
+        <string name="ClimbNext">NEXT: CLIMBING AND QR</string>
 
-
-    <!-- Endgame -->
+    <!-- Climb -->
 
 
 
