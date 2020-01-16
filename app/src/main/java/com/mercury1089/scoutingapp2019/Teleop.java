@@ -35,10 +35,17 @@ public class Teleop extends Fragment {
     private RadioButton stageTwoButton;
     private RadioButton stageThreeButton;
 
+    //TextViews
+    private TextView pickedUpCounter;
+    private TextView droppedCounter;
+    private TextView scoredCounter;
+    private TextView missedCounter;
+
     //other variables
     private ConstraintLayout constraintLayout;
     private Switch fellOverSwitch;
-    private boolean secondTime = false;
+    private int totalScored;
+    private int totalMissed;
 
     public static Teleop newInstance() {
         Teleop fragment = new Teleop();
@@ -60,21 +67,32 @@ public class Teleop extends Fragment {
         //linking variables to XML elements on the screen
         pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
         pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
+        pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
 
         droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
         droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
+        droppedCounter = getView().findViewById(R.id.DroppedCounter);
 
         scoredButton = getView().findViewById(R.id.ScoredButton);
+        scoredCounter = getView().findViewById(R.id.ScoredCounter);
         missedButton = getView().findViewById(R.id.MissedButton);
+        missedCounter = getView().findViewById(R.id.MissedCounter);
 
         stageTwoButton = getView().findViewById(R.id.Stage2Switch);
         stageThreeButton = getView().findViewById(R.id.Stage3Switch);
 
-        //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
+        //
         setupHashMap = context.setupHashMap;
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
         teleopHashMap = HashMapManager.getTeleopHashMap();
-        //constraintLayout = getView().findViewById(R.id.teleop);
+
+        //fill in counters with data
+        pickedUpCounter.setText(teleopHashMap.get("NumberPickedUp"));
+        droppedCounter.setText(teleopHashMap.get("NumberDropped"));
+        totalScored = Integer.parseInt(teleopHashMap.get("InnerPortScored")) + Integer.parseInt(teleopHashMap.get("OuterPortScored")) + Integer.parseInt(teleopHashMap.get("LowerPortScored"));
+        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+        totalMissed = Integer.parseInt(teleopHashMap.get("UpperMissed")) + Integer.parseInt(teleopHashMap.get("LowerPortMissed"));
+        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
 
         //set listeners for buttons and fill the hashmap with data
         /*

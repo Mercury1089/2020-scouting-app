@@ -33,10 +33,12 @@ public class Auton extends Fragment {
     private RadioButton pickedUpDecrementButton;
     private RadioButton droppedIncrementButton;
     private RadioButton droppedDecrementButton;
-    private RadioButton scoredButton   ;
+    private RadioButton scoredButton;
     private RadioButton missedButton;
-    private RadioButton crossedLineSwitch;
-    private RadioButton fellOverSwitch;
+
+    //Switches
+    private Switch crossedLineSwitch;
+    private Switch fellOverSwitch;
 
     //TextViews
     private TextView secondsRemaining;
@@ -97,6 +99,13 @@ public class Auton extends Fragment {
         scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
         totalMissed = Integer.parseInt(autonHashMap.get("UpperMissed")) + Integer.parseInt(autonHashMap.get("LowerPortMissed"));
         missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+
+        //set switches to state in the HashMap
+        if(autonHashMap.get("CrossedInitiationLine") == "1")
+            crossedLineSwitch.setChecked(true);
+
+        if(autonHashMap.get("FellOver") == "1")
+            allButtonsEnabledState(false);
 
         //switch to the next screen with data after 15 seconds
         TimerTask switchToTeleop = new TimerTask() {
@@ -346,6 +355,10 @@ public class Auton extends Fragment {
                 });
             }
         });
+    }
+
+    private void allButtonsEnabledState(boolean enable){
+
     }
 
     @Override
