@@ -67,10 +67,12 @@
 
     <TextView
         android:id="@+id/IDScoringDirections"
-        android:layout_width="526dp"
-        android:layout_height="40dp"
+        android:layout_width="547dp"
+        android:layout_height="82dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/ScoringDirections"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="420dp" />
 
@@ -305,8 +307,10 @@
         android:id="@+id/IDCrossedLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
         android:text="@string/CrossedLine"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/CrossedLineSwitch"
         app:layout_constraintTop_toTopOf="@+id/CrossedLineSwitch"
         tools:layout_editor_absoluteX="175dp" />
@@ -326,8 +330,10 @@
         android:id="@+id/IDMiscDirections2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
+        android:textSize="lab"
         app:layout_constraintBottom_toBottomOf="@+id/FellOverSwitch"
         app:layout_constraintTop_toTopOf="@+id/FellOverSwitch"
         tools:layout_editor_absoluteX="174dp" />

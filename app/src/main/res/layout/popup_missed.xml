@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="325dp"
     android:layout_height="280dp"
-    android:background="#BF000000">
+    android:background="@color/bg_scoring_popup">
 
     <TextView
         android:id="@+id/OuterID"

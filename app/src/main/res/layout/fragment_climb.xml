@@ -25,9 +25,10 @@
         android:id="@+id/IDSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/EndgameTitle"
         android:textColor="@drawable/text_states"
-        android:textSize="30sp"
+        android:textSize="@dimen/header_text_size"
         tools:layout_editor_absoluteX="23dp"
         tools:layout_editor_absoluteY="82dp" />
 
@@ -38,7 +39,7 @@
         android:fontFamily="@font/open_sans_italic"
         android:text="If a QR code fails to generate or the app is displaying persistent and incorrect active states, tap the button below."
         android:textColor="@drawable/text_states"
-        android:textSize="14sp"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="156dp" />
@@ -63,7 +64,7 @@
         android:fontFamily="@font/open_sans"
         android:text="@string/Rung"
         android:textColor="@drawable/text_states"
-        android:textSize="14sp"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintStart_toEndOf="@+id/RungSwitch"
         tools:layout_editor_absoluteY="293dp" />
 
@@ -74,10 +75,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="64dp"
-        android:backgroundTint="@color/button_active"
-        android:foregroundTint="@color/button_active"
         android:textColor="@drawable/text_states"
-        android:thumb="@drawable/thumb_default"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="232dp" />
 
@@ -89,7 +89,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="64dp"
         android:textColor="@drawable/text_states"
-        android:thumb="@drawable/thumb_default"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="285dp" />
 
@@ -101,7 +102,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="64dp"
         android:textColor="@drawable/text_states"
-        android:thumb="@drawable/thumb_default"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="345dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
