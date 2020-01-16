@@ -27,9 +27,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         //assigning variables to their equivalent screen elements
-        leftButton = findViewById(R.id.FieldSideLeft);
-        rightButton = findViewById(R.id.FieldSideRight);
-        localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
+        //leftButton = findViewById(R.id.FieldSideLeft);
+        //rightButton = findViewById(R.id.FieldSideRight);
+        //localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         saveButton = findViewById(R.id.SaveButton);
         cancelButton = findViewById(R.id.CancelButton);
 

@@ -54,12 +54,21 @@ public class GenUtils {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++)
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getAColor(context, R.color.colorPrimaryDark) : getAColor(context, R.color.bootstrap_dropdown_divider);
+                        getAColor(context, R.color.design_default_color_primary_dark) : getAColor(context, R.color.bootstrap_dropdown_divider);
         }
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
     }
 
-
+    public static String padLeftZeros(String input, int length){
+        if(input.length() < length){
+            String result = "";
+            for(int i = 0; i < length - input.length(); i++){
+                result += "0";
+            }
+            return result + input;
+        }
+        return input;
+    }
 }

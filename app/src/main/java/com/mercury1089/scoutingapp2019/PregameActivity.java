@@ -65,12 +65,12 @@ public class PregameActivity extends AppCompatActivity {
         teamNumberInput = findViewById(R.id.TeamNumberInput);
         firstAlliancePartnerInput = findViewById(R.id.FirstAlliancePartnerInput);
         secondAlliancePartnerInput = findViewById(R.id.SecondAlliancePartnerInput);
-        blueButton = findViewById(R.id.ScoredButton);
-        redButton = findViewById(R.id.MissedButton);
-        NoShowSwitch = findViewById(R.id.NoShowSwitch);
-        clearButton = findViewById(R.id.ClearButton);
-        startButton = findViewById(R.id.TeleopNextButton);
-        settingsButton = findViewById(R.id.SettingsButton);
+        //blueButton = findViewById(R.id.ScoredButton);
+        //redButton = findViewById(R.id.MissedButton);
+        //NoShowSwitch = findViewById(R.id.NoShowSwitch);
+        //clearButton = findViewById(R.id.ClearButton);
+        //startButton = findViewById(R.id.TeleopNextButton);
+        //settingsButton = findViewById(R.id.SettingsButton);
 
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         setupHashMap = HashMapManager.getSetupHashMap();
@@ -339,7 +339,7 @@ public class PregameActivity extends AppCompatActivity {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(PregameActivity.this, R.color.colorPrimaryDark) : GenUtils.getAColor(PregameActivity.this, R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(PregameActivity.this, R.color.design_default_color_primary_dark) : GenUtils.getAColor(PregameActivity.this, R.color.bootstrap_dropdown_divider);
             }
         }
 
@@ -398,8 +398,8 @@ public class PregameActivity extends AppCompatActivity {
                                     goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
                                 } else {
                                     goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.defaultdisabled)));
-                                    goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.textdefault));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.switch_disabled)));
+                                    goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
                                 }
                             }
                         });
