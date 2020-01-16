@@ -3,9 +3,8 @@
     <!--  Non focused states -->
     <item android:state_enabled="false"
         android:drawable="@drawable/button_disabled" />
-    <item android:state_enabled="true"
-        android:drawable="@drawable/button_default" />
     <!--  Focused states -->
     <item android:state_active="true"
         android:drawable="@drawable/button_active" />
+    <item android:drawable="@drawable/button_default" />
 </selector>

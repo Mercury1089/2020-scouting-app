@@ -10,15 +10,17 @@
 
     <Button
         android:id="@+id/ClearConfirm"
-        android:layout_width="410dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/button_active"
+        android:background="@drawable/button_large_active"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Clear"
-        android:textColor="@drawable/text_states"
-        android:textSize="18sp"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        android:layout_constraintWidth_percent="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDClearDirections" />
 
@@ -26,10 +28,11 @@
         android:id="@+id/CancelConfirm"
         android:layout_width="410dp"
         android:layout_height="75dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_default"
+        android:layout_marginTop="@dimen/button_text_size"
+        android:background="@android:color/transparent"
         android:text="@string/Cancel"
-        android:textSize="18sp"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toStartOf="@+id/ClearConfirm"
         app:layout_constraintTop_toBottomOf="@+id/ClearConfirm" />
 
@@ -38,7 +41,7 @@
         android:layout_width="427dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/open_sans"
         android:text="Are you sure you want to clear all data on the setup screen?"
         android:textColor="@color/bootstrap_brand_secondary_border"
         android:textSize="24sp"
@@ -51,12 +54,12 @@
         android:id="@+id/IDClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="296dp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/ClearTitle"
-        android:textColor="@color/bootstrap_brand_secondary_border"
-        android:textSize="24sp"
+        android:textColor="@color/sky"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

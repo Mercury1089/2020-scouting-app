@@ -14,31 +14,119 @@
     <TextView
         android:id="@+id/IDSetupDirections"
         android:layout_width="wrap_content"
-        android:layout_height="23dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/SetupDirections"
         android:textColor="@drawable/text_states"
-        android:textSize="14sp"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="108dp" />
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="129dp" />
 
     <EditText
         android:id="@+id/ScouterNameInput"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:hint="@string/HINT_NAME"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:tag="ScouterName"
-        android:textColor="@color/black"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="156dp" />
+        android:textColor="@color/charcoal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDScouterName" />
+
+    <TextView
+        android:id="@+id/IDScouterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/ScouterNameID"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="170dp" />
+
+    <Switch
+        android:id="@+id/ClimbedSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="56dp"
+        android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_default"
+        android:track="@drawable/track_default"
+        app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
+        app:layout_constraintTop_toTopOf="@+id/TeamNumberInput" />
+    <!-- TODO: test if switch active states are properly changing thumb and track colors to orange-->
+
+    <TextView
+        android:id="@+id/IDMatchNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/MatchNumberID"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ScouterNameInput" />
+
+    <TextView
+        android:id="@+id/IDAlliancePartners"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/AlliancePartnersID"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TeamNumberInput" />
+
+    <EditText
+        android:id="@+id/MatchNumberInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ems="10"
+        android:hint="@string/HINT_MATCH_NUMBER"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="3"
+        android:tag="MatchNumber"
+        android:textColor="@color/charcoal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDMatchNumber" />
+
+    <TextView
+        android:id="@+id/IDTeamNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/TeamNumberID"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MatchNumberInput" />
 
     <EditText
         android:id="@+id/FirstAlliancePartnerInput"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:hint="@string/HINT_TEAM_NUMBER"
@@ -47,49 +135,33 @@
         android:maxLength="4"
         android:nextFocusDown="@+id/SecondAlliancePartnerInput"
         android:tag="Alliance1"
-        android:textColor="@color/black"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="389dp" />
+        android:textColor="@color/charcoal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDAlliancePartners" />
 
-    <TextView
-        android:id="@+id/IDScouterName"
+    <EditText
+        android:id="@+id/TeamNumberInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ScouterNameID"
-        android:textColor="@drawable/text_states"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="132dp" />
-
-    <Switch
-        android:id="@+id/NoShowSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/button_active"
-        android:foregroundTint="@color/button_active"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:textColor="@drawable/text_states"
-        android:thumbTint="@color/switch_default"
-        tools:layout_editor_absoluteX="381dp"
-        tools:layout_editor_absoluteY="388dp" />
-    <!-- TODO: test if switch active states are properly changing thumb and track colors to orange-->
-
-    <TextView
-        android:id="@+id/IDMatchNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/MatchNumberID"
-        android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="210dp" />
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ems="10"
+        android:hint="@string/HINT_TEAM_NUMBER"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="4"
+        android:tag="TeamNumber"
+        android:textColor="@color/charcoal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDTeamNumber" />
 
     <EditText
         android:id="@+id/SecondAlliancePartnerInput"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:hint="@string/HINT_TEAM_NUMBER"
@@ -97,47 +169,46 @@
         android:inputType="number"
         android:maxLength="4"
         android:tag="Alliance2"
-        android:textColor="@color/black"
-        tools:layout_editor_absoluteX="204dp"
-        tools:layout_editor_absoluteY="389dp" />
-
-    <TextView
-        android:id="@+id/IDAlliancePartners"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/AlliancePartnersID"
-        android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="364dp" />
+        android:textColor="@color/charcoal"
+        app:layout_constraintStart_toEndOf="@+id/FirstAlliancePartnerInput"
+        app:layout_constraintTop_toBottomOf="@+id/IDAlliancePartners" />
 
     <TextView
         android:id="@+id/IDNoShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/open_sans"
         android:text="@string/NoShow"
         android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="435dp"
-        tools:layout_editor_absoluteY="396dp" />
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/ClimbedSwitch"
+        app:layout_constraintStart_toEndOf="@+id/ClimbedSwitch"
+        app:layout_constraintTop_toTopOf="@+id/ClimbedSwitch" />
 
     <TextView
         android:id="@+id/IDAllianceColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/open_sans"
         android:text="@string/AllianceColorID"
         android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="361dp"
-        tools:layout_editor_absoluteY="459dp" />
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDAlliancePartners"
+        app:layout_constraintStart_toEndOf="@+id/TeamNumberInput" />
 
     <RadioGroup
         android:id="@+id/MissedToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:divider="?android:attr/dividerHorizontal"
-        android:showDividers="middle"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="481dp">
+        android:showDividers="middle"
+        app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
+        app:layout_constraintTop_toTopOf="@+id/IDAlliancePartners">
 
         <RadioButton
             android:id="@+id/ScoredButton"
@@ -145,10 +216,12 @@
             android:layout_height="47dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
-            android:button="@drawable/button_rounded_corners"
+            android:button="@drawable/button_default"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Blue"
             android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
 
         <RadioButton
@@ -158,29 +231,33 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
             android:button="@drawable/button_rounded_corners"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Red"
             android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/IDSetup"
-        android:layout_width="74dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/SetupTitle"
-        android:textColor="@drawable/text_states"
-        app:fontFamily="sans-serif-black"
+        android:textColor="@color/sky"
+        android:textSize="@dimen/header_text_size"
         tools:layout_editor_absoluteX="64dp"
         tools:layout_editor_absoluteY="86dp" />
 
     <TextView
         android:id="@+id/IDStartingPosition"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/StartingPositionTitle"
-        android:textColor="@drawable/text_states"
-        app:fontFamily="sans-serif-black"
+        android:textColor="@color/sky"
+        android:textSize="@dimen/header_text_size"
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="577dp" />
 
@@ -188,50 +265,12 @@
         android:id="@+id/IDStartingPositionDirections"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/StartingPositionDirections"
         android:textColor="@drawable/text_states"
-        app:fontFamily="sans-serif"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="607dp" />
-
-    <TextView
-        android:id="@+id/IDTeamNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TeamNumberID"
-        android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="286dp" />
-
-    <EditText
-        android:id="@+id/TeamNumberInput"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_rounded_corners"
-        android:ems="10"
-        android:hint="@string/HINT_TEAM_NUMBER"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="4"
-        android:tag="TeamNumber"
-        android:textColor="@color/black"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="310dp" />
-
-    <EditText
-        android:id="@+id/MatchNumberInput"
-        android:layout_width="405dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_rounded_corners"
-        android:ems="10"
-        android:hint="@string/HINT_MATCH_NUMBER"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="3"
-        android:tag="MatchNumber"
-        android:textColor="@color/black"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="234dp" />
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintTop_toBottomOf="@+id/IDStartingPosition"
+        tools:layout_editor_absoluteX="58dp" />
 
     <TextView
         android:id="@+id/IDAllianceColor"
@@ -245,11 +284,15 @@
         android:id="@+id/ClearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_rounded_corners"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Clear"
         android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintStart_toEndOf="@+id/SettingsButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/ClimbNextButton"
@@ -257,9 +300,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_rounded_corners"
         android:enabled="false"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Start"
         android:textColor="@drawable/text_states"
         android:textIsSelectable="true"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -269,9 +314,11 @@
         android:id="@+id/IDStartButtonDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/StartButtonDirections"
+        android:fontFamily="@font/open_sans"
 
-        android:textColor="@color/text_alert"
+        android:text="@string/StartButtonDirections"
+        android:textColor="@color/banana"
+        android:textSize="@dimen/label_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -282,11 +329,14 @@
         android:id="@+id/SettingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_rounded_corners"
-        android:text="@string/SettingsTitle"
+        android:fontFamily="@font/open_sans"
+        android:text='"Settings"'
         android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

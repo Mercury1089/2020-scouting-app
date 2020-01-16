@@ -8,7 +8,7 @@
         android:bottomLeftRadius="0dp"
         android:topLeftRadius="0dp"
         android:topRightRadius="10dp"/>
-    <solid android:color="@color/button_red"/>
+    <solid android:color="@color/fire"/>
     <padding
         android:bottom="5dp"
         android:left="10dp"

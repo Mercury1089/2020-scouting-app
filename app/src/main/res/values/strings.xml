@@ -16,6 +16,7 @@
         <string name="ScoringTitle">SCORING</string>
         <string name="MiscTitle">MISC</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
+        <string name="EndgameTitle">ENDGAME</string>
 
     <!-- Tabs -->
         <string name="Setup">Setup</string>
@@ -26,12 +27,11 @@
 
 <!-- PregameActivity -->
     <!-- ID Fields -->
-        <string name="ScouterNameID">Scouter Name:</string>
-        <string name="MatchNumberID">Match #:</string>
-        <string name="TeamNumberID">Team #:</string>
-        <string name="AlliancePartnersID">Alliance Partners:</string>
-        <string name="AllianceColorID">Alliance Color:</string>
-        <string name="StartingPositionID">Alliance Color:</string>
+        <string name="ScouterNameID">SCOUTER NAME:</string>
+        <string name="MatchNumberID">MATCH #:</string>
+        <string name="TeamNumberID">TEAM #:</string>
+        <string name="AlliancePartnersID">ALLIANCE PARTNERS:</string>
+        <string name="AllianceColorID">ALLIANCE COLOR:</string>
 
     <!-- Directions -->
         <string name="SetupDirections">Complete the fields below before the start of each match.</string>
@@ -39,11 +39,11 @@
         <string name="StartingPositionDirections">Tap on the field diagram below to mark the robot’s starting position.</string>
 
     <!-- Button Texts -->
-        <string name="Blue">Blue</string>
-        <string name="Red">Red</string>
+        <string name="Blue">BLUE</string>
+        <string name="Red">RED</string>
         <string name="NoShow">No Show</string>
-        <string name="Clear">Clear</string>
-        <string name="Start">Start</string>
+        <string name="Clear">CLEAR</string>
+        <string name="Start">START</string>
         <string name="GenerateQRCode">GENERATE QR CODE</string>
 
 
@@ -94,7 +94,10 @@
         <string name="ClimbNext">NEXT: CLIMBING AND QR</string>
 
     <!-- Climb -->
-
+        <string name="EndgameDirections">Tap on the toggle to mark if/when the action occurs.</string>
+        <string name="Climbed">Climbed</string>
+        <string name="Rung">Leveled the rung</string>
+        <string name="Parked">Parked</string>
 
 
 <!-- QR Code Display -->

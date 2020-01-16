@@ -19,19 +19,33 @@
     <color name="bg_general"> #232C3D </color>
     <color name="bg_scoring_popup">#BF0A0E14</color> <!-- 75% opacity -->
     <color name="bg_clear_confirm_popup">#2F3A4F</color>
-    <color name="button_blue"> #19ABF2 </color>
-    <color name="button_red"> #F72855 </color>
-    <color name="button_active"> #F48862 </color>
-    <color name="button_default"> #525F78 </color>
+
+    <color name="electric"> electric </color>
+    <color name="banana"> #FFD966 </color>
+    <color name="fire"> #F72855 </color>
+    <color name="melon"> #F48862 </color>
+    <color name="rust"> #C25027 </color>
+    <color name="clay"> #784330 </color>
+    <color name="cocoa"> #423029 </color>
+    <color name="ice"> #F2F2F2 </color>
+    <color name="cloud"> #DADEE6 </color>
+    <color name="sky"> #8593B0 </color>
+    <color name="ocean"> #525F78 </color>
+    <color name="night"> #2F3A4F </color>
+    <color name="denim"> #232C3D </color>
+    <color name="charcoal"> #06090D </color>
+
     <color name="button_disabled"> #2F3A4F </color>
+
     <color name="heading_active"> #828FAC </color>
     <color name="heading_disabled"> #2F3A4F </color>
+
     <color name="text_default"> #C5C9D2 </color>
     <color name="text_disabled"> #505A61 </color>
-    <color name="text_alert"> #FFD966 </color>
-    <color name="switch_active"> #8593B0 </color>
-    <color name="switch_default"> #8593B0 </color>
-    <color name="switch_disabled"> #525F78 </color>
+
+    <color name="switch_track_active"> #784330 </color>
+    <color name="switch_thumb_disabled"> #525F78 </color>
+
     <color name="border_warning"> #F72855 </color>
 
 

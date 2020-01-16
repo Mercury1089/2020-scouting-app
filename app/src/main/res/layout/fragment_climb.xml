@@ -9,35 +9,99 @@
     tools:context=".MatchActivity"
     tools:ignore="ExtraText">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="305dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="60dp"
-        android:background="@drawable/button_rounded_corners"
-        android:text="RESET ALL VARIABLES"
+    <TextView
+        android:id="@+id/IDParked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Parked"
         android:textColor="@drawable/text_states"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="274dp" />
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toEndOf="@+id/ParkedSwitch"
+        tools:layout_editor_absoluteY="345dp" />
 
     <TextView
         android:id="@+id/IDSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/SettingsTitle"
+        android:text="@string/EndgameTitle"
         android:textColor="@drawable/text_states"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="115dp" />
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="82dp" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="599dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/IDSettingsDirections"
+        android:layout_width="554dp"
+        android:layout_height="61dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="If a QR code fails to generate or the app is displaying persistent and incorrect active states, tap the button below."
         android:textColor="@drawable/text_states"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="155dp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="156dp" />
+
+    <TextView
+        android:id="@+id/IDClimbed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Climbed"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toEndOf="@+id/ClimbedSwitch"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <TextView
+        android:id="@+id/IDRung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Rung"
+        android:textColor="@drawable/text_states"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/RungSwitch"
+        tools:layout_editor_absoluteY="293dp" />
+
+    <Switch
+        android:id="@+id/ClimbedSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="64dp"
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+        android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_default"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="232dp" />
+
+    <Switch
+        android:id="@+id/RungSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="64dp"
+        android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_default"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="285dp" />
+
+    <Switch
+        android:id="@+id/ParkedSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="64dp"
+        android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_default"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="345dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
