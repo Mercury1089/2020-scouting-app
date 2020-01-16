@@ -353,7 +353,7 @@ public class PregameActivity extends AppCompatActivity {
         public void run() {
             HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
             HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
-            HashMapManager.setDefaultValues(HashMapManager.HASH.ENDGAAME);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
 
             QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());

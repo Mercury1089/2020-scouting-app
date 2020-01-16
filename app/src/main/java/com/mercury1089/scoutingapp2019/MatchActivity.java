@@ -77,7 +77,7 @@ public class MatchActivity extends AppCompatActivity {
                         dialog.dismiss();
                         HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
                         HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
-                        HashMapManager.setDefaultValues(HashMapManager.HASH.ENDGAAME);
+                        HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
                         Intent intent = new Intent(MatchActivity.this, PregameActivity.class);
                         startActivity(intent);
                         finish();

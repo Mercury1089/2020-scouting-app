@@ -60,7 +60,7 @@ public class Climb extends Fragment {
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
-        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.ENDGAAME);
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
         climbHashMap = HashMapManager.getClimbHashMap();
 
         //set listeners for buttons and fill the hashmap with data
@@ -145,7 +145,7 @@ public class Climb extends Fragment {
         public void run() {
             HashMapManager.checkNullOrEmpty(HashMapManager.HASH.AUTON);
             HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
-            HashMapManager.checkNullOrEmpty(HashMapManager.HASH.ENDGAAME);
+            HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
 
             QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
             QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());

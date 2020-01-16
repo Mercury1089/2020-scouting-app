@@ -316,7 +316,7 @@
         android:textColor="@drawable/text_states"
         android:thumbTint="@color/switch_default"
         tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="720dp" />
+        tools:layout_editor_absoluteY="669dp" />
 
     <Switch
         android:id="@+id/Stage3Switch"
@@ -329,7 +329,7 @@
         android:textColor="@drawable/text_states"
         android:thumbTint="@color/switch_default"
         tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="669dp" />
+        tools:layout_editor_absoluteY="720dp" />
 
     <Button
         android:id="@+id/ClimbNextButton"

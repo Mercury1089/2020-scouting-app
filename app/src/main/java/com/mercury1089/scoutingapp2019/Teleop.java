@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -24,9 +25,15 @@ public class Teleop extends Fragment {
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> teleopHashMap;
 
-    //BootstrapButtons
-    Button scoredButton;
-    Button missedButton;
+    //RadioButtons
+    private RadioButton pickedUpIncrementButton;
+    private RadioButton pickedUpDecrementButton;
+    private RadioButton droppedIncrementButton;
+    private RadioButton droppedDecrementButton;
+    private RadioButton scoredButton   ;
+    private RadioButton missedButton;
+    private RadioButton stageTwoButton;
+    private RadioButton stageThreeButton;
 
     //other variables
     private ConstraintLayout constraintLayout;
@@ -51,8 +58,17 @@ public class Teleop extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
+        pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
+        pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
+
+        droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
+        droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
+
         scoredButton = getView().findViewById(R.id.ScoredButton);
         missedButton = getView().findViewById(R.id.MissedButton);
+
+        stageTwoButton = getView().findViewById(R.id.Stage2Switch);
+        stageThreeButton = getView().findViewById(R.id.Stage3Switch);
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
@@ -75,7 +91,7 @@ public class Teleop extends Fragment {
         scoredButton.setOnClickListener(new BootstrapButton.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored_or_missed, null);
+                View popupView = inflater.inflate(R.layout.popup_scored, null);
 
                 int width = 325;
                 int height = 310;
@@ -184,12 +200,12 @@ public class Teleop extends Fragment {
         missedButton.setOnClickListener(new BootstrapButton.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored_or_missed, null);
+                View popupView = inflater.inflate(R.layout.popup_missed, null);
 
                 int width = 325;
                 int height = 310;
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-                popupWindow.showAsDropDown(scoredButton);
+                popupWindow.showAsDropDown(missedButton);
 
                 // Bootstrap Buttons
                 BootstrapButton saveButton = popupView.findViewById(R.id.SaveButton);

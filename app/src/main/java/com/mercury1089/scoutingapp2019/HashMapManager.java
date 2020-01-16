@@ -14,7 +14,7 @@ public class HashMapManager {
      *
      */
     public enum HASH{
-        SETUP, AUTON, TELEOP, ENDGAAME
+        SETUP, AUTON, TELEOP, CLIMB
     }
 
     /**
@@ -123,36 +123,37 @@ public class HashMapManager {
                 setupHashMap.put("AlliancePartner1", "");
                 setupHashMap.put("AlliancePartner2", "");
                 setupHashMap.put("AllianceColor", "Blue");
+                setupHashMap.put("FellOver", "0");
                 break;
             case AUTON:
                 //include all the items that will be in the autonHashMap
                 autonHashMap.put("HashMapName", "Auton");
-                autonHashMap.put("InnerPortScored", "0");
-                autonHashMap.put("OuterPortScored", "0");
-                autonHashMap.put("LowerPortScored", "0");
-                autonHashMap.put("InnerPortMissed", "0");
-                autonHashMap.put("OuterPortMissed", "0");
-                autonHashMap.put("LowerPortMissed", "0");
+                autonHashMap.put("NumberPickedUp", "000");
+                autonHashMap.put("NumberDropped", "000");
+                autonHashMap.put("InnerPortScored", "000");
+                autonHashMap.put("OuterPortScored", "000");
+                autonHashMap.put("LowerPortScored", "000");
+                autonHashMap.put("UpperPortMissed", "000");
+                autonHashMap.put("LowerPortMissed", "000");
+                autonHashMap.put("CrossedInitiationLine", "0");
                 break;
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
                 teleopHashMap.put("HashMapName", "Teleop");
-                teleopHashMap.put("InnerPortScored", "0");
-                teleopHashMap.put("OuterPortScored", "0");
-                teleopHashMap.put("LowerPortScored", "0");
-                teleopHashMap.put("InnerPortMissed", "0");
-                teleopHashMap.put("OuterPortMissed", "0");
-                teleopHashMap.put("LowerPortMissed", "0");
+                teleopHashMap.put("InnerPortScored", "000");
+                teleopHashMap.put("OuterPortScored", "000");
+                teleopHashMap.put("LowerPortScored", "000");
+                teleopHashMap.put("UpperPortMissed", "000");
+                teleopHashMap.put("LowerPortMissed", "000");
+                teleopHashMap.put("StageTwo", "0");
+                teleopHashMap.put("StageThree", "0");
                 break;
-            case ENDGAAME:
+            case CLIMB:
                 //include all the items that will be in the climbHashMap
                 climbHashMap.put("HashMapName", "Climb");
-                climbHashMap.put("InnerPortScored", "000");
-                climbHashMap.put("OuterPortScored", "000");
-                climbHashMap.put("LowerPortScored", "000");
-                climbHashMap.put("InnerPortMissed", "000");
-                climbHashMap.put("OuterPortMissed", "000");
-                climbHashMap.put("LowerPortMissed", "000");
+                climbHashMap.put("Climbed", "0");
+                climbHashMap.put("Leveled", "0");
+                climbHashMap.put("Parked", "0");
                 break;
         }
     }
@@ -188,11 +189,11 @@ public class HashMapManager {
                     setDefaultValues(HASH.TELEOP);
                     return true;
                 }
-            case ENDGAAME:
+            case CLIMB:
                 if(climbHashMap == null)
                     climbHashMap = new LinkedHashMap<>();
                 if(climbHashMap.isEmpty()) {
-                    setDefaultValues(HASH.ENDGAAME);
+                    setDefaultValues(HASH.CLIMB);
                     return true;
                 }
         }
@@ -213,7 +214,7 @@ public class HashMapManager {
         setDefaultValues(HASH.SETUP);
         setDefaultValues(HASH.AUTON);
         setDefaultValues(HASH.TELEOP);
-        setDefaultValues(HASH.ENDGAAME);
+        setDefaultValues(HASH.CLIMB);
         setupHashMap.put("ScouterName", scouterName);
         setupHashMap.put("MatchNumber", Integer.toString((Integer.parseInt(matchNumber) + 1)));
         setupHashMap.put("AllianceColor", allianceColor);
