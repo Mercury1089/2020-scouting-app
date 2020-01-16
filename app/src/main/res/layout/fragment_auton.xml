@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/AutonSeconds"
         android:textColor="@drawable/text_states"
         app:layout_constraintBottom_toTopOf="@+id/TeleopWarning"
@@ -37,6 +38,7 @@
         android:id="@+id/IDPossession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/PossessionTitle"
         android:textColor="@drawable/text_states"
         android:textSize="18sp"
@@ -57,6 +59,7 @@
         android:id="@+id/IDPossessionDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/PossessionDirections"
         android:textColor="@drawable/text_states"
         tools:layout_editor_absoluteX="43dp"
@@ -75,6 +78,7 @@
         android:id="@+id/IDPickedUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
         android:text="@string/PickedUp"
         android:textColor="@drawable/text_states"
         tools:layout_editor_absoluteX="43dp"
@@ -88,8 +92,9 @@
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
         app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
-        tools:layout_editor_absoluteY="221dp" />
+        app:layout_constraintTop_toTopOf="@+id/IDPickedUp" />
 
     <TextView
         android:id="@+id/DroppedCounter"
@@ -99,13 +104,15 @@
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        app:layout_constraintBottom_toBottomOf="@+id/IDDropped"
         app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
-        tools:layout_editor_absoluteY="318dp" />
+        app:layout_constraintTop_toTopOf="@+id/IDDropped" />
 
     <TextView
         android:id="@+id/IDDropped"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Dropped"
         android:textColor="@drawable/text_states"
         tools:layout_editor_absoluteX="43dp"
@@ -116,12 +123,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        app:layout_constraintBottom_toTopOf="@+id/TeleopWarning"
-        app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1" />
+        app:layout_constraintBottom_toBottomOf="@+id/IDAutonSeconds1"
+        app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
+        app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
 
     <RadioGroup
         android:id="@+id/ScoredToggle"
@@ -180,6 +187,7 @@
             android:background="@drawable/toggle_left_default"
             android:button="@drawable/toggle_left_default"
             android:enabled="true"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Plus"
             android:textColor="@drawable/text_states"
@@ -194,6 +202,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
             android:button="@drawable/button_rounded_corners"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
@@ -219,6 +228,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
             android:button="@drawable/button_rounded_corners"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Plus"
             android:textColor="@drawable/text_states"
@@ -232,6 +242,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
             android:button="@drawable/button_rounded_corners"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
@@ -267,18 +278,21 @@
         android:id="@+id/IDMisc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/MiscTitle"
         android:textColor="@drawable/text_states"
-        android:textSize="18sp"
+        android:textSize="@dimen/header_text_size"
         tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="632dp" />
+        tools:layout_editor_absoluteY="609dp" />
 
     <TextView
         android:id="@+id/IDMiscDirections"
         android:layout_width="526dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/MiscDirections"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="656dp" />
 
@@ -288,21 +302,18 @@
         android:layout_height="wrap_content"
         android:text="@string/CrossedLine"
         android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="710dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/CrossedLineSwitch"
+        app:layout_constraintTop_toTopOf="@+id/CrossedLineSwitch"
+        tools:layout_editor_absoluteX="175dp" />
 
     <Switch
-        android:id="@+id/FellOverSwitch"
+        android:id="@+id/CrossedLineSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/button_active"
-        android:foregroundTint="@color/button_active"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:textColor="@drawable/text_states"
-        android:thumbTint="@color/switch_default"
+        android:thumb="@drawable/thumb_default"
+        android:track="@drawable/track_default"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="702dp" />
 
@@ -312,8 +323,9 @@
         android:layout_height="wrap_content"
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="753dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/FellOverSwitch"
+        app:layout_constraintTop_toTopOf="@+id/FellOverSwitch"
+        tools:layout_editor_absoluteX="174dp" />
 
     <Switch
         android:id="@+id/FellOverSwitch"
@@ -321,14 +333,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/button_active"
-        android:foregroundTint="@color/button_active"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:textColor="@drawable/text_states"
-        android:thumbTint="@color/switch_default"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="745dp" />
+        android:thumb="@drawable/thumb_default"
+        android:track="@drawable/track_default"
+        app:layout_constraintStart_toStartOf="@+id/CrossedLineSwitch"
+        tools:layout_editor_absoluteY="769dp" />
 
     <Button
         android:id="@+id/ClimbNextButton"
