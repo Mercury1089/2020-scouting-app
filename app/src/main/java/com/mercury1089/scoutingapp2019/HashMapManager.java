@@ -127,14 +127,32 @@ public class HashMapManager {
             case AUTON:
                 //include all the items that will be in the autonHashMap
                 autonHashMap.put("HashMapName", "Auton");
+                autonHashMap.put("InnerPortScored", "0");
+                autonHashMap.put("OuterPortScored", "0");
+                autonHashMap.put("LowerPortScored", "0");
+                autonHashMap.put("InnerPortMissed", "0");
+                autonHashMap.put("OuterPortMissed", "0");
+                autonHashMap.put("LowerPortMissed", "0");
                 break;
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
                 teleopHashMap.put("HashMapName", "Teleop");
+                teleopHashMap.put("InnerPortScored", "0");
+                teleopHashMap.put("OuterPortScored", "0");
+                teleopHashMap.put("LowerPortScored", "0");
+                teleopHashMap.put("InnerPortMissed", "0");
+                teleopHashMap.put("OuterPortMissed", "0");
+                teleopHashMap.put("LowerPortMissed", "0");
                 break;
             case ENDGAAME:
                 //include all the items that will be in the climbHashMap
                 climbHashMap.put("HashMapName", "Climb");
+                climbHashMap.put("InnerPortScored", "000");
+                climbHashMap.put("OuterPortScored", "000");
+                climbHashMap.put("LowerPortScored", "000");
+                climbHashMap.put("InnerPortMissed", "000");
+                climbHashMap.put("OuterPortMissed", "000");
+                climbHashMap.put("LowerPortMissed", "000");
                 break;
         }
     }

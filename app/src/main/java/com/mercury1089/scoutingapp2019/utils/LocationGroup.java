@@ -45,11 +45,11 @@ public class LocationGroup extends LocationGroupList {
         if (name.charAt(2) == 'P') {
             if (counter > 0) {
                 badge.setColor(R.color.genutils_yellow);
-                counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
+                counterText.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
             }
             else {
                 badge.setColor(R.color.genutils_lightYellow);
-                counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
+                counterText.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
             }
         } else if (name.charAt(2) == 'C') {
             if (counter > 0) {
@@ -58,7 +58,7 @@ public class LocationGroup extends LocationGroupList {
             }
             else {
                 badge.setColor(R.color.genutils_lightOrange);
-                counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
+                counterText.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
             }
         }
     }
@@ -68,7 +68,7 @@ public class LocationGroup extends LocationGroupList {
         if (name.charAt(2) == 'P') {
             if (counter > 0) {
                 badge.setColor(R.color.genutils_yellow);
-                counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
+                counterText.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
             }
             else {
                 badge.setColor(R.color.genutils_black);
@@ -90,7 +90,7 @@ public class LocationGroup extends LocationGroupList {
     public void selectLocation() {
         if (name.charAt(2) == 'P') {
             badge.setColor(R.color.genutils_yellow);
-            counterText.setTextColor(GenUtils.getAColor(context, R.color.textdefault));
+            counterText.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
         }
         else {
             badge.setColor(R.color.genutils_orange);

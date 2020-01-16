@@ -39,7 +39,7 @@ public class MatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match);
 
         //initializers
-        exitButton = findViewById(R.id.ExitButton);
+        //exitButton = findViewById(R.id.ExitButton);
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
@@ -51,7 +51,7 @@ public class MatchActivity extends AppCompatActivity {
         setupHashMap = HashMapManager.getSetupHashMap();
 
         //click methods
-        exitButton.setOnClickListener(new View.OnClickListener() {
+        /*exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
@@ -84,7 +84,7 @@ public class MatchActivity extends AppCompatActivity {
                     }
                 });
             }
-        });
+        });*/
     }
 
     //back button

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="325dp"
+    android:layout_height="310dp"
+    android:background="#80000000">
+
+    <TextView
+        android:id="@+id/OuterID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="OUTER (HIGH)"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+        android:id="@+id/OuterIncrementDecrementContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:orientation="horizontal"
+        app:bootstrapSize="lg"
+        app:layout_constraintBottom_toBottomOf="@+id/OuterID"
+        app:layout_constraintStart_toEndOf="@+id/OuterID"
+        app:layout_constraintTop_toTopOf="@+id/OuterID"
+        app:roundedCorners="true">
+
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/OuterIncrement"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textSize="24sp" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/OuterDecrement"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/bootstrap_brand_success"
+            android:text="-"
+            android:textSize="24sp" />
+
+
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+
+    <TextView
+        android:id="@+id/OuterScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="000"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        app:layout_constraintBottom_toBottomOf="@+id/OuterIncrementDecrementContainer"
+        app:layout_constraintStart_toEndOf="@+id/OuterIncrementDecrementContainer"
+        app:layout_constraintTop_toTopOf="@+id/OuterIncrementDecrementContainer" />
+
+    <!-- Inner port stuff -->
+    <TextView
+        android:id="@+id/InnerID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="INNER (HIGH)"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        app:layout_constraintStart_toStartOf="@+id/OuterID"
+        app:layout_constraintTop_toBottomOf="@+id/OuterID" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+        android:id="@+id/InnerIncrementDecrementContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:bootstrapSize="lg"
+        app:layout_constraintBottom_toBottomOf="@+id/InnerID"
+        app:layout_constraintEnd_toEndOf="@+id/OuterIncrementDecrementContainer"
+        app:layout_constraintStart_toStartOf="@+id/OuterIncrementDecrementContainer"
+        app:layout_constraintTop_toTopOf="@+id/InnerID"
+        app:roundedCorners="true">
+
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/InnerIncrement"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textSize="24sp" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/InnerDecrement"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="-"
+            android:textSize="24sp" />
+
+
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+
+    <TextView
+        android:id="@+id/InnerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="000"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        app:layout_constraintBottom_toBottomOf="@+id/InnerIncrementDecrementContainer"
+        app:layout_constraintStart_toStartOf="@+id/OuterScore"
+        app:layout_constraintTop_toTopOf="@+id/InnerIncrementDecrementContainer" />
+
+    <!-- Lower port stuff -->
+    <TextView
+        android:id="@+id/LowerID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Lower (HIGH)"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        app:layout_constraintStart_toStartOf="@+id/InnerID"
+        app:layout_constraintTop_toBottomOf="@+id/InnerID" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+        android:id="@+id/LowerIncrementDecrementContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:bootstrapSize="lg"
+        app:layout_constraintBottom_toBottomOf="@+id/LowerID"
+        app:layout_constraintEnd_toEndOf="@+id/InnerIncrementDecrementContainer"
+        app:layout_constraintStart_toStartOf="@+id/InnerIncrementDecrementContainer"
+        app:layout_constraintTop_toTopOf="@+id/LowerID"
+        app:roundedCorners="true">
+
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/LowerIncrement"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textSize="24sp" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/LowerDecrement"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="-"
+            android:textSize="24sp" />
+
+
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+
+    <TextView
+        android:id="@+id/LowerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="000"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        app:layout_constraintBottom_toBottomOf="@+id/LowerIncrementDecrementContainer"
+        app:layout_constraintStart_toStartOf="@+id/InnerScore"
+        app:layout_constraintTop_toTopOf="@+id/LowerIncrementDecrementContainer" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/SaveButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/Save"
+        app:bootstrapBrand="success"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LowerIncrementDecrementContainer"
+        app:roundedCorners="true" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/CancelButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/Cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SaveButton"
+        app:roundedCorners="true" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

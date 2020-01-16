@@ -56,7 +56,7 @@ public class Climb extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
-        generateQRButton = getView().findViewById(R.id.GenerateQRCodeButton);
+        //generateQRButton = getView().findViewById(R.id.GenerateQRCodeButton);
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
         setupHashMap = context.setupHashMap;
@@ -75,7 +75,7 @@ public class Climb extends Fragment {
             }
         });*/
 
-        generateQRButton.setOnClickListener(new View.OnClickListener() {
+        /*generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressDialog = new ProgressDialog(context, R.style.LoadingDialogStyle);
@@ -90,7 +90,7 @@ public class Climb extends Fragment {
                 Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
                 new Thread(qrRunnable).start();
             }
-        });
+        });*/
     }
 
     @Override

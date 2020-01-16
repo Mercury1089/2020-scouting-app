@@ -9,6 +9,7 @@
     android:background="@color/bg_general"
     tools:context=".MatchActivity">
 
+
     <TextView
         android:id="@+id/IDPossession"
         android:layout_width="wrap_content"
@@ -343,5 +344,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="883dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
