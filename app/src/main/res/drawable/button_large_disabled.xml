@@ -5,7 +5,7 @@
         android:height="55dp"
         android:width="400dp" />
     <corners android:radius="5dp"/>
-    <solid android:color="@color/ocean"/>
+    <solid android:color="@color/night"/>
     <padding
         android:bottom="16dp"
         android:left="18dp"

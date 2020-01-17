@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ClearConfirm" />
 
     <TextView
-        android:id="@+id/IDClearDirections"
+        android:id="@+id/IDQRWarningDirections"
         android:layout_width="427dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"
@@ -60,7 +60,7 @@
         android:layout_marginTop="296dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/ClearTitle"
-        android:textColor="@color/sky"
+        android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

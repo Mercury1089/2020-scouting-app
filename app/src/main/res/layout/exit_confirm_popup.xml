@@ -12,24 +12,21 @@
         android:id="@+id/ExitConfirm"
         android:layout_width="410dp"
         android:layout_height="75dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="32dp"
-
+        android:background="@drawable/button_active"
         android:text="@string/ExitTitle"
         android:textColor="@drawable/text_states"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDClearDirections" />
-
-    <!-- android:background="@drawable/melon" -->
+        app:layout_constraintTop_toBottomOf="@+id/IDQRWarningDirections" />
 
     <Button
         android:id="@+id/CancelConfirm"
         android:layout_width="410dp"
         android:layout_height="75dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/button_default"
+        android:background="@android:color/transparent"
         android:text="@string/Cancel"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -37,8 +34,8 @@
         app:layout_constraintTop_toBottomOf="@+id/ExitConfirm" />
 
     <TextView
-        android:id="@+id/IDClearDirections"
-        android:layout_width="wrap_content"
+        android:id="@+id/IDQRWarningDirections"
+        android:layout_width="479dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="330dp"
         android:fontFamily="sans-serif-light"
@@ -46,22 +43,22 @@
         android:text="@string/ExitWarning"
         android:textColor="@color/bootstrap_brand_secondary_border"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/IDExit" />
 
     <TextView
         android:id="@+id/IDExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="232dp"
-        android:fontFamily="sans-serif-black"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/gudea_bold"
         android:gravity="center_horizontal"
-        android:text="@string/ExitTitle"
-        android:textColor="@color/bootstrap_brand_secondary_border"
-        android:textSize="24sp"
+        android:text="@string/QRCodeTitle"
+        android:textColor="@drawable/header_states"
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/IDClearDirections"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

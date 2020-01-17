@@ -17,7 +17,7 @@
 
     <!-- dark theme ui -->
     <color name="bg_general"> #232C3D </color>
-    <color name="bg_scoring_popup">#BF0A0E14</color> <!-- 75% opacity -->
+    <color name="bg_scoring_popup">#D80A0E14</color> <!-- 75% opacity -->
     <color name="bg_clear_confirm_popup">#2F3A4F</color>
 
     <color name="electric"> #19ABF2 </color>

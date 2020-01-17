@@ -1,45 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bootstrap_brand_secondary_text"
+    android:background="@color/bg_general"
     android:minWidth="400dp"
     android:minHeight="900dp">
 
     <TextView
-        android:id="@+id/QRCodeID"
+        android:id="@+id/IDMatchNumberQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/QRCodeID"
-        android:textColor="@color/bootstrap_dropdown_divider"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/MatchNumberQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="96dp"
         android:text="@string/MatchNumberID"
         android:textColor="@color/bootstrap_dropdown_divider"
-        android:textSize="24sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TeamNumberQR"
+        android:id="@+id/IDTeamNumberQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
         android:text="@string/TeamNumberID"
         android:textColor="@color/bootstrap_dropdown_divider"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/MatchNumberQR"
-        app:layout_constraintTop_toBottomOf="@+id/MatchNumberQR" />
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDMatchNumberQR"
+        app:layout_constraintTop_toBottomOf="@+id/IDMatchNumberQR" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -56,26 +46,43 @@
 
     <Button
         android:id="@+id/GoBackButton"
-        android:layout_width="222dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_active"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Recharge"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Switch
-        android:id="@+id/checkSwitch"
-        android:layout_width="337dp"
-        android:layout_height="64dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/Scanned"
-        android:textColor="@color/blue"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/GoBackButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    <TextView
+        android:id="@+id/MatchNumberQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/DefaultValue"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDMatchNumberQR"
+        app:layout_constraintTop_toTopOf="@+id/IDMatchNumberQR"
+        tools:layout_editor_absoluteX="211dp" />
+
+    <TextView
+        android:id="@+id/TeamNumberQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/DefaultValue"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDTeamNumberQR"
+        app:layout_constraintTop_toTopOf="@+id/IDTeamNumberQR"
+        tools:layout_editor_absoluteX="210dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

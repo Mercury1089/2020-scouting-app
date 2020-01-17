@@ -161,7 +161,7 @@
         app:layout_constraintTop_toTopOf="@+id/LowerIncrementDecrementContainer" />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/SaveButton"
+        android:id="@+id/DoneButton"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"

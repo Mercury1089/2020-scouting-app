@@ -17,6 +17,7 @@
         <string name="MiscTitle">MISC</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="EndgameTitle">ENDGAME</string>
+        <string name="QRCodeTitle">DID YOU SCAN YOUR QR CODE?</string>
 
     <!-- Tabs -->
         <string name="Setup">Setup</string>
@@ -56,8 +57,8 @@
         <string name="LeftRightDirections">Which side of the field is blue?</string>
 
     <!-- Button Texts -->
-        <string name="Save">Save</string>
-        <string name="Cancel">Cancel</string>
+        <string name="Done">DONE</string>
+        <string name="Cancel">CANCEL</string>
         <string name="Left">Left</string>
         <string name="Right">Right</string>
 
@@ -100,14 +101,16 @@
         <string name="Parked">Parked</string>
 
 
-<!-- QR Code Display -->
+<!-- Display Popups -->
     <!-- Info -->
         <string name="QRCodeID">Here is your QR Code:</string>
         <string name="QRCode">QR Code</string>
+        <string name="High">HIGH&#xA;(OUTER/INNER)</string>
+        <string name="Low">LOWER</string>
+        <string name="QRWarningDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
 
     <!-- Button Text -->
         <string name="Recharge">Recharge for Next Match</string>
         <string name="Scanned">Scanned?</string>
-
-
+        <string name="NextMatch">SET UP NEXT MATCH</string>
 </resources>

@@ -30,7 +30,7 @@
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/AutonSeconds"
-        android:textColor="@drawable/text_states"
+        android:textColor="@drawable/header_states"
         app:layout_constraintBottom_toTopOf="@+id/TeleopWarning"
         app:layout_constraintStart_toStartOf="@+id/TeleopWarning" />
 
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/PossessionTitle"
-        android:textColor="@drawable/text_states"
+        android:textColor="@drawable/header_states"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="134dp" />
@@ -262,8 +262,8 @@
         android:id="@+id/ScoredCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
@@ -274,8 +274,8 @@
         android:id="@+id/MissedCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="225dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
@@ -288,7 +288,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/MiscTitle"
-        android:textColor="@drawable/text_states"
+        android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="609dp" />
@@ -327,7 +327,6 @@
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="702dp" />
 
-    <!-- lab -->
     <TextView
         android:id="@+id/IDMiscDirections2"
         android:layout_width="wrap_content"
