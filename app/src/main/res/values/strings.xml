@@ -2,6 +2,7 @@
 
 <!-- References -->
     <!-- space = &#32; -->
+    <!-- new line = \n -->
 
 
 <!-- Headings -->
@@ -104,12 +105,18 @@
 
 
 <!-- Display Popups -->
-    <!-- Info -->
+    <!-- QR Popup -->
         <string name="QRCodeID">Here is your QR Code:</string>
         <string name="QRCode">QR Code</string>
-        <string name="High">HIGH&#xA;(OUTER/INNER)</string>
-        <string name="Low">LOWER</string>
         <string name="QRWarningDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
+
+    <!-- Missed -->
+        <string name="OuterPortID">HIGH\n(OUTER/INNER)</string>
+        <string name="InputPortID">LOWER</string>
+
+    <!-- Missed -->
+        <string name="UpperPortID">HIGH\n(OUTER/INNER)</string>
+        <string name="LowerPortID">LOWER</string>
 
     <!-- Button Text -->
         <string name="Recharge">Recharge for Next Match</string>

@@ -68,9 +68,10 @@ public class Climb extends Fragment {
         //generateQRButton = getView().findViewById(R.id.GenerateQRCodeButton);
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
-        setupHashMap = context.setupHashMap;
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
-        climbHashMap = HashMapManager.getClimbHashMap();
+        setupHashMap = HashMapManager.getSetupHashMap();
+        climbHashMap = HashMapManager.getAutonHashMap();
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -127,15 +128,22 @@ public class Climb extends Fragment {
         if (this.isVisible()) {
             // If we are becoming visible, then...
             if (isVisibleToUser) {
-                setupHashMap = context.setupHashMap;
+                setupHashMap = HashMapManager.getSetupHashMap();
                 climbHashMap = HashMapManager.getClimbHashMap();
                 updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
-                context.setupHashMap = setupHashMap;
+                HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putClimbHashMap(climbHashMap);
             }
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        HashMapManager.putSetupHashMap(setupHashMap);
+        HashMapManager.putClimbHashMap(climbHashMap);
     }
 
     //QR Generation

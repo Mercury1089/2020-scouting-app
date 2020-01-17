@@ -26,9 +26,6 @@ public class MatchActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
     public LinkedHashMap<String, String> setupHashMap;
-    public LinkedHashMap<String, String> autonHashMap;
-    public LinkedHashMap<String, String> teleopHashMap;
-    public LinkedHashMap<String, String> climbHashMap;
 
     //for QR code generator
     public final static int QRCodeSize = 500;
@@ -59,8 +56,8 @@ public class MatchActivity extends AppCompatActivity {
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
                 View view = getLayoutInflater().inflate(R.layout.exit_confirm_popup, null);
 
-                BootstrapButton exitConfirm = view.findViewById(R.id.ExitConfirm);
-                BootstrapButton cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                Button exitConfirm = view.findViewById(R.id.ExitConfirm);
+                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
                 final AlertDialog dialog = cancelDialog.create();
 
                 dialog.setView(view);

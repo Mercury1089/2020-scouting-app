@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="325dp"
-    android:layout_height="280dp"
+    android:layout_height="275dp"
     android:background="@color/bg_scoring_popup">
 
     <TextView
         android:id="@+id/UpperID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/High"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/UpperPortID"
         android:textColor="@color/bootstrap_brand_secondary_border"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="20dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Inner port stuff -->
 
@@ -23,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:divider="?android:attr/dividerHorizontal"
-        android:orientation="horizontal"
         android:showDividers="middle"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/UpperID"
         app:layout_constraintStart_toEndOf="@+id/UpperID"
         app:layout_constraintTop_toTopOf="@+id/UpperID">
@@ -34,32 +35,22 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/toggle_left_default"
-            android:button="@drawable/toggle_left_default"
-            android:enabled="true"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:orientation="horizontal"
             android:text="@string/Plus"
             android:textColor="@drawable/text_states"
-            android:textScaleX="@dimen/bootstrap_h2_hori_padding"
-            android:textSize="@dimen/button_text_size"
-            tools:visibility="visible" />
+            android:textSize="@dimen/button_text_size" />
 
         <Button
             android:id="@+id/UpperDecrement"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="@drawable/toggle_left_default"
-            android:button="@drawable/toggle_left_default"
-            android:enabled="true"
+            android:background="@drawable/toggle_right_default"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:orientation="horizontal"
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
-            android:textScaleX="@dimen/bootstrap_h2_hori_padding"
-            android:textSize="@dimen/button_text_size"
-            tools:visibility="visible" />
+            android:textSize="@dimen/button_text_size" />
 
     </RadioGroup>
 
@@ -69,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="000"
+        android:text="@string/DefaultValue"
         android:textColor="@color/bootstrap_brand_secondary_border"
         app:layout_constraintBottom_toBottomOf="@+id/UpperIncrementDecrementContainer"
         app:layout_constraintStart_toEndOf="@+id/UpperIncrementDecrementContainer"
@@ -80,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/Low"
+        android:text="@string/LowerPortID"
         android:textColor="@color/bootstrap_brand_secondary_border"
         app:layout_constraintStart_toStartOf="@+id/UpperID"
         app:layout_constraintTop_toBottomOf="@+id/UpperID" />
@@ -89,6 +80,8 @@
         android:id="@+id/LowerIncrementDecrementContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:divider="?android:attr/dividerHorizontal"
+        android:showDividers="middle"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/LowerID"
         app:layout_constraintEnd_toEndOf="@+id/UpperIncrementDecrementContainer"
@@ -104,7 +97,7 @@
             android:gravity="center"
             android:text="@string/Plus"
             android:textColor="@color/ice"
-            android:textSize="24sp" />
+            android:textSize="@dimen/button_text_size" />
 
         <Button
             android:id="@+id/LowerDecrement"
@@ -114,7 +107,7 @@
             android:gravity="center"
             android:text="@string/Minus"
             android:textColor="@color/ice"
-            android:textSize="24sp" />
+            android:textSize="@dimen/button_text_size" />
 
 
     </RadioGroup>
@@ -124,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="000"
+        android:text="@string/DefaultValue"
         android:textColor="@color/bootstrap_brand_secondary_border"
         app:layout_constraintBottom_toBottomOf="@+id/LowerIncrementDecrementContainer"
         app:layout_constraintStart_toEndOf="@+id/LowerIncrementDecrementContainer"
@@ -132,25 +125,31 @@
 
     <Button
         android:id="@+id/DoneButton"
-        android:layout_width="281dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/button_large_active"
         android:text="@string/Done"
         android:textColor="@drawable/text_states"
-        app:layout_constraintTop_toBottomOf="@+id/LowerIncrementDecrementContainer"
-        tools:layout_editor_absoluteX="20dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LowerIncrementDecrementContainer" />
 
     <Button
         android:id="@+id/CancelButton"
-        android:layout_width="285dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/button_large_default"
         android:text="@string/Cancel"
         android:textColor="@color/ice"
-        app:layout_constraintTop_toBottomOf="@+id/DoneButton"
-        tools:layout_editor_absoluteX="20dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DoneButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

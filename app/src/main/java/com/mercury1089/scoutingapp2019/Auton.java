@@ -13,6 +13,8 @@ import android.widget.Toast;
 import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
@@ -85,8 +87,9 @@ public class Auton extends Fragment {
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
 
         //get HashMap data (fill with defaults if empty or null)
-        setupHashMap = context.setupHashMap;
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.AUTON);
+        setupHashMap = HashMapManager.getSetupHashMap();
         autonHashMap = HashMapManager.getAutonHashMap();
 
         //fill in counters with data
@@ -129,19 +132,20 @@ public class Auton extends Fragment {
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
 
                 int width = 325;
-                int height = 310;
+                int height = 340;
+
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);
 
                 // Bootstrap Buttons
-                BootstrapButton doneButton = popupView.findViewById(R.id.DoneButton);
-                BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
-                BootstrapButton innerIncrement = popupView.findViewById(R.id.InnerIncrement);
-                BootstrapButton innerDecrement = popupView.findViewById(R.id.InnerDecrement);
-                BootstrapButton outerIncrement = popupView.findViewById(R.id.OuterIncrement);
-                BootstrapButton outerDecrement = popupView.findViewById(R.id.OuterDecrement);
-                BootstrapButton lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                BootstrapButton lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                Button doneButton = popupView.findViewById(R.id.DoneButton);
+                Button cancelButton = popupView.findViewById(R.id.CancelButton);
+                Button innerIncrement = popupView.findViewById(R.id.InnerIncrement);
+                Button innerDecrement = popupView.findViewById(R.id.InnerDecrement);
+                Button outerIncrement = popupView.findViewById(R.id.OuterIncrement);
+                Button outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
                 TextView innerScore = popupView.findViewById(R.id.InnerScore);
@@ -240,7 +244,7 @@ public class Auton extends Fragment {
                 View popupView = inflater.inflate(R.layout.popup_missed, null);
 
                 int width = 325;
-                int height = 310;
+                int height = 275;
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
 
@@ -351,12 +355,12 @@ public class Auton extends Fragment {
         if (this.isVisible()) {
             // If we are becoming visible, then...
             if (isVisibleToUser) {
-                setupHashMap = context.setupHashMap;
+                setupHashMap = HashMapManager.getSetupHashMap();
                 autonHashMap = HashMapManager.getAutonHashMap();
                 updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
-                context.setupHashMap = setupHashMap;
+                HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putAutonHashMap(autonHashMap);
                 timer.cancel();
                 timer = new Timer();
@@ -367,7 +371,7 @@ public class Auton extends Fragment {
     @Override
     public void onStop(){
         super.onStop();
-        context.setupHashMap = setupHashMap;
+        HashMapManager.putSetupHashMap(setupHashMap);
         HashMapManager.putAutonHashMap(autonHashMap);
         timer.cancel();
         timer = new Timer();

@@ -79,9 +79,10 @@ public class Teleop extends Fragment {
         stageThreeButton = getView().findViewById(R.id.Stage3Switch);
 
         //
-        setupHashMap = context.setupHashMap;
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
-        teleopHashMap = HashMapManager.getTeleopHashMap();
+        setupHashMap = HashMapManager.getSetupHashMap();
+        teleopHashMap = HashMapManager.getAutonHashMap();
 
         //fill in counters with data
         updateXMLObjects();
@@ -104,19 +105,19 @@ public class Teleop extends Fragment {
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
 
                 int width = 325;
-                int height = 310;
+                int height = 320;
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);
 
                 // Bootstrap Buttons
-                BootstrapButton doneButton = popupView.findViewById(R.id.DoneButton);
-                BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
-                BootstrapButton innerIncrement = popupView.findViewById(R.id.InnerIncrement);
-                BootstrapButton innerDecrement = popupView.findViewById(R.id.InnerDecrement);
-                BootstrapButton outerIncrement = popupView.findViewById(R.id.OuterIncrement);
-                BootstrapButton outerDecrement = popupView.findViewById(R.id.OuterDecrement);
-                BootstrapButton lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                BootstrapButton lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                Button doneButton = popupView.findViewById(R.id.DoneButton);
+                Button cancelButton = popupView.findViewById(R.id.CancelButton);
+                Button innerIncrement = popupView.findViewById(R.id.InnerIncrement);
+                Button innerDecrement = popupView.findViewById(R.id.InnerDecrement);
+                Button outerIncrement = popupView.findViewById(R.id.OuterIncrement);
+                Button outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
                 TextView innerScore = popupView.findViewById(R.id.InnerScore);
@@ -215,7 +216,7 @@ public class Teleop extends Fragment {
                 View popupView = inflater.inflate(R.layout.popup_missed, null);
 
                 int width = 325;
-                int height = 310;
+                int height = 275;
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
 
@@ -328,14 +329,21 @@ public class Teleop extends Fragment {
         if (this.isVisible()) {
             // If we are becoming visible, then...
             if (isVisibleToUser) {
-                setupHashMap = context.setupHashMap;
+                setupHashMap = HashMapManager.getSetupHashMap();
                 teleopHashMap = HashMapManager.getTeleopHashMap();
                 updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
-                context.setupHashMap = setupHashMap;
+                HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putTeleopHashMap(teleopHashMap);
             }
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        HashMapManager.putSetupHashMap(setupHashMap);
+        HashMapManager.putTeleopHashMap(teleopHashMap);
     }
 }
