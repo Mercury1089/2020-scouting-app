@@ -83,12 +83,7 @@ public class Teleop extends Fragment {
         teleopHashMap = HashMapManager.getTeleopHashMap();
 
         //fill in counters with data
-        pickedUpCounter.setText(teleopHashMap.get("NumberPickedUp"));
-        droppedCounter.setText(teleopHashMap.get("NumberDropped"));
-        totalScored = Integer.parseInt(teleopHashMap.get("InnerPortScored")) + Integer.parseInt(teleopHashMap.get("OuterPortScored")) + Integer.parseInt(teleopHashMap.get("LowerPortScored"));
-        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
-        totalMissed = Integer.parseInt(teleopHashMap.get("UpperPortMissed")) + Integer.parseInt(teleopHashMap.get("LowerPortMissed"));
-        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+        updateXMLObjects();
 
         //set listeners for buttons and fill the hashmap with data
         /*
@@ -199,7 +194,7 @@ public class Teleop extends Fragment {
                         teleopHashMap.put("OuterPortScored", (String)outerScore.getText());
                         teleopHashMap.put("LowerPortScored", (String)lowerScore.getText());
                         totalScored = Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
-                        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+                        updateXMLObjects();
                         popupWindow.dismiss();
                     }
                 });
@@ -285,7 +280,7 @@ public class Teleop extends Fragment {
                         teleopHashMap.put("UpperPortMissed", (String)upperScore.getText());
                         teleopHashMap.put("LowerPortMissed", (String)lowerScore.getText());
                         totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
-                        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
+                        updateXMLObjects();
                         popupWindow.dismiss();
                     }
                 });
@@ -300,16 +295,41 @@ public class Teleop extends Fragment {
         });
     }
 
+    private void allButtonsEnabledState(boolean enable){
+        scoredButton.setEnabled(enable);
+        missedButton.setEnabled(enable);
+        pickedUpIncrementButton.setEnabled(enable);
+        pickedUpDecrementButton.setEnabled(enable);
+        droppedIncrementButton.setEnabled(enable);
+        droppedDecrementButton.setEnabled(enable);
+        stageTwoButton.setEnabled(enable);
+        stageThreeButton.setEnabled(enable);
+    }
+
+    private void updateXMLObjects(){
+        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
+        pickedUpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("NumberPickedUp"), 3));
+        droppedCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("NumberDropped"), 3));
+        stageTwoButton.setChecked(teleopHashMap.get("StageTwo") == "1");
+        stageThreeButton.setChecked(teleopHashMap.get("StageThree") == "1");
+        if(setupHashMap.get("FellOver") == "1")
+            allButtonsEnabledState(false);
+        else
+            allButtonsEnabledState(true);
+    }
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
 
         // Make sure that we are currently visible
         if (this.isVisible()) {
-            // If we are becoming invisible, then...
+            // If we are becoming visible, then...
             if (isVisibleToUser) {
                 setupHashMap = context.setupHashMap;
                 teleopHashMap = HashMapManager.getTeleopHashMap();
+                updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
                 context.setupHashMap = setupHashMap;

@@ -129,7 +129,7 @@ public class HashMapManager {
                 //include all the items that will be in the autonHashMap
                 autonHashMap.put("HashMapName", "Auton");
                 autonHashMap.put("NumberPickedUp", "000");
-                autonHashMap.put("NumberDropped", "000");
+                autonHashMap.put("NumberDropped",  "000");
                 autonHashMap.put("InnerPortScored", "000");
                 autonHashMap.put("OuterPortScored", "000");
                 autonHashMap.put("LowerPortScored", "000");
@@ -140,6 +140,8 @@ public class HashMapManager {
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
                 teleopHashMap.put("HashMapName", "Teleop");
+                teleopHashMap.put("NumberPickedUp", "000");
+                teleopHashMap.put("NumberDropped",  "000");
                 teleopHashMap.put("InnerPortScored", "000");
                 teleopHashMap.put("OuterPortScored", "000");
                 teleopHashMap.put("LowerPortScored", "000");
