@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="134dp">
 
-        <RadioButton
+        <Button
             android:id="@+id/PickedUpButton"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -43,7 +43,7 @@
             android:textScaleX="@dimen/bootstrap_h2_hori_padding"
             android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
-        <RadioButton
+        <Button
             android:id="@+id/NotPickedUpButton"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -91,17 +91,23 @@
 
         <Button
             android:id="@+id/LowerIncrement"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/toggle_left_default"
+            android:gravity="center"
             android:text="+"
+            android:textColor="@color/ice"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/LowerDecrement"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/toggle_right_default"
+            android:gravity="center"
             android:text="-"
-            android:textSize="24sp" />
+            android:textColor="@color/ice"
+            android:textSize="@dimen/button_text_size" />
 
 
     </RadioGroup>
@@ -129,7 +135,9 @@
         android:id="@+id/CancelButton"
         android:layout_width="285dp"
         android:layout_height="50dp"
+        android:background="@drawable/button_large_default"
         android:text="@string/Cancel"
+        android:textColor="@color/ice"
         tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="222dp" />
 

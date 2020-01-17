@@ -46,14 +46,16 @@
 
     <Button
         android:id="@+id/GoBackButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/button_active"
         android:fontFamily="@font/open_sans"
         android:text="@string/Recharge"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/header_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +84,7 @@
         android:textColor="@color/ice"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDTeamNumberQR"
-        app:layout_constraintTop_toTopOf="@+id/IDTeamNumberQR"
+        app:layout_constraintTop_toBottomOf="@+id/IDMatchNumberQR"
         tools:layout_editor_absoluteX="210dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
