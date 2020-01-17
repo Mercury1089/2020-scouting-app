@@ -132,7 +132,7 @@
         app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+    <RadioGroup
         android:id="@+id/ScoredToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,38 +141,35 @@
         android:orientation="horizontal"
         android:showDividers="middle"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
-        tools:layout_editor_absoluteX="96dp"
-        app:roundedCorners="true">
+        tools:layout_editor_absoluteX="96dp" >
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/ScoredButton"
             android:layout_width="140dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
-            android:button="@drawable/button_rounded_corners"
             android:gravity="start|center_vertical"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
             android:textSize="18sp"
             tools:visibility="visible" />
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/MissedButton"
             android:layout_width="140dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
-            android:button="@drawable/button_rounded_corners"
             android:gravity="start|center_vertical"
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
             android:textSize="18sp"
             tools:visibility="visible" />
 
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+    </RadioGroup>
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+    <RadioGroup
         android:id="@+id/PickedUpToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -180,10 +177,9 @@
         android:orientation="horizontal"
         android:showDividers="middle"
         tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="180dp"
-        app:roundedCorners="true">
+        tools:layout_editor_absoluteY="180dp" >
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/PickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -198,26 +194,24 @@
             android:textSize="36sp"
             tools:visibility="visible" />
 
-        <!--
-        android:textScaleX="@dimen/bootstrap_h2_hori_padding"
-        -->
-
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/NotPickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
-            android:button="@drawable/button_rounded_corners"
+
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+        <!-- android:button="@drawable/button_rounded_corners" -->
+    </RadioGroup>
+
+    <RadioGroup
         android:id="@+id/DroppedToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -226,16 +220,14 @@
         android:orientation="horizontal"
         android:showDividers="middle"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
-        tools:layout_editor_absoluteX="127dp"
-        app:roundedCorners="true">
+        tools:layout_editor_absoluteX="127dp" >
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/DroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
-            android:button="@drawable/button_rounded_corners"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Plus"
@@ -243,27 +235,26 @@
             android:textSize="36sp"
             tools:visibility="visible" />
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/NotDroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
-            android:button="@drawable/button_rounded_corners"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+    </RadioGroup>
 
     <TextView
         android:id="@+id/ScoredCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="42dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
@@ -274,8 +265,8 @@
         android:id="@+id/MissedCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="295dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="227dp"
+        android:layout_marginTop="42dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
@@ -354,7 +345,7 @@
         android:id="@+id/ClimbNextButton"
         android:layout_width="473dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_rounded_corners"
+        android:background="@drawable/button_disabled"
         android:enabled="false"
         android:text="@string/TeleopNext"
         android:textColor="@drawable/text_states"

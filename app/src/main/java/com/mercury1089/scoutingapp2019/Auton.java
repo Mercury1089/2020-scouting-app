@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -24,13 +25,13 @@ public class Auton extends Fragment {
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> autonHashMap;
 
-    //RadioButtons
-    private BootstrapButton pickedUpIncrementButton;
-    private BootstrapButton pickedUpDecrementButton;
-    private BootstrapButton droppedIncrementButton;
-    private BootstrapButton droppedDecrementButton;
-    private BootstrapButton scoredButton;
-    private BootstrapButton missedButton;
+    //Buttons
+    private Button pickedUpIncrementButton;
+    private Button pickedUpDecrementButton;
+    private Button droppedIncrementButton;
+    private Button droppedDecrementButton;
+    private Button scoredButton;
+    private Button missedButton;
 
     //Switches
     private Switch crossedLineSwitch;
@@ -133,7 +134,7 @@ public class Auton extends Fragment {
                 popupWindow.showAsDropDown(scoredButton);
 
                 // Bootstrap Buttons
-                BootstrapButton saveButton = popupView.findViewById(R.id.SaveButton);
+                BootstrapButton doneButton = popupView.findViewById(R.id.DoneButton);
                 BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
                 BootstrapButton innerIncrement = popupView.findViewById(R.id.InnerIncrement);
                 BootstrapButton innerDecrement = popupView.findViewById(R.id.InnerDecrement);
@@ -212,7 +213,7 @@ public class Auton extends Fragment {
                     }
                 });
 
-                saveButton.setOnClickListener(new View.OnClickListener() {
+                doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         autonHashMap.put("InnerPortScored", (String)innerScore.getText());
@@ -244,12 +245,12 @@ public class Auton extends Fragment {
                 popupWindow.showAsDropDown(missedButton);
 
                 // Bootstrap Buttons
-                BootstrapButton saveButton = popupView.findViewById(R.id.SaveButton);
-                BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
-                BootstrapButton upperIncrement = popupView.findViewById(R.id.UpperIncrement);
-                BootstrapButton upperDecrement = popupView.findViewById(R.id.UpperDecrement);
-                BootstrapButton lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                BootstrapButton lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                Button doneButton = popupView.findViewById(R.id.DoneButton);
+                Button cancelButton = popupView.findViewById(R.id.CancelButton);
+                Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
+                Button upperDecrement = popupView.findViewById(R.id.UpperDecrement);
+                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
                 TextView upperScore = popupView.findViewById(R.id.UpperScore);
@@ -299,7 +300,7 @@ public class Auton extends Fragment {
                     }
                 });
 
-                saveButton.setOnClickListener(new View.OnClickListener() {
+                doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         autonHashMap.put("UpperPortMissed", (String)upperScore.getText());

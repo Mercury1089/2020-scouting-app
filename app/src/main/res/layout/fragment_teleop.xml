@@ -88,7 +88,7 @@
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="318dp" />
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+    <RadioGroup
         android:id="@+id/ScoredToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,35 +99,33 @@
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
         tools:layout_editor_absoluteX="96dp">
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/ScoredButton"
             android:layout_width="125dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
-            android:button="@drawable/button_rounded_corners"
             android:gravity="left|center_vertical"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
             android:textSize="18sp"
             tools:visibility="visible" />
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/MissedButton"
             android:layout_width="125dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
-            android:button="@drawable/button_rounded_corners"
             android:gravity="left|center_vertical"
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
             android:textSize="18sp"
             tools:visibility="visible" />
 
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+    </RadioGroup>
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+    <RadioGroup
         android:id="@+id/PickedUpToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -137,7 +135,7 @@
         tools:layout_editor_absoluteX="128dp"
         tools:layout_editor_absoluteY="180dp">
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/PickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -151,21 +149,20 @@
             android:textSize="36sp"
             tools:visibility="visible" />
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/NotPickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
-            android:button="@drawable/button_rounded_corners"
             android:gravity="center"
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+    </RadioGroup>
 
-    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+    <RadioGroup
         android:id="@+id/DroppedToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -176,32 +173,30 @@
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
         tools:layout_editor_absoluteX="127dp">
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/DroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
-            android:button="@drawable/button_rounded_corners"
             android:gravity="center"
             android:text="@string/Plus"
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
+        <Button
             android:id="@+id/NotDroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
-            android:button="@drawable/button_rounded_corners"
             android:gravity="center"
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
-    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+    </RadioGroup>
 
     <TextView
         android:id="@+id/ScoredCounter"
@@ -356,7 +351,6 @@
         android:id="@+id/ClimbNextButton"
         android:layout_width="473dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_rounded_corners"
         android:enabled="false"
         android:text="@string/ClimbNext"
         android:textColor="@drawable/text_states"

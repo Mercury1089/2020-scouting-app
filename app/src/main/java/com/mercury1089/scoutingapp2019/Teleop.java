@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,12 +21,12 @@ public class Teleop extends Fragment {
     private LinkedHashMap<String, String> teleopHashMap;
 
     //RadioButtons
-    private BootstrapButton pickedUpIncrementButton;
-    private BootstrapButton pickedUpDecrementButton;
-    private BootstrapButton droppedIncrementButton;
-    private BootstrapButton droppedDecrementButton;
-    private BootstrapButton scoredButton;
-    private BootstrapButton missedButton;
+    private Button pickedUpIncrementButton;
+    private Button pickedUpDecrementButton;
+    private Button droppedIncrementButton;
+    private Button droppedDecrementButton;
+    private Button scoredButton;
+    private Button missedButton;
 
     //Switches
     private Switch stageTwoButton;
@@ -108,7 +109,7 @@ public class Teleop extends Fragment {
                 popupWindow.showAsDropDown(scoredButton);
 
                 // Bootstrap Buttons
-                BootstrapButton saveButton = popupView.findViewById(R.id.SaveButton);
+                BootstrapButton doneButton = popupView.findViewById(R.id.DoneButton);
                 BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
                 BootstrapButton innerIncrement = popupView.findViewById(R.id.InnerIncrement);
                 BootstrapButton innerDecrement = popupView.findViewById(R.id.InnerDecrement);
@@ -187,7 +188,7 @@ public class Teleop extends Fragment {
                     }
                 });
 
-                saveButton.setOnClickListener(new View.OnClickListener() {
+                doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         teleopHashMap.put("InnerPortScored", (String)innerScore.getText());
@@ -219,7 +220,7 @@ public class Teleop extends Fragment {
                 popupWindow.showAsDropDown(missedButton);
 
                 // Bootstrap Buttons
-                BootstrapButton saveButton = popupView.findViewById(R.id.SaveButton);
+                BootstrapButton doneButton = popupView.findViewById(R.id.DoneButton);
                 BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
                 BootstrapButton upperIncrement = popupView.findViewById(R.id.UpperIncrement);
                 BootstrapButton upperDecrement = popupView.findViewById(R.id.UpperDecrement);
@@ -274,7 +275,7 @@ public class Teleop extends Fragment {
                     }
                 });
 
-                saveButton.setOnClickListener(new View.OnClickListener() {
+                doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         teleopHashMap.put("UpperPortMissed", (String)upperScore.getText());

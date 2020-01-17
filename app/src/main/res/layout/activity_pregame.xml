@@ -214,7 +214,7 @@
         app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
         app:layout_constraintTop_toTopOf="@+id/IDAlliancePartners">
 
-        <RadioButton
+        <Button
             android:id="@+id/ScoredButton"
             android:layout_width="100dp"
             android:layout_height="47dp"
@@ -228,13 +228,12 @@
             android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
 
-        <RadioButton
+        <Button
             android:id="@+id/MissedButton"
             android:layout_width="100dp"
             android:layout_height="47dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
-            android:button="@drawable/button_rounded_corners"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/Red"
@@ -275,14 +274,6 @@
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPosition"
         tools:layout_editor_absoluteX="58dp" />
-
-    <TextView
-        android:id="@+id/IDAllianceColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/AllianceColorID"
-        android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteY="962dp" />
 
     <Button
         android:id="@+id/ClearButton"

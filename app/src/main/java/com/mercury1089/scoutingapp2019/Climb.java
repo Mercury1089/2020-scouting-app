@@ -190,7 +190,6 @@ public class Climb extends Fragment {
                         final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
                         View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
-                        Switch CheckSwitch = view1.findViewById(R.id.checkSwitch);
                         TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
                         final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
@@ -208,20 +207,6 @@ public class Climb extends Fragment {
                         progressDialog.dismiss();
 
                         dialog.show();
-
-                        CheckSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if (isChecked) {
-                                    goBackToMain.setEnabled(true);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.blue)));
-                                    goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.light));
-                                } else {
-                                    goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.button_disabled)));
-                                    goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.button_disabled));
-                                }
-                            }
-                        });
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override

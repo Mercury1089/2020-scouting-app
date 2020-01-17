@@ -16,14 +16,14 @@
         <string name="ScoringTitle">SCORING</string>
         <string name="MiscTitle">MISC</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
-        <string name="EndgameTitle">ENDGAME</string>
+        <string name="ClimbTitle">CLIMB</string>
         <string name="QRCodeTitle">DID YOU SCAN YOUR QR CODE?</string>
 
     <!-- Tabs -->
         <string name="Setup">Setup</string>
         <string name="Auton">Auton</string>
         <string name="Teleop">Teleop</string>
-        <string name="Endgame">Endgame</string>
+        <string name="Climb">Climb</string>
 
 
 <!-- PregameActivity -->
@@ -66,9 +66,11 @@
 <!-- MatchActivity -->
     <!-- Universal -->
         <string name="DefaultValue">000</string>
+        <string name="Exit">Exit</string>
 
     <!-- Exit Popup -->
         <string name="ExitWarning">Are you sure that you want to leave?\nAll data will be lost!</string>
+        <string name="Save">Save</string>
 
     <!-- Auton -->
         <string name="AutonSeconds">AUTON SECONDS REMAINING</string>

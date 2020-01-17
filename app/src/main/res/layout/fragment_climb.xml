@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gudea_bold"
-        android:text="@string/EndgameTitle"
+        android:text="@string/ClimbTitle"
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         tools:layout_editor_absoluteX="23dp"
@@ -57,7 +57,7 @@
         tools:layout_editor_absoluteY="240dp" />
 
     <TextView
-        android:id="@+id/IDRung"
+        android:id="@+id/IDLeveled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -65,7 +65,7 @@
         android:text="@string/Rung"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
-        app:layout_constraintStart_toEndOf="@+id/RungSwitch"
+        app:layout_constraintStart_toEndOf="@+id/LeveledSwitch"
         tools:layout_editor_absoluteY="293dp" />
 
     <Switch
@@ -82,7 +82,7 @@
         tools:layout_editor_absoluteY="232dp" />
 
     <Switch
-        android:id="@+id/RungSwitch"
+        android:id="@+id/LeveledSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

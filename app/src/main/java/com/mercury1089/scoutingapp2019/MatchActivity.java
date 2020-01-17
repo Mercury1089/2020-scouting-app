@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -19,7 +21,7 @@ import java.util.LinkedHashMap;
 public class MatchActivity extends AppCompatActivity {
 
     //variables that store elements of the screen for the output variables
-    private BootstrapButton exitButton;
+    private Button exitButton;
     private TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
@@ -39,7 +41,7 @@ public class MatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match);
 
         //initializers
-        //exitButton = findViewById(R.id.ExitButton);
+        exitButton = findViewById(R.id.ExitButton);
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
@@ -51,7 +53,7 @@ public class MatchActivity extends AppCompatActivity {
         setupHashMap = HashMapManager.getSetupHashMap();
 
         //click methods
-        /*exitButton.setOnClickListener(new View.OnClickListener() {
+        exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
@@ -84,7 +86,7 @@ public class MatchActivity extends AppCompatActivity {
                     }
                 });
             }
-        });*/
+        });
     }
 
     //back button

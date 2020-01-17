@@ -371,7 +371,6 @@ public class PregameActivity extends AppCompatActivity {
                         final AlertDialog.Builder qrDialog = new AlertDialog.Builder(PregameActivity.this);
                         View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
-                        Switch CheckSwitch = view1.findViewById(R.id.checkSwitch);
                         TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
                         final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
@@ -389,20 +388,6 @@ public class PregameActivity extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         dialog.show();
-
-                        CheckSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if (isChecked) {
-                                    goBackToMain.setEnabled(true);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.blue)));
-                                    goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                                } else {
-                                    goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.switch_thumb_disabled))); // was switch_disabled
-                                    goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
-                                }
-                            }
-                        });
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override

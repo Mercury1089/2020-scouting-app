@@ -7,7 +7,7 @@
     android:background="@color/bg_scoring_popup">
 
     <TextView
-        android:id="@+id/OuterID"
+        android:id="@+id/UpperID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/High"
@@ -18,18 +18,19 @@
     <!-- Inner port stuff -->
 
     <RadioGroup
-        android:id="@+id/PickedUpToggle"
+        android:id="@+id/UpperIncrementDecrementContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
         android:showDividers="middle"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="134dp">
+        app:layout_constraintBottom_toBottomOf="@+id/UpperID"
+        app:layout_constraintStart_toEndOf="@+id/UpperID"
+        app:layout_constraintTop_toTopOf="@+id/UpperID">
 
         <Button
-            android:id="@+id/PickedUpButton"
+            android:id="@+id/UpperIncrement"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/toggle_left_default"
@@ -43,8 +44,9 @@
             android:textScaleX="@dimen/bootstrap_h2_hori_padding"
             android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
+
         <Button
-            android:id="@+id/NotPickedUpButton"
+            android:id="@+id/UpperDecrement"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/toggle_left_default"
@@ -61,32 +63,37 @@
 
     </RadioGroup>
 
+    <!-- Lower port stuff -->
     <TextView
-        android:id="@+id/InnerScore"
+        android:id="@+id/UpperScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:text="000"
         android:textColor="@color/bootstrap_brand_secondary_border"
-        tools:layout_editor_absoluteX="349dp"
-        tools:layout_editor_absoluteY="36dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/UpperIncrementDecrementContainer"
+        app:layout_constraintStart_toEndOf="@+id/UpperIncrementDecrementContainer"
+        app:layout_constraintTop_toTopOf="@+id/UpperIncrementDecrementContainer" />
 
-    <!-- Lower port stuff -->
     <TextView
         android:id="@+id/LowerID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="@string/Low"
         android:textColor="@color/bootstrap_brand_secondary_border"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintStart_toStartOf="@+id/UpperID"
+        app:layout_constraintTop_toBottomOf="@+id/UpperID" />
 
     <RadioGroup
         android:id="@+id/LowerIncrementDecrementContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="89dp">
+        app:layout_constraintBottom_toBottomOf="@+id/LowerID"
+        app:layout_constraintEnd_toEndOf="@+id/UpperIncrementDecrementContainer"
+        app:layout_constraintStart_toStartOf="@+id/UpperIncrementDecrementContainer"
+        app:layout_constraintTop_toTopOf="@+id/LowerID">
 
 
         <Button
@@ -95,7 +102,7 @@
             android:layout_height="36dp"
             android:background="@drawable/toggle_left_default"
             android:gravity="center"
-            android:text="+"
+            android:text="@string/Plus"
             android:textColor="@color/ice"
             android:textSize="24sp" />
 
@@ -105,9 +112,9 @@
             android:layout_height="36dp"
             android:background="@drawable/toggle_right_default"
             android:gravity="center"
-            android:text="-"
+            android:text="@string/Minus"
             android:textColor="@color/ice"
-            android:textSize="@dimen/button_text_size" />
+            android:textSize="24sp" />
 
 
     </RadioGroup>
@@ -116,30 +123,34 @@
         android:id="@+id/LowerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:text="000"
         android:textColor="@color/bootstrap_brand_secondary_border"
-        tools:layout_editor_absoluteX="349dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/LowerIncrementDecrementContainer"
+        app:layout_constraintStart_toEndOf="@+id/LowerIncrementDecrementContainer"
+        app:layout_constraintTop_toTopOf="@+id/LowerIncrementDecrementContainer" />
 
     <Button
         android:id="@+id/DoneButton"
         android:layout_width="281dp"
         android:layout_height="48dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/button_large_active"
         android:text="@string/Done"
         android:textColor="@drawable/text_states"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="160dp" />
+        app:layout_constraintTop_toBottomOf="@+id/LowerIncrementDecrementContainer"
+        tools:layout_editor_absoluteX="20dp" />
 
     <Button
         android:id="@+id/CancelButton"
         android:layout_width="285dp"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/button_large_default"
         android:text="@string/Cancel"
         android:textColor="@color/ice"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="222dp" />
+        app:layout_constraintTop_toBottomOf="@+id/DoneButton"
+        tools:layout_editor_absoluteX="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
