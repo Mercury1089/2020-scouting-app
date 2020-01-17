@@ -6,17 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
@@ -29,12 +25,12 @@ public class Auton extends Fragment {
     private LinkedHashMap<String, String> autonHashMap;
 
     //RadioButtons
-    private RadioButton pickedUpIncrementButton;
-    private RadioButton pickedUpDecrementButton;
-    private RadioButton droppedIncrementButton;
-    private RadioButton droppedDecrementButton;
-    private RadioButton scoredButton;
-    private RadioButton missedButton;
+    private BootstrapButton pickedUpIncrementButton;
+    private BootstrapButton pickedUpDecrementButton;
+    private BootstrapButton droppedIncrementButton;
+    private BootstrapButton droppedDecrementButton;
+    private BootstrapButton scoredButton;
+    private BootstrapButton missedButton;
 
     //Switches
     private Switch crossedLineSwitch;
@@ -71,12 +67,12 @@ public class Auton extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
-        pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
-        pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
+        //pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
+        //pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
         pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
 
-        droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
-        droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
+        //droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
+        //droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
         droppedCounter = getView().findViewById(R.id.DroppedCounter);
 
         scoredButton = getView().findViewById(R.id.ScoredButton);
@@ -97,7 +93,7 @@ public class Auton extends Fragment {
         droppedCounter.setText(autonHashMap.get("NumberDropped"));
         totalScored = Integer.parseInt(autonHashMap.get("InnerPortScored")) + Integer.parseInt(autonHashMap.get("OuterPortScored")) + Integer.parseInt(autonHashMap.get("LowerPortScored"));
         scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
-        totalMissed = Integer.parseInt(autonHashMap.get("UpperMissed")) + Integer.parseInt(autonHashMap.get("LowerPortMissed"));
+        totalMissed = Integer.parseInt(autonHashMap.get("UpperPortMissed")) + Integer.parseInt(autonHashMap.get("LowerPortMissed"));
         missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
 
         //set switches to state in the HashMap
@@ -234,6 +230,8 @@ public class Auton extends Fragment {
                         autonHashMap.put("InnerPortScored", (String)innerScore.getText());
                         autonHashMap.put("OuterPortScored", (String)outerScore.getText());
                         autonHashMap.put("LowerPortScored", (String)lowerScore.getText());
+                        totalScored = Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
                         popupWindow.dismiss();
                     }
                 });
@@ -260,59 +258,35 @@ public class Auton extends Fragment {
                 // Bootstrap Buttons
                 BootstrapButton saveButton = popupView.findViewById(R.id.SaveButton);
                 BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
-                BootstrapButton innerIncrement = popupView.findViewById(R.id.InnerIncrement);
-                BootstrapButton innerDecrement = popupView.findViewById(R.id.InnerDecrement);
-                BootstrapButton outerIncrement = popupView.findViewById(R.id.OuterIncrement);
-                BootstrapButton outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                BootstrapButton upperIncrement = popupView.findViewById(R.id.UpperIncrement);
+                BootstrapButton upperDecrement = popupView.findViewById(R.id.UpperDecrement);
                 BootstrapButton lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
                 BootstrapButton lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView innerScore = popupView.findViewById(R.id.InnerScore);
-                TextView outerScore = popupView.findViewById(R.id.OuterScore);
+                TextView upperScore = popupView.findViewById(R.id.UpperScore);
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
-                innerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("InnerPortMissed"), 3));
-                outerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("OuterPortMissed"), 3));
+                upperScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortMissed"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortMissed"), 3));
 
-                innerIncrement.setOnClickListener(new View.OnClickListener() {
+                upperIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        innerPortNum += 1;
-                        innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
+                        upperPortNum += 1;
+                        upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
                     }
                 });
 
-                innerDecrement.setOnClickListener(new View.OnClickListener() {
+                upperDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        if(innerPortNum > 0) {
-                            innerPortNum -= 1;
-                            innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
-                        }
-                    }
-                });
-
-                outerIncrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        outerPortNum += 1;
-                        outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
-                    }
-                });
-
-                outerDecrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        if(outerPortNum > 0) {
-                            outerPortNum -= 1;
-                            outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
+                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
+                        if(upperPortNum > 0) {
+                            upperPortNum -= 1;
+                            upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
                         }
                     }
                 });
@@ -340,9 +314,10 @@ public class Auton extends Fragment {
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        autonHashMap.put("InnerPortMissed", (String)innerScore.getText());
-                        autonHashMap.put("OuterPortMissed", (String)outerScore.getText());
+                        autonHashMap.put("UpperPortMissed", (String)upperScore.getText());
                         autonHashMap.put("LowerPortMissed", (String)lowerScore.getText());
+                        totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
                         popupWindow.dismiss();
                     }
                 });
@@ -358,7 +333,21 @@ public class Auton extends Fragment {
     }
 
     private void allButtonsEnabledState(boolean enable){
+        scoredButton.setEnabled(enable);
+        missedButton.setEnabled(enable);
+        pickedUpIncrementButton.setEnabled(enable);
+        pickedUpDecrementButton.setEnabled(enable);
+        droppedIncrementButton.setEnabled(enable);
+        droppedDecrementButton.setEnabled(enable);
+        crossedLineSwitch.setEnabled(enable);
+    }
 
+    private void updateXMLObjects(){
+        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
+        pickedUpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberPickedUp"), 3));
+        droppedCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberDropped"), 3));
+        crossedLineSwitch.setChecked(autonHashMap.get("CrossedInitiationLine") == "1");
     }
 
     @Override

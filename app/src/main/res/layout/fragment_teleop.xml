@@ -88,7 +88,7 @@
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="318dp" />
 
-    <RadioGroup
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
         android:id="@+id/ScoredToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
         tools:layout_editor_absoluteX="96dp">
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/ScoredButton"
             android:layout_width="125dp"
             android:layout_height="75dp"
@@ -112,7 +112,7 @@
             android:textSize="18sp"
             tools:visibility="visible" />
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/MissedButton"
             android:layout_width="125dp"
             android:layout_height="75dp"
@@ -125,9 +125,9 @@
             android:textSize="18sp"
             tools:visibility="visible" />
 
-    </RadioGroup>
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
-    <RadioGroup
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
         android:id="@+id/PickedUpToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
         tools:layout_editor_absoluteX="128dp"
         tools:layout_editor_absoluteY="180dp">
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/PickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -151,7 +151,7 @@
             android:textSize="36sp"
             tools:visibility="visible" />
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/NotPickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -163,9 +163,9 @@
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
-    </RadioGroup>
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
-    <RadioGroup
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
         android:id="@+id/DroppedToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
         tools:layout_editor_absoluteX="127dp">
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/DroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -189,7 +189,7 @@
             android:textSize="36sp"
             tools:visibility="visible" />
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/NotDroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -201,7 +201,7 @@
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
-    </RadioGroup>
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
     <TextView
         android:id="@+id/ScoredCounter"
@@ -298,12 +298,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/button_active"
-        android:foregroundTint="@color/button_active"
+
+
         android:textColor="@drawable/text_states"
-        android:thumbTint="@color/switch_default"
+
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="841dp" />
+
+    <!--
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+
+        android:thumbTint="@color/switch_default"
+        -->
 
     <Switch
         android:id="@+id/Stage2Switch"
@@ -311,12 +318,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/button_active"
-        android:foregroundTint="@color/button_active"
+
+
         android:textColor="@drawable/text_states"
-        android:thumbTint="@color/switch_default"
+
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="669dp" />
+
+    <!--
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+
+        android:thumbTint="@color/switch_default"
+        -->
 
     <Switch
         android:id="@+id/Stage3Switch"
@@ -324,12 +338,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/button_active"
-        android:foregroundTint="@color/button_active"
+
+
         android:textColor="@drawable/text_states"
-        android:thumbTint="@color/switch_default"
+
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="720dp" />
+
+    <!--
+        android:backgroundTint="@color/button_active"
+        android:foregroundTint="@color/button_active"
+
+        android:thumbTint="@color/switch_default"
+        -->
 
     <Button
         android:id="@+id/ClimbNextButton"

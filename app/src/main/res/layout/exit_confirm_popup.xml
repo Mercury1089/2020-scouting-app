@@ -13,7 +13,7 @@
         android:layout_width="410dp"
         android:layout_height="75dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/melon"
+
         android:text="@string/ExitTitle"
         android:textColor="@drawable/text_states"
         android:textSize="18sp"
@@ -21,6 +21,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDClearDirections" />
+
+    <!-- android:background="@drawable/melon" -->
 
     <Button
         android:id="@+id/CancelConfirm"

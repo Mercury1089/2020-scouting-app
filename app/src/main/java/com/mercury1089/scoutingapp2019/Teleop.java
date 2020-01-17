@@ -4,20 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-
 import java.util.LinkedHashMap;
-
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Teleop extends Fragment {
@@ -26,14 +20,16 @@ public class Teleop extends Fragment {
     private LinkedHashMap<String, String> teleopHashMap;
 
     //RadioButtons
-    private RadioButton pickedUpIncrementButton;
-    private RadioButton pickedUpDecrementButton;
-    private RadioButton droppedIncrementButton;
-    private RadioButton droppedDecrementButton;
-    private RadioButton scoredButton   ;
-    private RadioButton missedButton;
-    private RadioButton stageTwoButton;
-    private RadioButton stageThreeButton;
+    private BootstrapButton pickedUpIncrementButton;
+    private BootstrapButton pickedUpDecrementButton;
+    private BootstrapButton droppedIncrementButton;
+    private BootstrapButton droppedDecrementButton;
+    private BootstrapButton scoredButton;
+    private BootstrapButton missedButton;
+
+    //Switches
+    private Switch stageTwoButton;
+    private Switch stageThreeButton;
 
     //TextViews
     private TextView pickedUpCounter;
@@ -91,7 +87,7 @@ public class Teleop extends Fragment {
         droppedCounter.setText(teleopHashMap.get("NumberDropped"));
         totalScored = Integer.parseInt(teleopHashMap.get("InnerPortScored")) + Integer.parseInt(teleopHashMap.get("OuterPortScored")) + Integer.parseInt(teleopHashMap.get("LowerPortScored"));
         scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
-        totalMissed = Integer.parseInt(teleopHashMap.get("UpperMissed")) + Integer.parseInt(teleopHashMap.get("LowerPortMissed"));
+        totalMissed = Integer.parseInt(teleopHashMap.get("UpperPortMissed")) + Integer.parseInt(teleopHashMap.get("LowerPortMissed"));
         missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
 
         //set listeners for buttons and fill the hashmap with data
@@ -202,6 +198,8 @@ public class Teleop extends Fragment {
                         teleopHashMap.put("InnerPortScored", (String)innerScore.getText());
                         teleopHashMap.put("OuterPortScored", (String)outerScore.getText());
                         teleopHashMap.put("LowerPortScored", (String)lowerScore.getText());
+                        totalScored = Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
                         popupWindow.dismiss();
                     }
                 });
@@ -228,59 +226,35 @@ public class Teleop extends Fragment {
                 // Bootstrap Buttons
                 BootstrapButton saveButton = popupView.findViewById(R.id.SaveButton);
                 BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
-                BootstrapButton innerIncrement = popupView.findViewById(R.id.InnerIncrement);
-                BootstrapButton innerDecrement = popupView.findViewById(R.id.InnerDecrement);
-                BootstrapButton outerIncrement = popupView.findViewById(R.id.OuterIncrement);
-                BootstrapButton outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                BootstrapButton upperIncrement = popupView.findViewById(R.id.UpperIncrement);
+                BootstrapButton upperDecrement = popupView.findViewById(R.id.UpperDecrement);
                 BootstrapButton lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
                 BootstrapButton lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView innerScore = popupView.findViewById(R.id.InnerScore);
-                TextView outerScore = popupView.findViewById(R.id.OuterScore);
+                TextView upperScore = popupView.findViewById(R.id.UpperScore);
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
-                innerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("InnerPortMissed"), 3));
-                outerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("OuterPortMissed"), 3));
+                upperScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("UpperPortMissed"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortMissed"), 3));
 
-                innerIncrement.setOnClickListener(new View.OnClickListener() {
+                upperIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        innerPortNum += 1;
-                        innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
+                        upperPortNum += 1;
+                        upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
                     }
                 });
 
-                innerDecrement.setOnClickListener(new View.OnClickListener() {
+                upperDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        if(innerPortNum > 0) {
-                            innerPortNum -= 1;
-                            innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
-                        }
-                    }
-                });
-
-                outerIncrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        outerPortNum += 1;
-                        outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
-                    }
-                });
-
-                outerDecrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        if(outerPortNum > 0) {
-                            outerPortNum -= 1;
-                            outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
+                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
+                        if(upperPortNum > 0) {
+                            upperPortNum -= 1;
+                            upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
                         }
                     }
                 });
@@ -308,9 +282,10 @@ public class Teleop extends Fragment {
                 saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        teleopHashMap.put("InnerPortMissed", (String)innerScore.getText());
-                        teleopHashMap.put("OuterPortMissed", (String)outerScore.getText());
+                        teleopHashMap.put("UpperPortMissed", (String)upperScore.getText());
                         teleopHashMap.put("LowerPortMissed", (String)lowerScore.getText());
+                        totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
                         popupWindow.dismiss();
                     }
                 });

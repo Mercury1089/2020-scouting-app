@@ -132,7 +132,7 @@
         app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
 
-    <RadioGroup
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
         android:id="@+id/ScoredToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,39 +141,38 @@
         android:orientation="horizontal"
         android:showDividers="middle"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
-        tools:layout_editor_absoluteX="96dp">
+        tools:layout_editor_absoluteX="96dp"
+        app:roundedCorners="true">
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/ScoredButton"
-            android:layout_width="125dp"
+            android:layout_width="140dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
             android:button="@drawable/button_rounded_corners"
-            android:gravity="left|center_vertical"
+            android:gravity="start|center_vertical"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
             android:textSize="18sp"
-            android:orientation="horizontal"
             tools:visibility="visible" />
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/MissedButton"
-            android:layout_width="125dp"
+            android:layout_width="140dp"
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
             android:button="@drawable/button_rounded_corners"
-            android:gravity="left|center_vertical"
+            android:gravity="start|center_vertical"
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
             android:textSize="18sp"
-            android:orientation="horizontal"
             tools:visibility="visible" />
 
-    </RadioGroup>
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
-    <RadioGroup
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
         android:id="@+id/PickedUpToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -181,9 +180,10 @@
         android:orientation="horizontal"
         android:showDividers="middle"
         tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="180dp">
+        tools:layout_editor_absoluteY="180dp"
+        app:roundedCorners="true">
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/PickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -195,12 +195,14 @@
             android:gravity="center"
             android:text="@string/Plus"
             android:textColor="@drawable/text_states"
-            android:textScaleX="@dimen/bootstrap_h2_hori_padding"
             android:textSize="36sp"
-            android:orientation="horizontal"
             tools:visibility="visible" />
 
-        <RadioButton
+        <!--
+        android:textScaleX="@dimen/bootstrap_h2_hori_padding"
+        -->
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/NotPickedUpButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -212,11 +214,10 @@
             android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
-            android:orientation="horizontal"
             tools:visibility="visible" />
-    </RadioGroup>
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
-    <RadioGroup
+    <com.beardedhen.androidbootstrap.BootstrapButtonGroup
         android:id="@+id/DroppedToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -225,9 +226,10 @@
         android:orientation="horizontal"
         android:showDividers="middle"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp"
-        tools:layout_editor_absoluteX="127dp">
+        tools:layout_editor_absoluteX="127dp"
+        app:roundedCorners="true">
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/DroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -239,10 +241,9 @@
             android:text="@string/Plus"
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
-            android:orientation="horizontal"
             tools:visibility="visible" />
 
-        <RadioButton
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/NotDroppedButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -255,31 +256,31 @@
             android:textColor="@drawable/text_states"
             android:textSize="36sp"
             tools:visibility="visible" />
-    </RadioGroup>
+    </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
     <TextView
         android:id="@+id/ScoredCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDScoringDirections" />
+        app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
+        app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
 
     <TextView
         android:id="@+id/MissedCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="295dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="225dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDScoringDirections" />
+        app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
+        app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
 
     <TextView
         android:id="@+id/IDMisc"
@@ -326,6 +327,7 @@
         tools:layout_editor_absoluteX="43dp"
         tools:layout_editor_absoluteY="702dp" />
 
+    <!-- lab -->
     <TextView
         android:id="@+id/IDMiscDirections2"
         android:layout_width="wrap_content"
@@ -333,7 +335,7 @@
         android:fontFamily="@font/open_sans"
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
-        android:textSize="lab"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/FellOverSwitch"
         app:layout_constraintTop_toTopOf="@+id/FellOverSwitch"
         tools:layout_editor_absoluteX="174dp" />

@@ -7,7 +7,7 @@
     android:background="@color/bg_scoring_popup">
 
     <TextView
-        android:id="@+id/OuterID"
+        android:id="@+id/Upper1ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -19,7 +19,7 @@
 
     <!-- Inner port stuff -->
     <TextView
-        android:id="@+id/InnerID"
+        android:id="@+id/Upper2ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(OUTER/INNER)"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/OuterID" />
 
     <com.beardedhen.androidbootstrap.BootstrapButtonGroup
-        android:id="@+id/InnerIncrementDecrementContainer"
+        android:id="@+id/UpperIncrementDecrementContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -41,14 +41,14 @@
 
 
         <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/InnerIncrement"
+            android:id="@+id/UpperIncrement"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="+"
             android:textSize="24sp" />
 
         <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/InnerDecrement"
+            android:id="@+id/UpperDecrement"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="-"
@@ -58,7 +58,7 @@
     </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
 
     <TextView
-        android:id="@+id/InnerScore"
+        android:id="@+id/UpperScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

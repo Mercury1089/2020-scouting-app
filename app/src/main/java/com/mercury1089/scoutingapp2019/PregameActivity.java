@@ -398,7 +398,7 @@ public class PregameActivity extends AppCompatActivity {
                                     goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
                                 } else {
                                     goBackToMain.setEnabled(false);
-                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.switch_disabled)));
+                                    goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.switch_thumb_disabled))); // was switch_disabled
                                     goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
                                 }
                             }

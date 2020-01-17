@@ -20,9 +20,11 @@
         android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_constraintWidth_percent="0.7"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDClearDirections" />
+
+    <!-- android:layout_constraintWidth_percent="0.7" -->
 
     <Button
         android:id="@+id/CancelConfirm"
