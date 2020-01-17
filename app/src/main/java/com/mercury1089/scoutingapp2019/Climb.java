@@ -32,6 +32,11 @@ public class Climb extends Fragment {
     //BootstrapButtons
     private BootstrapButton generateQRButton;
 
+    //Switches
+    private Switch climbedSwitch;
+    private Switch leveledSwitch;
+    private Switch parkedSwitch;
+
     //other variables
     private ConstraintLayout constraintLayout;
     private Switch fellOverSwitch;
@@ -56,6 +61,10 @@ public class Climb extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
+        climbedSwitch = getView().findViewById(R.id.ClimbedSwitch);
+        leveledSwitch = getView().findViewById(R.id.LeveledSwitch);
+        parkedSwitch = getView().findViewById(R.id.ParkedSwitch);
+
         //generateQRButton = getView().findViewById(R.id.GenerateQRCodeButton);
 
         //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
@@ -93,16 +102,34 @@ public class Climb extends Fragment {
         });*/
     }
 
+    private void allButtonsEnabledState(boolean enable){
+        climbedSwitch.setEnabled(enable);
+        leveledSwitch.setEnabled(enable);
+        parkedSwitch.setEnabled(enable);
+    }
+
+    private void updateXMLObjects(){
+        climbedSwitch.setChecked(climbHashMap.get("Climbed") == "1");
+        leveledSwitch.setChecked(climbHashMap.get("Leveled") == "1");
+        parkedSwitch.setChecked(climbHashMap.get("Parked") == "1");
+
+        if(setupHashMap.get("FellOver") == "1")
+            allButtonsEnabledState(false);
+        else
+            allButtonsEnabledState(true);
+    }
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
 
         // Make sure that we are currently visible
         if (this.isVisible()) {
-            // If we are becoming invisible, then...
+            // If we are becoming visible, then...
             if (isVisibleToUser) {
                 setupHashMap = context.setupHashMap;
                 climbHashMap = HashMapManager.getClimbHashMap();
+                updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
                 context.setupHashMap = setupHashMap;

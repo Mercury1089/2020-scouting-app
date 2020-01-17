@@ -67,12 +67,12 @@ public class Auton extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
-        //pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
-        //pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
+        pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
+        pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
         pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
 
-        //droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
-        //droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
+        droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
+        droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
         droppedCounter = getView().findViewById(R.id.DroppedCounter);
 
         scoredButton = getView().findViewById(R.id.ScoredButton);
@@ -89,19 +89,7 @@ public class Auton extends Fragment {
         autonHashMap = HashMapManager.getAutonHashMap();
 
         //fill in counters with data
-        pickedUpCounter.setText(autonHashMap.get("NumberPickedUp"));
-        droppedCounter.setText(autonHashMap.get("NumberDropped"));
-        totalScored = Integer.parseInt(autonHashMap.get("InnerPortScored")) + Integer.parseInt(autonHashMap.get("OuterPortScored")) + Integer.parseInt(autonHashMap.get("LowerPortScored"));
-        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
-        totalMissed = Integer.parseInt(autonHashMap.get("UpperPortMissed")) + Integer.parseInt(autonHashMap.get("LowerPortMissed"));
-        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
-
-        //set switches to state in the HashMap
-        if(autonHashMap.get("CrossedInitiationLine") == "1")
-            crossedLineSwitch.setChecked(true);
-
-        if(autonHashMap.get("FellOver") == "1")
-            allButtonsEnabledState(false);
+        updateXMLObjects();
 
         //switch to the next screen with data after 15 seconds
         TimerTask switchToTeleop = new TimerTask() {
@@ -231,7 +219,7 @@ public class Auton extends Fragment {
                         autonHashMap.put("OuterPortScored", (String)outerScore.getText());
                         autonHashMap.put("LowerPortScored", (String)lowerScore.getText());
                         totalScored = Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
-                        scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+                        updateXMLObjects();
                         popupWindow.dismiss();
                     }
                 });
@@ -317,7 +305,7 @@ public class Auton extends Fragment {
                         autonHashMap.put("UpperPortMissed", (String)upperScore.getText());
                         autonHashMap.put("LowerPortMissed", (String)lowerScore.getText());
                         totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
-                        missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
+                        updateXMLObjects();
                         popupWindow.dismiss();
                     }
                 });
@@ -348,6 +336,10 @@ public class Auton extends Fragment {
         pickedUpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberPickedUp"), 3));
         droppedCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberDropped"), 3));
         crossedLineSwitch.setChecked(autonHashMap.get("CrossedInitiationLine") == "1");
+        if(setupHashMap.get("FellOver") == "1")
+            allButtonsEnabledState(false);
+        else
+            allButtonsEnabledState(true);
     }
 
     @Override
@@ -356,10 +348,11 @@ public class Auton extends Fragment {
 
         // Make sure that we are currently visible
         if (this.isVisible()) {
-            // If we are becoming invisible, then...
+            // If we are becoming visible, then...
             if (isVisibleToUser) {
                 setupHashMap = context.setupHashMap;
                 autonHashMap = HashMapManager.getAutonHashMap();
+                updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
                 context.setupHashMap = setupHashMap;
