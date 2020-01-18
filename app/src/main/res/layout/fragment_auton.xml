@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auton"
     android:layout_width="match_parent"
-    android:layout_height="824dp"
+    android:layout_height="match_parent"
     android:background="@color/bg_general"
     tools:context=".MatchActivity">
 
@@ -13,7 +13,7 @@
         android:id="@+id/TeleopWarning"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/teleop_warning"
         android:gravity="center"
         android:text="@string/TeleopWarning"
@@ -22,74 +22,79 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDAutonSeconds1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/IDAutonSeconds1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/AutonSeconds"
         android:textColor="@drawable/header_states"
-        app:layout_constraintStart_toStartOf="@+id/TeleopWarning"
+        app:layout_constraintBottom_toTopOf="@+id/TeleopWarning"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/IDPossession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/PossessionTitle"
         android:textColor="@drawable/header_states"
-        android:textSize="18sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TeleopWarning" />
+        app:layout_constraintTop_toBottomOf="@+id/IDAutonSeconds1" />
+
+    <TextView
+        android:id="@+id/IDPossessionDirections"
+        android:layout_width="544dp"
+        android:layout_height="57dp"
+        android:fontFamily="@font/open_sans_italic"
+        android:text="@string/PossessionDirections"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
+        app:layout_constraintTop_toBottomOf="@+id/IDPossession" />
 
     <TextView
         android:id="@+id/IDScoring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/ScoringTitle"
         android:textColor="@drawable/header_states"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/IDDropped"
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/DroppedToggle" />
 
     <TextView
-        android:id="@+id/IDPossessionDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_italic"
-        android:text="@string/PossessionDirections"
-        android:textColor="@drawable/text_states"
-        app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/IDPossession" />
-
-    <TextView
         android:id="@+id/IDScoringDirections"
-        android:layout_width="540dp"
+        android:layout_width="547dp"
         android:layout_height="82dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/ScoringDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDScoring"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/IDScoring" />
 
     <TextView
         android:id="@+id/IDPickedUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/PickedUp"
         android:textColor="@drawable/text_states"
-        app:layout_constraintStart_toStartOf="@+id/IDPossessionDirections"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/IDPossessionDirections" />
 
     <TextView
@@ -113,18 +118,18 @@
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         app:layout_constraintBottom_toBottomOf="@+id/IDDropped"
-        app:layout_constraintStart_toEndOf="@+id/DroppedToggle"
+        app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toTopOf="@+id/IDDropped" />
 
     <TextView
         android:id="@+id/IDDropped"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/Dropped"
         android:textColor="@drawable/text_states"
-        app:layout_constraintStart_toStartOf="@+id/IDPickedUp"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp" />
 
     <TextView
@@ -132,18 +137,102 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="182dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         app:layout_constraintBottom_toBottomOf="@+id/IDAutonSeconds1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
+
+    <RadioGroup
+        android:id="@+id/PickedUpToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
+        app:layout_constraintStart_toEndOf="@+id/IDPickedUp"
+        app:layout_constraintTop_toTopOf="@+id/IDPickedUp">
+
+        <Button
+            android:id="@+id/PickedUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_left_default"
+            android:button="@drawable/toggle_left_default"
+            android:enabled="true"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@string/Plus"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/NotPickedUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_right_default"
+
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@string/Minus"
+            android:textColor="@drawable/text_states"
+            android:textSize="36sp"
+            tools:visibility="visible" />
+
+        <!-- android:button="@drawable/button_rounded_corners" -->
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/DroppedToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:layout_constraintStart_toStartOf="@+id/PickedUpToggle"
+        app:layout_constraintTop_toBottomOf="@+id/IDPickedUp">
+
+        <Button
+            android:id="@+id/DroppedButton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_left_default"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@string/Plus"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/NotDroppedButton"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_right_default"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@string/Minus"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
+            tools:visibility="visible" />
+    </RadioGroup>
 
     <RadioGroup
         android:id="@+id/ScoredToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
         android:showDividers="middle"
@@ -153,7 +242,8 @@
         <Button
             android:id="@+id/ScoredButton"
             android:layout_width="140dp"
-            android:layout_height="50dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
             android:gravity="start|center_vertical"
             android:text="@string/Scored"
@@ -164,7 +254,8 @@
         <Button
             android:id="@+id/MissedButton"
             android:layout_width="140dp"
-            android:layout_height="50dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
             android:gravity="start|center_vertical"
             android:text="@string/Missed"
@@ -174,90 +265,15 @@
 
     </RadioGroup>
 
-    <RadioGroup
-        android:id="@+id/PickedUpToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:divider="?android:attr/dividerHorizontal"
-        android:orientation="horizontal"
-        android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
-        app:layout_constraintStart_toEndOf="@+id/IDPickedUp"
-        app:layout_constraintTop_toTopOf="@+id/IDPickedUp">
-
-        <Button
-            android:id="@+id/PickedUpButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_left_default"
-            android:button="@drawable/toggle_left_default"
-            android:enabled="true"
-            android:fontFamily="@font/open_sans"
-            android:gravity="center"
-            android:text="@string/Plus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/NotPickedUpButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_right_default"
-            android:fontFamily="@font/open_sans"
-            android:gravity="center"
-            android:text="@string/Minus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/DroppedToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:divider="?android:attr/dividerHorizontal"
-        android:orientation="horizontal"
-        android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="@+id/IDDropped"
-        app:layout_constraintStart_toStartOf="@+id/PickedUpToggle"
-        app:layout_constraintTop_toTopOf="@+id/IDDropped">
-
-        <Button
-            android:id="@+id/DroppedButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_left_default"
-            android:fontFamily="@font/open_sans"
-            android:gravity="center"
-            android:text="@string/Plus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/NotDroppedButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_right_default"
-            android:fontFamily="@font/open_sans"
-            android:gravity="center"
-            android:text="@string/Minus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
-    </RadioGroup>
-
     <TextView
         android:id="@+id/ScoredCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="42dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
         app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
 
@@ -265,11 +281,11 @@
         android:id="@+id/MissedCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="228dp"
+        android:layout_marginStart="227dp"
+        android:layout_marginTop="42dp"
         android:background="@drawable/badge_counter"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
         app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
 
@@ -277,12 +293,11 @@
         android:id="@+id/IDMisc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/MiscTitle"
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
-        app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/ScoredToggle" />
 
     <TextView
@@ -293,14 +308,14 @@
         android:text="@string/MiscDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDMisc"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/IDMisc" />
 
     <TextView
         android:id="@+id/IDCrossedLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/CrossedLine"
         android:textColor="@drawable/text_states"
@@ -315,17 +330,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:thumb="@drawable/thumb_default"
         android:track="@drawable/track_default"
-        app:layout_constraintStart_toStartOf="@+id/IDMiscDirections"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/IDMiscDirections" />
 
     <TextView
         android:id="@+id/IDMiscDirections2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
@@ -343,14 +358,14 @@
         android:layout_marginTop="16dp"
         android:thumb="@drawable/thumb_default"
         android:track="@drawable/track_default"
-        app:layout_constraintStart_toStartOf="@+id/CrossedLineSwitch"
+        app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/CrossedLineSwitch" />
 
     <Button
         android:id="@+id/ClimbNextButton"
         android:layout_width="473dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/button_disabled"
         android:enabled="false"
         android:text="@string/TeleopNext"
