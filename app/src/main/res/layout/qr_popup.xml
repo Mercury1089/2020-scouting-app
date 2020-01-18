@@ -23,12 +23,11 @@
         android:id="@+id/IDTeamNumberQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="@string/TeamNumberID"
         android:textColor="@color/bootstrap_dropdown_divider"
         android:textSize="@dimen/header_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDMatchNumberQR"
+        app:layout_constraintEnd_toEndOf="@+id/IDMatchNumberQR"
         app:layout_constraintTop_toBottomOf="@+id/IDMatchNumberQR" />
 
     <ImageView
@@ -65,14 +64,15 @@
         android:id="@+id/MatchNumberQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/open_sans"
         android:gravity="center"
         android:text="@string/DefaultValue"
         android:textColor="@color/ice"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDMatchNumberQR"
-        app:layout_constraintTop_toTopOf="@+id/IDMatchNumberQR"
-        tools:layout_editor_absoluteX="211dp" />
+        app:layout_constraintStart_toEndOf="@+id/IDMatchNumberQR"
+        app:layout_constraintTop_toTopOf="@+id/IDMatchNumberQR" />
 
     <TextView
         android:id="@+id/TeamNumberQR"
@@ -84,7 +84,7 @@
         android:textColor="@color/ice"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDTeamNumberQR"
-        app:layout_constraintTop_toBottomOf="@+id/IDMatchNumberQR"
-        tools:layout_editor_absoluteX="210dp" />
+        app:layout_constraintStart_toStartOf="@+id/MatchNumberQR"
+        app:layout_constraintTop_toTopOf="@+id/IDTeamNumberQR" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

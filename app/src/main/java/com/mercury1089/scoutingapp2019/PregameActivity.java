@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.beardedhen.androidbootstrap.BootstrapButton;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -32,28 +32,31 @@ public class PregameActivity extends AppCompatActivity {
     private String noShow; //0 or 1
 
     //variables that store elements of the screen for the output variables
+    //Buttons
+    private Button blueButton;
+    private Button redButton;
+    private Button clearButton;
+    private Button startButton;
+    private Button settingsButton;
+
+    //Text Fields
     private EditText scouterNameInput;
     private EditText matchNumberInput;
     private EditText teamNumberInput;
     private EditText firstAlliancePartnerInput;
     private EditText secondAlliancePartnerInput;
-    private BootstrapButton blueButton;
-    private BootstrapButton redButton;
-    private Switch NoShowSwitch;
+
+    //Switches
+    private Switch noShowSwitch;
+
+    //HashMaps
     private LinkedHashMap<String, String> setupHashMap;
 
     //for QR code generator
     public final static int QRCodeSize = 500;
     Bitmap bitmap;
     ProgressDialog progressDialog;
-
-    //other variables
-    BootstrapButton clearButton;
-    BootstrapButton startButton;
-    BootstrapButton settingsButton;
-
     boolean isQRButton = false;
-    String leftOrRight;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,19 +68,24 @@ public class PregameActivity extends AppCompatActivity {
         teamNumberInput = findViewById(R.id.TeamNumberInput);
         firstAlliancePartnerInput = findViewById(R.id.FirstAlliancePartnerInput);
         secondAlliancePartnerInput = findViewById(R.id.SecondAlliancePartnerInput);
-        //blueButton = findViewById(R.id.ScoredButton);
-        //redButton = findViewById(R.id.MissedButton);
-        //NoShowSwitch = findViewById(R.id.NoShowSwitch);
-        //clearButton = findViewById(R.id.ClearButton);
-        //startButton = findViewById(R.id.TeleopNextButton);
-        //settingsButton = findViewById(R.id.SettingsButton);
+        blueButton = findViewById(R.id.BlueButton);
+        redButton = findViewById(R.id.RedButton);
+        noShowSwitch = findViewById(R.id.NoShowSwitch);
+        clearButton = findViewById(R.id.ClearButton);
+        startButton = findViewById(R.id.StartButton);
+        settingsButton = findViewById(R.id.SettingsButton);
 
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         setupHashMap = HashMapManager.getSetupHashMap();
 
         //setting group buttons to default state
-        blueDefault();
-        redDefault();
+        if(setupHashMap.get("AllianceColor").equals("Blue")){
+            setBlueButtonState(BUTTONSTATE.SELECTED);
+            setRedButtonState(BUTTONSTATE.DEFAULT);
+        } else {
+            setBlueButtonState(BUTTONSTATE.DEFAULT);
+            setRedButtonState(BUTTONSTATE.SELECTED);
+        }
 
         scouterNameInput.setText(setupHashMap.get("ScouterName"));
         matchNumberInput.setText(setupHashMap.get("MatchNumber"));
@@ -85,24 +93,94 @@ public class PregameActivity extends AppCompatActivity {
         firstAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner1"));
         secondAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner2"));
 
-        startButtonCheck();
-        clearButtonCheck();
-
         if(setupHashMap.get("NoShow").equals("1")){
-            NoShowSwitch.setChecked((true));
-            startButtonCheck();
-            clearButtonCheck();
+            noShowSwitch.setChecked((true));
             startButton.setText(R.string.GenerateQRCode);
             isQRButton = true;
         }else{
-            NoShowSwitch.setChecked(false);
-            startButtonCheck();
-            clearButtonCheck();
+            noShowSwitch.setChecked(false);
         }
 
-        //starting listener to check the status of the switch
-        NoShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        startButtonCheck();
+        clearButtonCheck();
 
+        scouterNameInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                startButtonCheck();
+                clearButtonCheck();
+                setupHashMap.put("ScouterName", scouterNameInput.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        matchNumberInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                startButtonCheck();
+                clearButtonCheck();
+                setupHashMap.put("MatchNumber", matchNumberInput.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        teamNumberInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                startButtonCheck();
+                clearButtonCheck();
+                setupHashMap.put("TeamNumber", teamNumberInput.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        firstAlliancePartnerInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                startButtonCheck();
+                clearButtonCheck();
+                setupHashMap.put("AlliancePartner1", firstAlliancePartnerInput.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        secondAlliancePartnerInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                startButtonCheck();
+                clearButtonCheck();
+                setupHashMap.put("AlliancePartner2", secondAlliancePartnerInput.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        //starting listener to check the status of the switch
+        noShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 startButtonCheck();
                 clearButtonCheck();
@@ -118,93 +196,34 @@ public class PregameActivity extends AppCompatActivity {
             }
         });
 
-        scouterNameInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                startButtonCheck();
-                clearButtonCheck();
-                setupHashMap.put("ScouterName", scouterNameInput.getText().toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        matchNumberInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                startButtonCheck();
-                clearButtonCheck();
-                setupHashMap.put("MatchNumber", matchNumberInput.getText().toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        teamNumberInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                startButtonCheck();
-                clearButtonCheck();
-                setupHashMap.put("TeamNumber", teamNumberInput.getText().toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        firstAlliancePartnerInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                startButtonCheck();
-                clearButtonCheck();
-                setupHashMap.put("AlliancePartner1", firstAlliancePartnerInput.getText().toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        secondAlliancePartnerInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                startButtonCheck();
-                clearButtonCheck();
-                setupHashMap.put("AlliancePartner2", secondAlliancePartnerInput.getText().toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-
         //click methods
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HashMapManager.putSetupHashMap(setupHashMap);
+                Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        blueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                setBlueButtonState(BUTTONSTATE.SELECTED);
+                setRedButtonState(BUTTONSTATE.DEFAULT);
+                setupHashMap.put("AllianceColor", "Blue");
+            }
+        });
+
+        redButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                setBlueButtonState(BUTTONSTATE.DEFAULT);
+                setRedButtonState(BUTTONSTATE.SELECTED);
+                setupHashMap.put("AllianceColor", "Red");
+            }
+        });
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View view){
@@ -227,23 +246,14 @@ public class PregameActivity extends AppCompatActivity {
             }
         });
 
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HashMapManager.putSetupHashMap(setupHashMap);
-                Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
                 View view1 = getLayoutInflater().inflate(R.layout.clear_confirm_popup, null);
 
-                BootstrapButton clearConfirm = view1.findViewById(R.id.ClearConfirm);
-                BootstrapButton cancelConfirm = view1.findViewById(R.id.CancelConfirm);
+                Button clearConfirm = view1.findViewById(R.id.ClearConfirm);
+                Button cancelConfirm = view1.findViewById(R.id.CancelConfirm);
                 final AlertDialog dialog = cancelDialog.create();
 
                 dialog.setView(view1);
@@ -267,7 +277,7 @@ public class PregameActivity extends AppCompatActivity {
                         teamNumberInput.setText("");
                         firstAlliancePartnerInput.setText("");
                         secondAlliancePartnerInput.setText("");
-                        NoShowSwitch.setChecked(false);
+                        noShowSwitch.setChecked(false);
                         startButtonCheck();
                         clearButtonCheck();
                     }
@@ -292,7 +302,7 @@ public class PregameActivity extends AppCompatActivity {
         if(scouterNameInput.getText().length() > 0 ||
                 matchNumberInput.getText().length() > 0 ||
                 teamNumberInput.getText().length() > 0 ||
-                NoShowSwitch.isChecked() ||
+                noShowSwitch.isChecked() ||
                 firstAlliancePartnerInput.getText().length() > 0 ||
                 secondAlliancePartnerInput.getText().length() > 0)
             clearButton.setEnabled(true);
@@ -300,14 +310,35 @@ public class PregameActivity extends AppCompatActivity {
             clearButton.setEnabled(false);
     }
 
-    private void blueDefault () {
-        blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-        blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
+    //Setting the button themes
+    private enum BUTTONSTATE{
+        DEFAULT, SELECTED
     }
 
-    private void redDefault () {
-        redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-        redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
+    private void setBlueButtonState(BUTTONSTATE state){
+        switch(state){
+            case DEFAULT:
+                blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
+                blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
+                break;
+            case SELECTED:
+                blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.blue));
+                blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
+                break;
+        }
+    }
+
+    private void setRedButtonState(BUTTONSTATE state){
+        switch(state){
+            case DEFAULT:
+                redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
+                redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
+                break;
+            case SELECTED:
+                redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.red));
+                redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
+                break;
+        }
     }
 
     //template for implementing a button click for a rectangle for starting position
@@ -379,11 +410,10 @@ public class PregameActivity extends AppCompatActivity {
                         final AlertDialog dialog = qrDialog.create();
 
                         //progressDialog.dismiss();
-                        teamNumber.setText("Team Number: " + setupHashMap.get("TeamNumber"));
-                        matchNumber.setText("Match Number: " + setupHashMap.get("MatchNumber"));
-                        goBackToMain.setEnabled(false);
-                        goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.savedefault)));
-                        goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
+                        teamNumber.setText(setupHashMap.get("TeamNumber"));
+                        matchNumber.setText(setupHashMap.get("MatchNumber"));
+                        //goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.savedefault)));
+                        //goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
 
                         progressDialog.dismiss();
 
@@ -401,6 +431,7 @@ public class PregameActivity extends AppCompatActivity {
                                 teamNumberInput.setText(setupHashMap.get("TeamNumber"));
                                 firstAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner1"));
                                 secondAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner2"));
+                                noShowSwitch.setChecked(false);
                             }
                         });
                     }
