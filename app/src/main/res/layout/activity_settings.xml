@@ -11,11 +11,12 @@
 
     <Button
         android:id="@+id/BackButton"
-        android:layout_width="113dp"
-        android:layout_height="63dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="128dp"
         android:background="@drawable/button_states"
+        android:fontFamily="@font/open_sans"
         android:text="@string/GoBack"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
@@ -58,4 +59,17 @@
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDSettings"
         app:layout_constraintTop_toBottomOf="@+id/IDSettings" />
+
+    <TextView
+        android:id="@+id/SettingsHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="@color/banana"
+        android:fontFamily="@font/gudea_bold"
+        android:gravity="center"
+        android:text="@string/SettingsWarning"
+        android:textColor="@color/night"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

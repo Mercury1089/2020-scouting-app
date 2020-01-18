@@ -5,11 +5,11 @@
     android:gravity="center"
     android:height="30dp">
     <corners android:radius="15dp" />
-    <solid android:color="@color/bg_scoring_popup" />
+    <solid android:color="@color/ocean" />
 
     <padding
-        android:bottom="3dp"
-        android:left="8dp"
-        android:right="8dp"
-        android:top="3dp" />
+        android:bottom="4dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="4dp" />
 </shape>

@@ -7,8 +7,6 @@
     <corners android:radius="5dp"/>
     <solid android:color="@color/night"/>
     <padding
-        android:bottom="16dp"
-        android:left="18dp"
-        android:right="18dp"
-        android:top="16dp"/>
+        android:top="16dp"
+        android:bottom="16dp"/>
 </shape>

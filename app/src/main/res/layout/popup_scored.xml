@@ -11,6 +11,7 @@
         android:id="@+id/carat"
         android:layout_width="@dimen/carat_length"
         android:layout_height="@dimen/carat_length"
+        android:layout_marginStart="32dp"
         android:background="@drawable/carat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,25 +51,25 @@
 
             <Button
                 android:id="@+id/HigherIncrement"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_default"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:text="@string/Plus"
                 android:textColor="@drawable/text_states"
-                android:textSize="@dimen/button_text_size" />
+                android:textSize="@dimen/square_toggle_text" />
 
             <Button
                 android:id="@+id/HigherDecrement"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_default"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:text="@string/Minus"
                 android:textColor="@drawable/text_states"
-                android:textSize="@dimen/button_text_size" />
+                android:textSize="@dimen/square_toggle_text" />
 
 
         </RadioGroup>
@@ -99,25 +100,25 @@
 
             <Button
                 android:id="@+id/LowerIncrement"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_default"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:text="@string/Plus"
                 android:textColor="@drawable/text_states"
-                android:textSize="@dimen/button_text_size" />
+                android:textSize="@dimen/square_toggle_text" />
 
             <Button
                 android:id="@+id/LowerDecrement"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_default"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
                 android:text="@string/Minus"
                 android:textColor="@drawable/text_states"
-                android:textSize="@dimen/button_text_size" />
+                android:textSize="@dimen/square_toggle_text" />
 
 
         </RadioGroup>

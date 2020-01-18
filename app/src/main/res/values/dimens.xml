@@ -9,4 +9,6 @@
     <dimen name="tail_height">"12dp"</dimen>
     <dimen name="scoring_popup_length">"300dp"</dimen>
     <dimen name="carat_length">"50dp"</dimen>
+    <dimen name="square_toggle_text">20sp</dimen>
+    <dimen name="square_toggle_length">45dp</dimen>
 </resources>

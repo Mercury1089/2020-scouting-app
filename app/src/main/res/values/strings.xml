@@ -50,6 +50,8 @@
 
 
 <!-- SettingsActivity -->
+    <!-- Warning -->
+        <string name="SettingsWarning">FOR STRATEGY COMMITTEE MEMBERS ONLY</string>
     <!-- ID Fields -->
         <string name="ResetID">RESET APP</string>
         <string name="ClearWarning">Are you sure you want to clear all data on the setup screen?</string>
