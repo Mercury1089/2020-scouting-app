@@ -8,7 +8,7 @@
 <!-- Headings -->
     <!-- Titles -->
         <string name="app_name">Scouting App 2020</string>
-        <string name="SettingsTitle">RESET APP</string>
+        <string name="SettingsTitle">SETTINGS</string>
         <string name="SetupTitle">SETUP</string>
         <string name="StartingPositionTitle">STARTING POSITION</string>
         <string name="ClearTitle">CLEAR THIS SCREEN?</string>
@@ -51,27 +51,27 @@
 
 <!-- SettingsActivity -->
     <!-- ID Fields -->
-        <string name="QRProblems">Having QR problems?</string>
+        <string name="ResetID">RESET APP</string>
         <string name="ClearWarning">Are you sure you want to clear all data on the setup screen?</string>
+        <string name="GoBack">BACK</string>
 
     <!-- Directions -->
-        <string name="LeftRightDirections">Which side of the field is blue?</string>
+        <string name="ResetDirections">If a QR code fails to generate or the app is displaying persistent and incorrect active states, tap the button below.</string>
 
     <!-- Button Texts -->
-        <string name="Done">DONE</string>
-        <string name="Cancel">CANCEL</string>
-        <string name="Left">Left</string>
-        <string name="Right">Right</string>
+        <string name="ResetButton">RESET ALL VARIABLES</string>
 
 
 <!-- MatchActivity -->
     <!-- Universal -->
         <string name="DefaultValue">000</string>
         <string name="Exit">Exit</string>
+        <string name="Done">DONE</string>
+        <string name="Cancel">CANCEL</string>
+        <string name="Save">Save</string>
 
     <!-- Exit Popup -->
         <string name="ExitWarning">Are you sure that you want to leave?\nAll data will be lost!</string>
-        <string name="Save">Save</string>
 
     <!-- Auton -->
         <string name="AutonSeconds">AUTON SECONDS REMAINING</string>
@@ -112,7 +112,7 @@
 
     <!-- Missed -->
         <string name="OuterPortID">HIGH\n(OUTER/INNER)</string>
-        <string name="InputPortID">LOWER</string>
+        <string name="InnerPortID">INNER</string>
 
     <!-- Missed -->
         <string name="UpperPortID">HIGH\n(OUTER/INNER)</string>

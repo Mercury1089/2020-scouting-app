@@ -132,7 +132,7 @@ public class Auton extends Fragment {
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
 
                 int width = 325;
-                int height = 340;
+                int height = 320;
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);

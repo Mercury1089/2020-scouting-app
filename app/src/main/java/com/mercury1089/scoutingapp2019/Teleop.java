@@ -221,12 +221,12 @@ public class Teleop extends Fragment {
                 popupWindow.showAsDropDown(missedButton);
 
                 // Bootstrap Buttons
-                BootstrapButton doneButton = popupView.findViewById(R.id.DoneButton);
-                BootstrapButton cancelButton = popupView.findViewById(R.id.CancelButton);
-                BootstrapButton upperIncrement = popupView.findViewById(R.id.UpperIncrement);
-                BootstrapButton upperDecrement = popupView.findViewById(R.id.UpperDecrement);
-                BootstrapButton lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                BootstrapButton lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                Button doneButton = popupView.findViewById(R.id.DoneButton);
+                Button cancelButton = popupView.findViewById(R.id.CancelButton);
+                Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
+                Button upperDecrement = popupView.findViewById(R.id.UpperDecrement);
+                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
                 TextView upperScore = popupView.findViewById(R.id.UpperScore);

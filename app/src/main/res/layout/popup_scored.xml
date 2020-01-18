@@ -48,7 +48,7 @@
             android:background="@drawable/toggle_right_default"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="@string/Plus"
+            android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/button_text_size" />
 
@@ -71,8 +71,8 @@
         android:id="@+id/InnerID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/InputPortID"
+        android:layout_marginTop="20dp"
+        android:text="@string/InnerPortID"
         android:textColor="@color/bootstrap_brand_secondary_border"
         app:layout_constraintStart_toStartOf="@+id/OuterID"
         app:layout_constraintTop_toBottomOf="@+id/OuterID" />
@@ -108,7 +108,7 @@
             android:background="@drawable/toggle_right_default"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="@string/Plus"
+            android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/button_text_size" />
 
@@ -167,7 +167,7 @@
             android:background="@drawable/toggle_right_default"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="@string/Plus"
+            android:text="@string/Minus"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/button_text_size" />
 
