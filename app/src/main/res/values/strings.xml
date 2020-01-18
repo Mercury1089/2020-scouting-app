@@ -18,6 +18,7 @@
         <string name="MiscTitle">MISC</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="ClimbTitle">CLIMB</string>
+        <string name="EndGameTitle">ENDGAME</string>
         <string name="QRCodeTitle">DID YOU SCAN YOUR QR CODE?</string>
 
     <!-- Tabs -->
@@ -110,7 +111,9 @@
     <!-- QR Popup -->
         <string name="QRCodeID">Here is your QR Code:</string>
         <string name="QRCode">QR Code</string>
-        <string name="QRWarningDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
+        <string name="QRWarningDirections">Are you sure you want to generate a QR code? Once you
+generate a code you cannot return to the match to make
+changes.</string>
 
     <!-- Missed -->
         <string name="OuterPortID">HIGH\n(OUTER/INNER)</string>

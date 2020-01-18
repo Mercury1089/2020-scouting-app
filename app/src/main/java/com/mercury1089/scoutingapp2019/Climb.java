@@ -196,7 +196,7 @@ public class Climb extends Fragment {
                         //qrCodeGenerator.execute();
 
                         final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
-                        View view1 = getLayoutInflater().inflate(R.layout.qr_popup, null);
+                        View view1 = getLayoutInflater().inflate(R.layout.popup_qr, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
                         TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);

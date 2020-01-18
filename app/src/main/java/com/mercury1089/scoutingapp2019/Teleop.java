@@ -112,44 +112,44 @@ public class Teleop extends Fragment {
                 // Bootstrap Buttons
                 Button doneButton = popupView.findViewById(R.id.DoneButton);
                 Button cancelButton = popupView.findViewById(R.id.CancelButton);
-                Button innerIncrement = popupView.findViewById(R.id.InnerIncrement);
-                Button innerDecrement = popupView.findViewById(R.id.InnerDecrement);
-                Button outerIncrement = popupView.findViewById(R.id.OuterIncrement);
-                Button outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                Button HigherIncrement = popupView.findViewById(R.id.HigherIncrement);
+                Button HigherDecrement = popupView.findViewById(R.id.HigherDecrement);
+//                Button outerIncrement = popupView.findViewById(R.id.OuterIncrement);
+//                Button outerDecrement = popupView.findViewById(R.id.OuterDecrement);
                 Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
                 Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView innerScore = popupView.findViewById(R.id.InnerScore);
-                TextView outerScore = popupView.findViewById(R.id.OuterScore);
+                TextView HigherScore = popupView.findViewById(R.id.HigherScore);
+//                TextView outerScore = popupView.findViewById(R.id.OuterScore);
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
-                innerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("InnerPortScored"), 3));
-                outerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("OuterPortScored"), 3));
+                HigherScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("HigherPortScored"), 3));
+//                outerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("OuterPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortScored"), 3));
 
-                innerIncrement.setOnClickListener(new View.OnClickListener() {
+                HigherIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        innerPortNum += 1;
-                        innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                        int HigherPortNum = Integer.parseInt((String)HigherScore.getText());
+                        HigherPortNum += 1;
+                        HigherScore.setText(GenUtils.padLeftZeros(Integer.toString(HigherPortNum), 3));
                     }
                 });
 
-                innerDecrement.setOnClickListener(new View.OnClickListener() {
+                HigherDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        if(innerPortNum > 0) {
-                            innerPortNum -= 1;
-                            innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                        int HigherPortNum = Integer.parseInt((String)HigherScore.getText());
+                        if(HigherPortNum > 0) {
+                            HigherPortNum -= 1;
+                            HigherScore.setText(GenUtils.padLeftZeros(Integer.toString(HigherPortNum), 3));
                         }
                     }
                 });
 
-                outerIncrement.setOnClickListener(new View.OnClickListener() {
+                /*outerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int outerPortNum = Integer.parseInt((String)outerScore.getText());
@@ -167,7 +167,7 @@ public class Teleop extends Fragment {
                             outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
                         }
                     }
-                });
+                })*/
 
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -192,10 +192,10 @@ public class Teleop extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        teleopHashMap.put("InnerPortScored", (String)innerScore.getText());
-                        teleopHashMap.put("OuterPortScored", (String)outerScore.getText());
+                        teleopHashMap.put("HigherPortScored", (String)HigherScore.getText());
+                        // teleopHashMap.put("OuterPortScored", (String)outerScore.getText());
                         teleopHashMap.put("LowerPortScored", (String)lowerScore.getText());
-                        totalScored = Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        totalScored = Integer.parseInt((String)HigherScore.getText()) + Integer.parseInt((String)lowerScore.getText());
                         updateXMLObjects();
                         popupWindow.dismiss();
                     }

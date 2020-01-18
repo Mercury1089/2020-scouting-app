@@ -3,18 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_clear_confirm_popup"
-    android:minWidth="400dp"
-    android:minHeight="900dp">
+    android:layout_height="wrap_content"
+    android:background="@color/bg_scoring_popup"
+    android:padding="@dimen/padding">
 
     <Button
         android:id="@+id/ClearConfirm"
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="75dp"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="40dp"
         android:background="@drawable/button_large_active"
         android:fontFamily="@font/open_sans"
         android:text="@string/Clear"
@@ -30,16 +27,15 @@
 
     <Button
         android:id="@+id/CancelConfirm"
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="75dp"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="@dimen/button_text_size"
-        android:layout_marginEnd="40dp"
         android:background="@android:color/transparent"
         android:text="@string/Cancel"
         android:textColor="@color/ice"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ClearConfirm" />
 
@@ -47,9 +43,7 @@
         android:id="@+id/IDQRWarningDirections"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:fontFamily="@font/open_sans"
         android:text="Are you sure you want to clear all data on the setup screen?"
         android:textColor="@color/bootstrap_brand_secondary_border"
@@ -64,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/ClearTitle"
         android:textColor="@drawable/header_states"

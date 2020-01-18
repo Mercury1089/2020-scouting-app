@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/carat">
 
         <TextView
-            android:id="@+id/HigherID"
+            android:id="@+id/UpperID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -37,20 +37,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
-            android:id="@+id/HigherIncrementDecrementContainer"
+            android:id="@+id/UpperIncrementDecrementContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@+id/HigherID"
-            app:layout_constraintStart_toEndOf="@+id/HigherID"
-            app:layout_constraintTop_toTopOf="@+id/HigherID">
+            app:layout_constraintBottom_toBottomOf="@+id/UpperID"
+            app:layout_constraintStart_toEndOf="@+id/UpperID"
+            app:layout_constraintTop_toTopOf="@+id/UpperID">
 
 
             <Button
-                android:id="@+id/HigherIncrement"
+                android:id="@+id/UpperIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
@@ -61,7 +61,7 @@
                 android:textSize="@dimen/square_toggle_text" />
 
             <Button
-                android:id="@+id/HigherDecrement"
+                android:id="@+id/UpperDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
@@ -75,16 +75,16 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/HigherScore"
+            android:id="@+id/UpperScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/DefaultValue"
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/HigherID"
-            app:layout_constraintStart_toEndOf="@+id/HigherIncrementDecrementContainer"
-            app:layout_constraintTop_toTopOf="@+id/HigherID" />
+            app:layout_constraintBottom_toBottomOf="@+id/UpperID"
+            app:layout_constraintStart_toEndOf="@+id/UpperIncrementDecrementContainer"
+            app:layout_constraintTop_toTopOf="@+id/UpperID" />
 
         <RadioGroup
             android:id="@+id/LowerIncrementDecrementContainer"
@@ -94,7 +94,7 @@
             android:orientation="horizontal"
             android:showDividers="middle"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
-            app:layout_constraintStart_toStartOf="@+id/HigherIncrementDecrementContainer"
+            app:layout_constraintStart_toStartOf="@+id/UpperIncrementDecrementContainer"
             app:layout_constraintTop_toTopOf="@+id/LowerID">
 
 
@@ -131,8 +131,8 @@
             android:text="@string/LowerPortID"
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
-            app:layout_constraintStart_toStartOf="@+id/HigherID"
-            app:layout_constraintTop_toBottomOf="@+id/HigherID" />
+            app:layout_constraintStart_toStartOf="@+id/UpperID"
+            app:layout_constraintTop_toBottomOf="@+id/UpperID" />
 
         <TextView
             android:id="@+id/LowerScore"
@@ -142,7 +142,7 @@
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
-            app:layout_constraintStart_toStartOf="@+id/HigherScore"
+            app:layout_constraintStart_toStartOf="@+id/UpperScore"
             app:layout_constraintTop_toTopOf="@+id/LowerID" />
 
         <Button

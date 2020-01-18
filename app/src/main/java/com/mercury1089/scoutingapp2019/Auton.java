@@ -105,6 +105,11 @@ public class Auton extends Fragment {
                     public void run() {
                         Toast.makeText(context, "End Auton", Toast.LENGTH_SHORT).show();
                     }
+                    /*TODO: Make it so that after 10 seconds, the teleop warning's visibility is set to visible.
+                            After 15 seconds when time is up, the screen should have a red border with
+                            the teleop warning's background set to "@drawable/teleop_error" and
+                            its text color set to "@color/ice"
+                     */
                 };
                 handler.post(switchToTeleop);
             }
@@ -137,47 +142,43 @@ public class Auton extends Fragment {
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);
 
-                // Bootstrap Buttons
+                // Buttons
                 Button doneButton = popupView.findViewById(R.id.DoneButton);
                 Button cancelButton = popupView.findViewById(R.id.CancelButton);
-                Button innerIncrement = popupView.findViewById(R.id.InnerIncrement);
-                Button innerDecrement = popupView.findViewById(R.id.InnerDecrement);
-                Button outerIncrement = popupView.findViewById(R.id.OuterIncrement);
-                Button outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                Button higherIncrement = popupView.findViewById(R.id.HigherIncrement);
+                Button higherDecrement = popupView.findViewById(R.id.HigherDecrement);
                 Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
                 Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView innerScore = popupView.findViewById(R.id.InnerScore);
-                TextView outerScore = popupView.findViewById(R.id.OuterScore);
+                TextView higherScore = popupView.findViewById(R.id.HigherScore);
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
-                innerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("InnerPortScored"), 3));
-                outerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("OuterPortScored"), 3));
+                higherScore.setText(GenUtils.padLeftZeros(autonHashMap.get("higherPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortScored"), 3));
 
-                innerIncrement.setOnClickListener(new View.OnClickListener() {
+                higherIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        innerPortNum += 1;
-                        innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                        int higherPortNum = Integer.parseInt((String)higherScore.getText());
+                        higherPortNum += 1;
+                        higherScore.setText(GenUtils.padLeftZeros(Integer.toString(higherPortNum), 3));
                     }
                 });
 
-                innerDecrement.setOnClickListener(new View.OnClickListener() {
+                higherDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
-                        if(innerPortNum > 0) {
-                            innerPortNum -= 1;
-                            innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                        int higherPortNum = Integer.parseInt((String)higherScore.getText());
+                        if(higherPortNum > 0) {
+                            higherPortNum -= 1;
+                            higherScore.setText(GenUtils.padLeftZeros(Integer.toString(higherPortNum), 3));
                         }
                     }
                 });
 
-                outerIncrement.setOnClickListener(new View.OnClickListener() {
+                /*outerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int outerPortNum = Integer.parseInt((String)outerScore.getText());
@@ -195,7 +196,7 @@ public class Auton extends Fragment {
                             outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
                         }
                     }
-                });
+                });*/
 
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -220,10 +221,10 @@ public class Auton extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        autonHashMap.put("InnerPortScored", (String)innerScore.getText());
-                        autonHashMap.put("OuterPortScored", (String)outerScore.getText());
+                        autonHashMap.put("higherPortScored", (String)higherScore.getText());
+                        // autonHashMap.put("OuterPortScored", (String)outerScore.getText());
                         autonHashMap.put("LowerPortScored", (String)lowerScore.getText());
-                        totalScored = Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        totalScored = Integer.parseInt((String)higherScore.getText()) + Integer.parseInt((String)lowerScore.getText());
                         updateXMLObjects();
                         popupWindow.dismiss();
                     }

@@ -11,4 +11,5 @@
     <dimen name="carat_length">"50dp"</dimen>
     <dimen name="square_toggle_text">20sp</dimen>
     <dimen name="square_toggle_length">45dp</dimen>
+    <dimen name="padding">20dp</dimen>
 </resources>
