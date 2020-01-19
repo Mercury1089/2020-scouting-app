@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_default"
-        android:drawableLeft="@drawable/trash_states"
+        android:drawableStart="@drawable/trash_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:fontFamily="@font/open_sans"
         android:text="@string/ResetButton"
@@ -71,7 +71,7 @@
         android:gravity="center"
         android:text="@string/SettingsWarning"
         android:textColor="@color/night"
-        android:textSize="24dp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

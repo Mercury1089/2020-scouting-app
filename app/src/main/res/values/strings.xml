@@ -55,7 +55,6 @@
         <string name="SettingsWarning">FOR STRATEGY COMMITTEE MEMBERS ONLY</string>
     <!-- ID Fields -->
         <string name="ResetID">RESET APP</string>
-        <string name="ClearWarning">Are you sure you want to clear all data on the setup screen?</string>
         <string name="GoBack">BACK</string>
 
     <!-- Directions -->
@@ -115,11 +114,10 @@
         <string name="QRExitDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
     <!-- Missed -->
         <string name="OuterPortID">HIGH\n(OUTER/INNER)</string>
-        <string name="InnerPortID">INNER</string>
-
-    <!-- Missed -->
-        <string name="UpperPortID">HIGH\n(OUTER/INNER)</string>
         <string name="LowerPortID">LOWER</string>
+
+    <!-- Clear -->
+        <string name="ClearDirections">Are you sure you want to clear all data on the setup screen?</string>
 
     <!-- Button Text -->
         <string name="Recharge">Recharge for Next Match</string>

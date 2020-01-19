@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/night"
@@ -45,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/open_sans"
-        android:text="Are you sure you want to clear all data on the setup screen?"
+        android:text="@string/ClearDirections"
         android:textColor="@color/bootstrap_brand_secondary_border"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

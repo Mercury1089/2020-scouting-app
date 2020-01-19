@@ -274,7 +274,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:background="@drawable/button_states"
-        android:drawableLeft="@drawable/clear_states"
+        android:drawableStart="@drawable/clear_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:enabled="false"
         android:fontFamily="@font/open_sans"
@@ -290,7 +290,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_large_states"
-        android:drawableRight="@drawable/rocket_states"
+        android:drawableEnd="@drawable/rocket_states"
         android:enabled="false"
         android:fontFamily="@font/open_sans"
         android:paddingLeft="234dp"
@@ -300,22 +300,6 @@
         android:textIsSelectable="true"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/IDStartButtonDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/open_sans"
-        android:text="@string/StartButtonDirections"
-        android:textColor="@color/banana"
-        android:textSize="@dimen/label_text_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/StartButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
@@ -331,7 +315,8 @@
         android:src="@drawable/trash_states"
         android:textColor="@drawable/text_states"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -28,10 +29,10 @@ public class Auton extends Fragment {
     private LinkedHashMap<String, String> autonHashMap;
 
     //Buttons
-    private Button pickedUpIncrementButton;
-    private Button pickedUpDecrementButton;
-    private Button droppedIncrementButton;
-    private Button droppedDecrementButton;
+    private ImageButton pickedUpIncrementButton;
+    private ImageButton pickedUpDecrementButton;
+    private ImageButton droppedIncrementButton;
+    private ImageButton droppedDecrementButton;
     private Button scoredButton;
     private Button missedButton;
 

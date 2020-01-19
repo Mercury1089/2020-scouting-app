@@ -119,7 +119,7 @@
         android:layout_height="57dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_active"
-        android:drawableLeft="@drawable/qr"
+        android:drawableStart="@drawable/qr"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:paddingLeft="188dp"
         android:paddingRight="188dp"

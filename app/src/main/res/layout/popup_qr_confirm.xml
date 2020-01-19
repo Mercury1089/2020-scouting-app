@@ -16,7 +16,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/button_large_active"
-        android:drawableLeft="@drawable/qr"
+        android:drawableStart="@drawable/qr"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:fontFamily="@font/open_sans"
         android:paddingLeft="156dp"
@@ -70,7 +70,7 @@
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="2dp"
         android:background="@drawable/divider"
         app:layout_constraintBottom_toTopOf="@+id/GenerateQRButton"
         app:layout_constraintTop_toBottomOf="@+id/IDGenerateQRDirections"

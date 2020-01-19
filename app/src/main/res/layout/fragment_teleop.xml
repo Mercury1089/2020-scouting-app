@@ -123,7 +123,7 @@
             android:layout_height="50dp"
             android:background="@drawable/toggle_left_default"
             android:fontFamily="@font/open_sans"
-            android:gravity="left|center_vertical"
+            android:gravity="start|center_vertical"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/button_text_size"
@@ -135,7 +135,7 @@
             android:layout_height="50dp"
             android:background="@drawable/toggle_right_default"
             android:fontFamily="@font/open_sans"
-            android:gravity="left|center_vertical"
+            android:gravity="start|center_vertical"
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/button_text_size"
@@ -162,7 +162,8 @@
             android:background="@drawable/toggle_left_states"
             android:enabled="true"
             android:gravity="center"
-            android:src="@drawable/plus_states" />
+            android:src="@drawable/plus_states"
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/NotPickedUpButton"
@@ -170,7 +171,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
-            android:src="@drawable/minus_states" />
+            android:src="@drawable/minus_states"
+            tools:ignore="ContentDescription" />
     </RadioGroup>
 
     <RadioGroup
@@ -191,7 +193,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
             android:gravity="center"
-            android:src="@drawable/plus_states" />
+            android:src="@drawable/plus_states"
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/NotDroppedButton"
@@ -199,7 +202,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
-            android:src="@drawable/minus_states" />
+            android:src="@drawable/minus_states"
+            tools:ignore="ContentDescription"/>
     </RadioGroup>
 
     <TextView

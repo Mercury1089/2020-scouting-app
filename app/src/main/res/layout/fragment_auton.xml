@@ -34,7 +34,7 @@
         android:layout_marginStart="156dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="12dp"
-        android:drawableLeft="@drawable/timer"
+        android:drawableStart="@drawable/timer"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/AutonSeconds"
@@ -172,7 +172,7 @@
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:src="@drawable/plus_states"
-            tools:visibility="visible" />
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/NotPickedUpButton"
@@ -182,7 +182,7 @@
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
             android:src="@drawable/minus_states"
-            tools:visibility="visible" />
+            tools:ignore="ContentDescription" />
 
         <!-- android:button="@drawable/button_rounded_corners" -->
     </RadioGroup>
@@ -207,7 +207,7 @@
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:src="@drawable/plus_states"
-            tools:visibility="visible" />
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/NotDroppedButton"
@@ -218,7 +218,7 @@
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:src="@drawable/minus_states"
-            tools:visibility="visible" />
+            tools:ignore="ContentDescription" />
     </RadioGroup>
 
     <RadioGroup
@@ -362,7 +362,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:background="@drawable/button_disabled"
-        android:drawableRight="@drawable/right_states"
+        android:drawableEnd="@drawable/right_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:enabled="false"
         android:paddingLeft="218dp"
