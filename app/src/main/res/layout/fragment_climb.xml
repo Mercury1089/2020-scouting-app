@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_general"
+    android:padding="@dimen/padding"
     tools:context=".MatchActivity"
     tools:ignore="ExtraText">
 
@@ -13,13 +14,12 @@
         android:id="@+id/IDParked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/Parked"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/ParkedSwitch"
-        app:layout_constraintStart_toEndOf="@+id/ParkedSwitch"
+        app:layout_constraintStart_toStartOf="@+id/IDClimbed"
         app:layout_constraintTop_toTopOf="@+id/ParkedSwitch" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:fontFamily="@font/gudea_bold"
-        android:text="@string/ClimbTitle"
+        android:text="@string/EndGameTitle"
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDSettingsDirections"
@@ -37,10 +37,10 @@
     <TextView
         android:id="@+id/IDSettingsDirections"
         android:layout_width="554dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_italic"
-        android:text="If a QR code fails to generate or the app is displaying persistent and incorrect active states, tap the button below."
+        android:text="@string/EndgameDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
         android:id="@+id/IDClimbed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/Climbed"
         android:textColor="@drawable/text_states"
@@ -64,14 +64,14 @@
         android:id="@+id/IDLeveled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
+        android:enabled="false"
         android:fontFamily="@font/open_sans"
         android:text="@string/Rung"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/LeveledSwitch"
-        app:layout_constraintStart_toEndOf="@+id/LeveledSwitch"
+        app:layout_constraintStart_toStartOf="@+id/IDClimbed"
         app:layout_constraintTop_toTopOf="@+id/LeveledSwitch" />
 
     <Switch
@@ -80,12 +80,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="48dp"
         android:textColor="@drawable/text_states"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/IDSettingsDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDSettingsDirections" />
 
     <Switch
@@ -95,7 +94,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:textColor="@drawable/text_states"
+        android:enabled="false"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="@+id/ClimbedSwitch"
@@ -113,4 +112,22 @@
         android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="@+id/LeveledSwitch"
         app:layout_constraintTop_toBottomOf="@+id/LeveledSwitch" />
+
+    <Button
+        android:id="@+id/GenerateQRButton"
+        android:layout_width="561dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_active"
+        android:drawableLeft="@drawable/qr"
+        android:drawablePadding="@dimen/bootstrap_alert_paddings"
+        android:paddingLeft="188dp"
+        android:paddingRight="188dp"
+        android:text="@string/GenerateQRCode"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

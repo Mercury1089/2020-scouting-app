@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg_scoring_popup"
+    android:background="@color/night"
     android:padding="@dimen/padding">
 
     <Button
         android:id="@+id/ClearConfirm"
         android:layout_width="fill_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:background="@drawable/button_large_active"
         android:fontFamily="@font/open_sans"
@@ -28,7 +28,7 @@
     <Button
         android:id="@+id/CancelConfirm"
         android:layout_width="fill_parent"
-        android:layout_height="75dp"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/button_text_size"
         android:background="@android:color/transparent"
         android:text="@string/Cancel"
@@ -65,5 +65,16 @@
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="@drawable/divider"
+        app:layout_constraintBottom_toTopOf="@+id/ClearConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDQRWarningDirections" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

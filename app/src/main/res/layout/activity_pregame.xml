@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_general"
+    android:padding="@dimen/padding"
     tools:context=".MatchActivity">
 
 
@@ -273,6 +274,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:background="@drawable/button_states"
+        android:drawableLeft="@drawable/clear_states"
+        android:drawablePadding="@dimen/bootstrap_alert_paddings"
+        android:enabled="false"
         android:fontFamily="@font/open_sans"
         android:text="@string/Clear"
         android:textColor="@drawable/text_states"
@@ -284,46 +288,47 @@
         android:id="@+id/StartButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_large_states"
+        android:drawableRight="@drawable/rocket_states"
         android:enabled="false"
         android:fontFamily="@font/open_sans"
+        android:paddingLeft="234dp"
+        android:paddingRight="234dp"
         android:text="@string/Start"
         android:textColor="@drawable/text_states"
         android:textIsSelectable="true"
         android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartButtonDirections" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/IDStartButtonDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
 
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/StartButtonDirections"
         android:textColor="@color/banana"
         android:textSize="@dimen/label_text_size"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/StartButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/SettingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
-        android:text="@string/SettingsTitle"
+        android:src="@drawable/trash_states"
         android:textColor="@drawable/text_states"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -105,10 +105,16 @@ public class Auton extends Fragment {
                     public void run() {
                         Toast.makeText(context, "End Auton", Toast.LENGTH_SHORT).show();
                     }
-                    /*TODO: Make it so that after 10 seconds, the teleop warning's visibility is set to visible.
-                            After 15 seconds when time is up, the screen should have a red border with
-                            the teleop warning's background set to "@drawable/teleop_error" and
-                            its text color set to "@color/ice"
+                    /*TODO: After 10 seconds,
+                                the teleop warning's visibility is set to visible
+                                the auton seconds remaining text's color is set to yellow
+                                the auton seconds remaining's drawable left is set to drawable/timer_yellow
+                            After 15 seconds when time is up,
+                                the screen's border is set to red
+                                the teleop warning's background set to drawable/teleop_error
+                                the teleop warning's text color set to color/ice
+                                the auton seconds remaining text's color is set to red
+                                the auton seconds remaining's drawable left is set to drawable/timer_red
                      */
                 };
                 handler.post(switchToTeleop);

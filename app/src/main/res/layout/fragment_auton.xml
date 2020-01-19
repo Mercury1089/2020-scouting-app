@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_general"
+    android:padding="@dimen/padding"
     tools:context=".MatchActivity">
 
     <TextView
@@ -30,15 +31,18 @@
         android:id="@+id/IDAutonSeconds1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="182dp"
+        android:layout_marginStart="156dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="12dp"
+        android:drawableLeft="@drawable/timer"
+        android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/AutonSeconds"
-        android:textColor="@drawable/header_states"
+        android:textColor="@color/sky"
         app:layout_constraintBottom_toTopOf="@+id/TeleopWarning"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/IDPossession"
@@ -78,8 +82,8 @@
 
     <TextView
         android:id="@+id/IDScoringDirections"
-        android:layout_width="547dp"
-        android:layout_height="82dp"
+        android:layout_width="504dp"
+        android:layout_height="87dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/ScoringDirections"
         android:textColor="@drawable/text_states"
@@ -138,14 +142,12 @@
         android:id="@+id/AutonSeconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="182dp"
+        android:layout_marginEnd="156dp"
         android:background="@drawable/badge_states"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         app:layout_constraintBottom_toBottomOf="@+id/IDAutonSeconds1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
 
     <RadioGroup
@@ -160,7 +162,7 @@
         app:layout_constraintStart_toEndOf="@+id/IDPickedUp"
         app:layout_constraintTop_toTopOf="@+id/IDPickedUp">
 
-        <Button
+        <ImageButton
             android:id="@+id/PickedUpButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
@@ -169,22 +171,17 @@
             android:enabled="true"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="@string/Plus"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/square_toggle_text"
+            android:src="@drawable/plus_states"
             tools:visibility="visible" />
 
-        <Button
+        <ImageButton
             android:id="@+id/NotPickedUpButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_states"
-            android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="@string/Minus"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/square_toggle_text"
+            android:src="@drawable/minus_states"
             tools:visibility="visible" />
 
         <!-- android:button="@drawable/button_rounded_corners" -->
@@ -201,7 +198,7 @@
         app:layout_constraintStart_toStartOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp">
 
-        <Button
+        <ImageButton
             android:id="@+id/DroppedButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
@@ -209,12 +206,10 @@
             android:background="@drawable/toggle_left_default"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="@string/Plus"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/square_toggle_text"
+            android:src="@drawable/plus_states"
             tools:visibility="visible" />
 
-        <Button
+        <ImageButton
             android:id="@+id/NotDroppedButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
@@ -222,9 +217,7 @@
             android:background="@drawable/toggle_right_default"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="@string/Minus"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/square_toggle_text"
+            android:src="@drawable/minus_states"
             tools:visibility="visible" />
     </RadioGroup>
 
@@ -245,6 +238,7 @@
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_default"
+            android:fontFamily="@font/open_sans"
             android:gravity="start|center_vertical"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
@@ -257,6 +251,7 @@
             android:layout_height="75dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_default"
+            android:fontFamily="@font/open_sans"
             android:gravity="start|center_vertical"
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
@@ -363,11 +358,15 @@
 
     <Button
         android:id="@+id/ClimbNextButton"
-        android:layout_width="473dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:background="@drawable/button_disabled"
+        android:drawableRight="@drawable/right_states"
+        android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:enabled="false"
+        android:paddingLeft="218dp"
+        android:paddingRight="218dp"
         android:text="@string/TeleopNext"
         android:textColor="@drawable/text_states"
         android:textIsSelectable="true"

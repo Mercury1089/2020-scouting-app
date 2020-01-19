@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/bg_scoring_popup"
+    android:background="@color/night"
     android:padding="@dimen/padding">
 
     <Button
@@ -13,9 +13,10 @@
         android:layout_height="75dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_active"
+        android:fontFamily="@font/open_sans"
         android:text="@string/ExitTitle"
         android:textColor="@drawable/text_states"
-        android:textSize="18sp"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +28,10 @@
         android:layout_height="75dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Cancel"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,11 +42,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/ExitWarning"
         android:textColor="@color/bootstrap_brand_secondary_border"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/IDExit"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintEnd_toEndOf="@+id/ExitConfirm"
+        app:layout_constraintStart_toStartOf="@+id/ExitConfirm"
         app:layout_constraintTop_toBottomOf="@+id/IDExit" />
 
     <TextView

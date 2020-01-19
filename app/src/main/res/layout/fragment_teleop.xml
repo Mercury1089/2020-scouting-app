@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/teleop"
     android:layout_width="match_parent"
-    android:layout_height="824dp"
+    android:layout_height="match_parent"
     android:background="@color/bg_general"
     tools:context=".MatchActivity">
 
@@ -16,9 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/PossessionTitle"
         android:textColor="@drawable/header_states"
-        android:textSize="18sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,10 +27,10 @@
         android:id="@+id/IDScoring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/ScoringTitle"
         android:textColor="@drawable/header_states"
-        android:textSize="18sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDDropped"
         app:layout_constraintTop_toBottomOf="@+id/DroppedToggle" />
 
@@ -38,18 +39,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/PossessionDirections"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/IDPossession" />
 
     <TextView
         android:id="@+id/IDScoringDirections"
         android:layout_width="526dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/ScoringDirections"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDScoring"
         app:layout_constraintTop_toBottomOf="@+id/IDScoring" />
 
@@ -60,6 +65,7 @@
         android:layout_marginTop="36dp"
         android:text="@string/PickedUp"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPossessionDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDPossessionDirections" />
 
@@ -68,9 +74,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:background="@drawable/badge_counter"
+        android:background="@drawable/badge_states"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
         app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toTopOf="@+id/IDPickedUp" />
@@ -80,9 +87,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:background="@drawable/badge_counter"
+        android:background="@drawable/badge_states"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDDropped"
         app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toTopOf="@+id/IDDropped" />
@@ -94,6 +102,7 @@
         android:layout_marginTop="48dp"
         android:text="@string/Dropped"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPickedUp"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp" />
 
@@ -113,10 +122,11 @@
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:background="@drawable/toggle_left_default"
+            android:fontFamily="@font/open_sans"
             android:gravity="left|center_vertical"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
-            android:textSize="18sp"
+            android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
 
         <Button
@@ -124,10 +134,11 @@
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:background="@drawable/toggle_right_default"
+            android:fontFamily="@font/open_sans"
             android:gravity="left|center_vertical"
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
-            android:textSize="18sp"
+            android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
 
     </RadioGroup>
@@ -144,29 +155,22 @@
         app:layout_constraintStart_toEndOf="@+id/IDPickedUp"
         app:layout_constraintTop_toTopOf="@+id/IDPickedUp">
 
-        <Button
+        <ImageButton
             android:id="@+id/PickedUpButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_left_default"
-            android:button="@drawable/toggle_left_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_left_states"
             android:enabled="true"
             android:gravity="center"
-            android:text="@string/Plus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
+            android:src="@drawable/plus_states" />
 
-        <Button
+        <ImageButton
             android:id="@+id/NotPickedUpButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_right_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_right_states"
             android:gravity="center"
-            android:text="@string/Minus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
+            android:src="@drawable/minus_states" />
     </RadioGroup>
 
     <RadioGroup
@@ -181,27 +185,21 @@
         app:layout_constraintStart_toStartOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toTopOf="@+id/IDDropped">
 
-        <Button
+        <ImageButton
             android:id="@+id/DroppedButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_left_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_left_states"
             android:gravity="center"
-            android:text="@string/Plus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
+            android:src="@drawable/plus_states" />
 
-        <Button
+        <ImageButton
             android:id="@+id/NotDroppedButton"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:background="@drawable/toggle_right_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_right_states"
             android:gravity="center"
-            android:text="@string/Minus"
-            android:textColor="@drawable/text_states"
-            android:textSize="24sp"
-            tools:visibility="visible" />
+            android:src="@drawable/minus_states" />
     </RadioGroup>
 
     <TextView
@@ -209,9 +207,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:background="@drawable/badge_counter"
+        android:background="@drawable/badge_states"
+        android:fontFamily="@font/open_sans"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
         app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
@@ -221,9 +221,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="228dp"
-        android:background="@drawable/badge_counter"
+        android:background="@drawable/badge_states"
+        android:fontFamily="@font/open_sans"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
         app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
@@ -233,8 +235,10 @@
         android:layout_width="526dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/MiscDirections"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDMisc"
         app:layout_constraintTop_toBottomOf="@+id/IDMisc" />
 
@@ -243,8 +247,10 @@
         android:layout_width="526dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/MiscDirections"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDControlPanel"
         app:layout_constraintTop_toBottomOf="@+id/IDControlPanel" />
 
@@ -253,19 +259,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/open_sans"
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/FellOverSwitch"
         app:layout_constraintStart_toEndOf="@+id/FellOverSwitch"
-        app:layout_constraintTop_toTopOf="@+id/FellOverSwitch" />
+        app:layout_constraintTop_toTopOf="@+id/FellOverSwitch"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/IDStage2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Stage2"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/Stage2Switch"
         app:layout_constraintStart_toEndOf="@+id/Stage2Switch"
         app:layout_constraintTop_toTopOf="@+id/Stage2Switch" />
@@ -275,8 +286,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Stage3"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/Stage3Switch"
         app:layout_constraintStart_toEndOf="@+id/Stage3Switch"
         app:layout_constraintTop_toTopOf="@+id/Stage3Switch" />
@@ -285,10 +298,10 @@
         android:id="@+id/IDControlPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/ControlPanelTitle"
         android:textColor="@drawable/header_states"
-        android:textSize="18sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
         app:layout_constraintTop_toBottomOf="@+id/ScoredToggle" />
 
@@ -296,10 +309,10 @@
         android:id="@+id/IDMisc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:fontFamily="@font/gudea_bold"
         android:text="@string/MiscTitle"
         android:textColor="@drawable/header_states"
-        android:textSize="18sp"
+        android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/Stage3Switch"
         app:layout_constraintTop_toBottomOf="@+id/Stage3Switch" />
 
@@ -314,6 +327,9 @@
         android:layout_marginTop="24dp"
 
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="@+id/IDMiscDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDMiscDirections" />
 
@@ -335,6 +351,8 @@
         android:layout_marginTop="24dp"
 
         android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="@+id/IDControlPanelDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDControlPanelDirections" />
 
@@ -356,6 +374,8 @@
         android:layout_marginTop="16dp"
 
         android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="@+id/Stage2Switch"
         app:layout_constraintTop_toBottomOf="@+id/Stage2Switch" />
 
@@ -372,10 +392,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_disabled"
+        android:drawableEnd="@drawable/right_states"
+        android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:enabled="false"
+        android:fontFamily="@font/open_sans"
+        android:paddingLeft="124dp"
+        android:paddingRight="124dp"
         android:text="@string/ClimbNext"
         android:textColor="@drawable/text_states"
         android:textIsSelectable="true"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
