@@ -1,12 +1,16 @@
 package com.mercury1089.scoutingapp2019;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -47,6 +51,12 @@ public class Auton extends Fragment {
     private TextView scoredCounter;
     private TextView missedCounter;
 
+    //ImageViews
+    private ImageView topEdgeBar;
+    private ImageView bottomEdgeBar;
+    private ImageView leftEdgeBar;
+    private ImageView rightEdgeBar;
+
     //other variables
     private static Timer timer = new Timer();
     private boolean firstTime = true;
@@ -74,6 +84,7 @@ public class Auton extends Fragment {
         pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
         pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
         pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
+        secondsRemaining = getView().findViewById(R.id.AutonSeconds);
 
         droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
         droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
@@ -86,6 +97,11 @@ public class Auton extends Fragment {
 
         crossedLineSwitch = getView().findViewById(R.id.CrossedLineSwitch);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
+
+        topEdgeBar = getView().findViewById(R.id.topEdgeBar);
+        bottomEdgeBar = getView().findViewById(R.id.bottomEdgeBar);
+        leftEdgeBar = getView().findViewById(R.id.leftEdgeBar);
+        rightEdgeBar = getView().findViewById(R.id.rightEdgeBar);
 
         //get HashMap data (fill with defaults if empty or null)
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
@@ -106,17 +122,6 @@ public class Auton extends Fragment {
                     public void run() {
                         Toast.makeText(context, "End Auton", Toast.LENGTH_SHORT).show();
                     }
-                    /*TODO: After 10 seconds,
-                                the teleop warning's visibility is set to visible
-                                the auton seconds remaining text's color is set to yellow
-                                the auton seconds remaining's drawable left is set to drawable/timer_yellow
-                            After 15 seconds when time is up,
-                                the screen's border is set to red
-                                the teleop warning's background set to drawable/teleop_error
-                                the teleop warning's text color set to color/ice
-                                the auton seconds remaining text's color is set to red
-                                the auton seconds remaining's drawable left is set to drawable/timer_red
-                     */
                 };
                 handler.post(switchToTeleop);
             }
@@ -124,6 +129,66 @@ public class Auton extends Fragment {
         if(firstTime) {
             timer.schedule(switchToTeleop, 15000);
             firstTime = false;
+
+            new CountDownTimer(15000, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                    secondsRemaining.setText(GenUtils.padLeftZeros(" " + millisUntilFinished / 1000, 3));
+                    if (millisUntilFinished / 1000 <= 3 && millisUntilFinished / 1000 > 0) {  //play the blinking animation
+
+                        ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                        ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
+
+                        ObjectAnimator bottomEdgeLighterOn = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                        ObjectAnimator bottomEdgeLighterOff = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
+
+                        ObjectAnimator rightEdgeLighterOn = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                        ObjectAnimator rightEdgeLighterOff = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
+
+                        ObjectAnimator leftEdgeLighterOn = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                        ObjectAnimator leftEdgeLighterOff = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
+
+                        topEdgeLighterOn.setDuration(100);
+                        topEdgeLighterOff.setDuration(300);
+
+                        bottomEdgeLighterOn.setDuration(100);
+                        bottomEdgeLighterOff.setDuration(300);
+
+                        leftEdgeLighterOn.setDuration(100);
+                        leftEdgeLighterOff.setDuration(300);
+
+                        rightEdgeLighterOn.setDuration(100);
+                        rightEdgeLighterOff.setDuration(300);
+
+                        AnimatorSet animatorSet = new AnimatorSet();
+
+                        animatorSet.playTogether(topEdgeLighterOn, bottomEdgeLighterOn, rightEdgeLighterOn, leftEdgeLighterOn);
+                        animatorSet.start();
+
+                        animatorSet.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, leftEdgeLighterOff, rightEdgeLighterOff);
+                        animatorSet.start();
+                    }
+                    else { //the bars need to remain lit up after the countdown
+                        topEdgeBar.setAlpha(1);
+                        bottomEdgeBar.setAlpha(1);
+                        rightEdgeBar.setAlpha(1);
+                        leftEdgeBar.setAlpha(1);
+                    }
+                }
+
+                public void onFinish() { //sets the label to display a teleop error background and text
+                    secondsRemaining.setText("000");
+//                    teleopWarning.setTextColor(getResources().getColor(R.color.white));
+//                    teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+//                    teleopWarning.setText("Switch to Teleop as soon as possible!");
+                }
+            }.start();
+        }
+        else {
+            topEdgeBar.setAlpha(1);
+            bottomEdgeBar.setAlpha(1);
+            rightEdgeBar.setAlpha(1);
+            leftEdgeBar.setAlpha(1);
         }
 
         //set listeners for buttons and fill the hashmap with data

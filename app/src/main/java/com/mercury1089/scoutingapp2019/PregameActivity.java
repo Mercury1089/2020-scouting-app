@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -37,7 +38,8 @@ public class PregameActivity extends AppCompatActivity {
     private Button redButton;
     private Button clearButton;
     private Button startButton;
-    private Button settingsButton;
+
+    private ImageButton settingsButton;
 
     //Text Fields
     private EditText scouterNameInput;

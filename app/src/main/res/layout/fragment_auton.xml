@@ -10,6 +10,38 @@
     android:padding="@dimen/padding"
     tools:context=".MatchActivity">
 
+    <ImageView
+        android:id="@+id/leftEdgeBar"
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="#FF0000"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/rightEdgeBar"
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/topEdgeBar"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:alpha="0"
+        android:background="#FF0000"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/bottomEdgeBar"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:alpha="0"
+        android:background="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <TextView
         android:id="@+id/TeleopWarning"
         android:layout_width="wrap_content"
@@ -59,8 +91,8 @@
 
     <TextView
         android:id="@+id/IDPossessionDirections"
-        android:layout_width="544dp"
-        android:layout_height="57dp"
+        android:layout_width="492dp"
+        android:layout_height="46dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/PossessionDirections"
         android:textColor="@drawable/text_states"
