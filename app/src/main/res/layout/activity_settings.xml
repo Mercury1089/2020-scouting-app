@@ -14,20 +14,20 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
         android:text="@string/GoBack"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/SettingsHeader" />
 
     <Button
         android:id="@+id/LocalStorageResetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/button_default"
         android:drawableStart="@drawable/trash_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
@@ -42,7 +42,7 @@
         android:id="@+id/IDSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/ResetID"
         android:textColor="@drawable/header_states"
@@ -53,8 +53,8 @@
     <TextView
         android:id="@+id/IDSettingsDirections"
         android:layout_width="541dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/ResetDirections"
         android:textColor="@drawable/text_states"
@@ -65,13 +65,15 @@
     <TextView
         android:id="@+id/SettingsHeader"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:background="@color/banana"
         android:fontFamily="@font/gudea_bold"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+        android:paddingTop="28dp"
+        android:paddingBottom="28dp"
         android:text="@string/SettingsWarning"
         android:textColor="@color/night"
-        android:textSize="@dimen/header_text_size"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

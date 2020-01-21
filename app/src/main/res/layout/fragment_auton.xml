@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:alpha="0"
         android:background="#FF0000"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/rightEdgeBar"
@@ -32,7 +32,7 @@
         android:layout_height="5dp"
         android:alpha="0"
         android:background="#FF0000"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/bottomEdgeBar"
@@ -40,7 +40,7 @@
         android:layout_height="5dp"
         android:alpha="0"
         android:background="#FF0000"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/TeleopWarning"
@@ -67,10 +67,11 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="12dp"
         android:drawableStart="@drawable/timer"
-        android:drawablePadding="@dimen/bootstrap_alert_paddings"
+        android:drawablePadding="@dimen/drawable_padding"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/AutonSeconds"
         android:textColor="@color/sky"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toTopOf="@+id/TeleopWarning"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,18 +82,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="63dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/PossessionTitle"
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDAutonSeconds1" />
+        app:layout_constraintTop_toTopOf="@+id/TeleopWarning" />
 
     <TextView
         android:id="@+id/IDPossessionDirections"
         android:layout_width="492dp"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/PossessionDirections"
         android:textColor="@drawable/text_states"
@@ -104,7 +106,7 @@
         android:id="@+id/IDScoring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/ScoringTitle"
         android:textColor="@drawable/header_states"
@@ -116,6 +118,7 @@
         android:id="@+id/IDScoringDirections"
         android:layout_width="504dp"
         android:layout_height="87dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/ScoringDirections"
         android:textColor="@drawable/text_states"
@@ -174,19 +177,19 @@
         android:id="@+id/AutonSeconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="156dp"
-        android:background="@drawable/badge_states"
+        android:layout_marginStart="13dp"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDAutonSeconds1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
 
     <RadioGroup
         android:id="@+id/PickedUpToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="15dp"
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
         android:showDividers="middle"
@@ -320,6 +323,7 @@
         android:id="@+id/IDMisc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/MiscTitle"
         android:textColor="@drawable/header_states"
@@ -331,6 +335,7 @@
         android:id="@+id/IDMiscDirections"
         android:layout_width="526dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/MiscDirections"
         android:textColor="@drawable/text_states"
@@ -342,7 +347,7 @@
         android:id="@+id/IDCrossedLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/CrossedLine"
         android:textColor="@drawable/text_states"
@@ -357,7 +362,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:thumb="@drawable/thumb_default"
         android:track="@drawable/track_default"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
@@ -367,7 +372,7 @@
         android:id="@+id/IDMiscDirections2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
@@ -382,7 +387,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:thumb="@drawable/thumb_default"
         android:track="@drawable/track_default"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"

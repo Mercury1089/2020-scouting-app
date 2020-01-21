@@ -8,7 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_general"
-    android:padding="@dimen/padding"
     tools:context=".MatchActivity">
 
 
@@ -16,6 +15,7 @@
         android:id="@+id/IDSetupDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/SetupDirections"
         android:textColor="@drawable/text_states"
@@ -27,7 +27,7 @@
         android:id="@+id/ScouterNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -43,7 +43,7 @@
         android:id="@+id/IDScouterName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/ScouterNameID"
         android:textColor="@drawable/text_states"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="75dp"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
         app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
@@ -69,7 +69,7 @@
         android:id="@+id/IDMatchNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/MatchNumberID"
         android:textColor="@drawable/text_states"
@@ -81,7 +81,7 @@
         android:id="@+id/IDAlliancePartners"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/AlliancePartnersID"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
@@ -92,7 +92,7 @@
         android:id="@+id/MatchNumberInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -109,7 +109,7 @@
         android:id="@+id/IDTeamNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/TeamNumberID"
         android:textColor="@drawable/text_states"
@@ -121,7 +121,7 @@
         android:id="@+id/FirstAlliancePartnerInput"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -139,7 +139,7 @@
         android:id="@+id/TeamNumberInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -156,8 +156,8 @@
         android:id="@+id/SecondAlliancePartnerInput"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edittext_rounded_corners"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -187,7 +187,7 @@
         android:id="@+id/IDAllianceColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="75dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/AllianceColorID"
         android:textColor="@drawable/text_states"
@@ -208,8 +208,8 @@
 
         <Button
             android:id="@+id/BlueButton"
-            android:layout_width="80dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_blue_states"
             android:fontFamily="@font/open_sans"
@@ -221,8 +221,8 @@
 
         <Button
             android:id="@+id/RedButton"
-            android:layout_width="80dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_red_states"
             android:fontFamily="@font/open_sans"
@@ -237,7 +237,7 @@
         android:id="@+id/IDSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/SetupTitle"
         android:textColor="@drawable/header_states"
@@ -249,7 +249,7 @@
         android:id="@+id/IDStartingPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/gudea_bold"
         android:text="@string/StartingPositionTitle"
         android:textColor="@drawable/header_states"
@@ -267,6 +267,21 @@
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDStartingPosition"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPosition" />
+
+    <TextView
+        android:id="@+id/IDStartingPositionDirections2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/StartButtonDirections"
+        android:textColor="@color/banana"
+        android:textSize="@dimen/instruction_text_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/StartButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/ClearButton"
@@ -316,7 +331,7 @@
         android:textColor="@drawable/text_states"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

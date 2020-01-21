@@ -4,7 +4,7 @@
     <item android:state_enabled="false"
         android:drawable="@drawable/badge_counter_disabled" />
     <!--  Focused states -->
-    <item android:state_active="true"
+    <item android:state_selected="true"
         android:drawable="@drawable/badge_counter_active" />
     <item android:drawable="@drawable/badge_counter_default" />
 </selector>

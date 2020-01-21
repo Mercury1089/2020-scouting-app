@@ -44,7 +44,7 @@
     <!-- Button Texts -->
         <string name="Blue">BLUE</string>
         <string name="Red">RED</string>
-        <string name="NoShow">No Show</string>
+        <string name="NoShow">NO SHOW</string>
         <string name="Clear">CLEAR</string>
         <string name="Start">START</string>
         <string name="GenerateQRCode">GENERATE QR CODE</string>
