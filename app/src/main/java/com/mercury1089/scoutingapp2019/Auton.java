@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -18,10 +19,7 @@ import android.widget.Toast;
 import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
@@ -192,18 +190,44 @@ public class Auton extends Fragment {
         }
 
         //set listeners for buttons and fill the hashmap with data
-        /*
-        fellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    setupHashMap.put("FellOver",String.valueOf(1));
-                } else {
-                    setupHashMap.put("FellOver",String.valueOf(0));
-                }
-            }
-        });*/
 
-        scoredButton.setOnClickListener(new BootstrapButton.OnClickListener() {
+        pickedUpIncrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
+                currentCount++;
+                autonHashMap.put("NumberPickedUp", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        pickedUpDecrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
+                currentCount--;
+                autonHashMap.put("NumberPickedUp", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        droppedIncrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)droppedCounter.getText());
+                currentCount++;
+                autonHashMap.put("NumberDropped", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        droppedDecrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)droppedCounter.getText());
+                currentCount--;
+                autonHashMap.put("NumberDropped", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        scoredButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
@@ -250,26 +274,6 @@ public class Auton extends Fragment {
                     }
                 });
 
-                /*outerIncrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        outerPortNum += 1;
-                        outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
-                    }
-                });
-
-                outerDecrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        if(outerPortNum > 0) {
-                            outerPortNum -= 1;
-                            outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
-                        }
-                    }
-                });*/
-
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -311,7 +315,7 @@ public class Auton extends Fragment {
             }
         });
 
-        missedButton.setOnClickListener(new BootstrapButton.OnClickListener() {
+        missedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_missed, null);
@@ -321,7 +325,7 @@ public class Auton extends Fragment {
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
 
-                // Bootstrap Buttons
+                // Buttons
                 Button doneButton = popupView.findViewById(R.id.DoneButton);
                 Button cancelButton = popupView.findViewById(R.id.CancelButton);
                 Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
@@ -396,15 +400,29 @@ public class Auton extends Fragment {
                 });
             }
         });
+
+        crossedLineSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                autonHashMap.put("CrossedInitiationLine", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
+
+        fellOverSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setupHashMap.put("FellOver", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
     }
 
     private void allButtonsEnabledState(boolean enable){
-        scoredButton.setEnabled(enable);
-        missedButton.setEnabled(enable);
         pickedUpIncrementButton.setEnabled(enable);
         pickedUpDecrementButton.setEnabled(enable);
         droppedIncrementButton.setEnabled(enable);
         droppedDecrementButton.setEnabled(enable);
+        scoredButton.setEnabled(enable);
+        missedButton.setEnabled(enable);
         crossedLineSwitch.setEnabled(enable);
     }
 
@@ -414,10 +432,13 @@ public class Auton extends Fragment {
         pickedUpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberPickedUp"), 3));
         droppedCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberDropped"), 3));
         crossedLineSwitch.setChecked(autonHashMap.get("CrossedInitiationLine") == "1");
-        if(setupHashMap.get("FellOver") == "1")
+        if(setupHashMap.get("FellOver") == "1") {
+            fellOverSwitch.setChecked(true);
             allButtonsEnabledState(false);
-        else
+        } else {
+            fellOverSwitch.setChecked(false);
             allButtonsEnabledState(true);
+        }
     }
 
     @Override
@@ -439,14 +460,5 @@ public class Auton extends Fragment {
                 timer = new Timer();
             }
         }
-    }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        HashMapManager.putSetupHashMap(setupHashMap);
-        HashMapManager.putAutonHashMap(autonHashMap);
-        timer.cancel();
-        timer = new Timer();
     }
 }

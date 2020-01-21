@@ -142,8 +142,7 @@ public class HashMapManager {
                 teleopHashMap.put("HashMapName", "Teleop");
                 teleopHashMap.put("NumberPickedUp", "000");
                 teleopHashMap.put("NumberDropped",  "000");
-                teleopHashMap.put("InnerPortScored", "000");
-                teleopHashMap.put("OuterPortScored", "000");
+                teleopHashMap.put("HigherPortScored", "000");
                 teleopHashMap.put("LowerPortScored", "000");
                 teleopHashMap.put("UpperPortMissed", "000");
                 teleopHashMap.put("LowerPortMissed", "000");
@@ -177,6 +176,7 @@ public class HashMapManager {
                     setDefaultValues(HASH.SETUP);
                     return true;
                 }
+                break;
             case AUTON:
                 if(autonHashMap == null)
                     autonHashMap = new LinkedHashMap<>();
@@ -184,6 +184,7 @@ public class HashMapManager {
                     setDefaultValues(HASH.AUTON);
                     return true;
                 }
+                break;
             case TELEOP:
                 if(teleopHashMap == null)
                     teleopHashMap = new LinkedHashMap<>();
@@ -191,6 +192,7 @@ public class HashMapManager {
                     setDefaultValues(HASH.TELEOP);
                     return true;
                 }
+                break;
             case CLIMB:
                 if(climbHashMap == null)
                     climbHashMap = new LinkedHashMap<>();

@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -82,11 +81,11 @@ public class PregameActivity extends AppCompatActivity {
 
         //setting group buttons to default state
         if(setupHashMap.get("AllianceColor").equals("Blue")){
-            setBlueButtonState(BUTTONSTATE.SELECTED);
-            setRedButtonState(BUTTONSTATE.DEFAULT);
+            blueButton.setSelected(true);
+            redButton.setSelected(false);
         } else {
-            setBlueButtonState(BUTTONSTATE.DEFAULT);
-            setRedButtonState(BUTTONSTATE.SELECTED);
+            blueButton.setSelected(false);
+            redButton.setSelected(true);
         }
 
         scouterNameInput.setText(setupHashMap.get("ScouterName"));
@@ -97,6 +96,7 @@ public class PregameActivity extends AppCompatActivity {
 
         if(setupHashMap.get("NoShow").equals("1")){
             noShowSwitch.setChecked((true));
+            noShowSwitch.setActivated(true);
             startButton.setText(R.string.GenerateQRCode);
             isQRButton = true;
         }else{
@@ -211,8 +211,8 @@ public class PregameActivity extends AppCompatActivity {
         blueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                setBlueButtonState(BUTTONSTATE.SELECTED);
-                setRedButtonState(BUTTONSTATE.DEFAULT);
+                blueButton.setSelected(true);
+                redButton.setSelected(false);
                 setupHashMap.put("AllianceColor", "Blue");
             }
         });
@@ -220,8 +220,8 @@ public class PregameActivity extends AppCompatActivity {
         redButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                setBlueButtonState(BUTTONSTATE.DEFAULT);
-                setRedButtonState(BUTTONSTATE.SELECTED);
+                blueButton.setSelected(false);
+                redButton.setSelected(true);
                 setupHashMap.put("AllianceColor", "Red");
             }
         });
@@ -244,6 +244,7 @@ public class PregameActivity extends AppCompatActivity {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -315,32 +316,6 @@ public class PregameActivity extends AppCompatActivity {
     //Setting the button themes
     private enum BUTTONSTATE{
         DEFAULT, SELECTED
-    }
-
-    private void setBlueButtonState(BUTTONSTATE state){
-        switch(state){
-            case DEFAULT:
-                blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
-                break;
-            case SELECTED:
-                blueButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.blue));
-                blueButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
-                break;
-        }
-    }
-
-    private void setRedButtonState(BUTTONSTATE state){
-        switch(state){
-            case DEFAULT:
-                redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.light));
-                redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
-                break;
-            case SELECTED:
-                redButton.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, R.color.red));
-                redButton.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.grey));
-                break;
-        }
     }
 
     //template for implementing a button click for a rectangle for starting position

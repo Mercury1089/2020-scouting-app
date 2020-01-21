@@ -14,9 +14,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import java.util.LinkedHashMap;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -29,17 +27,20 @@ public class Climb extends Fragment {
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> climbHashMap;
 
-    //BootstrapButtons
-    private BootstrapButton generateQRButton;
+    //Buttons
+    private Button generateQRButton;
 
     //Switches
     private Switch climbedSwitch;
     private Switch leveledSwitch;
     private Switch parkedSwitch;
 
+    //TextViews
+    private TextView climbedID;
+    private TextView leveledID;
+    private TextView parkedID;
+
     //other variables
-    private ConstraintLayout constraintLayout;
-    private Switch fellOverSwitch;
     private ProgressDialog progressDialog;
     public final static int QRCodeSize = 500;
 
@@ -61,31 +62,58 @@ public class Climb extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
+        climbedID = getView().findViewById(R.id.IDClimbed);
         climbedSwitch = getView().findViewById(R.id.ClimbedSwitch);
+        leveledID = getView().findViewById(R.id.IDLeveled);
         leveledSwitch = getView().findViewById(R.id.LeveledSwitch);
+        parkedID = getView().findViewById(R.id.IDParked);
         parkedSwitch = getView().findViewById(R.id.ParkedSwitch);
 
-        //generateQRButton = getView().findViewById(R.id.GenerateQRCodeButton);
+        generateQRButton = getView().findViewById(R.id.GenerateQRButton);
 
-        //Waiting for layout --> fellOverSwitch = context.findViewById(R.id.FellOverSwitch);
-        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
-        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
-        setupHashMap = HashMapManager.getSetupHashMap();
-        climbHashMap = HashMapManager.getAutonHashMap();
-
-        //set listeners for buttons and fill the hashmap with data
-        /*
-        fellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        //set listeners for buttons
+        climbedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    setupHashMap.put("FellOver",String.valueOf(1));
+                if(isChecked){
+                    climbHashMap.put("Climbed", "1");
+                    parkedSwitch.setEnabled(false);
+                    leveledSwitch.setEnabled(true);
+                    climbHashMap.put("Parked", "0");
                 } else {
-                    setupHashMap.put("FellOver",String.valueOf(0));
+                    climbHashMap.put("Climbed", "0");
+                    climbHashMap.put("Leveled", "0");
+                    parkedSwitch.setEnabled(true);
+                    leveledSwitch.setEnabled(false);
                 }
+                updateXMLObjects();
             }
-        });*/
+        });
 
-        /*generateQRButton.setOnClickListener(new View.OnClickListener() {
+        leveledSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                climbHashMap.put("Leveled", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
+
+        parkedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    climbHashMap.put("Parked", "1");
+                    climbedSwitch.setEnabled(false);
+                    leveledSwitch.setEnabled(false);
+                    climbHashMap.put("Climbed", "0");
+                    climbHashMap.put("Leveled", "0");
+                } else {
+                    climbHashMap.put("Parked", "0");
+                    climbedSwitch.setEnabled(true);
+                }
+                climbHashMap.put("Parked", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
+
+        generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressDialog = new ProgressDialog(context, R.style.LoadingDialogStyle);
@@ -100,13 +128,7 @@ public class Climb extends Fragment {
                 Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
                 new Thread(qrRunnable).start();
             }
-        });*/
-    }
-
-    private void allButtonsEnabledState(boolean enable){
-        climbedSwitch.setEnabled(enable);
-        leveledSwitch.setEnabled(enable);
-        parkedSwitch.setEnabled(enable);
+        });
     }
 
     private void updateXMLObjects(){
@@ -114,10 +136,16 @@ public class Climb extends Fragment {
         leveledSwitch.setChecked(climbHashMap.get("Leveled") == "1");
         parkedSwitch.setChecked(climbHashMap.get("Parked") == "1");
 
-        if(setupHashMap.get("FellOver") == "1")
-            allButtonsEnabledState(false);
-        else
-            allButtonsEnabledState(true);
+        if(climbHashMap.get("Climbed").equals("1")) {
+            leveledSwitch.setEnabled(true);
+            parkedSwitch.setEnabled(false);
+        }
+        if(climbHashMap.get("Parked").equals("1")) {
+            climbedSwitch.setEnabled(false);
+            leveledSwitch.setEnabled(false);
+        } else if(climbHashMap.get("Climbed").equals("0")) {
+            leveledSwitch.setEnabled(false);
+        }
     }
 
     @Override
@@ -137,13 +165,6 @@ public class Climb extends Fragment {
                 HashMapManager.putClimbHashMap(climbHashMap);
             }
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        HashMapManager.putSetupHashMap(setupHashMap);
-        HashMapManager.putClimbHashMap(climbHashMap);
     }
 
     //QR Generation
@@ -208,9 +229,6 @@ public class Climb extends Fragment {
                         //progressDialog.dismiss();
                         teamNumber.setText("Team Number: " + setupHashMap.get("TeamNumber"));
                         matchNumber.setText("Match Number: " + setupHashMap.get("MatchNumber"));
-                        goBackToMain.setEnabled(false);
-                        goBackToMain.setBackgroundColor(GenUtils.getAColor(context, (R.color.savedefault)));
-                        goBackToMain.setTextColor(GenUtils.getAColor(context, R.color.savetextdefault));
 
                         progressDialog.dismiss();
 

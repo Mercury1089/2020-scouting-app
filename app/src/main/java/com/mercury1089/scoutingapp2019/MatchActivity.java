@@ -47,7 +47,9 @@ public class MatchActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
-        setupHashMap = HashMapManager.getSetupHashMap();
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.AUTON);
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
 
         //click methods
         exitButton.setOnClickListener(new View.OnClickListener() {

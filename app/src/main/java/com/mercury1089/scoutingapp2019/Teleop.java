@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Switch;
@@ -32,6 +33,7 @@ public class Teleop extends Fragment {
     //Switches
     private Switch stageTwoButton;
     private Switch stageThreeButton;
+    private Switch fellOverSwitch;
 
     //TextViews
     private TextView pickedUpCounter;
@@ -41,7 +43,6 @@ public class Teleop extends Fragment {
 
     //other variables
     private ConstraintLayout constraintLayout;
-    private Switch fellOverSwitch;
     private int totalScored;
     private int totalMissed;
 
@@ -79,26 +80,44 @@ public class Teleop extends Fragment {
         stageTwoButton = getView().findViewById(R.id.Stage2Switch);
         stageThreeButton = getView().findViewById(R.id.Stage3Switch);
 
-        //
-        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
-        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
-        setupHashMap = HashMapManager.getSetupHashMap();
-        teleopHashMap = HashMapManager.getAutonHashMap();
+        fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
 
-        //fill in counters with data
-        updateXMLObjects();
-
-        //set listeners for buttons and fill the hashmap with data
-        /*
-        fellOverSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    setupHashMap.put("FellOver",String.valueOf(1));
-                } else {
-                    setupHashMap.put("FellOver",String.valueOf(0));
-                }
+        //set listeners for buttons
+        pickedUpIncrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
+                currentCount++;
+                teleopHashMap.put("NumberPickedUp", String.valueOf(currentCount));
+                updateXMLObjects();
             }
-        });*/
+        });
+
+        pickedUpDecrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
+                currentCount--;
+                teleopHashMap.put("NumberPickedUp", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        droppedIncrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)droppedCounter.getText());
+                currentCount++;
+                teleopHashMap.put("NumberDropped", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        droppedDecrementButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                int currentCount = Integer.parseInt((String)droppedCounter.getText());
+                currentCount--;
+                teleopHashMap.put("NumberDropped", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
 
         scoredButton.setOnClickListener(new BootstrapButton.OnClickListener() {
             public void onClick(View view){
@@ -115,19 +134,15 @@ public class Teleop extends Fragment {
                 Button cancelButton = popupView.findViewById(R.id.CancelButton);
                 Button HigherIncrement = popupView.findViewById(R.id.HigherIncrement);
                 Button HigherDecrement = popupView.findViewById(R.id.HigherDecrement);
-//                Button outerIncrement = popupView.findViewById(R.id.OuterIncrement);
-//                Button outerDecrement = popupView.findViewById(R.id.OuterDecrement);
                 Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
                 Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
                 TextView HigherScore = popupView.findViewById(R.id.HigherScore);
-//                TextView outerScore = popupView.findViewById(R.id.OuterScore);
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
                 HigherScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("HigherPortScored"), 3));
-//                outerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("OuterPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortScored"), 3));
 
                 HigherIncrement.setOnClickListener(new View.OnClickListener() {
@@ -149,26 +164,6 @@ public class Teleop extends Fragment {
                         }
                     }
                 });
-
-                /*outerIncrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        outerPortNum += 1;
-                        outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
-                    }
-                });
-
-                outerDecrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
-                        if(outerPortNum > 0) {
-                            outerPortNum -= 1;
-                            outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
-                        }
-                    }
-                })*/
 
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -296,6 +291,27 @@ public class Teleop extends Fragment {
                 });
             }
         });
+
+        stageTwoButton.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                teleopHashMap.put("StageTwo", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
+
+        stageThreeButton.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                teleopHashMap.put("StageThree", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
+
+        fellOverSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setupHashMap.put("FellOver", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
     }
 
     private void allButtonsEnabledState(boolean enable){
@@ -316,10 +332,13 @@ public class Teleop extends Fragment {
         droppedCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("NumberDropped"), 3));
         stageTwoButton.setChecked(teleopHashMap.get("StageTwo") == "1");
         stageThreeButton.setChecked(teleopHashMap.get("StageThree") == "1");
-        if(setupHashMap.get("FellOver") == "1")
+        if(setupHashMap.get("FellOver") == "1") {
+            fellOverSwitch.setChecked(true);
             allButtonsEnabledState(false);
-        else
+        } else {
+            fellOverSwitch.setChecked(false);
             allButtonsEnabledState(true);
+        }
     }
 
     @Override
@@ -339,12 +358,5 @@ public class Teleop extends Fragment {
                 HashMapManager.putTeleopHashMap(teleopHashMap);
             }
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        HashMapManager.putSetupHashMap(setupHashMap);
-        HashMapManager.putTeleopHashMap(teleopHashMap);
     }
 }
