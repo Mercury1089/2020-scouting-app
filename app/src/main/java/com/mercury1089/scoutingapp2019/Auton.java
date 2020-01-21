@@ -48,6 +48,7 @@ public class Auton extends Fragment {
     private TextView droppedCounter;
     private TextView scoredCounter;
     private TextView missedCounter;
+    private TextView teleopWarning;
 
     //ImageViews
     private ImageView topEdgeBar;
@@ -87,6 +88,7 @@ public class Auton extends Fragment {
         droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
         droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
         droppedCounter = getView().findViewById(R.id.DroppedCounter);
+        teleopWarning = getView().findViewById(R.id.TeleopWarning);
 
         scoredButton = getView().findViewById(R.id.ScoredButton);
         scoredCounter = getView().findViewById(R.id.ScoredCounter);
@@ -110,28 +112,13 @@ public class Auton extends Fragment {
         //fill in counters with data
         updateXMLObjects();
 
-        //switch to the next screen with data after 15 seconds
-        TimerTask switchToTeleop = new TimerTask() {
-            @Override
-            public void run() {
-                Handler handler = new Handler(context.getMainLooper());
-                Runnable switchToTeleop = new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(context, "End Auton", Toast.LENGTH_SHORT).show();
-                    }
-                };
-                handler.post(switchToTeleop);
-            }
-        };
         if(firstTime) {
-            timer.schedule(switchToTeleop, 15000);
             firstTime = false;
 
             new CountDownTimer(15000, 1000) {
 
                 public void onTick(long millisUntilFinished) {
-                    secondsRemaining.setText(GenUtils.padLeftZeros(" " + millisUntilFinished / 1000, 3));
+                    secondsRemaining.setText(GenUtils.padLeftZeros("" + millisUntilFinished / 1000, 2));
                     if (millisUntilFinished / 1000 <= 3 && millisUntilFinished / 1000 > 0) {  //play the blinking animation
 
                         ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
@@ -166,6 +153,9 @@ public class Auton extends Fragment {
                         animatorSet.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, leftEdgeLighterOff, rightEdgeLighterOff);
                         animatorSet.start();
                     }
+                    else if (millisUntilFinished / 1000 == 5) {
+                        teleopWarning.setVisibility(View.VISIBLE);
+                    }
                     else { //the bars need to remain lit up after the countdown
                         topEdgeBar.setAlpha(1);
                         bottomEdgeBar.setAlpha(1);
@@ -175,10 +165,10 @@ public class Auton extends Fragment {
                 }
 
                 public void onFinish() { //sets the label to display a teleop error background and text
-                    secondsRemaining.setText("000");
-//                    teleopWarning.setTextColor(getResources().getColor(R.color.white));
-//                    teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
-//                    teleopWarning.setText("Switch to Teleop as soon as possible!");
+                    secondsRemaining.setText("00");
+                    teleopWarning.setTextColor(getResources().getColor(R.color.white));
+                    teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+                    teleopWarning.setText(getResources().getString(R.string.TeleopError));
                 }
             }.start();
         }
