@@ -136,7 +136,7 @@ public class HashMapManager {
                 setupHashMap.put("NoShow", "0");
                 setupHashMap.put("AlliancePartner1", "");
                 setupHashMap.put("AlliancePartner2", "");
-                setupHashMap.put("AllianceColor", "Blue");
+                setupHashMap.put("AllianceColor", "");
                 setupHashMap.put("FellOver", "0");
                 break;
             case AUTON:
@@ -241,7 +241,11 @@ public class HashMapManager {
         setDefaultValues(HASH.TELEOP);
         setDefaultValues(HASH.CLIMB);
         setupHashMap.put("ScouterName", scouterName);
-        setupHashMap.put("MatchNumber", Integer.toString((Integer.parseInt(matchNumber) + 1)));
+        try {
+            setupHashMap.put("MatchNumber", Integer.toString((Integer.parseInt(matchNumber) + 1)));
+        } catch(NumberFormatException e){
+            setupHashMap.put("MatchNumber", "0");
+        }
         setupHashMap.put("AllianceColor", allianceColor);
     }
 }

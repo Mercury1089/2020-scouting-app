@@ -2,6 +2,7 @@ package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -55,8 +56,8 @@ public class PregameActivity extends AppCompatActivity {
     private LinkedHashMap<String, String> settingsHashMap;
     private LinkedHashMap<String, String> setupHashMap;
 
-    private LoadingGIFVIew loadingGIFVIew;
     private AlertDialog loading_alert;
+    private ProgressDialog progressDialog;
 
     //for QR code generator
     public final static int QRCodeSize = 500;
@@ -90,9 +91,12 @@ public class PregameActivity extends AppCompatActivity {
         if(setupHashMap.get("AllianceColor").equals("Blue")){
             blueButton.setSelected(true);
             redButton.setSelected(false);
-        } else {
+        } else if(setupHashMap.get("AllianceColor").equals("Red")){
             blueButton.setSelected(false);
             redButton.setSelected(true);
+        } else {
+            blueButton.setSelected(false);
+            redButton.setSelected(false);
         }
 
         scouterNameInput.setText(setupHashMap.get("ScouterName"));
@@ -221,6 +225,8 @@ public class PregameActivity extends AppCompatActivity {
                 blueButton.setSelected(true);
                 redButton.setSelected(false);
                 setupHashMap.put("AllianceColor", "Blue");
+                startButtonCheck();
+                clearButtonCheck();
             }
         });
 
@@ -230,6 +236,8 @@ public class PregameActivity extends AppCompatActivity {
                 blueButton.setSelected(false);
                 redButton.setSelected(true);
                 setupHashMap.put("AllianceColor", "Red");
+                startButtonCheck();
+                clearButtonCheck();
             }
         });
 
@@ -246,11 +254,9 @@ public class PregameActivity extends AppCompatActivity {
                     final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
                     View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
                     loading_alert = loading_dialog.create();
-                    loadingGIFVIew = loading_view.findViewById(R.id.loading_gif);
                     loading_alert.setView(loading_view);
+                    loading_alert.setCancelable(false);
                     loading_alert.show();
-
-
 
                     HashMapManager.putSetupHashMap(setupHashMap);
                     PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
@@ -266,6 +272,17 @@ public class PregameActivity extends AppCompatActivity {
                         teamNumberInput.setText("");
                         firstAlliancePartnerInput.setText("");
                         secondAlliancePartnerInput.setText("");
+
+                        if(setupHashMap.get("AllianceColor").equals("Blue")){
+                            blueButton.setSelected(true);
+                            redButton.setSelected(false);
+                        } else if(setupHashMap.get("AllianceColor").equals("Red")){
+                            blueButton.setSelected(false);
+                            redButton.setSelected(true);
+                        } else {
+                            blueButton.setSelected(false);
+                            redButton.setSelected(false);
+                        }
                         noShowSwitch.setChecked(false);
                         startButtonCheck();
                         clearButtonCheck();
@@ -311,6 +328,8 @@ public class PregameActivity extends AppCompatActivity {
                         teamNumberInput.setText("");
                         firstAlliancePartnerInput.setText("");
                         secondAlliancePartnerInput.setText("");
+                        blueButton.setSelected(false);
+                        redButton.setSelected(false);
                         noShowSwitch.setChecked(false);
                         startButtonCheck();
                         clearButtonCheck();
@@ -339,7 +358,8 @@ public class PregameActivity extends AppCompatActivity {
                 matchNumberInput.getText().length() > 0 &&
                 teamNumberInput.getText().length() > 0 &&
                 firstAlliancePartnerInput.getText().length() > 0 &&
-                secondAlliancePartnerInput.getText().length() > 0)
+                secondAlliancePartnerInput.getText().length() > 0 &&
+                (blueButton.isSelected() || redButton.isSelected()))
             startButton.setEnabled(true);
         else
             startButton.setEnabled(false);
@@ -351,7 +371,8 @@ public class PregameActivity extends AppCompatActivity {
                 teamNumberInput.getText().length() > 0 ||
                 noShowSwitch.isChecked() ||
                 firstAlliancePartnerInput.getText().length() > 0 ||
-                secondAlliancePartnerInput.getText().length() > 0)
+                secondAlliancePartnerInput.getText().length() > 0 ||
+                blueButton.isSelected() || redButton.isSelected())
             clearButton.setEnabled(true);
         else
             clearButton.setEnabled(false);
@@ -424,6 +445,7 @@ public class PregameActivity extends AppCompatActivity {
                         imageView.setImageBitmap(bitmap);
                         qrDialog.setView(view1);
                         final AlertDialog dialog = qrDialog.create();
+                        dialog.setCancelable(false);
 
                         //progressDialog.dismiss();
                         teamNumber.setText(setupHashMap.get("TeamNumber"));
@@ -448,6 +470,8 @@ public class PregameActivity extends AppCompatActivity {
                                 teamNumberInput.setText(setupHashMap.get("TeamNumber"));
                                 firstAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner1"));
                                 secondAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner2"));
+                                blueButton.setSelected(false);
+                                redButton.setSelected(false);
                                 noShowSwitch.setChecked(false);
                             }
                         });

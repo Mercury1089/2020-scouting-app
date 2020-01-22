@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/constraintLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
     android:minWidth="400dp"
-    android:minHeight="900dp">
+    android:minHeight="410dp"
+    android:orientation="vertical">
 
     <com.mercury1089.scoutingapp2019.LoadingGIFVIew
         android:id="@+id/loading_gif"
@@ -19,12 +22,15 @@
         android:id="@+id/textView"
         android:layout_width="158dp"
         android:layout_height="35dp"
-        android:text="Please wait..."
+        android:layout_marginTop="360dp"
+        android:gravity="center"
+        android:text="@string/PleaseWait"
+        android:textColor="@color/lightblue"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/loading_gif"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/loading_gif"
-        app:layout_constraintTop_toBottomOf="@+id/loading_gif" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
