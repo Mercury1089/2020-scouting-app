@@ -3,6 +3,7 @@ package com.mercury1089.scoutingapp2019;
 import java.util.LinkedHashMap;
 
 public class HashMapManager {
+    private static LinkedHashMap<String, String> settingsHashMap = new LinkedHashMap<>();
     private static LinkedHashMap<String, String> setupHashMap = new LinkedHashMap<>();
     private static LinkedHashMap<String, String> autonHashMap = new LinkedHashMap<>();
     private static LinkedHashMap<String, String> teleopHashMap = new LinkedHashMap<>();
@@ -14,7 +15,7 @@ public class HashMapManager {
      *
      */
     public enum HASH{
-        SETUP, AUTON, TELEOP, CLIMB
+        SETTINGS, SETUP, AUTON, TELEOP, CLIMB
     }
 
     /**
@@ -24,6 +25,16 @@ public class HashMapManager {
      */
     public HashMapManager(){
         // Nothing to see here
+    }
+
+    /**
+     *
+     * Used to get the setttingsHashMap
+     * Call when an activity starts and assign to global variable
+     *
+     */
+    public static LinkedHashMap<String, String> getSettingsHashMap(){
+        return settingsHashMap;
     }
 
     /**
@@ -114,6 +125,9 @@ public class HashMapManager {
      */
     public static void setDefaultValues(HASH map){
         switch(map) {
+            case SETTINGS:
+                settingsHashMap.put("HashMapName", "Settings");
+                settingsHashMap.put("NothingToSeeHere", "0");
             case SETUP:
                 setupHashMap.put("HashMapName", "Setup");
                 setupHashMap.put("ScouterName", "");
@@ -130,8 +144,7 @@ public class HashMapManager {
                 autonHashMap.put("HashMapName", "Auton");
                 autonHashMap.put("NumberPickedUp", "000");
                 autonHashMap.put("NumberDropped",  "000");
-                autonHashMap.put("InnerPortScored", "000");
-                autonHashMap.put("OuterPortScored", "000");
+                autonHashMap.put("UpperPortScored", "000");
                 autonHashMap.put("LowerPortScored", "000");
                 autonHashMap.put("UpperPortMissed", "000");
                 autonHashMap.put("LowerPortMissed", "000");
@@ -142,7 +155,7 @@ public class HashMapManager {
                 teleopHashMap.put("HashMapName", "Teleop");
                 teleopHashMap.put("NumberPickedUp", "000");
                 teleopHashMap.put("NumberDropped",  "000");
-                teleopHashMap.put("HigherPortScored", "000");
+                teleopHashMap.put("UpperPortScored", "000");
                 teleopHashMap.put("LowerPortScored", "000");
                 teleopHashMap.put("UpperPortMissed", "000");
                 teleopHashMap.put("LowerPortMissed", "000");
@@ -169,6 +182,14 @@ public class HashMapManager {
 
     public static boolean checkNullOrEmpty(HASH map){
         switch(map){
+            case SETTINGS:
+                if(settingsHashMap == null)
+                    settingsHashMap = new LinkedHashMap<>();
+                if(settingsHashMap.isEmpty()) {
+                    setDefaultValues(HASH.SETTINGS);
+                    return true;
+                }
+                break;
             case SETUP:
                 if(setupHashMap == null)
                     setupHashMap = new LinkedHashMap<>();

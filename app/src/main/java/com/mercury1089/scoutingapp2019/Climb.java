@@ -64,8 +64,10 @@ public class Climb extends Fragment {
         //linking variables to XML elements on the screen
         climbedID = getView().findViewById(R.id.IDClimbed);
         climbedSwitch = getView().findViewById(R.id.ClimbedSwitch);
+
         leveledID = getView().findViewById(R.id.IDLeveled);
         leveledSwitch = getView().findViewById(R.id.LeveledSwitch);
+
         parkedID = getView().findViewById(R.id.IDParked);
         parkedSwitch = getView().findViewById(R.id.ParkedSwitch);
 
@@ -77,13 +79,19 @@ public class Climb extends Fragment {
                 if(isChecked){
                     climbHashMap.put("Climbed", "1");
                     parkedSwitch.setEnabled(false);
+                    parkedID.setEnabled(false);
+
                     leveledSwitch.setEnabled(true);
+                    leveledID.setEnabled(true);
                     climbHashMap.put("Parked", "0");
                 } else {
                     climbHashMap.put("Climbed", "0");
                     climbHashMap.put("Leveled", "0");
                     parkedSwitch.setEnabled(true);
+                    parkedID.setEnabled(true);
+
                     leveledSwitch.setEnabled(false);
+                    leveledID.setEnabled(false);
                 }
                 updateXMLObjects();
             }
@@ -101,12 +109,16 @@ public class Climb extends Fragment {
                 if(isChecked){
                     climbHashMap.put("Parked", "1");
                     climbedSwitch.setEnabled(false);
+                    climbedID.setEnabled(false);
+
                     leveledSwitch.setEnabled(false);
+                    leveledID.setEnabled(false);
                     climbHashMap.put("Climbed", "0");
                     climbHashMap.put("Leveled", "0");
                 } else {
                     climbHashMap.put("Parked", "0");
                     climbedSwitch.setEnabled(true);
+                    climbedID.setEnabled(true);
                 }
                 climbHashMap.put("Parked", isChecked ? "1" : "0");
                 updateXMLObjects();
@@ -138,13 +150,20 @@ public class Climb extends Fragment {
 
         if(climbHashMap.get("Climbed").equals("1")) {
             leveledSwitch.setEnabled(true);
+            leveledID.setEnabled(true);
+
             parkedSwitch.setEnabled(false);
+            parkedID.setEnabled(false);
         }
         if(climbHashMap.get("Parked").equals("1")) {
             climbedSwitch.setEnabled(false);
+            climbedID.setEnabled(false);
+
             leveledSwitch.setEnabled(false);
+            leveledID.setEnabled(false);
         } else if(climbHashMap.get("Climbed").equals("0")) {
             leveledSwitch.setEnabled(false);
+            leveledID.setEnabled(false);
         }
     }
 

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -51,6 +52,7 @@ public class PregameActivity extends AppCompatActivity {
     private Switch noShowSwitch;
 
     //HashMaps
+    private LinkedHashMap<String, String> settingsHashMap;
     private LinkedHashMap<String, String> setupHashMap;
 
     //for QR code generator
@@ -76,7 +78,9 @@ public class PregameActivity extends AppCompatActivity {
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
 
+        HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETTINGS);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
+        settingsHashMap = HashMapManager.getSettingsHashMap();
         setupHashMap = HashMapManager.getSetupHashMap();
 
         //setting group buttons to default state
@@ -237,11 +241,26 @@ public class PregameActivity extends AppCompatActivity {
                     progressDialog.show();
 
                     HashMapManager.putSetupHashMap(setupHashMap);
-
                     PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
                     new Thread(qrRunnable).start();
                 } else {
                     HashMapManager.putSetupHashMap(setupHashMap);
+                    if(scouterNameInput.getText().toString().equals("Mercury") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")){
+                        settingsHashMap.put("NothingToSeeHere", settingsHashMap.get("NothingToSeeHere").equals("0") ? "1" : "0");
+                        HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
+                        setupHashMap = HashMapManager.getSetupHashMap();
+                        scouterNameInput.setText("");
+                        matchNumberInput.setText("");
+                        teamNumberInput.setText("");
+                        firstAlliancePartnerInput.setText("");
+                        secondAlliancePartnerInput.setText("");
+                        noShowSwitch.setChecked(false);
+                        startButtonCheck();
+                        clearButtonCheck();
+                        return;
+                    } else if(settingsHashMap.get("NothingToSeeHere").equals("1")) {
+                        MediaPlayer.create(PregameActivity.this, R.raw.sound).start();
+                    }
                     Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
                     startActivity(intent);
                     finish();
@@ -290,6 +309,19 @@ public class PregameActivity extends AppCompatActivity {
     }
 
     //call methods
+    /*public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        View decorView = getWindow().getDecorView();
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+    }*/
+
     private void startButtonCheck() {
         if(scouterNameInput.getText().length() > 0 &&
                 matchNumberInput.getText().length() > 0 &&
@@ -311,11 +343,6 @@ public class PregameActivity extends AppCompatActivity {
             clearButton.setEnabled(true);
         else
             clearButton.setEnabled(false);
-    }
-
-    //Setting the button themes
-    private enum BUTTONSTATE{
-        DEFAULT, SELECTED
     }
 
     //template for implementing a button click for a rectangle for starting position

@@ -17,6 +17,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class MatchActivity extends AppCompatActivity {
 
@@ -133,8 +134,4 @@ public class MatchActivity extends AppCompatActivity {
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
     }
-    /*
-    public void autonClicked(View view){
-        setContentView(view);
-    }*/
 }
