@@ -55,10 +55,13 @@ public class PregameActivity extends AppCompatActivity {
     private LinkedHashMap<String, String> settingsHashMap;
     private LinkedHashMap<String, String> setupHashMap;
 
+    private LoadingGIFVIew loadingGIFVIew;
+    private AlertDialog loading_alert;
+
     //for QR code generator
     public final static int QRCodeSize = 500;
     Bitmap bitmap;
-    ProgressDialog progressDialog;
+    //ProgressDialog progressDialog;
     boolean isQRButton = false;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -234,11 +237,20 @@ public class PregameActivity extends AppCompatActivity {
             @Override
             public  void onClick(View view){
                 if(isQRButton) {
-                    progressDialog = new ProgressDialog(PregameActivity.this, R.style.LoadingDialogStyle);
-                    progressDialog.setMessage("Please Wait");
-                    progressDialog.setCancelable(false);
-                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    progressDialog.show();
+//                    progressDialog = new ProgressDialog(PregameActivity.this, R.style.LoadingDialogStyle);
+//                    progressDialog.setMessage("Please Wait");
+//                    progressDialog.setCancelable(false);
+//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//                    progressDialog.show();
+
+                    final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
+                    View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
+                    loading_alert = loading_dialog.create();
+                    loadingGIFVIew = loading_view.findViewById(R.id.loading_gif);
+                    loading_alert.setView(loading_view);
+                    loading_alert.show();
+
+
 
                     HashMapManager.putSetupHashMap(setupHashMap);
                     PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
@@ -419,7 +431,8 @@ public class PregameActivity extends AppCompatActivity {
                         //goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.savedefault)));
                         //goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
 
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
+                        loading_alert.dismiss();
 
                         dialog.show();
 
