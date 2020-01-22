@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/gudea_bold"
+        android:fontFamily="@font/futura_medium_condensed_bt"
         android:gravity="center_horizontal"
         android:text="@string/QRCodeTitle"
         android:textColor="@drawable/header_states"

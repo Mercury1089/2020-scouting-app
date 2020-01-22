@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:fontFamily="@font/gudea_bold"
+        android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/EndGameTitle"
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
