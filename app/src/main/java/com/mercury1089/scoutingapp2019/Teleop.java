@@ -99,7 +99,7 @@ public class Teleop extends Fragment {
         pickedUpDecrementButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
-                if(currentCount >= 0)
+                if(currentCount > 0)
                     currentCount--;
                 teleopHashMap.put("NumberPickedUp", String.valueOf(currentCount));
                 updateXMLObjects();
@@ -118,7 +118,7 @@ public class Teleop extends Fragment {
         droppedDecrementButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 int currentCount = Integer.parseInt((String)droppedCounter.getText());
-                if(currentCount >= 0)
+                if(currentCount > 0)
                     currentCount--;
                 teleopHashMap.put("NumberDropped", String.valueOf(currentCount));
                 updateXMLObjects();
@@ -194,7 +194,7 @@ public class Teleop extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        teleopHashMap.put("upperPortScored", (String)upperScore.getText());
+                        teleopHashMap.put("UpperPortScored", (String)upperScore.getText());
                         // teleopHashMap.put("OuterPortScored", (String)outerScore.getText());
                         teleopHashMap.put("LowerPortScored", (String)lowerScore.getText());
                         totalScored = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());

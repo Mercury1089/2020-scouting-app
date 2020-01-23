@@ -166,6 +166,10 @@ public class Auton extends Fragment {
             public void onFinish() { //sets the label to display a teleop error background and text
                 if(running) {
                     secondsRemaining.setText("00");
+                    topEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+                    bottomEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+                    leftEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+                    rightEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     timerID.setTextColor(context.getResources().getColor(R.color.border_warning));
                     timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_red, 0, 0, 0);
                     teleopWarning.setTextColor(getResources().getColor(R.color.white));
@@ -200,7 +204,7 @@ public class Auton extends Fragment {
         pickedUpDecrementButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
-                if(currentCount >= 0)
+                if(currentCount > 0)
                     currentCount--;
                 autonHashMap.put("NumberPickedUp", String.valueOf(currentCount));
                 updateXMLObjects();
@@ -219,7 +223,7 @@ public class Auton extends Fragment {
         droppedDecrementButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 int currentCount = Integer.parseInt((String)droppedCounter.getText());
-                if(currentCount >= 0)
+                if(currentCount > 0)
                     currentCount--;
                 autonHashMap.put("NumberDropped", String.valueOf(currentCount));
                 updateXMLObjects();

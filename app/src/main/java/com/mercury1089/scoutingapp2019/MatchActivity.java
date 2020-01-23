@@ -43,6 +43,7 @@ public class MatchActivity extends AppCompatActivity {
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(sectionsPagerAdapter);
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);

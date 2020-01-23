@@ -17,4 +17,6 @@ public class QRStringBuilder {
     public static String getQRString(){
         return QRString.toString();
     }
+
+    public static void clearQRString() {QRString = new StringBuilder(); }
 }

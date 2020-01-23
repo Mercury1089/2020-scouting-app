@@ -42,6 +42,7 @@ public class Climb extends Fragment {
 
     //other variables
     private ProgressDialog progressDialog;
+    private AlertDialog loading_alert;
     public final static int QRCodeSize = 500;
 
     public static Climb newInstance() {
@@ -128,11 +129,12 @@ public class Climb extends Fragment {
         generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog = new ProgressDialog(context, R.style.LoadingDialogStyle);
-                progressDialog.setMessage("Please Wait");
-                progressDialog.setCancelable(false);
-                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progressDialog.show();
+                final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(context);
+                View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
+                loading_alert = loading_dialog.create();
+                loading_alert.setView(loading_view);
+                loading_alert.setCancelable(false);
+                loading_alert.show();
 
                 HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putClimbHashMap(climbHashMap);
@@ -244,12 +246,13 @@ public class Climb extends Fragment {
                         imageView.setImageBitmap(bitmap);
                         qrDialog.setView(view1);
                         final AlertDialog dialog = qrDialog.create();
+                        dialog.setCancelable(false);
 
                         //progressDialog.dismiss();
                         teamNumber.setText("Team Number: " + setupHashMap.get("TeamNumber"));
                         matchNumber.setText("Match Number: " + setupHashMap.get("MatchNumber"));
 
-                        progressDialog.dismiss();
+                        loading_alert.dismiss();
 
                         dialog.show();
 
@@ -257,6 +260,7 @@ public class Climb extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 dialog.dismiss();
+                                QRStringBuilder.clearQRString();
                                 HashMapManager.setupNextMatch();
                                 Intent intent = new Intent(context, PregameActivity.class);
                                 startActivity(intent);
