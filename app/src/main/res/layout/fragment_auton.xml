@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auton"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="895dp"
     android:background="@color/bg_general"
     android:padding="@dimen/padding"
     tools:context=".MatchActivity">
@@ -72,7 +72,7 @@
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/AutonSeconds"
         android:textColor="@color/sky"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toTopOf="@+id/TeleopWarning"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -83,13 +83,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/PossessionTitle"
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TeleopWarning" />
+        app:layout_constraintTop_toBottomOf="@+id/TeleopWarning" />
 
     <TextView
         android:id="@+id/IDPossessionDirections"
@@ -107,7 +107,6 @@
         android:id="@+id/IDScoring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/ScoringTitle"
         android:textColor="@drawable/header_states"
@@ -117,8 +116,8 @@
 
     <TextView
         android:id="@+id/IDScoringDirections"
-        android:layout_width="504dp"
-        android:layout_height="87dp"
+        android:layout_width="506dp"
+        android:layout_height="99dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/ScoringDirections"
@@ -131,7 +130,7 @@
         android:id="@+id/IDPickedUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/PickedUp"
         android:textColor="@drawable/text_states"
@@ -141,26 +140,37 @@
 
     <TextView
         android:id="@+id/PickedUpCounter"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="15dp"
         android:background="@drawable/badge_states"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="4dp"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
         app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toTopOf="@+id/IDPickedUp" />
 
     <TextView
-        android:id="@+id/DroppedCounter"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="15dp"
         android:background="@drawable/badge_states"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="4dp"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDDropped"
-        app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
+        app:layout_constraintStart_toEndOf="@+id/DroppedToggle"
         app:layout_constraintTop_toTopOf="@+id/IDDropped" />
 
     <TextView
@@ -176,12 +186,13 @@
 
     <TextView
         android:id="@+id/AutonSeconds"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
+        android:gravity="center"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDAutonSeconds1"
         app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
@@ -189,7 +200,7 @@
     <RadioGroup
         android:id="@+id/PickedUpToggle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:layout_marginStart="15dp"
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
@@ -226,13 +237,13 @@
     <RadioGroup
         android:id="@+id/DroppedToggle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_height="90dp"
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
         android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="@+id/IDDropped"
         app:layout_constraintStart_toStartOf="@+id/PickedUpToggle"
-        app:layout_constraintTop_toBottomOf="@+id/IDPickedUp">
+        app:layout_constraintTop_toTopOf="@+id/IDDropped">
 
         <ImageButton
             android:id="@+id/DroppedButton"
@@ -260,7 +271,7 @@
     <RadioGroup
         android:id="@+id/ScoredToggle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="85dp"
         android:layout_marginStart="48dp"
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
@@ -270,61 +281,64 @@
 
         <Button
             android:id="@+id/ScoredButton"
-            android:layout_width="140dp"
-            android:layout_height="75dp"
+            android:layout_width="125dp"
+            android:layout_height="55dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_left_states"
             android:fontFamily="@font/open_sans"
             android:gravity="start|center_vertical"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
-            android:textSize="18sp"
+            android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
 
         <Button
             android:id="@+id/MissedButton"
-            android:layout_width="140dp"
-            android:layout_height="75dp"
+            android:layout_width="125dp"
+            android:layout_height="55dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_right_states"
             android:fontFamily="@font/open_sans"
             android:gravity="start|center_vertical"
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
-            android:textSize="18sp"
+            android:textSize="@dimen/button_text_size"
             tools:visibility="visible" />
 
     </RadioGroup>
 
     <TextView
         android:id="@+id/ScoredCounter"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginStart="80dp"
         android:background="@drawable/badge_states"
+        android:gravity="center"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
         app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
 
     <TextView
         android:id="@+id/MissedCounter"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="227dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginStart="90dp"
         android:background="@drawable/badge_states"
+        android:gravity="center"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
+        app:layout_constraintStart_toEndOf="@+id/ScoredCounter"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
 
     <TextView
         android:id="@+id/IDMisc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/MiscTitle"
         android:textColor="@drawable/header_states"
@@ -334,7 +348,7 @@
 
     <TextView
         android:id="@+id/IDMiscDirections"
-        android:layout_width="526dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
@@ -397,9 +411,9 @@
     <Button
         android:id="@+id/ClimbNextButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/button_disabled"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_large_states"
         android:drawableEnd="@drawable/right_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:enabled="false"

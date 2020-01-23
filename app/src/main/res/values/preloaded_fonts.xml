@@ -1,8 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="preloaded_fonts" translatable="false">
-        <item>@font/abel</item>
-        <item>@font/archivo_narrow_bold</item>
-        <item>@font/average_sans</item>
-    </array>
 </resources>

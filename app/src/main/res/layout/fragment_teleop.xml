@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/teleop"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="895dp"
     android:background="@color/bg_general"
+    android:padding="@dimen/padding"
     tools:context=".MatchActivity">
 
 
@@ -15,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/PossessionTitle"
         android:textColor="@drawable/header_states"
@@ -27,6 +28,7 @@
         android:id="@+id/IDScoring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/ScoringTitle"
         android:textColor="@drawable/header_states"
@@ -36,7 +38,7 @@
 
     <TextView
         android:id="@+id/IDPossessionDirections"
-        android:layout_width="wrap_content"
+        android:layout_width="554dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_italic"
@@ -203,7 +205,7 @@
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
             android:src="@drawable/minus_states"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription" />
     </RadioGroup>
 
     <TextView
@@ -270,7 +272,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/FellOverSwitch"
         app:layout_constraintStart_toEndOf="@+id/FellOverSwitch"
         app:layout_constraintTop_toTopOf="@+id/FellOverSwitch"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.50" />
 
     <TextView
         android:id="@+id/IDStage2"
@@ -302,6 +304,7 @@
         android:id="@+id/IDControlPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/ControlPanelTitle"
         android:textColor="@drawable/header_states"
@@ -313,6 +316,7 @@
         android:id="@+id/IDMisc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/MiscTitle"
         android:textColor="@drawable/header_states"
@@ -328,7 +332,7 @@
         android:layout_centerHorizontal="true"
 
 
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
 
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
@@ -352,7 +356,7 @@
         android:layout_centerHorizontal="true"
 
 
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
 
         android:textColor="@drawable/text_states"
         android:thumb="@drawable/thumb_states"
@@ -375,7 +379,7 @@
         android:layout_centerHorizontal="true"
 
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
 
         android:textColor="@drawable/text_states"
         android:thumb="@drawable/thumb_states"
@@ -394,7 +398,7 @@
         android:id="@+id/ClimbNextButton"
         android:layout_width="473dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/button_disabled"
         android:drawableEnd="@drawable/right_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"

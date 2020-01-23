@@ -10,7 +10,7 @@
     <dimen name="scoring_popup_length">300dp</dimen>
     <dimen name="carat_length">50dp</dimen>
     <dimen name="square_toggle_text">20sp</dimen>
-    <dimen name="square_toggle_length">45dp</dimen>
+    <dimen name="square_toggle_length">60dp</dimen>
     <dimen name="padding">20dp</dimen>
-    <dimen name="drawable_padding">5dp</dimen>
+    <dimen name="drawable_padding">10dp</dimen>
 </resources>

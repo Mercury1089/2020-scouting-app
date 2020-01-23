@@ -9,6 +9,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_general"
     android:focusableInTouchMode="true"
+    android:padding="@dimen/padding"
     tools:context=".MatchActivity">
 
 
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="45dp"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
         app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
@@ -188,12 +189,11 @@
         android:id="@+id/IDAllianceColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/AllianceColorID"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
-        app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
+        app:layout_constraintStart_toStartOf="@+id/NoShowSwitch"
         app:layout_constraintTop_toTopOf="@+id/IDAlliancePartners" />
 
     <RadioGroup
@@ -277,7 +277,7 @@
         android:fontFamily="@font/open_sans"
         android:text="@string/StartButtonDirections"
         android:textColor="@color/banana"
-        android:textSize="@dimen/instruction_text_size"
+        android:textSize="@dimen/label_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/StartButton"
         app:layout_constraintEnd_toEndOf="parent"
