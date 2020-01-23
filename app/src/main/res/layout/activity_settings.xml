@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/button_default"
+        android:background="@drawable/button_states"
         android:drawableStart="@drawable/trash_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:fontFamily="@font/open_sans"

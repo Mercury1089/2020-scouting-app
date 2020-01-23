@@ -86,7 +86,7 @@
             android:id="@+id/autonTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/toggle_left_default"
+            android:background="@drawable/toggle_left_states"
             android:text="@string/Auton"
             app:tabBackground="@drawable/toggle_left_states" />
 
@@ -100,9 +100,9 @@
             android:id="@+id/climbTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/toggle_right_default"
+            android:background="@drawable/toggle_right_states"
             android:text="@string/Climb"
-            app:tabBackground="@drawable/toggle_right_default" />
+            app:tabBackground="@drawable/toggle_right_states" />
     </com.google.android.material.tabs.TabLayout>
 
     <Button
