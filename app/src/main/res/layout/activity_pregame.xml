@@ -17,7 +17,6 @@
         android:id="@+id/IDSetupDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/SetupDirections"
         android:textColor="@drawable/text_states"
@@ -60,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="46dp"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
         app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
@@ -210,7 +209,7 @@
         <Button
             android:id="@+id/BlueButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_blue_states"
             android:fontFamily="@font/open_sans"
@@ -223,7 +222,7 @@
         <Button
             android:id="@+id/RedButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/toggle_red_states"
             android:fontFamily="@font/open_sans"
@@ -238,7 +237,7 @@
         android:id="@+id/IDSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/SetupTitle"
         android:textColor="@drawable/header_states"
@@ -250,7 +249,7 @@
         android:id="@+id/IDStartingPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/StartingPositionTitle"
         android:textColor="@drawable/header_states"
@@ -272,8 +271,7 @@
     <TextView
         android:id="@+id/IDStartingPositionDirections2"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans"
         android:text="@string/StartButtonDirections"
         android:textColor="@color/banana"
@@ -304,7 +302,6 @@
         android:id="@+id/StartButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/button_large_states"
         android:drawableEnd="@drawable/rocket_states"
         android:enabled="false"
@@ -324,7 +321,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
         android:src="@drawable/trash_states"
@@ -333,5 +329,133 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
+    <Button
+        android:id="@+id/imageButton2"
+        android:layout_width="446dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/playing_field_states"
+        android:enabled="false"
+        app:layout_constraintEnd_toStartOf="@+id/StartButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/StartButton"
+        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
+
+
+    <Button
+        android:id="@+id/LR2"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
+
+
+    <Button
+        android:id="@+id/LR1"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:paddingTop="@dimen/bootstrap_h5_hori_padding"
+        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintTop_toBottomOf="@+id/LR2" />
+
+
+
+    <Button
+        android:id="@+id/LL2"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintTop_toBottomOf="@+id/LC" />
+
+    <Button
+        android:id="@+id/LC"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintTop_toBottomOf="@+id/LR1" />
+
+    <Button
+        android:id="@+id/LL1"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintTop_toBottomOf="@+id/LL2" />
+
+    <Button
+        android:id="@+id/RL2"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/RC"
+        app:layout_constraintTop_toBottomOf="@+id/LC" />
+
+    <Button
+        android:id="@+id/RL1"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/RR1"
+        app:layout_constraintTop_toBottomOf="@+id/LL2" />
+
+    <Button
+        android:id="@+id/RC"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/RR1"
+        app:layout_constraintTop_toBottomOf="@+id/LR1" />
+
+    <Button
+        android:id="@+id/RR1"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/LR2" />
+
+    <Button
+        android:id="@+id/RR2"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/starting_pos"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
