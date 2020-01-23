@@ -351,6 +351,7 @@
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
@@ -363,6 +364,7 @@
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         android:paddingTop="@dimen/bootstrap_h5_hori_padding"
         app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
@@ -377,6 +379,7 @@
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LC" />
 
@@ -388,6 +391,7 @@
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LR1" />
 
@@ -399,6 +403,7 @@
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LL2" />
 
@@ -410,6 +415,7 @@
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/RC"
         app:layout_constraintTop_toBottomOf="@+id/LC" />
 
@@ -421,6 +427,7 @@
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/RR1"
         app:layout_constraintTop_toBottomOf="@+id/LL2" />
 
@@ -432,6 +439,7 @@
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/RR1"
         app:layout_constraintTop_toBottomOf="@+id/LR1" />
 
@@ -443,6 +451,7 @@
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
 
@@ -455,6 +464,7 @@
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
         android:visibility="invisible"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
