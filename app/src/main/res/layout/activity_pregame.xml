@@ -10,7 +10,7 @@
     android:background="@color/bg_general"
     android:focusableInTouchMode="true"
     android:padding="@dimen/padding"
-    tools:context=".MatchActivity">
+    tools:context=".PregameActivity">
 
 
     <TextView
@@ -341,6 +341,7 @@
         app:layout_constraintStart_toEndOf="@+id/StartButton"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
+    <!-- Left field side buttons -->
 
     <Button
         android:id="@+id/LR2"
@@ -350,8 +351,7 @@
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
+        android:onClick="fieldPosClicked"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
@@ -363,25 +363,10 @@
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
+        android:onClick="fieldPosClicked"
         android:paddingTop="@dimen/bootstrap_h5_hori_padding"
         app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
-
-
-
-    <Button
-        android:id="@+id/LL2"
-        android:layout_width="140dp"
-        android:layout_height="46dp"
-        android:background="@android:color/transparent"
-        android:drawableEnd="@drawable/starting_pos"
-        android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
-        app:layout_constraintStart_toStartOf="@+id/LR2"
-        app:layout_constraintTop_toBottomOf="@+id/LC" />
 
     <Button
         android:id="@+id/LC"
@@ -390,8 +375,7 @@
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
+        android:onClick="fieldPosClicked"
         app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LR1" />
 
@@ -402,22 +386,34 @@
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
+        android:onClick="fieldPosClicked"
         app:layout_constraintStart_toStartOf="@+id/LR2"
-        app:layout_constraintTop_toBottomOf="@+id/LL2" />
+        app:layout_constraintTop_toBottomOf="@+id/LC" />
+
+    <Button
+        android:id="@+id/LL2"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/starting_pos"
+        android:gravity="center"
+        android:onClick="fieldPosClicked"
+        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintTop_toBottomOf="@+id/LL1" />
+
+    <!-- Right field side buttons -->
 
     <Button
         android:id="@+id/RL2"
         android:layout_width="140dp"
         android:layout_height="46dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
-        app:layout_constraintStart_toStartOf="@+id/RC"
-        app:layout_constraintTop_toBottomOf="@+id/LC" />
+        android:onClick="fieldPosClicked"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
     <Button
         android:id="@+id/RL1"
@@ -426,10 +422,9 @@
         android:background="@android:color/transparent"
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
-        app:layout_constraintStart_toStartOf="@+id/RR1"
-        app:layout_constraintTop_toBottomOf="@+id/LL2" />
+        android:onClick="fieldPosClicked"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        app:layout_constraintTop_toBottomOf="@+id/RL2" />
 
     <Button
         android:id="@+id/RC"
@@ -438,10 +433,9 @@
         android:background="@android:color/transparent"
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
-        app:layout_constraintStart_toStartOf="@+id/RR1"
-        app:layout_constraintTop_toBottomOf="@+id/LR1" />
+        android:onClick="fieldPosClicked"
+        app:layout_constraintStart_toStartOf="@+id/RL1"
+        app:layout_constraintTop_toBottomOf="@+id/RL1" />
 
     <Button
         android:id="@+id/RR1"
@@ -450,22 +444,20 @@
         android:background="@android:color/transparent"
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
-        app:layout_constraintTop_toBottomOf="@+id/LR2" />
+        android:onClick="fieldPosClicked"
+        app:layout_constraintStart_toStartOf="@+id/RC"
+        app:layout_constraintTop_toBottomOf="@+id/RC" />
 
     <Button
         android:id="@+id/RR2"
         android:layout_width="140dp"
         android:layout_height="46dp"
-        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
         android:drawableStart="@drawable/starting_pos"
         android:gravity="center"
-        android:visibility="invisible"
-        android:enabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
+        android:onClick="fieldPosClicked"
+        app:layout_constraintStart_toStartOf="@+id/RR1"
+        app:layout_constraintTop_toBottomOf="@+id/RR1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

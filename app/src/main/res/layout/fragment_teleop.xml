@@ -394,26 +394,5 @@
         android:thumbTint="@color/switch_default"
         -->
 
-    <Button
-        android:id="@+id/ClimbNextButton"
-        android:layout_width="473dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/button_disabled"
-        android:drawableEnd="@drawable/right_states"
-        android:drawablePadding="@dimen/bootstrap_alert_paddings"
-        android:enabled="false"
-        android:fontFamily="@font/open_sans"
-        android:paddingLeft="124dp"
-        android:paddingRight="124dp"
-        android:text="@string/ClimbNext"
-        android:textColor="@drawable/text_states"
-        android:textIsSelectable="true"
-        android:textSize="@dimen/button_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FellOverSwitch" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

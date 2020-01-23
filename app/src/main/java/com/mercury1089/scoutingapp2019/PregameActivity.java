@@ -135,6 +135,12 @@ public class PregameActivity extends AppCompatActivity {
             redButton.setSelected(false);
         }
 
+        if(!setupHashMap.get("StartingPosition").equals("")) {
+            setStartingPos(setupHashMap.get("StartingPosition"));
+        } else {
+            clearStartingPos();
+        }
+
         scouterNameInput.setText(setupHashMap.get("ScouterName"));
         matchNumberInput.setText(setupHashMap.get("MatchNumber"));
         teamNumberInput.setText(setupHashMap.get("TeamNumber"));
@@ -231,8 +237,6 @@ public class PregameActivity extends AppCompatActivity {
         //starting listener to check the status of the switch
         noShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                startButtonCheck();
-                clearButtonCheck();
                 if (isChecked) {
                     setupHashMap.put("NoShow", "1");
                     startButton.setText(R.string.GenerateQRCode);
@@ -242,6 +246,8 @@ public class PregameActivity extends AppCompatActivity {
                     startButton.setText(R.string.Start);
                     isQRButton = false;
                 }
+                startButtonCheck();
+                clearButtonCheck();
             }
         });
 
@@ -320,6 +326,8 @@ public class PregameActivity extends AppCompatActivity {
                             redButton.setSelected(false);
                         }
                         noShowSwitch.setChecked(false);
+                        clearStartingPos();
+
                         startButtonCheck();
                         clearButtonCheck();
                         return;
@@ -367,6 +375,8 @@ public class PregameActivity extends AppCompatActivity {
                         blueButton.setSelected(false);
                         redButton.setSelected(false);
                         noShowSwitch.setChecked(false);
+                        clearStartingPos();
+
                         startButtonCheck();
                         clearButtonCheck();
                     }
@@ -389,14 +399,109 @@ public class PregameActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
     }*/
 
+    public void fieldPosClicked(View view){
+        setStartingPos(findViewById(view.getId()));
+
+        clearButtonCheck();
+        startButtonCheck();
+    }
+
+    private void setStartingPos(Button pos){
+        clearStartingPos();
+
+        if(pos == LR2){
+            LR2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LR2");
+        } else if(pos == LR1){
+            LR1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LR1");
+        } else if(pos == LC){
+            LC.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LC");
+        } else if(pos == LL1){
+            LL1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LL1");
+        } else if(pos == LL2){
+            LL2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LL2");
+        } else if(pos == RL2){
+            RL2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RL2");
+        } else if(pos == RL1){
+            RL1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RL1");
+        } else if(pos == RC){
+            RC.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RC");
+        } else if(pos == RR1){
+            RR1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RR1");
+        } else if(pos == RR2) {
+            RR2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RR2");
+        }
+    }
+
+    private void setStartingPos(String pos){
+        clearStartingPos();
+
+        switch(pos){
+            case "LR2":
+            LR2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LR2");
+            case "LR1":
+            LR1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LR1");
+            case "LC":
+            LC.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LC");
+            case "LL1":
+            LL1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LL1");
+            case "LL2":
+            LL2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
+            setupHashMap.put("StartingPosition", "LL2");
+            case "RL2":
+            RL2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RL2");
+            case "RL1":
+            RL1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RL1");
+            case "RC":
+            RC.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RC");
+            case "RR1":
+            RR1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RR1");
+            case "RR2":
+            RR2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+            setupHashMap.put("StartingPosition", "RR2");
+        }
+    }
+
+    private void clearStartingPos(){
+        LL2.setCompoundDrawablesRelative(null, null, null, null);
+        LL1.setCompoundDrawablesRelative(null, null, null, null);
+        LC.setCompoundDrawablesRelative(null, null, null, null);
+        LR1.setCompoundDrawablesRelative(null, null, null, null);
+        LR2.setCompoundDrawablesRelative(null, null, null, null);
+
+        RL2.setCompoundDrawablesRelative(null, null, null, null);
+        RL1.setCompoundDrawablesRelative(null, null, null, null);
+        RC.setCompoundDrawablesRelative(null, null, null, null);
+        RR1.setCompoundDrawablesRelative(null, null, null, null);
+        RR2.setCompoundDrawablesRelative(null, null, null, null);
+    }
+
     private void startButtonCheck() {
         if(scouterNameInput.getText().length() > 0 &&
                 matchNumberInput.getText().length() > 0 &&
                 teamNumberInput.getText().length() > 0 &&
                 firstAlliancePartnerInput.getText().length() > 0 &&
                 secondAlliancePartnerInput.getText().length() > 0 &&
-                (blueButton.isSelected() || redButton.isSelected()))
-            startButton.setEnabled(true);
+                (blueButton.isSelected() || redButton.isSelected()) &&
+                ((setupHashMap.get("NoShow").equals("0") && !setupHashMap.get("StartingPosition").equals("")) || setupHashMap.get("NoShow").equals("1")))
+                startButton.setEnabled(true);
         else
             startButton.setEnabled(false);
     }
@@ -408,7 +513,8 @@ public class PregameActivity extends AppCompatActivity {
                 noShowSwitch.isChecked() ||
                 firstAlliancePartnerInput.getText().length() > 0 ||
                 secondAlliancePartnerInput.getText().length() > 0 ||
-                blueButton.isSelected() || redButton.isSelected())
+                blueButton.isSelected() || redButton.isSelected() ||
+                !setupHashMap.get("StartingPosition").equals(""))
             clearButton.setEnabled(true);
         else
             clearButton.setEnabled(false);

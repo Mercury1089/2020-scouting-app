@@ -137,6 +137,7 @@ public class HashMapManager {
                 setupHashMap.put("AlliancePartner1", "");
                 setupHashMap.put("AlliancePartner2", "");
                 setupHashMap.put("AllianceColor", "");
+                setupHashMap.put("StartingPosition", "");
                 setupHashMap.put("FellOver", "0");
                 break;
             case AUTON:
