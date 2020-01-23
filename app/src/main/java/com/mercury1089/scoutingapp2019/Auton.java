@@ -166,6 +166,10 @@ public class Auton extends Fragment {
             public void onFinish() { //sets the label to display a teleop error background and text
                 if(running) {
                     secondsRemaining.setText("00");
+                    topEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+                    bottomEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+                    leftEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
+                    rightEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     timerID.setTextColor(context.getResources().getColor(R.color.border_warning));
                     timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_red, 0, 0, 0);
                     teleopWarning.setTextColor(getResources().getColor(R.color.white));
