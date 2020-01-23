@@ -330,7 +330,7 @@
         tools:ignore="ContentDescription" />
 
     <Button
-        android:id="@+id/imageButton2"
+        android:id="@+id/PlayingField"
         android:layout_width="446dp"
         android:layout_height="230dp"
         android:layout_marginTop="10dp"
@@ -352,7 +352,7 @@
         android:gravity="center"
         android:visibility="invisible"
         android:enabled="false"
-        app:layout_constraintStart_toStartOf="@+id/imageButton2"
+        app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
 
@@ -452,7 +452,7 @@
         android:gravity="center"
         android:visibility="invisible"
         android:enabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
 
     <Button
@@ -465,7 +465,7 @@
         android:gravity="center"
         android:visibility="invisible"
         android:enabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

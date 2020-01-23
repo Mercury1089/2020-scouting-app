@@ -40,6 +40,22 @@ public class PregameActivity extends AppCompatActivity {
     private Button clearButton;
     private Button startButton;
 
+    //Playing Field map
+    private Button playingField;
+
+    //Starting Position Buttons
+    private Button LL2;
+    private Button LL1;
+    private Button LC;
+    private Button LR1;
+    private Button LR2;
+
+    private Button RL2;
+    private Button RL1;
+    private Button RC;
+    private Button RR1;
+    private Button RR2;
+
     private ImageButton settingsButton;
 
     //Text Fields
@@ -81,6 +97,26 @@ public class PregameActivity extends AppCompatActivity {
         clearButton = findViewById(R.id.ClearButton);
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
+        playingField = findViewById(R.id.PlayingField);
+        LL2 = findViewById(R.id.LL2);
+        LL1 = findViewById(R.id.LL1);
+        LC = findViewById(R.id.LC);
+        LR1 = findViewById(R.id.LR1);
+        LR2 = findViewById(R.id.LR2);
+
+        RL2 = findViewById(R.id.RL2);
+        RL1 = findViewById(R.id.RL1);
+        RC = findViewById(R.id.RC);
+        RR1 = findViewById(R.id.RR1);
+        RR2 = findViewById(R.id.RR2);
+
+        /*
+        TODO: enable playing field and scoring positions
+              LR1 = Left Right 1 (view stylesheet in Scouting App folder)
+              to make the robot marker (circle) show up, set scoring position to visible
+              and all others to invisible
+        */
+
 
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETTINGS);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
