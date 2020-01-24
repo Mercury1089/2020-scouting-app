@@ -115,14 +115,14 @@
 
     <Button
         android:id="@+id/GenerateQRButton"
-        android:layout_width="561dp"
-        android:layout_height="57dp"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_active"
         android:drawableStart="@drawable/qr"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
-        android:paddingLeft="188dp"
-        android:paddingRight="188dp"
+        android:paddingLeft="@dimen/generate_qr_button_padding"
+        android:paddingRight="@dimen/generate_qr_button_padding"
         android:text="@string/GenerateQRCode"
         android:textColor="@color/ice"
         android:textSize="@dimen/button_text_size"

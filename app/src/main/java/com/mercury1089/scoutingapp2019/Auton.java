@@ -234,7 +234,7 @@ public class Auton extends Fragment {
         scoredButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored, null);
+                View popupView = inflater.inflate(R.layout.popup_scored_up, null);
 
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
@@ -343,7 +343,7 @@ public class Auton extends Fragment {
         missedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored, null);
+                View popupView = inflater.inflate(R.layout.popup_scored_up, null);
 
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);

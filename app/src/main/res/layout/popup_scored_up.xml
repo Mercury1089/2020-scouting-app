@@ -6,22 +6,15 @@
     android:layout_height="@dimen/scoring_popup_height"
     android:background="@android:color/transparent">
 
-    <View
-        android:id="@+id/carat"
-        android:layout_width="@dimen/carat_length"
-        android:layout_height="@dimen/carat_length"
-        android:layout_marginStart="32dp"
-        android:background="@drawable/carat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Contents"
         android:layout_width="@dimen/scoring_popup_width"
-        android:layout_height="305dp"
+        android:layout_height="0dp"
         android:background="@color/bg_scoring_popup"
+        app:layout_constraintBottom_toTopOf="@+id/carat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carat">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/UpperID"
@@ -80,7 +73,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/DefaultValue"
             android:textColor="@color/bootstrap_brand_secondary_border"
-            android:textSize="@dimen/label_text_size"
+            android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/UpperID"
             app:layout_constraintStart_toEndOf="@+id/HigherIncrementDecrementContainer"
             app:layout_constraintTop_toTopOf="@+id/UpperID" />
@@ -126,7 +119,7 @@
             android:id="@+id/LowerID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="36dp"
             android:text="@string/LowerPortID"
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
@@ -139,7 +132,7 @@
             android:layout_height="wrap_content"
             android:text="@string/DefaultValue"
             android:textColor="@color/bootstrap_brand_secondary_border"
-            android:textSize="@dimen/label_text_size"
+            android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
             app:layout_constraintStart_toStartOf="@+id/UpperScore"
             app:layout_constraintTop_toTopOf="@+id/LowerID" />
@@ -176,9 +169,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Inner port stuff -->
-
-    <!-- Lower port stuff -->
+    <View
+        android:id="@+id/carat"
+        android:layout_width="@dimen/carat_length"
+        android:layout_height="@dimen/carat_length"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/carat"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

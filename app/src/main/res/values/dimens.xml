@@ -14,4 +14,5 @@
     <dimen name="square_toggle_length">60dp</dimen>
     <dimen name="padding">20dp</dimen>
     <dimen name="drawable_padding">10dp</dimen>
+    <dimen name="generate_qr_button_padding">185dp</dimen>
 </resources>

@@ -175,7 +175,7 @@
         android:id="@+id/IDNoShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/NoShow"
         android:textColor="@drawable/text_states"
@@ -192,6 +192,7 @@
         android:text="@string/AllianceColorID"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDAlliancePartners"
         app:layout_constraintStart_toStartOf="@+id/NoShowSwitch"
         app:layout_constraintTop_toTopOf="@+id/IDAlliancePartners" />
 
@@ -199,18 +200,17 @@
         android:id="@+id/MissedToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
         android:showDividers="middle"
         app:layout_constraintStart_toStartOf="@+id/IDAllianceColor"
-        app:layout_constraintTop_toBottomOf="@+id/TeamNumberInput">
+        app:layout_constraintTop_toBottomOf="@+id/IDAllianceColor">
 
         <Button
             android:id="@+id/BlueButton"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/toggle_blue_states"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
@@ -223,7 +223,6 @@
             android:id="@+id/RedButton"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/toggle_red_states"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
@@ -302,7 +301,7 @@
         android:id="@+id/StartButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_large_states"
+        android:background="@drawable/button_start_states"
         android:drawableEnd="@drawable/rocket_states"
         android:enabled="false"
         android:fontFamily="@font/open_sans"
@@ -320,10 +319,9 @@
         android:id="@+id/SettingsButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
-        android:src="@drawable/trash_states"
+        android:src="@drawable/settings"
         android:textColor="@drawable/text_states"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -331,7 +329,7 @@
 
     <Button
         android:id="@+id/PlayingField"
-        android:layout_width="446dp"
+        android:layout_width="445dp"
         android:layout_height="230dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/playing_field_states"
@@ -345,30 +343,29 @@
     <Button
         android:id="@+id/LR2"
         android:layout_width="140dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="7dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
+        app:layout_constraintTop_toTopOf="@+id/PlayingField" />
 
 
     <Button
         android:id="@+id/LR1"
         android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingTop="@dimen/bootstrap_h5_hori_padding"
         app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
 
     <Button
         android:id="@+id/LC"
         android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
@@ -378,7 +375,8 @@
     <Button
         android:id="@+id/LL1"
         android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
@@ -388,7 +386,7 @@
     <Button
         android:id="@+id/LL2"
         android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
@@ -400,18 +398,18 @@
     <Button
         android:id="@+id/RL2"
         android:layout_width="140dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
         app:layout_constraintEnd_toEndOf="@+id/PlayingField"
-        app:layout_constraintTop_toBottomOf="@+id/IDStartingPositionDirections" />
+        app:layout_constraintTop_toTopOf="@+id/PlayingField" />
 
     <Button
         android:id="@+id/RL1"
         android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
@@ -420,8 +418,8 @@
 
     <Button
         android:id="@+id/RC"
-        android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_width="139dp"
+        android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
@@ -431,7 +429,8 @@
     <Button
         android:id="@+id/RR1"
         android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
@@ -441,12 +440,26 @@
     <Button
         android:id="@+id/RR2"
         android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
         app:layout_constraintStart_toStartOf="@+id/RR1"
         app:layout_constraintTop_toBottomOf="@+id/RR1" />
+
+    <ImageView
+        android:id="@+id/SlackCenter"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:backgroundTint="@color/bg_general"
+        android:foregroundTint="@color/bg_general"
+        android:rotation="-4.5"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/RR2"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        app:layout_constraintStart_toStartOf="@+id/PlayingField"
+        app:layout_constraintTop_toTopOf="@+id/RL2"
+        app:srcCompat="@drawable/slack" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

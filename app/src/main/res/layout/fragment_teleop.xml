@@ -79,7 +79,7 @@
         android:background="@drawable/badge_states"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
         app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toTopOf="@+id/IDPickedUp" />
@@ -92,7 +92,7 @@
         android:background="@drawable/badge_states"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDDropped"
         app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
         app:layout_constraintTop_toTopOf="@+id/IDDropped" />
@@ -121,8 +121,8 @@
 
         <Button
             android:id="@+id/ScoredButton"
-            android:layout_width="140dp"
-            android:layout_height="50dp"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
             android:background="@drawable/toggle_left_states"
             android:fontFamily="@font/open_sans"
             android:gravity="start|center_vertical"
@@ -133,8 +133,8 @@
 
         <Button
             android:id="@+id/MissedButton"
-            android:layout_width="140dp"
-            android:layout_height="50dp"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
             android:background="@drawable/toggle_right_states"
             android:fontFamily="@font/open_sans"
             android:gravity="start|center_vertical"
@@ -212,12 +212,12 @@
         android:id="@+id/ScoredCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="80dp"
         android:background="@drawable/badge_states"
         android:fontFamily="@font/open_sans"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
         app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
@@ -226,14 +226,14 @@
         android:id="@+id/MissedCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="228dp"
+        android:layout_marginStart="90dp"
         android:background="@drawable/badge_states"
         android:fontFamily="@font/open_sans"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/ScoredToggle"
-        app:layout_constraintStart_toStartOf="@+id/ScoredToggle"
+        app:layout_constraintStart_toEndOf="@+id/ScoredCounter"
         app:layout_constraintTop_toTopOf="@+id/ScoredToggle" />
 
     <TextView
@@ -379,7 +379,7 @@
         android:layout_centerHorizontal="true"
 
 
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
 
         android:textColor="@drawable/text_states"
         android:thumb="@drawable/thumb_states"
