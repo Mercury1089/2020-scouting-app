@@ -358,6 +358,7 @@
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
+        android:paddingRight="@dimen/starting_pos_padding"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
 
@@ -368,6 +369,7 @@
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
+        android:paddingRight="@dimen/starting_pos_padding"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LR1" />
 
@@ -378,6 +380,7 @@
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
+        android:paddingRight="@dimen/starting_pos_padding"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LC" />
 
@@ -388,6 +391,7 @@
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
+        android:paddingRight="@dimen/starting_pos_padding"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LL1" />
 

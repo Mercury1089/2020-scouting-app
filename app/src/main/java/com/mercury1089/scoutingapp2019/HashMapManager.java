@@ -78,6 +78,16 @@ public class HashMapManager {
     }
 
     /**
+     *
+     * Used to set the app wide settingsHashMap
+     * Call before leaving an activity to update the app wide settingsHashMap
+     *
+     */
+    public static void putSettingsHashMap(LinkedHashMap<String, String> settingsData){
+        settingsHashMap = settingsData;
+    }
+
+    /**
     *
     * Used to set the app wide setupHashMap
     * Call before leaving an activity to update the app wide setupHashMap
