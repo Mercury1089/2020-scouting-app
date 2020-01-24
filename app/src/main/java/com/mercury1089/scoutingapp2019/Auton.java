@@ -495,16 +495,15 @@ public class Auton extends Fragment {
         } else {
             fellOverSwitch.setChecked(false);
             allButtonsEnabledState(true);
+            if(Integer.parseInt((String)pickedUpCounter.getText()) == 0)
+                pickedUpDecrementButton.setEnabled(false);
+            else
+                pickedUpDecrementButton.setEnabled(true);
+            if(Integer.parseInt((String)droppedCounter.getText()) == 0)
+                droppedDecrementButton.setEnabled(false);
+            else
+                droppedDecrementButton.setEnabled(true);
         }
-
-        if(Integer.parseInt((String)pickedUpCounter.getText()) == 0)
-            pickedUpDecrementButton.setEnabled(false);
-        else
-            pickedUpDecrementButton.setEnabled(true);
-        if(Integer.parseInt((String)droppedCounter.getText()) == 0)
-            droppedDecrementButton.setEnabled(false);
-        else
-            droppedDecrementButton.setEnabled(true);
     }
 
     @Override
