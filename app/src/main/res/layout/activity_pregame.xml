@@ -210,7 +210,7 @@
         <Button
             android:id="@+id/BlueButton"
             android:layout_width="wrap_content"
-            android:layout_height="46dp"
+            android:layout_height="@dimen/button_height"
             android:background="@drawable/toggle_blue_states"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
@@ -222,7 +222,7 @@
         <Button
             android:id="@+id/RedButton"
             android:layout_width="wrap_content"
-            android:layout_height="46dp"
+            android:layout_height="@dimen/button_height"
             android:background="@drawable/toggle_red_states"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
@@ -284,7 +284,7 @@
     <Button
         android:id="@+id/ClearButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:layout_marginStart="32dp"
         android:background="@drawable/button_states"
         android:drawableStart="@drawable/clear_states"
@@ -320,16 +320,14 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/button_states"
-        android:fontFamily="@font/open_sans"
         android:src="@drawable/settings"
-        android:textColor="@drawable/text_states"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/PlayingField"
-        android:layout_width="445dp"
+        android:layout_width="446dp"
         android:layout_height="230dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/playing_field_states"
@@ -342,109 +340,116 @@
 
     <Button
         android:id="@+id/LR2"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="9dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
+        android:paddingRight="@dimen/starting_pos_padding"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toTopOf="@+id/PlayingField" />
 
 
     <Button
         android:id="@+id/LR1"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
 
     <Button
         android:id="@+id/LC"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LR1" />
 
     <Button
         android:id="@+id/LL1"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
-        android:layout_marginTop="2dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LC" />
 
     <Button
         android:id="@+id/LL2"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        app:layout_constraintStart_toStartOf="@+id/LR2"
+        app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/LL1" />
 
     <!-- Right field side buttons -->
 
     <Button
         android:id="@+id/RL2"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="9dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
+        android:paddingLeft="@dimen/starting_pos_padding"
         app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        app:layout_constraintStart_toEndOf="@+id/LR2"
         app:layout_constraintTop_toTopOf="@+id/PlayingField" />
 
     <Button
         android:id="@+id/RL1"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
+        android:paddingLeft="@dimen/starting_pos_padding"
         app:layout_constraintEnd_toEndOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/RL2" />
 
     <Button
         android:id="@+id/RC"
-        android:layout_width="139dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        app:layout_constraintStart_toStartOf="@+id/RL1"
+        android:paddingLeft="@dimen/starting_pos_padding"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        app:layout_constraintStart_toStartOf="@+id/RL2"
         app:layout_constraintTop_toBottomOf="@+id/RL1" />
 
     <Button
         android:id="@+id/RR1"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
-        android:layout_marginTop="2dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        app:layout_constraintStart_toStartOf="@+id/RC"
+        android:paddingLeft="@dimen/starting_pos_padding"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        app:layout_constraintStart_toEndOf="@+id/LL1"
         app:layout_constraintTop_toBottomOf="@+id/RC" />
 
     <Button
         android:id="@+id/RR2"
-        android:layout_width="140dp"
+        android:layout_width="223dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        app:layout_constraintStart_toStartOf="@+id/RR1"
+        android:paddingLeft="@dimen/starting_pos_padding"
+        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
         app:layout_constraintTop_toBottomOf="@+id/RR1" />
 
     <ImageView
@@ -453,12 +458,14 @@
         android:layout_height="125dp"
         android:backgroundTint="@color/bg_general"
         android:foregroundTint="@color/bg_general"
-        android:rotation="-4.5"
+        android:rotation="-4.505"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/RR2"
+        app:layout_constraintBottom_toBottomOf="@+id/PlayingField"
         app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
-        app:layout_constraintTop_toTopOf="@+id/RL2"
+        app:layout_constraintTop_toTopOf="@+id/PlayingField"
+        app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/slack" />
 
 
