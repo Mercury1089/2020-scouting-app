@@ -128,6 +128,7 @@ public class HashMapManager {
             case SETTINGS:
                 settingsHashMap.put("HashMapName", "Settings");
                 settingsHashMap.put("NothingToSeeHere", "0");
+                settingsHashMap.put("Slack", "0");
             case SETUP:
                 setupHashMap.put("HashMapName", "Setup");
                 setupHashMap.put("ScouterName", "");
