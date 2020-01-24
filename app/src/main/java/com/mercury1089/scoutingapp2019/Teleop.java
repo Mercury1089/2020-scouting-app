@@ -130,8 +130,9 @@ public class Teleop extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
 
-                int width = 325;
-                int height = 350;
+                int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
+                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
+
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);
 
@@ -151,12 +152,16 @@ public class Teleop extends Fragment {
                 upperScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("UpperPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortScored"), 3));
 
+                checkToDisable(upperDecrement, upperScore, "upper");
+                checkToDisable(lowerDecrement, lowerScore, "lower");
+
                 upperIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int upperPortNum = Integer.parseInt((String)upperScore.getText());
                         upperPortNum += 1;
                         upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                        checkToDisable(upperDecrement, upperScore, "upper");
                     }
                 });
 
@@ -167,6 +172,7 @@ public class Teleop extends Fragment {
                         if(upperPortNum > 0) {
                             upperPortNum -= 1;
                             upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                            checkToDisable(upperDecrement, upperScore, "upper");
                         }
                     }
                 });
@@ -177,6 +183,7 @@ public class Teleop extends Fragment {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
                         lowerPortNum += 1;
                         lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                        checkToDisable(lowerDecrement, lowerScore, "lower");
                     }
                 });
 
@@ -187,6 +194,7 @@ public class Teleop extends Fragment {
                         if(lowerPortNum > 0) {
                             lowerPortNum -= 1;
                             lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                            checkToDisable(lowerDecrement, lowerScore, "lower");
                         }
                     }
                 });
@@ -210,6 +218,20 @@ public class Teleop extends Fragment {
                     }
                 });
             }
+
+            private void checkToDisable(Button button, TextView text, String name){
+                if(name.toLowerCase().equals("upper")) {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                } else {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                }
+            }
         });
 
         missedButton.setOnClickListener(new BootstrapButton.OnClickListener() {
@@ -217,8 +239,9 @@ public class Teleop extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
 
-                int width = 325;
-                int height = 350;
+                int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
+                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
+
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
 
@@ -238,12 +261,16 @@ public class Teleop extends Fragment {
                 upperScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("UpperPortMissed"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortMissed"), 3));
 
+                checkToDisable(upperDecrement, upperScore, "upper");
+                checkToDisable(lowerDecrement, lowerScore, "lower");
+
                 upperIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int upperPortNum = Integer.parseInt((String)upperScore.getText());
                         upperPortNum += 1;
                         upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                        checkToDisable(upperDecrement, upperScore, "upper");
                     }
                 });
 
@@ -254,6 +281,7 @@ public class Teleop extends Fragment {
                         if(upperPortNum > 0) {
                             upperPortNum -= 1;
                             upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                            checkToDisable(upperDecrement, upperScore, "upper");
                         }
                     }
                 });
@@ -264,6 +292,7 @@ public class Teleop extends Fragment {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
                         lowerPortNum += 1;
                         lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                        checkToDisable(lowerDecrement, lowerScore, "lower");
                     }
                 });
 
@@ -274,6 +303,7 @@ public class Teleop extends Fragment {
                         if(lowerPortNum > 0) {
                             lowerPortNum -= 1;
                             lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                            checkToDisable(lowerDecrement, lowerScore, "lower");
                         }
                     }
                 });
@@ -295,6 +325,20 @@ public class Teleop extends Fragment {
                         popupWindow.dismiss();
                     }
                 });
+            }
+
+            private void checkToDisable(Button button, TextView text, String name){
+                if(name.toLowerCase().equals("upper")) {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                } else {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                }
             }
         });
 
@@ -347,15 +391,25 @@ public class Teleop extends Fragment {
         missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
         pickedUpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("NumberPickedUp"), 3));
         droppedCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("NumberDropped"), 3));
-        stageTwoButton.setChecked(teleopHashMap.get("StageTwo") == "1");
-        stageThreeButton.setChecked(teleopHashMap.get("StageThree") == "1");
-        if(setupHashMap.get("FellOver") == "1") {
+        stageTwoButton.setChecked(teleopHashMap.get("StageTwo").equals("1"));
+        stageThreeButton.setChecked(teleopHashMap.get("StageThree").equals("1"));
+
+        if(setupHashMap.get("FellOver").equals("1")) {
             fellOverSwitch.setChecked(true);
             allButtonsEnabledState(false);
         } else {
             fellOverSwitch.setChecked(false);
             allButtonsEnabledState(true);
         }
+
+        if(Integer.parseInt((String)pickedUpCounter.getText()) == 0)
+            pickedUpDecrementButton.setEnabled(false);
+        else
+            pickedUpDecrementButton.setEnabled(true);
+        if(Integer.parseInt((String)droppedCounter.getText()) == 0)
+            pickedUpDecrementButton.setEnabled(false);
+        else
+            pickedUpDecrementButton.setEnabled(true);
     }
 
     @Override

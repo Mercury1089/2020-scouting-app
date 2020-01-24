@@ -135,10 +135,9 @@ public class PregameActivity extends AppCompatActivity {
             redButton.setSelected(false);
         }
 
+        clearStartingPos();
         if(!setupHashMap.get("StartingPosition").equals("")) {
             setStartingPos(setupHashMap.get("StartingPosition"));
-        } else {
-            clearStartingPos();
         }
 
         scouterNameInput.setText(setupHashMap.get("ScouterName"));
@@ -238,6 +237,7 @@ public class PregameActivity extends AppCompatActivity {
         noShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    clearStartingPos();
                     setupHashMap.put("NoShow", "1");
                     startButton.setText(R.string.GenerateQRCode);
                     isQRButton = true;

@@ -7,7 +7,8 @@
     <dimen name="speech_bubble_length">320dp</dimen>
     <dimen name="tail_width">24dp</dimen>
     <dimen name="tail_height">12dp</dimen>
-    <dimen name="scoring_popup_length">300dp</dimen>
+    <dimen name="scoring_popup_width">330dp</dimen>
+    <dimen name="scoring_popup_height">355dp</dimen>
     <dimen name="carat_length">50dp</dimen>
     <dimen name="square_toggle_text">20sp</dimen>
     <dimen name="square_toggle_length">60dp</dimen>

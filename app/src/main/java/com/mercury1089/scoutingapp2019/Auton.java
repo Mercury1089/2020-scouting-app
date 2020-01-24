@@ -205,7 +205,8 @@ public class Auton extends Fragment {
             public void onClick(View view){
                 int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
                 if(currentCount > 0)
-                    currentCount--;
+                    pickedUpDecrementButton.setEnabled(false);
+                currentCount--;
                 autonHashMap.put("NumberPickedUp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
@@ -235,8 +236,8 @@ public class Auton extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
 
-                int width = 325;
-                int height = 350;
+                int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
+                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);
@@ -257,12 +258,16 @@ public class Auton extends Fragment {
                 upperScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortScored"), 3));
 
+                checkToDisable(upperDecrement, upperScore, "upper");
+                checkToDisable(lowerDecrement, lowerScore, "lower");
+
                 upperIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int upperPortNum = Integer.parseInt((String)upperScore.getText());
                         upperPortNum += 1;
                         upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                        checkToDisable(upperDecrement, upperScore, "upper");
                     }
                 });
 
@@ -273,6 +278,7 @@ public class Auton extends Fragment {
                         if(upperPortNum > 0) {
                             upperPortNum -= 1;
                             upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                            checkToDisable(upperDecrement, upperScore, "upper");
                         }
                     }
                 });
@@ -283,6 +289,7 @@ public class Auton extends Fragment {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
                         lowerPortNum += 1;
                         lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                        checkToDisable(lowerDecrement, lowerScore, "lower");
                     }
                 });
 
@@ -293,6 +300,7 @@ public class Auton extends Fragment {
                         if(lowerPortNum > 0) {
                             lowerPortNum -= 1;
                             lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                            checkToDisable(lowerDecrement, lowerScore, "lower");
                         }
                     }
                 });
@@ -316,6 +324,20 @@ public class Auton extends Fragment {
                     }
                 });
             }
+
+            private void checkToDisable(Button button, TextView text, String name){
+                if(name.toLowerCase().equals("upper")) {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                } else {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                }
+            }
         });
 
         missedButton.setOnClickListener(new View.OnClickListener() {
@@ -323,8 +345,9 @@ public class Auton extends Fragment {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored, null);
 
-                int width = 325;
-                int height = 350;
+                int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
+                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
+
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
 
@@ -344,12 +367,16 @@ public class Auton extends Fragment {
                 upperScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortMissed"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortMissed"), 3));
 
+                checkToDisable(upperDecrement, upperScore, "upper");
+                checkToDisable(lowerDecrement, lowerScore, "lower");
+
                 upperIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int upperPortNum = Integer.parseInt((String)upperScore.getText());
                         upperPortNum += 1;
                         upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                        checkToDisable(upperDecrement, upperScore, "upper");
                     }
                 });
 
@@ -360,6 +387,7 @@ public class Auton extends Fragment {
                         if(upperPortNum > 0) {
                             upperPortNum -= 1;
                             upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
+                            checkToDisable(upperDecrement, upperScore, "upper");
                         }
                     }
                 });
@@ -370,6 +398,7 @@ public class Auton extends Fragment {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
                         lowerPortNum += 1;
                         lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                        checkToDisable(lowerDecrement, lowerScore, "lower");
                     }
                 });
 
@@ -380,6 +409,7 @@ public class Auton extends Fragment {
                         if(lowerPortNum > 0) {
                             lowerPortNum -= 1;
                             lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
+                            checkToDisable(lowerDecrement, lowerScore, "lower");
                         }
                     }
                 });
@@ -401,6 +431,20 @@ public class Auton extends Fragment {
                         popupWindow.dismiss();
                     }
                 });
+            }
+
+            private void checkToDisable(Button button, TextView text, String name){
+                if(name.toLowerCase().equals("upper")) {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                } else {
+                    if (Integer.parseInt((String)text.getText()) == 0)
+                        button.setEnabled(false);
+                    else
+                        button.setEnabled(true);
+                }
             }
         });
 
@@ -443,14 +487,24 @@ public class Auton extends Fragment {
         missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
         pickedUpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberPickedUp"), 3));
         droppedCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberDropped"), 3));
-        crossedLineSwitch.setChecked(autonHashMap.get("CrossedInitiationLine") == "1");
-        if(setupHashMap.get("FellOver") == "1") {
+        crossedLineSwitch.setChecked(autonHashMap.get("CrossedInitiationLine").equals("1"));
+
+        if(setupHashMap.get("FellOver").equals("1")) {
             fellOverSwitch.setChecked(true);
             allButtonsEnabledState(false);
         } else {
             fellOverSwitch.setChecked(false);
             allButtonsEnabledState(true);
         }
+
+        if(Integer.parseInt((String)pickedUpCounter.getText()) == 0)
+            pickedUpDecrementButton.setEnabled(false);
+        else
+            pickedUpDecrementButton.setEnabled(true);
+        if(Integer.parseInt((String)droppedCounter.getText()) == 0)
+            droppedDecrementButton.setEnabled(false);
+        else
+            droppedDecrementButton.setEnabled(true);
     }
 
     @Override

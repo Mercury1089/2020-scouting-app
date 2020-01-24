@@ -113,8 +113,8 @@
         android:background="@drawable/button_states"
         android:text="@string/Exit"
         android:textColor="@color/ice"
-        app:layout_constraintBottom_toTopOf="@+id/Auton"
-        app:layout_constraintEnd_toEndOf="@+id/tabs" />
+        app:layout_constraintEnd_toEndOf="@+id/tabs"
+        app:layout_constraintTop_toTopOf="@+id/tabs" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
