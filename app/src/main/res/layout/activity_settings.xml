@@ -79,12 +79,14 @@
 
     <ImageButton
         android:id="@+id/MuteButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="60dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="20dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
-        android:src="@drawable/settings"
+        android:scaleType="fitXY"
+        android:src="@drawable/Mute"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/BackButton"
         tools:ignore="ContentDescription" />
