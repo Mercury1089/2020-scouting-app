@@ -14,12 +14,13 @@
         android:id="@+id/IDParked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/Parked"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/ParkedSwitch"
-        app:layout_constraintStart_toStartOf="@+id/IDClimbed"
+        app:layout_constraintStart_toEndOf="@+id/ParkedSwitch"
         app:layout_constraintTop_toTopOf="@+id/ParkedSwitch" />
 
     <TextView
@@ -51,7 +52,7 @@
         android:id="@+id/IDClimbed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/Climbed"
         android:textColor="@drawable/text_states"
@@ -64,7 +65,7 @@
         android:id="@+id/IDLeveled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:enabled="false"
         android:fontFamily="@font/open_sans"
         android:text="@string/Rung"
@@ -72,7 +73,7 @@
         android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/LeveledSwitch"
         app:layout_constraintStart_toEndOf="@+id/LeveledSwitch"
-        app:layout_constraintTop_toBottomOf="@+id/ClimbedSwitch" />
+        app:layout_constraintTop_toTopOf="@+id/LeveledSwitch" />
 
     <Switch
         android:id="@+id/ClimbedSwitch"
@@ -93,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:enabled="false"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
@@ -106,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:textColor="@drawable/text_states"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
@@ -118,7 +119,7 @@
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/button_active"
+        android:background="@drawable/button_large_active"
         android:drawableStart="@drawable/qr"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
         android:paddingLeft="@dimen/generate_qr_button_padding"

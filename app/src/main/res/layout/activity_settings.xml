@@ -11,11 +11,13 @@
 
     <Button
         android:id="@+id/BackButton"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_states"
+        android:drawableLeft="@drawable/left"
+        android:drawablePadding="@dimen/drawable_padding"
         android:fontFamily="@font/open_sans"
         android:text="@string/GoBack"
         android:textColor="@drawable/text_states"
@@ -26,7 +28,7 @@
     <Button
         android:id="@+id/LocalStorageResetButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:layout_marginTop="15dp"
         android:background="@drawable/button_states"
         android:drawableStart="@drawable/trash_states"
@@ -79,13 +81,13 @@
 
     <ImageButton
         android:id="@+id/MuteButton"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
         android:adjustViewBounds="true"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         android:src="@drawable/mute"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/BackButton"

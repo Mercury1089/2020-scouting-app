@@ -11,7 +11,7 @@
     <Button
         android:id="@+id/GenerateQRButton"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
