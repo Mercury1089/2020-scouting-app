@@ -245,40 +245,67 @@ public class Auton extends Fragment {
                 // Buttons
                 Button doneButton = popupView.findViewById(R.id.DoneButton);
                 Button cancelButton = popupView.findViewById(R.id.CancelButton);
-                Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
-                Button upperDecrement = popupView.findViewById(R.id.UpperDecrement);
+                Button outerIncrement = popupView.findViewById(R.id.OuterIncrement);
+                Button outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                Button innerIncrement = popupView.findViewById(R.id.InnerIncrement);
+                Button innerDecrement = popupView.findViewById(R.id.InnerDecrement);
                 Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
                 Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView upperScore = popupView.findViewById(R.id.UpperScore);
+                TextView outerScore = popupView.findViewById(R.id.OuterScore);
+                TextView innerScore = popupView.findViewById(R.id.InnerScore);
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
-                upperScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortScored"), 3));
+                outerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortScored"), 3));
+                innerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("InnerPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortScored"), 3));
 
-                checkToDisable(upperDecrement, upperScore, "upper");
-                checkToDisable(lowerDecrement, lowerScore, "lower");
+                checkToDisable(outerDecrement, outerScore);
+                checkToDisable(innerDecrement, innerScore);
+                checkToDisable(lowerDecrement, lowerScore);
 
-                upperIncrement.setOnClickListener(new View.OnClickListener() {
+                outerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        upperPortNum += 1;
-                        upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                        checkToDisable(upperDecrement, upperScore, "upper");
+                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
+                        outerPortNum += 1;
+                        outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
+                        checkToDisable(outerDecrement, outerScore);
                     }
                 });
 
-                upperDecrement.setOnClickListener(new View.OnClickListener() {
+                outerDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        if(upperPortNum > 0) {
-                            upperPortNum -= 1;
-                            upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                            checkToDisable(upperDecrement, upperScore, "upper");
+                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
+                        if(outerPortNum > 0) {
+                            outerPortNum -= 1;
+                            outerScore.setText(GenUtils.padLeftZeros(Integer.toString(outerPortNum), 3));
+                            checkToDisable(outerDecrement, outerScore);
+                        }
+                    }
+                });
+
+                innerIncrement.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
+                        innerPortNum += 1;
+                        innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                        checkToDisable(innerDecrement, innerScore);
+                    }
+                });
+
+                innerDecrement.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
+                        if(innerPortNum > 0) {
+                            innerPortNum -= 1;
+                            innerScore.setText(GenUtils.padLeftZeros(Integer.toString(innerPortNum), 3));
+                            checkToDisable(innerDecrement, innerScore);
                         }
                     }
                 });
@@ -289,7 +316,7 @@ public class Auton extends Fragment {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
                         lowerPortNum += 1;
                         lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                        checkToDisable(lowerDecrement, lowerScore, "lower");
+                        checkToDisable(lowerDecrement, lowerScore);
                     }
                 });
 
@@ -300,7 +327,7 @@ public class Auton extends Fragment {
                         if(lowerPortNum > 0) {
                             lowerPortNum -= 1;
                             lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                            checkToDisable(lowerDecrement, lowerScore, "lower");
+                            checkToDisable(lowerDecrement, lowerScore);
                         }
                     }
                 });
@@ -308,10 +335,10 @@ public class Auton extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        autonHashMap.put("UpperPortScored", (String)upperScore.getText());
-                        // autonHashMap.put("OuterPortScored", (String)outerScore.getText());
+                        autonHashMap.put("outerPortScored", (String)outerScore.getText());
+                        autonHashMap.put("innerPortScored", (String)innerScore.getText());
                         autonHashMap.put("LowerPortScored", (String)lowerScore.getText());
-                        totalScored = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        totalScored = Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
                         updateXMLObjects();
                         popupWindow.dismiss();
                     }
@@ -325,28 +352,21 @@ public class Auton extends Fragment {
                 });
             }
 
-            private void checkToDisable(Button button, TextView text, String name){
-                if(name.toLowerCase().equals("upper")) {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                } else {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                }
+            private void checkToDisable(Button button, TextView text){
+                if (Integer.parseInt((String)text.getText()) == 0)
+                    button.setEnabled(false);
+                else
+                    button.setEnabled(true);
             }
         });
 
         missedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored_up, null);
+                View popupView = inflater.inflate(R.layout.popup_missed_up, null);
 
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
-                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
+                int height = (int)getResources().getDimension(R.dimen.missed_popup_height);
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
@@ -367,8 +387,8 @@ public class Auton extends Fragment {
                 upperScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortMissed"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortMissed"), 3));
 
-                checkToDisable(upperDecrement, upperScore, "upper");
-                checkToDisable(lowerDecrement, lowerScore, "lower");
+                checkToDisable(upperDecrement, upperScore);
+                checkToDisable(lowerDecrement, lowerScore);
 
                 upperIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -376,7 +396,7 @@ public class Auton extends Fragment {
                         int upperPortNum = Integer.parseInt((String)upperScore.getText());
                         upperPortNum += 1;
                         upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                        checkToDisable(upperDecrement, upperScore, "upper");
+                        checkToDisable(upperDecrement, upperScore);
                     }
                 });
 
@@ -387,7 +407,7 @@ public class Auton extends Fragment {
                         if(upperPortNum > 0) {
                             upperPortNum -= 1;
                             upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                            checkToDisable(upperDecrement, upperScore, "upper");
+                            checkToDisable(upperDecrement, upperScore);
                         }
                     }
                 });
@@ -398,7 +418,7 @@ public class Auton extends Fragment {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
                         lowerPortNum += 1;
                         lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                        checkToDisable(lowerDecrement, lowerScore, "lower");
+                        checkToDisable(lowerDecrement, lowerScore);
                     }
                 });
 
@@ -409,7 +429,7 @@ public class Auton extends Fragment {
                         if(lowerPortNum > 0) {
                             lowerPortNum -= 1;
                             lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                            checkToDisable(lowerDecrement, lowerScore, "lower");
+                            checkToDisable(lowerDecrement, lowerScore);
                         }
                     }
                 });
@@ -433,18 +453,11 @@ public class Auton extends Fragment {
                 });
             }
 
-            private void checkToDisable(Button button, TextView text, String name){
-                if(name.toLowerCase().equals("upper")) {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                } else {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                }
+            private void checkToDisable(Button button, TextView text){
+                if (Integer.parseInt((String)text.getText()) == 0)
+                    button.setEnabled(false);
+                else
+                    button.setEnabled(true);
             }
         });
 

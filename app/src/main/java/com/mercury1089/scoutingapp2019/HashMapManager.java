@@ -156,7 +156,9 @@ public class HashMapManager {
                 autonHashMap.put("HashMapName", "Auton");
                 autonHashMap.put("NumberPickedUp", "000");
                 autonHashMap.put("NumberDropped",  "000");
-                autonHashMap.put("UpperPortScored", "000");
+                //autonHashMap.put("UpperPortScored", "000");
+                autonHashMap.put("OuterPortScored", "000");
+                autonHashMap.put("InnerPortScored", "000");
                 autonHashMap.put("LowerPortScored", "000");
                 autonHashMap.put("UpperPortMissed", "000");
                 autonHashMap.put("LowerPortMissed", "000");
@@ -167,7 +169,9 @@ public class HashMapManager {
                 teleopHashMap.put("HashMapName", "Teleop");
                 teleopHashMap.put("NumberPickedUp", "000");
                 teleopHashMap.put("NumberDropped",  "000");
-                teleopHashMap.put("UpperPortScored", "000");
+                //teleopHashMap.put("UpperPortScored", "000");
+                teleopHashMap.put("OuterPortScored", "000");
+                teleopHashMap.put("InnerPortScored", "000");
                 teleopHashMap.put("LowerPortScored", "000");
                 teleopHashMap.put("UpperPortMissed", "000");
                 teleopHashMap.put("LowerPortMissed", "000");
@@ -177,9 +181,7 @@ public class HashMapManager {
             case CLIMB:
                 //include all the items that will be in the climbHashMap
                 climbHashMap.put("HashMapName", "Climb");
-                climbHashMap.put("Climbed", "0");
-                climbHashMap.put("Leveled", "0");
-                climbHashMap.put("Parked", "0");
+                climbHashMap.put("CLP", "");
                 break;
         }
     }

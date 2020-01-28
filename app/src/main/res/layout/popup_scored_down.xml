@@ -18,13 +18,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Contents"
         android:layout_width="@dimen/scoring_popup_width"
-        android:layout_height="305dp"
+        android:layout_height="365dp"
         android:background="@color/bg_scoring_popup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carat">
 
         <TextView
-            android:id="@+id/UpperID"
+            android:id="@+id/OuterID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -36,20 +36,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
-            android:id="@+id/HigherIncrementDecrementContainer"
+            android:id="@+id/OuterIncrementDecrementContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@+id/UpperID"
-            app:layout_constraintStart_toEndOf="@+id/UpperID"
-            app:layout_constraintTop_toTopOf="@+id/UpperID">
+            app:layout_constraintBottom_toBottomOf="@+id/OuterID"
+            app:layout_constraintStart_toEndOf="@+id/OuterID"
+            app:layout_constraintTop_toTopOf="@+id/OuterID">
 
 
             <Button
-                android:id="@+id/UpperIncrement"
+                android:id="@+id/OuterIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
@@ -60,7 +60,7 @@
                 android:textSize="@dimen/square_toggle_text" />
 
             <Button
-                android:id="@+id/UpperDecrement"
+                android:id="@+id/OuterDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
@@ -74,16 +74,76 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/UpperScore"
+            android:id="@+id/OuterScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/DefaultValue"
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/UpperID"
-            app:layout_constraintStart_toEndOf="@+id/HigherIncrementDecrementContainer"
-            app:layout_constraintTop_toTopOf="@+id/UpperID" />
+            app:layout_constraintBottom_toBottomOf="@+id/OuterID"
+            app:layout_constraintStart_toEndOf="@+id/OuterIncrementDecrementContainer"
+            app:layout_constraintTop_toTopOf="@+id/OuterID" />
+
+        <TextView
+            android:id="@+id/InnerID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="@string/InnerPortID"
+            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintStart_toStartOf="@id/OuterID"
+            app:layout_constraintTop_toBottomOf="@id/OuterID" />
+
+        <RadioGroup
+            android:id="@+id/InnerIncrementDecrementContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintBottom_toBottomOf="@+id/InnerID"
+            app:layout_constraintStart_toStartOf="@+id/OuterIncrementDecrementContainer"
+            app:layout_constraintTop_toTopOf="@+id/InnerID">
+
+
+            <Button
+                android:id="@+id/InnerIncrement"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:background="@drawable/toggle_left_states"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:text="@string/Plus"
+                android:textColor="@drawable/text_states"
+                android:textSize="@dimen/square_toggle_text" />
+
+            <Button
+                android:id="@+id/InnerDecrement"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:background="@drawable/toggle_right_states"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:text="@string/Minus"
+                android:textColor="@drawable/text_states"
+                android:textSize="@dimen/square_toggle_text" />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/InnerScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/InnerID"
+            app:layout_constraintStart_toEndOf="@+id/InnerIncrementDecrementContainer"
+            app:layout_constraintTop_toTopOf="@+id/InnerID" />
 
         <RadioGroup
             android:id="@+id/LowerIncrementDecrementContainer"
@@ -93,7 +153,7 @@
             android:orientation="horizontal"
             android:showDividers="middle"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
-            app:layout_constraintStart_toStartOf="@+id/HigherIncrementDecrementContainer"
+            app:layout_constraintStart_toStartOf="@+id/InnerIncrementDecrementContainer"
             app:layout_constraintTop_toTopOf="@+id/LowerID">
 
 
@@ -126,12 +186,12 @@
             android:id="@+id/LowerID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="45dp"
             android:text="@string/LowerPortID"
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
-            app:layout_constraintStart_toStartOf="@+id/UpperID"
-            app:layout_constraintTop_toBottomOf="@+id/UpperID" />
+            app:layout_constraintStart_toStartOf="@+id/InnerID"
+            app:layout_constraintTop_toBottomOf="@+id/InnerID" />
 
         <TextView
             android:id="@+id/LowerScore"
@@ -141,7 +201,7 @@
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
-            app:layout_constraintStart_toStartOf="@+id/UpperScore"
+            app:layout_constraintStart_toStartOf="@+id/InnerScore"
             app:layout_constraintTop_toTopOf="@+id/LowerID" />
 
         <Button

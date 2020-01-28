@@ -236,6 +236,7 @@
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
             android:src="@drawable/minus_states"
+            android:enabled="false"
             tools:ignore="ContentDescription" />
 
         <!-- android:button="@drawable/button_rounded_corners" -->

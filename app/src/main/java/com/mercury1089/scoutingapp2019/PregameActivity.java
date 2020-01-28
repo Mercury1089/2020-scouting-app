@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -237,7 +238,6 @@ public class PregameActivity extends AppCompatActivity {
                     final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
                     View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
                     loading_alert = loading_dialog.create();
-                    loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE); //Removes small white bar from the bottom of the popup
                     loading_alert.setView(loading_view);
                     loading_alert.setCancelable(false);
                     loading_alert.show();
@@ -564,10 +564,7 @@ public class PregameActivity extends AppCompatActivity {
             HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
             HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
 
-            QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getClimbHashMap());
+            QRStringBuilder.buildQRString();
 
             try {
                 bitmap = TextToImageEncode(QRStringBuilder.getQRString());

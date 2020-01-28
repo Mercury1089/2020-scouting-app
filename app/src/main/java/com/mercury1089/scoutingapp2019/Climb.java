@@ -78,16 +78,14 @@ public class Climb extends Fragment {
         climbedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    climbHashMap.put("Climbed", "1");
+                    climbHashMap.put("CLP", "C");
                     parkedSwitch.setEnabled(false);
                     parkedID.setEnabled(false);
 
                     leveledSwitch.setEnabled(true);
                     leveledID.setEnabled(true);
-                    climbHashMap.put("Parked", "0");
                 } else {
-                    climbHashMap.put("Climbed", "0");
-                    climbHashMap.put("Leveled", "0");
+                    climbHashMap.put("CLP", "");
                     parkedSwitch.setEnabled(true);
                     parkedID.setEnabled(true);
 
@@ -100,7 +98,7 @@ public class Climb extends Fragment {
 
         leveledSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                climbHashMap.put("Leveled", isChecked ? "1" : "0");
+                climbHashMap.put("CLP", isChecked ? "L" : "C");
                 updateXMLObjects();
             }
         });
@@ -108,16 +106,14 @@ public class Climb extends Fragment {
         parkedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    climbHashMap.put("Parked", "1");
+                    climbHashMap.put("CLP", "P");
                     climbedSwitch.setEnabled(false);
                     climbedID.setEnabled(false);
 
                     leveledSwitch.setEnabled(false);
                     leveledID.setEnabled(false);
-                    climbHashMap.put("Climbed", "0");
-                    climbHashMap.put("Leveled", "0");
                 } else {
-                    climbHashMap.put("Parked", "0");
+                    climbHashMap.put("CLP", "");
                     climbedSwitch.setEnabled(true);
                     climbedID.setEnabled(true);
                 }
@@ -146,26 +142,35 @@ public class Climb extends Fragment {
     }
 
     private void updateXMLObjects(){
-        climbedSwitch.setChecked(climbHashMap.get("Climbed") == "1");
-        leveledSwitch.setChecked(climbHashMap.get("Leveled") == "1");
-        parkedSwitch.setChecked(climbHashMap.get("Parked") == "1");
+        climbedSwitch.setChecked(climbHashMap.get("Climbed").equals("C"));
+        leveledSwitch.setChecked(climbHashMap.get("Leveled").equals("L"));
+        parkedSwitch.setChecked(climbHashMap.get("Parked").equals("P"));
 
-        if(climbHashMap.get("Climbed").equals("1")) {
-            leveledSwitch.setEnabled(true);
-            leveledID.setEnabled(true);
+        switch(climbHashMap.get("CLP")){
+            case "C":
+            case "L":
+                leveledSwitch.setEnabled(true);
+                leveledID.setEnabled(true);
 
-            parkedSwitch.setEnabled(false);
-            parkedID.setEnabled(false);
-        }
-        if(climbHashMap.get("Parked").equals("1")) {
-            climbedSwitch.setEnabled(false);
-            climbedID.setEnabled(false);
+                parkedSwitch.setEnabled(false);
+                parkedID.setEnabled(false);
+                break;
+            case "P":
+                climbedSwitch.setEnabled(false);
+                climbedID.setEnabled(false);
 
-            leveledSwitch.setEnabled(false);
-            leveledID.setEnabled(false);
-        } else if(climbHashMap.get("Climbed").equals("0")) {
-            leveledSwitch.setEnabled(false);
-            leveledID.setEnabled(false);
+                leveledSwitch.setEnabled(false);
+                leveledID.setEnabled(false);
+                break;
+            default:
+                climbedSwitch.setEnabled(true);
+                climbedID.setEnabled(true);
+
+                leveledSwitch.setEnabled(false);
+                leveledID.setEnabled(false);
+
+                climbedSwitch.setEnabled(true);
+                climbedID.setEnabled(true);
         }
     }
 
@@ -224,19 +229,13 @@ public class Climb extends Fragment {
             HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
             HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
 
-            QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getClimbHashMap());
+            QRStringBuilder.buildQRString();
 
             try {
                 Bitmap bitmap = TextToImageEncode(QRStringBuilder.getQRString());
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //PregameActivity.QRCodeGenerator qrCodeGenerator = new PregameActivity.QRCodeGenerator();
-                        //qrCodeGenerator.execute();
-
                         final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
                         View view1 = getLayoutInflater().inflate(R.layout.popup_qr, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);

@@ -109,13 +109,19 @@
 <!-- Display Popups -->
     <!-- Loading -->
         <string name="PleaseWait">Please wait&#8230;</string>
+
     <!-- QR Popup -->
         <string name="QRCodeID">Here is your QR Code:</string>
         <string name="QRCode">QR Code</string>
         <string name="QRWarningDirections">Are you sure you want to generate a QR code? Once you generate a code you cannot return to the match to make changes.</string>
         <string name="QRExitDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
+
+    <!-- Scored -->
+        <string name="OuterPortID">OUTER</string>
+        <string name="InnerPortID">INNER</string>
+
     <!-- Missed -->
-        <string name="OuterPortID">HIGH\n(OUTER/INNER)</string>
+        <string name="UpperPortID">HIGH\n(OUTER/INNER)</string>
         <string name="LowerPortID">LOWER</string>
 
     <!-- Clear -->
