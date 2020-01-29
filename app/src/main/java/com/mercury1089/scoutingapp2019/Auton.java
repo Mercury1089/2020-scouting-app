@@ -258,7 +258,7 @@ public class Auton extends Fragment {
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
-                outerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortScored"), 3));
+                outerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("OuterPortScored"), 3));
                 innerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("InnerPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortScored"), 3));
 
@@ -335,8 +335,8 @@ public class Auton extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        autonHashMap.put("outerPortScored", (String)outerScore.getText());
-                        autonHashMap.put("innerPortScored", (String)innerScore.getText());
+                        autonHashMap.put("OuterPortScored", (String)outerScore.getText());
+                        autonHashMap.put("InnerPortScored", (String)innerScore.getText());
                         autonHashMap.put("LowerPortScored", (String)lowerScore.getText());
                         totalScored = Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
                         updateXMLObjects();

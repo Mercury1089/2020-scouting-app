@@ -128,7 +128,7 @@ public class Teleop extends Fragment {
         scoredButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored_down, null);
+                View popupView = inflater.inflate(R.layout.popup_scored_up, null);
 
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
@@ -152,7 +152,7 @@ public class Teleop extends Fragment {
                 TextView lowerScore = popupView.findViewById(R.id.LowerScore);
 
                 // Temp variables
-                outerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("UpperPortScored"), 3));
+                outerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("OuterPortScored"), 3));
                 innerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("InnerPortScored"), 3));
                 lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortScored"), 3));
 
@@ -229,8 +229,8 @@ public class Teleop extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        teleopHashMap.put("outerPortScored", (String)outerScore.getText());
-                        teleopHashMap.put("innerPortScored", (String)innerScore.getText());
+                        teleopHashMap.put("OuterPortScored", (String)outerScore.getText());
+                        teleopHashMap.put("InnerPortScored", (String)innerScore.getText());
                         teleopHashMap.put("LowerPortScored", (String)lowerScore.getText());
                         totalScored = Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
                         updateXMLObjects();
@@ -260,7 +260,7 @@ public class Teleop extends Fragment {
                 View popupView = inflater.inflate(R.layout.popup_missed_down, null);
 
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
-                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
+                int height = (int)getResources().getDimension(R.dimen.missed_popup_height);
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);

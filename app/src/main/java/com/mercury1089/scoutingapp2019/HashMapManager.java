@@ -154,27 +154,25 @@ public class HashMapManager {
             case AUTON:
                 //include all the items that will be in the autonHashMap
                 autonHashMap.put("HashMapName", "Auton");
-                autonHashMap.put("NumberPickedUp", "000");
-                autonHashMap.put("NumberDropped",  "000");
-                //autonHashMap.put("UpperPortScored", "000");
-                autonHashMap.put("OuterPortScored", "000");
-                autonHashMap.put("InnerPortScored", "000");
-                autonHashMap.put("LowerPortScored", "000");
-                autonHashMap.put("UpperPortMissed", "000");
-                autonHashMap.put("LowerPortMissed", "000");
+                autonHashMap.put("NumberPickedUp", "0");
+                autonHashMap.put("NumberDropped",  "0");
+                autonHashMap.put("OuterPortScored", "0");
+                autonHashMap.put("InnerPortScored", "0");
+                autonHashMap.put("LowerPortScored", "0");
+                autonHashMap.put("UpperPortMissed", "0");
+                autonHashMap.put("LowerPortMissed", "0");
                 autonHashMap.put("CrossedInitiationLine", "0");
                 break;
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
                 teleopHashMap.put("HashMapName", "Teleop");
-                teleopHashMap.put("NumberPickedUp", "000");
-                teleopHashMap.put("NumberDropped",  "000");
-                //teleopHashMap.put("UpperPortScored", "000");
-                teleopHashMap.put("OuterPortScored", "000");
-                teleopHashMap.put("InnerPortScored", "000");
-                teleopHashMap.put("LowerPortScored", "000");
-                teleopHashMap.put("UpperPortMissed", "000");
-                teleopHashMap.put("LowerPortMissed", "000");
+                teleopHashMap.put("NumberPickedUp", "0");
+                teleopHashMap.put("NumberDropped",  "0");
+                teleopHashMap.put("OuterPortScored", "0");
+                teleopHashMap.put("InnerPortScored", "0");
+                teleopHashMap.put("LowerPortScored", "0");
+                teleopHashMap.put("UpperPortMissed", "0");
+                teleopHashMap.put("LowerPortMissed", "0");
                 teleopHashMap.put("StageTwo", "0");
                 teleopHashMap.put("StageThree", "0");
                 break;

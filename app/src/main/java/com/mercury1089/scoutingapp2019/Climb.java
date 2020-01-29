@@ -77,28 +77,15 @@ public class Climb extends Fragment {
         //set listeners for buttons
         climbedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    climbHashMap.put("CLP", "C");
-                    parkedSwitch.setEnabled(false);
-                    parkedID.setEnabled(false);
-
-                    leveledSwitch.setEnabled(true);
-                    leveledID.setEnabled(true);
-                } else {
-                    climbHashMap.put("CLP", "");
-                    parkedSwitch.setEnabled(true);
-                    parkedID.setEnabled(true);
-
-                    leveledSwitch.setEnabled(false);
-                    leveledID.setEnabled(false);
-                }
+                climbHashMap.put("CLP", isChecked ? "C" : "");
                 updateXMLObjects();
             }
         });
 
         leveledSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                climbHashMap.put("CLP", isChecked ? "L" : "C");
+                if(climbedSwitch.isChecked())
+                    climbHashMap.put("CLP", isChecked ? "L" : "C");
                 updateXMLObjects();
             }
         });
@@ -142,9 +129,9 @@ public class Climb extends Fragment {
     }
 
     private void updateXMLObjects(){
-        climbedSwitch.setChecked(climbHashMap.get("Climbed").equals("C"));
-        leveledSwitch.setChecked(climbHashMap.get("Leveled").equals("L"));
-        parkedSwitch.setChecked(climbHashMap.get("Parked").equals("P"));
+        climbedSwitch.setChecked(climbHashMap.get("CLP").equals("C") || climbHashMap.get("CLP").equals("L"));
+        leveledSwitch.setChecked(climbHashMap.get("CLP").equals("L"));
+        parkedSwitch.setChecked(climbHashMap.get("CLP").equals("P"));
 
         switch(climbHashMap.get("CLP")){
             case "C":
@@ -169,8 +156,8 @@ public class Climb extends Fragment {
                 leveledSwitch.setEnabled(false);
                 leveledID.setEnabled(false);
 
-                climbedSwitch.setEnabled(true);
-                climbedID.setEnabled(true);
+                parkedSwitch.setEnabled(true);
+                parkedID.setEnabled(true);
         }
     }
 

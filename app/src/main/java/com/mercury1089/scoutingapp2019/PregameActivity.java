@@ -77,11 +77,14 @@ public class PregameActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     //for QR code generator
-    private ImageView slackCenter;
     public final static int QRCodeSize = 500;
     Bitmap bitmap;
     //ProgressDialog progressDialog;
     boolean isQRButton = false;
+
+    //others
+    private MediaPlayer rooster;
+    private ImageView slackCenter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +104,7 @@ public class PregameActivity extends AppCompatActivity {
         settingsButton = findViewById(R.id.SettingsButton);
         playingField = findViewById(R.id.PlayingField);
         slackCenter = findViewById(R.id.SlackCenter);
+
         LL2 = findViewById(R.id.LL2);
         LL1 = findViewById(R.id.LL1);
         LC = findViewById(R.id.LC);
@@ -113,6 +117,7 @@ public class PregameActivity extends AppCompatActivity {
         RR1 = findViewById(R.id.RR1);
         RR2 = findViewById(R.id.RR2);
 
+        rooster = MediaPlayer.create(PregameActivity.this, R.raw.sound);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETTINGS);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         settingsHashMap = HashMapManager.getSettingsHashMap();
@@ -248,7 +253,7 @@ public class PregameActivity extends AppCompatActivity {
                 } else {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     if(scouterNameInput.getText().toString().equals("Mercury") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")) {
-                        settingsHashMap.put("NothingToSeeHere", settingsHashMap.get("NothingToSeeHere").equals("0") ? "1" : "0");
+                        settingsHashMap.put("NothingToSeeHere", "1");
                         HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
                         setupHashMap = HashMapManager.getSetupHashMap();
 
@@ -264,7 +269,7 @@ public class PregameActivity extends AppCompatActivity {
                         updateXMLObjects(true);
                         return;
                     } else if(settingsHashMap.get("NothingToSeeHere").equals("1")) {
-                        MediaPlayer.create(PregameActivity.this, R.raw.sound).start();
+                        rooster.start();
                     }
                     Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
                     startActivity(intent);
