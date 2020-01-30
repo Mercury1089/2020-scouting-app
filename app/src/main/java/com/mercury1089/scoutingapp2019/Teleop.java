@@ -36,12 +36,27 @@ public class Teleop extends Fragment {
     private Switch fellOverSwitch;
 
     //TextViews
+    private TextView possessionID;
+    private TextView possessionDescription;
+    private TextView pickedUpID;
     private TextView pickedUpCounter;
+    private TextView droppedID;
     private TextView droppedCounter;
+
+    private TextView scoringID;
+    private TextView scoringDescription;
     private TextView scoredCounter;
     private TextView missedCounter;
+
+    private TextView controlPanelID;
+    private TextView controlPanelDescription;
     private TextView stageTwoID;
     private TextView stageThreeID;
+
+    private TextView miscID;
+    private TextView miscDescription;
+
+    private TextView fellOverID;
 
     //other variables
     private ConstraintLayout constraintLayout;
@@ -66,25 +81,36 @@ public class Teleop extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
+        possessionID = getView().findViewById(R.id.IDPossession);
+        possessionDescription = getView().findViewById(R.id.IDPossessionDirections);
+        pickedUpID = getView().findViewById(R.id.IDPickedUp);
         pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
         pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
         pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
 
+        droppedID = getView().findViewById(R.id.IDDropped);
         droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
         droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
         droppedCounter = getView().findViewById(R.id.DroppedCounter);
 
+        scoringID = getView().findViewById(R.id.IDScoring);
+        scoringDescription = getView().findViewById(R.id.IDScoringDirections);
         scoredButton = getView().findViewById(R.id.ScoredButton);
         scoredCounter = getView().findViewById(R.id.ScoredCounter);
         missedButton = getView().findViewById(R.id.MissedButton);
         missedCounter = getView().findViewById(R.id.MissedCounter);
 
+        controlPanelID = getView().findViewById(R.id.IDControlPanel);
+        controlPanelDescription = getView().findViewById(R.id.IDControlPanelDirections);
         stageTwoButton = getView().findViewById(R.id.Stage2Switch);
         stageTwoID = getView().findViewById(R.id.IDStage2);
         stageThreeButton = getView().findViewById(R.id.Stage3Switch);
         stageThreeID = getView().findViewById(R.id.IDStage3);
 
+        miscID = getView().findViewById(R.id.IDMisc);
+        miscDescription = getView().findViewById(R.id.IDMiscDirections);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
+        fellOverID = getView().findViewById(R.id.IDFellOver);
 
         //set listeners for buttons
         pickedUpIncrementButton.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +153,10 @@ public class Teleop extends Fragment {
 
         scoredButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                controlPanelButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored_up, null);
 
@@ -233,6 +263,9 @@ public class Teleop extends Fragment {
                         teleopHashMap.put("InnerPortScored", (String)innerScore.getText());
                         teleopHashMap.put("LowerPortScored", (String)lowerScore.getText());
                         totalScored = Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         updateXMLObjects();
                         popupWindow.dismiss();
                     }
@@ -241,6 +274,9 @@ public class Teleop extends Fragment {
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         popupWindow.dismiss();
                     }
                 });
@@ -256,6 +292,10 @@ public class Teleop extends Fragment {
 
         missedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                controlPanelButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_missed_down, null);
 
@@ -334,6 +374,9 @@ public class Teleop extends Fragment {
                         teleopHashMap.put("UpperPortMissed", (String)upperScore.getText());
                         teleopHashMap.put("LowerPortMissed", (String)lowerScore.getText());
                         totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         updateXMLObjects();
                         popupWindow.dismiss();
                     }
@@ -342,6 +385,9 @@ public class Teleop extends Fragment {
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         popupWindow.dismiss();
                     }
                 });
@@ -377,26 +423,54 @@ public class Teleop extends Fragment {
         });
     }
 
-    private void allButtonsEnabledState(boolean enable){
+    private void possessionButtonsEnabledState(boolean enable){
+        possessionID.setEnabled(enable);
+        possessionDescription.setEnabled(enable);
+
+        pickedUpID.setEnabled(enable);
         pickedUpIncrementButton.setEnabled(enable);
         pickedUpDecrementButton.setEnabled(enable);
         pickedUpCounter.setEnabled(enable);
 
+        droppedID.setEnabled(enable);
         droppedIncrementButton.setEnabled(enable);
         droppedDecrementButton.setEnabled(enable);
         droppedCounter.setEnabled(enable);
+    }
+
+    private void scoringButtonsEnabledState(boolean enable){
+        scoringID.setEnabled(enable);
+        scoringDescription.setEnabled(enable);
 
         scoredButton.setEnabled(enable);
         scoredCounter.setEnabled(enable);
 
         missedButton.setEnabled(enable);
         missedCounter.setEnabled(enable);
+    }
+
+    private void controlPanelButtonsEnabledState(boolean enable){
+        controlPanelID.setEnabled(enable);
+        controlPanelDescription.setEnabled(enable);
 
         stageTwoButton.setEnabled(enable);
         stageTwoID.setEnabled(enable);
 
         stageThreeButton.setEnabled(enable);
         stageThreeID.setEnabled(enable);
+    }
+
+    private void miscButtonsEnabledState(boolean enable){
+        miscID.setEnabled(enable);
+        miscDescription.setEnabled(enable);
+        fellOverSwitch.setEnabled(enable);
+        fellOverID.setEnabled(enable);
+    }
+
+    private void allButtonsEnabledState(boolean enable){
+        possessionButtonsEnabledState(enable);
+        scoringButtonsEnabledState(enable);
+        controlPanelButtonsEnabledState(enable);
     }
 
     private void updateXMLObjects(){

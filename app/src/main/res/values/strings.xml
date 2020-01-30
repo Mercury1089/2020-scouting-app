@@ -96,7 +96,7 @@
         <string name="ControlPanelDirections">Tap on the toggle to mark if/when the robot activates either stage.</string>
         <string name="Stage2">Stage 2</string>
         <string name="Stage3">Stage 3</string>
-        <string name="FellOverOrDied">Fell over / Died</string>
+        <string name="FellOverOrDied">Fell over/Died</string>
         <string name="ClimbNext">NEXT: CLIMBING AND QR</string>
 
     <!-- Climb -->
@@ -111,10 +111,19 @@
         <string name="PleaseWait">Please wait&#8230;</string>
 
     <!-- QR Popup -->
+        <string name="GenerateQRID">GENERATE QR CODE?</string>
+        <string name="GenerateQRDescription">Are you sure you want to generate a QR code? Once you generate a code you cannot return to the match to make changes.</string>
+
+    <!-- QR Popup -->
         <string name="QRCodeID">Here is your QR Code:</string>
         <string name="QRCode">QR Code</string>
         <string name="QRWarningDirections">Are you sure you want to generate a QR code? Once you generate a code you cannot return to the match to make changes.</string>
         <string name="QRExitDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
+
+    <!-- QR Popup -->
+        <string name="SetupNextMatchID">DID YOU SCAN YOUR QR CODE?</string>
+        <string name="SetupNextMatchDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
+        <string name="SetupNextMatch">SET UP NEXT MATCH</string>
 
     <!-- Scored -->
         <string name="OuterPortID">OUTER</string>

@@ -111,19 +111,42 @@ public class Climb extends Fragment {
 
         generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(context);
-                View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
-                loading_alert = loading_dialog.create();
-                loading_alert.setView(loading_view);
-                loading_alert.setCancelable(false);
-                loading_alert.show();
+            public void onClick(View v) {
+                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(context);
+                View view = getLayoutInflater().inflate(R.layout.generate_qrcode_confirm_popup, null);
 
-                HashMapManager.putSetupHashMap(setupHashMap);
-                HashMapManager.putClimbHashMap(climbHashMap);
+                Button generateQRButton = view.findViewById(R.id.GenerateQRButton);
+                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                final AlertDialog dialog = cancelDialog.create();
 
-                Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
-                new Thread(qrRunnable).start();
+                dialog.setView(view);
+                dialog.show();
+
+                generateQRButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(context);
+                        View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
+                        loading_alert = loading_dialog.create();
+                        loading_alert.setView(loading_view);
+                        loading_alert.setCancelable(false);
+                        loading_alert.show();
+
+                        HashMapManager.putSetupHashMap(setupHashMap);
+                        HashMapManager.putClimbHashMap(climbHashMap);
+
+                        Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
+                        new Thread(qrRunnable).start();
+                        dialog.dismiss();
+                    }
+                });
+
+                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
@@ -244,12 +267,35 @@ public class Climb extends Fragment {
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                                QRStringBuilder.clearQRString();
-                                HashMapManager.setupNextMatch();
-                                Intent intent = new Intent(context, PregameActivity.class);
-                                startActivity(intent);
+                            public void onClick(View v) {
+                                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(context);
+                                View view = getLayoutInflater().inflate(R.layout.setup_next_match_confirm_popup, null);
+
+                                Button setupNextMatchButton = view.findViewById(R.id.SetupNextMatchButton);
+                                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                                final AlertDialog popupDialog = cancelDialog.create();
+
+                                popupDialog.setView(view);
+                                popupDialog.show();
+
+                                setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        QRStringBuilder.clearQRString();
+                                        HashMapManager.setupNextMatch();
+                                        Intent intent = new Intent(context, PregameActivity.class);
+                                        startActivity(intent);
+                                        dialog.dismiss();
+                                        popupDialog.dismiss();
+                                    }
+                                });
+
+                                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        popupDialog.dismiss();
+                                    }
+                                });
                             }
                         });
                     }

@@ -232,24 +232,42 @@ public class PregameActivity extends AppCompatActivity {
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View view){
+            public  void onClick(View v){
                 if(isQRButton) {
-//                    progressDialog = new ProgressDialog(PregameActivity.this, R.style.LoadingDialogStyle);
-//                    progressDialog.setMessage("Please Wait");
-//                    progressDialog.setCancelable(false);
-//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//                    progressDialog.show();
+                    final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
+                    View view = getLayoutInflater().inflate(R.layout.generate_qrcode_confirm_popup, null);
 
-                    final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
-                    View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
-                    loading_alert = loading_dialog.create();
-                    loading_alert.setView(loading_view);
-                    loading_alert.setCancelable(false);
-                    loading_alert.show();
+                    Button generateQRButton = view.findViewById(R.id.GenerateQRButton);
+                    Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                    final AlertDialog dialog = cancelDialog.create();
 
-                    HashMapManager.putSetupHashMap(setupHashMap);
-                    PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
-                    new Thread(qrRunnable).start();
+                    dialog.setView(view);
+                    dialog.show();
+
+                    generateQRButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
+                            View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
+                            loading_alert = loading_dialog.create();
+                            loading_alert.setView(loading_view);
+                            loading_alert.setCancelable(false);
+                            loading_alert.show();
+
+                            HashMapManager.putSetupHashMap(setupHashMap);
+
+                            PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
+                            new Thread(qrRunnable).start();
+                            dialog.dismiss();
+                        }
+                    });
+
+                    cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
                 } else {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     if(scouterNameInput.getText().toString().equals("Mercury") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")) {
@@ -603,12 +621,35 @@ public class PregameActivity extends AppCompatActivity {
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                                QRStringBuilder.clearQRString();
-                                HashMapManager.setupNextMatch();
-                                setupHashMap = HashMapManager.getSetupHashMap();
-                                updateXMLObjects(true);
+                            public void onClick(View v) {
+                                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
+                                View view = getLayoutInflater().inflate(R.layout.setup_next_match_confirm_popup, null);
+
+                                Button setupNextMatchButton = view.findViewById(R.id.SetupNextMatchButton);
+                                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                                final AlertDialog popupDialog = cancelDialog.create();
+
+                                popupDialog.setView(view);
+                                popupDialog.show();
+
+                                setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        QRStringBuilder.clearQRString();
+                                        HashMapManager.setupNextMatch();
+                                        setupHashMap = HashMapManager.getSetupHashMap();
+                                        updateXMLObjects(true);
+                                        dialog.dismiss();
+                                        popupDialog.dismiss();
+                                    }
+                                });
+
+                                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        popupDialog.dismiss();
+                                    }
+                                });
                             }
                         });
                     }

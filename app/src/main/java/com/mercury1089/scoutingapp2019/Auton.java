@@ -37,14 +37,27 @@ public class Auton extends Fragment {
     private Switch fellOverSwitch;
 
     //TextViews
-    private TextView secondsRemaining;
     private TextView timerID;
+    private TextView secondsRemaining;
+    private TextView teleopWarning;
+
+    private TextView possessionID;
+    private TextView possessionDescription;
+    private TextView pickedUpID;
     private TextView pickedUpCounter;
+    private TextView droppedID;
     private TextView droppedCounter;
+
+    private TextView scoringID;
+    private TextView scoringDescription;
     private TextView scoredCounter;
     private TextView missedCounter;
-    private TextView teleopWarning;
+
+    private TextView miscID;
+    private TextView miscDescription;
     private TextView crossedLineID;
+
+    private TextView fellOverID;
 
     //ImageViews
     private ImageView topEdgeBar;
@@ -81,22 +94,31 @@ public class Auton extends Fragment {
         secondsRemaining = getView().findViewById(R.id.AutonSeconds);
         teleopWarning = getView().findViewById(R.id.TeleopWarning);
 
+        possessionID = getView().findViewById(R.id.IDPossession);
+        possessionDescription = getView().findViewById(R.id.IDPossessionDirections);
+        pickedUpID = getView().findViewById(R.id.IDPickedUp);
         pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
         pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
         pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
 
+        droppedID = getView().findViewById(R.id.IDDropped);
         droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
         droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
         droppedCounter = getView().findViewById(R.id.DroppedCounter);
 
+        scoringID = getView().findViewById(R.id.IDScoring);
+        scoringDescription = getView().findViewById(R.id.IDScoringDirections);
         scoredButton = getView().findViewById(R.id.ScoredButton);
         scoredCounter = getView().findViewById(R.id.ScoredCounter);
         missedButton = getView().findViewById(R.id.MissedButton);
         missedCounter = getView().findViewById(R.id.MissedCounter);
 
+        miscID = getView().findViewById(R.id.IDMisc);
+        miscDescription = getView().findViewById(R.id.IDMiscDirections);
         crossedLineID = getView().findViewById(R.id.IDCrossedLine);
         crossedLineSwitch = getView().findViewById(R.id.CrossedLineSwitch);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
+        fellOverID = getView().findViewById(R.id.IDFellOver);
 
         topEdgeBar = getView().findViewById(R.id.topEdgeBar);
         bottomEdgeBar = getView().findViewById(R.id.bottomEdgeBar);
@@ -117,6 +139,9 @@ public class Auton extends Fragment {
             public void onTick(long millisUntilFinished) {
                 secondsRemaining.setText(GenUtils.padLeftZeros("" + millisUntilFinished / 1000, 2));
                 if (millisUntilFinished / 1000 <= 3 && millisUntilFinished / 1000 > 0) {  //play the blinking animation
+                    teleopWarning.setVisibility(View.VISIBLE);
+                    timerID.setTextColor(context.getResources().getColor(R.color.banana));
+                    timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_yellow, 0, 0, 0);
 
                     ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
                     ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
@@ -149,13 +174,7 @@ public class Auton extends Fragment {
 
                     animatorSet.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, leftEdgeLighterOff, rightEdgeLighterOff);
                     animatorSet.start();
-                }
-                else if (millisUntilFinished / 1000 == 5) {
-                    teleopWarning.setVisibility(View.VISIBLE);
-                    timerID.setTextColor(context.getResources().getColor(R.color.banana));
-                    timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_yellow, 0, 0, 0);
-                }
-                else { //the bars need to remain lit up after the countdown
+                } else { //the bars need to remain lit up after the countdown
                     topEdgeBar.setAlpha(1);
                     bottomEdgeBar.setAlpha(1);
                     rightEdgeBar.setAlpha(1);
@@ -233,6 +252,9 @@ public class Auton extends Fragment {
 
         scoredButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored_up, null);
 
@@ -339,6 +361,8 @@ public class Auton extends Fragment {
                         autonHashMap.put("InnerPortScored", (String)innerScore.getText());
                         autonHashMap.put("LowerPortScored", (String)lowerScore.getText());
                         totalScored = Integer.parseInt((String)outerScore.getText()) + Integer.parseInt((String)innerScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         updateXMLObjects();
                         popupWindow.dismiss();
                     }
@@ -347,6 +371,8 @@ public class Auton extends Fragment {
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         popupWindow.dismiss();
                     }
                 });
@@ -362,6 +388,9 @@ public class Auton extends Fragment {
 
         missedButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_missed_up, null);
 
@@ -440,6 +469,8 @@ public class Auton extends Fragment {
                         autonHashMap.put("UpperPortMissed", (String)upperScore.getText());
                         autonHashMap.put("LowerPortMissed", (String)lowerScore.getText());
                         totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         updateXMLObjects();
                         popupWindow.dismiss();
                     }
@@ -448,6 +479,8 @@ public class Auton extends Fragment {
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
                         popupWindow.dismiss();
                     }
                 });
@@ -476,20 +509,44 @@ public class Auton extends Fragment {
         });
     }
 
-    private void allButtonsEnabledState(boolean enable){
+    private void possessionButtonsEnabledState(boolean enable){
+        possessionID.setEnabled(enable);
+        possessionDescription.setEnabled(enable);
+
+        pickedUpID.setEnabled(enable);
         pickedUpIncrementButton.setEnabled(enable);
         pickedUpDecrementButton.setEnabled(enable);
         pickedUpCounter.setEnabled(enable);
 
+        droppedID.setEnabled(enable);
         droppedIncrementButton.setEnabled(enable);
         droppedDecrementButton.setEnabled(enable);
         droppedCounter.setEnabled(enable);
+    }
+
+    private void scoringButtonsEnabledState(boolean enable){
+        scoringID.setEnabled(enable);
+        scoringDescription.setEnabled(enable);
 
         scoredButton.setEnabled(enable);
         scoredCounter.setEnabled(enable);
 
         missedButton.setEnabled(enable);
         missedCounter.setEnabled(enable);
+    }
+
+    private void miscButtonsEnabledState(boolean enable){
+        miscID.setEnabled(enable);
+        miscDescription.setEnabled(enable);
+        crossedLineSwitch.setEnabled(enable);
+        crossedLineID.setEnabled(enable);
+        fellOverSwitch.setEnabled(enable);
+        fellOverID.setEnabled(enable);
+    }
+
+    private void allButtonsEnabledState(boolean enable){
+        possessionButtonsEnabledState(enable);
+        scoringButtonsEnabledState(enable);
 
         crossedLineSwitch.setEnabled(enable);
         crossedLineID.setEnabled(enable);
