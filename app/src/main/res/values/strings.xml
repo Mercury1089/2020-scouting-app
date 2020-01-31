@@ -108,7 +108,7 @@
 
 <!-- Display Popups -->
     <!-- Loading -->
-        <string name="PleaseWait">Please wait&#8230;</string>
+        <string name="PleaseWait">Please Wait&#8230;\nGenerating QR Code&#8230;</string>
 
     <!-- QR Popup -->
         <string name="GenerateQRID">GENERATE QR CODE?</string>
