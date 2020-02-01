@@ -268,7 +268,7 @@
         app:layout_constraintTop_toBottomOf="@+id/IDStartingPosition" />
 
     <TextView
-        android:id="@+id/IDStartingPositionDirections2"
+        android:id="@+id/IDStartDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans"
@@ -340,120 +340,139 @@
 
     <Button
         android:id="@+id/LR2"
-        android:layout_width="223dp"
+        android:layout_width="105dp"
         android:layout_height="42dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="9dp"
         android:background="@android:color/transparent"
+        android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingRight="@dimen/starting_pos_padding"
+        android:paddingRight="@dimen/left_pos_padding"
+        android:tag="LR2"
         app:layout_constraintStart_toStartOf="@+id/PlayingField"
         app:layout_constraintTop_toTopOf="@+id/PlayingField" />
 
 
     <Button
         android:id="@+id/LR1"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingRight="@dimen/starting_pos_padding"
-        app:layout_constraintStart_toStartOf="@+id/PlayingField"
+        android:paddingRight="@dimen/left_pos_padding"
+        android:tag="LR1"
+        app:layout_constraintEnd_toEndOf="@+id/LR2"
+        app:layout_constraintStart_toStartOf="@+id/LR2"
         app:layout_constraintTop_toBottomOf="@+id/LR2" />
 
     <Button
         android:id="@+id/LC"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingRight="@dimen/starting_pos_padding"
-        app:layout_constraintStart_toStartOf="@+id/PlayingField"
+        android:paddingRight="@dimen/left_pos_padding"
+        android:tag="LC"
+        app:layout_constraintEnd_toEndOf="@+id/LR1"
+        app:layout_constraintStart_toStartOf="@+id/LR1"
         app:layout_constraintTop_toBottomOf="@+id/LR1" />
 
     <Button
         android:id="@+id/LL1"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingRight="@dimen/starting_pos_padding"
-        app:layout_constraintStart_toStartOf="@+id/PlayingField"
+        android:paddingRight="@dimen/left_pos_padding"
+        android:tag="LL1"
+        app:layout_constraintEnd_toEndOf="@+id/LC"
+        app:layout_constraintStart_toStartOf="@+id/LC"
         app:layout_constraintTop_toBottomOf="@+id/LC" />
 
     <Button
         android:id="@+id/LL2"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingRight="@dimen/starting_pos_padding"
-        app:layout_constraintStart_toStartOf="@+id/PlayingField"
+        android:paddingRight="@dimen/left_pos_padding"
+        android:tag="LL2"
+        app:layout_constraintEnd_toEndOf="@+id/LL1"
+        app:layout_constraintStart_toStartOf="@+id/LL1"
         app:layout_constraintTop_toBottomOf="@+id/LL1" />
 
     <!-- Right field side buttons -->
 
     <Button
         android:id="@+id/RL2"
-        android:layout_width="223dp"
+        android:layout_width="105dp"
         android:layout_height="42dp"
         android:layout_marginTop="9dp"
+        android:layout_marginEnd="35dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingLeft="@dimen/starting_pos_padding"
+        android:paddingRight="@dimen/right_pos_padding"
+        android:drawableEnd="@drawable/starting_pos"
+        android:tag="RL2"
         app:layout_constraintEnd_toEndOf="@+id/PlayingField"
-        app:layout_constraintStart_toEndOf="@+id/LR2"
         app:layout_constraintTop_toTopOf="@+id/PlayingField" />
 
     <Button
         android:id="@+id/RL1"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingLeft="@dimen/starting_pos_padding"
-        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        android:paddingRight="@dimen/right_pos_padding"
+        android:tag="RL1"
+        app:layout_constraintEnd_toEndOf="@+id/RL2"
+        app:layout_constraintStart_toStartOf="@+id/RL2"
         app:layout_constraintTop_toBottomOf="@+id/RL2" />
 
     <Button
         android:id="@+id/RC"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingLeft="@dimen/starting_pos_padding"
-        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
-        app:layout_constraintStart_toStartOf="@+id/RL2"
+        android:paddingRight="@dimen/right_pos_padding"
+        android:tag="RC"
+        app:layout_constraintEnd_toEndOf="@+id/RL1"
+        app:layout_constraintStart_toStartOf="@+id/RL1"
         app:layout_constraintTop_toBottomOf="@+id/RL1" />
 
     <Button
         android:id="@+id/RR1"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingLeft="@dimen/starting_pos_padding"
-        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
-        app:layout_constraintStart_toEndOf="@+id/LL1"
+        android:paddingRight="@dimen/right_pos_padding"
+        android:tag="RR1"
+        app:layout_constraintEnd_toEndOf="@+id/RC"
+        app:layout_constraintStart_toStartOf="@+id/RC"
         app:layout_constraintTop_toBottomOf="@+id/RC" />
 
     <Button
         android:id="@+id/RR2"
-        android:layout_width="223dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:onClick="fieldPosClicked"
-        android:paddingLeft="@dimen/starting_pos_padding"
-        app:layout_constraintEnd_toEndOf="@+id/PlayingField"
+        android:paddingRight="@dimen/right_pos_padding"
+        android:tag="RR2"
+        app:layout_constraintEnd_toEndOf="@+id/RR1"
+        app:layout_constraintStart_toStartOf="@+id/RR1"
         app:layout_constraintTop_toBottomOf="@+id/RR1" />
 
     <ImageView

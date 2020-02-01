@@ -387,6 +387,24 @@
         app:layout_constraintStart_toStartOf="@+id/Stage2Switch"
         app:layout_constraintTop_toBottomOf="@+id/Stage2Switch" />
 
+    <Button
+        android:id="@+id/NextClimbButton"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/button_large_active"
+        android:drawableEnd="@drawable/right"
+        android:drawablePadding="-50dp"
+        android:gravity="center_horizontal"
+        android:drawableLeft="60dp"
+        android:text="@string/ClimbNext"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <!--
         android:backgroundTint="@color/button_active"
         android:foregroundTint="@color/button_active"
