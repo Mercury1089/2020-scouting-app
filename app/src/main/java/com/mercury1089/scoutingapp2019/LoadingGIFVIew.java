@@ -17,17 +17,21 @@ public class LoadingGIFVIew extends View {
     private long movieDuration;
     private long movieStart;
 
+
     public LoadingGIFVIew(Context context) {
         super(context);
         init(context);
     }
+
     public LoadingGIFVIew(Context context, AttributeSet attributeSet) {
         super(context);
         init(context);
     }
+
     public LoadingGIFVIew(Context context, AttributeSet attributeSet, int defStyleAttribute) {
         super(context, attributeSet, defStyleAttribute);
     }
+
     private void init(Context context) {
         setFocusable(true);
         gifInputStream = context.getResources().openRawResource(R.raw.loading_gif);

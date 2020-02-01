@@ -8,6 +8,7 @@
     android:layout_height="895dp"
     android:background="@color/bg_general"
     android:padding="@dimen/padding"
+    android:clipToPadding="false"
     tools:context=".MatchActivity">
 
     <ImageView
@@ -16,8 +17,8 @@
         android:layout_height="0dp"
         android:alpha="0"
         android:background="@drawable/teleop_warning"
+        android:layout_marginLeft="-20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -412,5 +413,23 @@
         android:track="@drawable/track_states"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/CrossedLineSwitch" />
+
+    <Button
+        android:id="@+id/NextTeleopButton"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_large_active"
+        android:drawableEnd="@drawable/right"
+        android:drawablePadding="@dimen/bootstrap_alert_paddings"
+        android:paddingLeft="@dimen/generate_qr_button_padding"
+        android:paddingRight="@dimen/generate_qr_button_padding"
+        android:text="@string/TeleopNext"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

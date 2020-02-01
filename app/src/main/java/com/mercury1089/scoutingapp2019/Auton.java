@@ -32,6 +32,8 @@ public class Auton extends Fragment {
     private Button scoredButton;
     private Button missedButton;
 
+    private Button nextTeleopButton;
+
     //Switches
     private Switch crossedLineSwitch;
     private Switch fellOverSwitch;
@@ -93,6 +95,8 @@ public class Auton extends Fragment {
         scoredCounter = getView().findViewById(R.id.ScoredCounter);
         missedButton = getView().findViewById(R.id.MissedButton);
         missedCounter = getView().findViewById(R.id.MissedCounter);
+
+        nextTeleopButton = getView().findViewById(R.id.NextTeleopButton);
 
         crossedLineID = getView().findViewById(R.id.IDCrossedLine);
         crossedLineSwitch = getView().findViewById(R.id.CrossedLineSwitch);
@@ -175,6 +179,7 @@ public class Auton extends Fragment {
                     teleopWarning.setTextColor(getResources().getColor(R.color.white));
                     teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     teleopWarning.setText(getResources().getString(R.string.TeleopError));
+                    nextTeleopButton.setBackground(getResources().getDrawable(R.drawable.button_large_error));
                 }
             }
         };
@@ -459,6 +464,13 @@ public class Auton extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setupHashMap.put("FellOver", isChecked ? "1" : "0");
                 updateXMLObjects();
+            }
+        });
+
+        nextTeleopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.getViewPager().setCurrentItem(1);
             }
         });
     }
