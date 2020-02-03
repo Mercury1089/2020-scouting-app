@@ -23,7 +23,7 @@ public class MatchActivity extends AppCompatActivity {
 
     //variables that store elements of the screen for the output variables
     private Button exitButton;
-    private TabLayout tabs;
+    public TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
     public LinkedHashMap<String, String> setupHashMap;

@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.service.autofill.FieldClassification;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class Auton extends Fragment {
     private ImageButton droppedDecrementButton;
     private Button scoredButton;
     private Button missedButton;
+    private Button nextButton;
 
     //Switches
     private Switch crossedLineSwitch;
@@ -122,6 +124,8 @@ public class Auton extends Fragment {
         crossedLineSwitch = getView().findViewById(R.id.CrossedLineSwitch);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
         fellOverID = getView().findViewById(R.id.IDFellOver);
+
+        nextButton = getView().findViewById(R.id.NextTeleopButton);
 
         topEdgeBar = getView().findViewById(R.id.topEdgeBar);
         bottomEdgeBar = getView().findViewById(R.id.bottomEdgeBar);
@@ -561,6 +565,13 @@ public class Auton extends Fragment {
                 updateXMLObjects();
             }
         });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.tabs.getTabAt(1).select();
+            }
+        });
     }
 
     private void possessionButtonsEnabledState(boolean enable){
@@ -596,6 +607,7 @@ public class Auton extends Fragment {
         crossedLineID.setEnabled(enable);
         fellOverSwitch.setEnabled(enable);
         fellOverID.setEnabled(enable);
+        nextButton.setEnabled(enable);
     }
 
     private void allButtonsEnabledState(boolean enable){

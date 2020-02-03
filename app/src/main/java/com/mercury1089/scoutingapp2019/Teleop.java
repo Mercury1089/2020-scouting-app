@@ -29,6 +29,7 @@ public class Teleop extends Fragment {
     private ImageButton droppedDecrementButton;
     private Button scoredButton;
     private Button missedButton;
+    private Button nextButton;
 
     //Switches
     private Switch stageTwoButton;
@@ -111,6 +112,8 @@ public class Teleop extends Fragment {
         miscDescription = getView().findViewById(R.id.IDMiscDirections);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
         fellOverID = getView().findViewById(R.id.IDFellOver);
+
+        nextButton = getView().findViewById(R.id.NextClimbButton);
 
         //set listeners for buttons
         pickedUpIncrementButton.setOnClickListener(new View.OnClickListener() {
@@ -447,8 +450,8 @@ public class Teleop extends Fragment {
                 else
                     lowerDecrement.setEnabled(true);
 
-                totalScored = Integer.parseInt(higherPortNum) + Integer.parseInt(lowerPortNum);
-                missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
+                totalMissed = Integer.parseInt(higherPortNum) + Integer.parseInt(lowerPortNum);
+                missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
             }
         });
 
@@ -470,6 +473,13 @@ public class Teleop extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setupHashMap.put("FellOver", isChecked ? "1" : "0");
                 updateXMLObjects();
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.tabs.getTabAt(2).select();
             }
         });
     }
@@ -516,6 +526,7 @@ public class Teleop extends Fragment {
         miscDescription.setEnabled(enable);
         fellOverSwitch.setEnabled(enable);
         fellOverID.setEnabled(enable);
+        nextButton.setEnabled(enable);
     }
 
     private void allButtonsEnabledState(boolean enable){
