@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:text="@string/OuterPortID"
+            android:text="@string/UpperPortID"
             android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="parent"

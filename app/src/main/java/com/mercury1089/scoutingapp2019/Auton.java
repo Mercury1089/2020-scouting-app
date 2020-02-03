@@ -17,6 +17,9 @@ import android.widget.TextView;
 import java.util.LinkedHashMap;
 import androidx.fragment.app.Fragment;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
+
+import org.w3c.dom.Text;
+
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Auton extends Fragment {
@@ -32,21 +35,32 @@ public class Auton extends Fragment {
     private Button scoredButton;
     private Button missedButton;
 
-    private Button nextTeleopButton;
-
     //Switches
     private Switch crossedLineSwitch;
     private Switch fellOverSwitch;
 
     //TextViews
-    private TextView secondsRemaining;
     private TextView timerID;
+    private TextView secondsRemaining;
+    private TextView teleopWarning;
+
+    private TextView possessionID;
+    private TextView possessionDescription;
+    private TextView pickedUpID;
     private TextView pickedUpCounter;
+    private TextView droppedID;
     private TextView droppedCounter;
+
+    private TextView scoringID;
+    private TextView scoringDescription;
     private TextView scoredCounter;
     private TextView missedCounter;
-    private TextView teleopWarning;
+
+    private TextView miscID;
+    private TextView miscDescription;
     private TextView crossedLineID;
+
+    private TextView fellOverID;
 
     //ImageViews
     private ImageView topEdgeBar;
@@ -83,24 +97,31 @@ public class Auton extends Fragment {
         secondsRemaining = getView().findViewById(R.id.AutonSeconds);
         teleopWarning = getView().findViewById(R.id.TeleopWarning);
 
+        possessionID = getView().findViewById(R.id.IDPossession);
+        possessionDescription = getView().findViewById(R.id.IDPossessionDirections);
+        pickedUpID = getView().findViewById(R.id.IDPickedUp);
         pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
         pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
         pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
 
+        droppedID = getView().findViewById(R.id.IDDropped);
         droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
         droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
         droppedCounter = getView().findViewById(R.id.DroppedCounter);
 
+        scoringID = getView().findViewById(R.id.IDScoring);
+        scoringDescription = getView().findViewById(R.id.IDScoringDirections);
         scoredButton = getView().findViewById(R.id.ScoredButton);
         scoredCounter = getView().findViewById(R.id.ScoredCounter);
         missedButton = getView().findViewById(R.id.MissedButton);
         missedCounter = getView().findViewById(R.id.MissedCounter);
 
-        nextTeleopButton = getView().findViewById(R.id.NextTeleopButton);
-
+        miscID = getView().findViewById(R.id.IDMisc);
+        miscDescription = getView().findViewById(R.id.IDMiscDirections);
         crossedLineID = getView().findViewById(R.id.IDCrossedLine);
         crossedLineSwitch = getView().findViewById(R.id.CrossedLineSwitch);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
+        fellOverID = getView().findViewById(R.id.IDFellOver);
 
         topEdgeBar = getView().findViewById(R.id.topEdgeBar);
         bottomEdgeBar = getView().findViewById(R.id.bottomEdgeBar);
@@ -121,6 +142,9 @@ public class Auton extends Fragment {
             public void onTick(long millisUntilFinished) {
                 secondsRemaining.setText(GenUtils.padLeftZeros("" + millisUntilFinished / 1000, 2));
                 if (millisUntilFinished / 1000 <= 3 && millisUntilFinished / 1000 > 0) {  //play the blinking animation
+                    teleopWarning.setVisibility(View.VISIBLE);
+                    timerID.setTextColor(context.getResources().getColor(R.color.banana));
+                    timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_yellow, 0, 0, 0);
 
                     ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
                     ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
@@ -153,13 +177,7 @@ public class Auton extends Fragment {
 
                     animatorSet.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, leftEdgeLighterOff, rightEdgeLighterOff);
                     animatorSet.start();
-                }
-                else if (millisUntilFinished / 1000 == 5) {
-                    teleopWarning.setVisibility(View.VISIBLE);
-                    timerID.setTextColor(context.getResources().getColor(R.color.banana));
-                    timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_yellow, 0, 0, 0);
-                }
-                else { //the bars need to remain lit up after the countdown
+                } else { //the bars need to remain lit up after the countdown
                     topEdgeBar.setAlpha(1);
                     bottomEdgeBar.setAlpha(1);
                     rightEdgeBar.setAlpha(1);
@@ -179,7 +197,6 @@ public class Auton extends Fragment {
                     teleopWarning.setTextColor(getResources().getColor(R.color.white));
                     teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     teleopWarning.setText(getResources().getString(R.string.TeleopError));
-                    nextTeleopButton.setBackground(getResources().getDrawable(R.drawable.button_large_error));
                 }
             }
         };
@@ -237,7 +254,30 @@ public class Auton extends Fragment {
         });
 
         scoredButton.setOnClickListener(new View.OnClickListener() {
+            // Buttons
+            private Button doneButton;
+            private Button cancelButton;
+            private Button outerIncrement;
+            private Button outerDecrement;
+            private Button innerIncrement;
+            private Button innerDecrement;
+            private Button lowerIncrement;
+            private Button lowerDecrement;
+
+            // TextViews
+            private TextView outerScore;
+            private TextView innerScore;
+            private TextView lowerScore;
+
+            // On Cancel Variables
+            private String oldOuterScore;
+            private String oldInnerScore;
+            private String oldLowerScore;
+
             public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored_up, null);
 
@@ -246,55 +286,68 @@ public class Auton extends Fragment {
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);
+                scoredButton.setSelected(true);
 
                 // Buttons
-                Button doneButton = popupView.findViewById(R.id.DoneButton);
-                Button cancelButton = popupView.findViewById(R.id.CancelButton);
-                Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
-                Button upperDecrement = popupView.findViewById(R.id.UpperDecrement);
-                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                doneButton = popupView.findViewById(R.id.DoneButton);
+                cancelButton = popupView.findViewById(R.id.CancelButton);
+                outerIncrement = popupView.findViewById(R.id.OuterIncrement);
+                outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                innerIncrement = popupView.findViewById(R.id.InnerIncrement);
+                innerDecrement = popupView.findViewById(R.id.InnerDecrement);
+                lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView upperScore = popupView.findViewById(R.id.UpperScore);
-                TextView lowerScore = popupView.findViewById(R.id.LowerScore);
+                outerScore = popupView.findViewById(R.id.OuterScore);
+                innerScore = popupView.findViewById(R.id.InnerScore);
+                lowerScore = popupView.findViewById(R.id.LowerScore);
 
-                // Temp variables
-                upperScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortScored"), 3));
-                lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortScored"), 3));
+                oldOuterScore = autonHashMap.get("OuterPortScored");
+                oldInnerScore = autonHashMap.get("InnerPortScored");
+                oldLowerScore = autonHashMap.get("LowerPortScored");
 
-                checkToDisable(upperDecrement, upperScore, "upper");
-                checkToDisable(lowerDecrement, lowerScore, "lower");
+                updateObjects();
 
-                upperIncrement.setOnClickListener(new View.OnClickListener() {
+                outerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        upperPortNum += 1;
-                        upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                        checkToDisable(upperDecrement, upperScore, "upper");
+                        autonHashMap.put("OuterPortScored", Integer.toString(Integer.parseInt((String)outerScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
-                upperDecrement.setOnClickListener(new View.OnClickListener() {
+                outerDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        if(upperPortNum > 0) {
-                            upperPortNum -= 1;
-                            upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                            checkToDisable(upperDecrement, upperScore, "upper");
-                        }
+                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
+                        autonHashMap.put("OuterPortScored", outerPortNum > 0 ? Integer.toString(outerPortNum - 1) : Integer.toString(outerPortNum));
+                        updateObjects();
+                    }
+                });
+
+                innerIncrement.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        autonHashMap.put("InnerPortScored", Integer.toString(Integer.parseInt((String)innerScore.getText()) + 1));
+                        updateObjects();
+                    }
+                });
+
+                innerDecrement.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
+                        autonHashMap.put("InnerPortScored", innerPortNum > 0 ? Integer.toString(innerPortNum - 1) : Integer.toString(innerPortNum));
+                        updateObjects();
                     }
                 });
 
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        lowerPortNum += 1;
-                        lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                        checkToDisable(lowerDecrement, lowerScore, "lower");
+                        autonHashMap.put("LowerPortScored", Integer.toString(Integer.parseInt((String)lowerScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
@@ -302,108 +355,138 @@ public class Auton extends Fragment {
                     @Override
                     public void onClick(View v) {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        if(lowerPortNum > 0) {
-                            lowerPortNum -= 1;
-                            lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                            checkToDisable(lowerDecrement, lowerScore, "lower");
-                        }
+                        autonHashMap.put("LowerPortScored", lowerPortNum > 0 ? Integer.toString(lowerPortNum - 1) : Integer.toString(lowerPortNum));
+                        updateObjects();
                     }
                 });
 
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        autonHashMap.put("UpperPortScored", (String)upperScore.getText());
-                        // autonHashMap.put("OuterPortScored", (String)outerScore.getText());
-                        autonHashMap.put("LowerPortScored", (String)lowerScore.getText());
-                        totalScored = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredButton.setSelected(false);
                     }
                 });
 
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        autonHashMap.put("OuterPortScored", oldOuterScore);
+                        autonHashMap.put("InnerPortScored", oldInnerScore);
+                        autonHashMap.put("LowerPortScored", oldLowerScore);
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredButton.setSelected(false);
                     }
                 });
             }
 
-            private void checkToDisable(Button button, TextView text, String name){
-                if(name.toLowerCase().equals("upper")) {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                } else {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                }
+            private void updateObjects(){
+                String outerPortNum = autonHashMap.get("OuterPortScored");
+                String innerPortNum = autonHashMap.get("InnerPortScored");
+                String lowerPortNum = autonHashMap.get("LowerPortScored");
+
+                outerScore.setText(GenUtils.padLeftZeros(outerPortNum, 3));
+                innerScore.setText(GenUtils.padLeftZeros(innerPortNum, 3));
+                lowerScore.setText(GenUtils.padLeftZeros(lowerPortNum, 3));
+
+                if(Integer.parseInt(outerPortNum) <= 0)
+                    outerDecrement.setEnabled(false);
+                else
+                    outerDecrement.setEnabled(true);
+
+                if(Integer.parseInt(innerPortNum) <= 0)
+                    innerDecrement.setEnabled(false);
+                else
+                    innerDecrement.setEnabled(true);
+
+                if(Integer.parseInt(lowerPortNum) <= 0)
+                    lowerDecrement.setEnabled(false);
+                else
+                    lowerDecrement.setEnabled(true);
+
+                totalScored = Integer.parseInt(outerPortNum) + Integer.parseInt(innerPortNum) + Integer.parseInt(lowerPortNum);
+                scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
             }
         });
 
         missedButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view){
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored_up, null);
+            // Buttons
+            private Button doneButton;
+            private Button cancelButton;
+            private Button higherIncrement;
+            private Button higherDecrement;
+            private Button lowerIncrement;
+            private Button lowerDecrement;
 
-                int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
-                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
+            // TextViews
+            private TextView higherScore;
+            private TextView lowerScore;
+
+            // On Cancel Variables
+            private String oldHigherScore;
+            private String oldLowerScore;
+
+            public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.popup_missed_up, null);
+
+                int width = (int)getResources().getDimension(R.dimen.missed_popup_width);
+                int height = (int)getResources().getDimension(R.dimen.missed_popup_height);
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
+                missedButton.setSelected(true);
 
                 // Buttons
-                Button doneButton = popupView.findViewById(R.id.DoneButton);
-                Button cancelButton = popupView.findViewById(R.id.CancelButton);
-                Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
-                Button upperDecrement = popupView.findViewById(R.id.UpperDecrement);
-                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                doneButton = popupView.findViewById(R.id.DoneButton);
+                cancelButton = popupView.findViewById(R.id.CancelButton);
+                higherIncrement = popupView.findViewById(R.id.UpperIncrement);
+                higherDecrement = popupView.findViewById(R.id.UpperDecrement);
+                lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView upperScore = popupView.findViewById(R.id.UpperScore);
-                TextView lowerScore = popupView.findViewById(R.id.LowerScore);
+                higherScore = popupView.findViewById(R.id.UpperScore);
+                lowerScore = popupView.findViewById(R.id.LowerScore);
 
-                // Temp variables
-                upperScore.setText(GenUtils.padLeftZeros(autonHashMap.get("UpperPortMissed"), 3));
-                lowerScore.setText(GenUtils.padLeftZeros(autonHashMap.get("LowerPortMissed"), 3));
+                oldHigherScore = autonHashMap.get("UpperPortMissed");
+                oldLowerScore = autonHashMap.get("LowerPortMissed");
 
-                checkToDisable(upperDecrement, upperScore, "upper");
-                checkToDisable(lowerDecrement, lowerScore, "lower");
+                updateObjects();
 
-                upperIncrement.setOnClickListener(new View.OnClickListener() {
+                higherIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        upperPortNum += 1;
-                        upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                        checkToDisable(upperDecrement, upperScore, "upper");
+                        autonHashMap.put("UpperPortMissed", Integer.toString(Integer.parseInt((String)higherScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
-                upperDecrement.setOnClickListener(new View.OnClickListener() {
+                higherDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        if(upperPortNum > 0) {
-                            upperPortNum -= 1;
-                            upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                            checkToDisable(upperDecrement, upperScore, "upper");
-                        }
+                        int higherPortNum = Integer.parseInt((String)higherScore.getText());
+                        autonHashMap.put("UpperPortMissed", higherPortNum > 0 ? Integer.toString(higherPortNum - 1) : Integer.toString(higherPortNum));
+                        updateObjects();
                     }
                 });
 
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        lowerPortNum += 1;
-                        lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                        checkToDisable(lowerDecrement, lowerScore, "lower");
+                        autonHashMap.put("LowerPortMissed", Integer.toString(Integer.parseInt((String)lowerScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
@@ -411,45 +494,57 @@ public class Auton extends Fragment {
                     @Override
                     public void onClick(View v) {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        if(lowerPortNum > 0) {
-                            lowerPortNum -= 1;
-                            lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                            checkToDisable(lowerDecrement, lowerScore, "lower");
-                        }
+                        autonHashMap.put("LowerPortMissed", lowerPortNum > 0 ? Integer.toString(lowerPortNum - 1) : Integer.toString(lowerPortNum));
+                        updateObjects();
                     }
                 });
 
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        autonHashMap.put("UpperPortMissed", (String)upperScore.getText());
-                        autonHashMap.put("LowerPortMissed", (String)lowerScore.getText());
-                        totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedButton.setSelected(false);
                     }
                 });
 
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        autonHashMap.put("UpperPortMissed", oldHigherScore);
+                        autonHashMap.put("LowerPortMissed", oldLowerScore);
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
                         popupWindow.dismiss();
+                        missedButton.setSelected(false);
                     }
                 });
             }
 
-            private void checkToDisable(Button button, TextView text, String name){
-                if(name.toLowerCase().equals("upper")) {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                } else {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                }
+            private void updateObjects(){
+                String higherPortNum = autonHashMap.get("UpperPortMissed");
+                String lowerPortNum = autonHashMap.get("LowerPortMissed");
+
+                higherScore.setText(GenUtils.padLeftZeros(higherPortNum, 3));
+                lowerScore.setText(GenUtils.padLeftZeros(lowerPortNum, 3));
+
+                if(Integer.parseInt(higherPortNum) <= 0)
+                    higherDecrement.setEnabled(false);
+                else
+                    higherDecrement.setEnabled(true);
+
+                if(Integer.parseInt(lowerPortNum) <= 0)
+                    lowerDecrement.setEnabled(false);
+                else
+                    lowerDecrement.setEnabled(true);
+
+                totalMissed = Integer.parseInt(higherPortNum) + Integer.parseInt(lowerPortNum);
+                missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalMissed), 3));
             }
         });
 
@@ -466,30 +561,49 @@ public class Auton extends Fragment {
                 updateXMLObjects();
             }
         });
-
-        nextTeleopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.getViewPager().setCurrentItem(1);
-            }
-        });
     }
 
-    private void allButtonsEnabledState(boolean enable){
+    private void possessionButtonsEnabledState(boolean enable){
+        possessionID.setEnabled(enable);
+        possessionDescription.setEnabled(enable);
+
+        pickedUpID.setEnabled(enable);
         pickedUpIncrementButton.setEnabled(enable);
         pickedUpDecrementButton.setEnabled(enable);
         pickedUpCounter.setEnabled(enable);
 
+        droppedID.setEnabled(enable);
         droppedIncrementButton.setEnabled(enable);
         droppedDecrementButton.setEnabled(enable);
         droppedCounter.setEnabled(enable);
+    }
+
+    private void scoringButtonsEnabledState(boolean enable){
+        scoringID.setEnabled(enable);
+        scoringDescription.setEnabled(enable);
 
         scoredButton.setEnabled(enable);
         scoredCounter.setEnabled(enable);
 
         missedButton.setEnabled(enable);
         missedCounter.setEnabled(enable);
+    }
 
+    private void miscButtonsEnabledState(boolean enable){
+        miscID.setEnabled(enable);
+        miscDescription.setEnabled(enable);
+        crossedLineSwitch.setEnabled(enable);
+        crossedLineID.setEnabled(enable);
+        fellOverSwitch.setEnabled(enable);
+        fellOverID.setEnabled(enable);
+    }
+
+    private void allButtonsEnabledState(boolean enable){
+        possessionButtonsEnabledState(enable);
+        scoringButtonsEnabledState(enable);
+
+        miscID.setEnabled(enable);
+        miscDescription.setEnabled(enable);
         crossedLineSwitch.setEnabled(enable);
         crossedLineID.setEnabled(enable);
     }
@@ -507,11 +621,11 @@ public class Auton extends Fragment {
         } else {
             fellOverSwitch.setChecked(false);
             allButtonsEnabledState(true);
-            if(Integer.parseInt((String)pickedUpCounter.getText()) == 0)
+            if(Integer.parseInt((String)pickedUpCounter.getText()) <= 0)
                 pickedUpDecrementButton.setEnabled(false);
             else
                 pickedUpDecrementButton.setEnabled(true);
-            if(Integer.parseInt((String)droppedCounter.getText()) == 0)
+            if(Integer.parseInt((String)droppedCounter.getText()) <= 0)
                 droppedDecrementButton.setEnabled(false);
             else
                 droppedDecrementButton.setEnabled(true);

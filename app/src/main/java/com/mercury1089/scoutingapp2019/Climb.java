@@ -77,30 +77,15 @@ public class Climb extends Fragment {
         //set listeners for buttons
         climbedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    climbHashMap.put("Climbed", "1");
-                    parkedSwitch.setEnabled(false);
-                    parkedID.setEnabled(false);
-
-                    leveledSwitch.setEnabled(true);
-                    leveledID.setEnabled(true);
-                    climbHashMap.put("Parked", "0");
-                } else {
-                    climbHashMap.put("Climbed", "0");
-                    climbHashMap.put("Leveled", "0");
-                    parkedSwitch.setEnabled(true);
-                    parkedID.setEnabled(true);
-
-                    leveledSwitch.setEnabled(false);
-                    leveledID.setEnabled(false);
-                }
+                climbHashMap.put("CLP", isChecked ? "C" : "");
                 updateXMLObjects();
             }
         });
 
         leveledSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                climbHashMap.put("Leveled", isChecked ? "1" : "0");
+                if(climbedSwitch.isChecked())
+                    climbHashMap.put("CLP", isChecked ? "L" : "C");
                 updateXMLObjects();
             }
         });
@@ -108,16 +93,14 @@ public class Climb extends Fragment {
         parkedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    climbHashMap.put("Parked", "1");
+                    climbHashMap.put("CLP", "P");
                     climbedSwitch.setEnabled(false);
                     climbedID.setEnabled(false);
 
                     leveledSwitch.setEnabled(false);
                     leveledID.setEnabled(false);
-                    climbHashMap.put("Climbed", "0");
-                    climbHashMap.put("Leveled", "0");
                 } else {
-                    climbHashMap.put("Parked", "0");
+                    climbHashMap.put("CLP", "");
                     climbedSwitch.setEnabled(true);
                     climbedID.setEnabled(true);
                 }
@@ -128,44 +111,76 @@ public class Climb extends Fragment {
 
         generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(context);
-                View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
-                loading_alert = loading_dialog.create();
-                loading_alert.setView(loading_view);
-                loading_alert.setCancelable(false);
-                loading_alert.show();
+            public void onClick(View v) {
+                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(context);
+                View view = getLayoutInflater().inflate(R.layout.generate_qrcode_confirm_popup, null);
 
-                HashMapManager.putSetupHashMap(setupHashMap);
-                HashMapManager.putClimbHashMap(climbHashMap);
+                Button generateQRButton = view.findViewById(R.id.GenerateQRButton);
+                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                final AlertDialog dialog = cancelDialog.create();
 
-                Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
-                new Thread(qrRunnable).start();
+                dialog.setView(view);
+                dialog.show();
+
+                generateQRButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(context);
+                        View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
+                        loading_alert = loading_dialog.create();
+                        loading_alert.setView(loading_view);
+                        loading_alert.setCancelable(false);
+                        loading_alert.show();
+
+                        HashMapManager.putSetupHashMap(setupHashMap);
+                        HashMapManager.putClimbHashMap(climbHashMap);
+
+                        Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
+                        new Thread(qrRunnable).start();
+                        dialog.dismiss();
+                    }
+                });
+
+                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
 
     private void updateXMLObjects(){
-        climbedSwitch.setChecked(climbHashMap.get("Climbed") == "1");
-        leveledSwitch.setChecked(climbHashMap.get("Leveled") == "1");
-        parkedSwitch.setChecked(climbHashMap.get("Parked") == "1");
+        climbedSwitch.setChecked(climbHashMap.get("CLP").equals("C") || climbHashMap.get("CLP").equals("L"));
+        leveledSwitch.setChecked(climbHashMap.get("CLP").equals("L"));
+        parkedSwitch.setChecked(climbHashMap.get("CLP").equals("P"));
 
-        if(climbHashMap.get("Climbed").equals("1")) {
-            leveledSwitch.setEnabled(true);
-            leveledID.setEnabled(true);
+        switch(climbHashMap.get("CLP")){
+            case "C":
+            case "L":
+                leveledSwitch.setEnabled(true);
+                leveledID.setEnabled(true);
 
-            parkedSwitch.setEnabled(false);
-            parkedID.setEnabled(false);
-        }
-        if(climbHashMap.get("Parked").equals("1")) {
-            climbedSwitch.setEnabled(false);
-            climbedID.setEnabled(false);
+                parkedSwitch.setEnabled(false);
+                parkedID.setEnabled(false);
+                break;
+            case "P":
+                climbedSwitch.setEnabled(false);
+                climbedID.setEnabled(false);
 
-            leveledSwitch.setEnabled(false);
-            leveledID.setEnabled(false);
-        } else if(climbHashMap.get("Climbed").equals("0")) {
-            leveledSwitch.setEnabled(false);
-            leveledID.setEnabled(false);
+                leveledSwitch.setEnabled(false);
+                leveledID.setEnabled(false);
+                break;
+            default:
+                climbedSwitch.setEnabled(true);
+                climbedID.setEnabled(true);
+
+                leveledSwitch.setEnabled(false);
+                leveledID.setEnabled(false);
+
+                parkedSwitch.setEnabled(true);
+                parkedID.setEnabled(true);
         }
     }
 
@@ -224,19 +239,13 @@ public class Climb extends Fragment {
             HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
             HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
 
-            QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getClimbHashMap());
+            QRStringBuilder.buildQRString();
 
             try {
                 Bitmap bitmap = TextToImageEncode(QRStringBuilder.getQRString());
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //PregameActivity.QRCodeGenerator qrCodeGenerator = new PregameActivity.QRCodeGenerator();
-                        //qrCodeGenerator.execute();
-
                         final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
                         View view1 = getLayoutInflater().inflate(R.layout.popup_qr, null);
                         ImageView imageView = view1.findViewById(R.id.imageView);
@@ -258,12 +267,35 @@ public class Climb extends Fragment {
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                                QRStringBuilder.clearQRString();
-                                HashMapManager.setupNextMatch();
-                                Intent intent = new Intent(context, PregameActivity.class);
-                                startActivity(intent);
+                            public void onClick(View v) {
+                                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(context);
+                                View view = getLayoutInflater().inflate(R.layout.setup_next_match_confirm_popup, null);
+
+                                Button setupNextMatchButton = view.findViewById(R.id.SetupNextMatchButton);
+                                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                                final AlertDialog popupDialog = cancelDialog.create();
+
+                                popupDialog.setView(view);
+                                popupDialog.show();
+
+                                setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        QRStringBuilder.clearQRString();
+                                        HashMapManager.setupNextMatch();
+                                        Intent intent = new Intent(context, PregameActivity.class);
+                                        startActivity(intent);
+                                        dialog.dismiss();
+                                        popupDialog.dismiss();
+                                    }
+                                });
+
+                                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        popupDialog.dismiss();
+                                    }
+                                });
                             }
                         });
                     }

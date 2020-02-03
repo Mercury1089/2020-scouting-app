@@ -23,7 +23,6 @@ public class MatchActivity extends AppCompatActivity {
 
     //variables that store elements of the screen for the output variables
     private Button exitButton;
-
     private TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
@@ -135,9 +134,5 @@ public class MatchActivity extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
-    }
-
-    public ViewPager getViewPager() {
-        return viewPager;
     }
 }

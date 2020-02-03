@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -65,6 +66,9 @@ public class PregameActivity extends AppCompatActivity {
     private EditText firstAlliancePartnerInput;
     private EditText secondAlliancePartnerInput;
 
+    private TextView startingPositionID;
+    private TextView startingPositionDescription;
+
     //Switches
     private Switch noShowSwitch;
 
@@ -76,11 +80,14 @@ public class PregameActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     //for QR code generator
-    private ImageView slackCenter;
     public final static int QRCodeSize = 500;
     Bitmap bitmap;
     //ProgressDialog progressDialog;
     boolean isQRButton = false;
+
+    //others
+    private MediaPlayer rooster;
+    private ImageView slackCenter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,8 +105,12 @@ public class PregameActivity extends AppCompatActivity {
         clearButton = findViewById(R.id.ClearButton);
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
+
+        startingPositionID = findViewById(R.id.IDStartingPosition);
+        startingPositionDescription = findViewById(R.id.IDStartingPositionDirections);
         playingField = findViewById(R.id.PlayingField);
         slackCenter = findViewById(R.id.SlackCenter);
+
         LL2 = findViewById(R.id.LL2);
         LL1 = findViewById(R.id.LL1);
         LC = findViewById(R.id.LC);
@@ -112,6 +123,7 @@ public class PregameActivity extends AppCompatActivity {
         RR1 = findViewById(R.id.RR1);
         RR2 = findViewById(R.id.RR2);
 
+        rooster = MediaPlayer.create(PregameActivity.this, R.raw.sound);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETTINGS);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         settingsHashMap = HashMapManager.getSettingsHashMap();
@@ -211,7 +223,7 @@ public class PregameActivity extends AppCompatActivity {
         blueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                setupHashMap.put("AllianceColor", "Blue");
+                setupHashMap.put("AllianceColor", setupHashMap.get("AllianceColor").equals("Blue") ? "" : "Blue");
                 updateXMLObjects(false);
             }
         });
@@ -219,36 +231,53 @@ public class PregameActivity extends AppCompatActivity {
         redButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                setupHashMap.put("AllianceColor", "Red");
+                setupHashMap.put("AllianceColor", setupHashMap.get("AllianceColor").equals("Red") ? "" : "Red");
                 updateXMLObjects(false);
             }
         });
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View view){
+            public  void onClick(View v){
                 if(isQRButton) {
-//                    progressDialog = new ProgressDialog(PregameActivity.this, R.style.LoadingDialogStyle);
-//                    progressDialog.setMessage("Please Wait");
-//                    progressDialog.setCancelable(false);
-//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//                    progressDialog.show();
+                    final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
+                    View view = getLayoutInflater().inflate(R.layout.generate_qrcode_confirm_popup, null);
 
-                    final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
-                    View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
-                    loading_alert = loading_dialog.create();
-                    loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE); //Removes small white bar from the bottom of the popup
-                    loading_alert.setView(loading_view);
-                    loading_alert.setCancelable(false);
-                    loading_alert.show();
+                    Button generateQRButton = view.findViewById(R.id.GenerateQRButton);
+                    Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                    final AlertDialog dialog = cancelDialog.create();
 
-                    HashMapManager.putSetupHashMap(setupHashMap);
-                    PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
-                    new Thread(qrRunnable).start();
+                    dialog.setView(view);
+                    dialog.show();
+
+                    generateQRButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
+                            View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
+                            loading_alert = loading_dialog.create();
+                            loading_alert.setView(loading_view);
+                            loading_alert.setCancelable(false);
+                            loading_alert.show();
+
+                            HashMapManager.putSetupHashMap(setupHashMap);
+
+                            PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
+                            new Thread(qrRunnable).start();
+                            dialog.dismiss();
+                        }
+                    });
+
+                    cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
                 } else {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     if(scouterNameInput.getText().toString().equals("Mercury") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")) {
-                        settingsHashMap.put("NothingToSeeHere", settingsHashMap.get("NothingToSeeHere").equals("0") ? "1" : "0");
+                        settingsHashMap.put("NothingToSeeHere", "1");
                         HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
                         setupHashMap = HashMapManager.getSetupHashMap();
 
@@ -264,7 +293,7 @@ public class PregameActivity extends AppCompatActivity {
                         updateXMLObjects(true);
                         return;
                     } else if(settingsHashMap.get("NothingToSeeHere").equals("1")) {
-                        MediaPlayer.create(PregameActivity.this, R.raw.sound).start();
+                        rooster.start();
                     }
                     Intent intent = new Intent(PregameActivity.this, MatchActivity.class);
                     startActivity(intent);
@@ -299,7 +328,6 @@ public class PregameActivity extends AppCompatActivity {
                         dialog.dismiss();
                         HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
                         setupHashMap = HashMapManager.getSetupHashMap();
-                        clearStartingPos();
                         updateXMLObjects(true);
                     }
                 });
@@ -328,44 +356,15 @@ public class PregameActivity extends AppCompatActivity {
     }*/
 
     public void fieldPosClicked(View view){
-        setStartingPos(findViewById(view.getId()));
-        updateXMLObjects(false);
-    }
-
-    private void setStartingPos(Button pos){
-        clearStartingPos();
-
-        if(pos == LR2){
-            LR2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
-            setupHashMap.put("StartingPosition", "LR2");
-        } else if(pos == LR1){
-            LR1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
-            setupHashMap.put("StartingPosition", "LR1");
-        } else if(pos == LC){
-            LC.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
-            setupHashMap.put("StartingPosition", "LC");
-        } else if(pos == LL1){
-            LL1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
-            setupHashMap.put("StartingPosition", "LL1");
-        } else if(pos == LL2){
-            LL2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
-            setupHashMap.put("StartingPosition", "LL2");
-        } else if(pos == RL2){
-            RL2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
-            setupHashMap.put("StartingPosition", "RL2");
-        } else if(pos == RL1){
-            RL1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
-            setupHashMap.put("StartingPosition", "RL1");
-        } else if(pos == RC){
-            RC.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
-            setupHashMap.put("StartingPosition", "RC");
-        } else if(pos == RR1){
-            RR1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
-            setupHashMap.put("StartingPosition", "RR1");
-        } else if(pos == RR2) {
-            RR2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
-            setupHashMap.put("StartingPosition", "RR2");
+        Button button = findViewById(view.getId());
+        if(button.getCompoundDrawablesRelative()[2] != null) {
+            clearStartingPos();
+            setupHashMap.put("StartingPosition", "");
+        } else {
+            clearStartingPos();
+            setupHashMap.put("StartingPosition", (String)button.getTag());
         }
+        updateXMLObjects(false);
     }
 
     @NonNull
@@ -394,23 +393,23 @@ public class PregameActivity extends AppCompatActivity {
                 setupHashMap.put("StartingPosition", "LL2");
                 break;
             case "RL2":
-                RL2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+                RL2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
                 setupHashMap.put("StartingPosition", "RL2");
                 break;
             case "RL1":
-                RL1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+                RL1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
                 setupHashMap.put("StartingPosition", "RL1");
                 break;
             case "RC":
-                RC.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+                RC.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
                 setupHashMap.put("StartingPosition", "RC");
                 break;
             case "RR1":
-                RR1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+                RR1.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
                 setupHashMap.put("StartingPosition", "RR1");
                 break;
             case "RR2":
-                RR2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.starting_pos, 0, 0, 0);
+                RR2.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.starting_pos, 0);
                 setupHashMap.put("StartingPosition", "RR2");
                 break;
         }
@@ -428,8 +427,6 @@ public class PregameActivity extends AppCompatActivity {
         RC.setCompoundDrawablesRelative(null, null, null, null);
         RR1.setCompoundDrawablesRelative(null, null, null, null);
         RR2.setCompoundDrawablesRelative(null, null, null, null);
-
-        setupHashMap.put("StartingPosition", "");
     }
 
     private void setStartingPosEnabled(boolean enable){
@@ -485,11 +482,9 @@ public class PregameActivity extends AppCompatActivity {
         blueButton.setSelected(setupHashMap.get("AllianceColor").equals("Blue"));
         redButton.setSelected(setupHashMap.get("AllianceColor").equals("Red"));
 
-        if(!setupHashMap.get("StartingPosition").equals("")) {
+        clearStartingPos();
+        if(!setupHashMap.get("StartingPosition").equals(""))
             setStartingPos(setupHashMap.get("StartingPosition"));
-        } else {
-            clearStartingPos();
-        }
 
         if(settingsHashMap.get("Slack").equals("1"))
             slackCenter.setVisibility(View.VISIBLE);
@@ -497,6 +492,8 @@ public class PregameActivity extends AppCompatActivity {
         if(setupHashMap.get("NoShow").equals("1")) {
             noShowSwitch.setChecked(true);
 
+            startingPositionID.setEnabled(false);
+            startingPositionDescription.setEnabled(false);
             clearStartingPos();
             playingField.setEnabled(false);
             setStartingPosEnabled(false);
@@ -507,6 +504,8 @@ public class PregameActivity extends AppCompatActivity {
         } else {
             noShowSwitch.setChecked(false);
 
+            startingPositionID.setEnabled(true);
+            startingPositionDescription.setEnabled(true);
             playingField.setEnabled(true);
             setStartingPosEnabled(true);
 
@@ -564,10 +563,7 @@ public class PregameActivity extends AppCompatActivity {
             HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
             HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
 
-            QRStringBuilder.appendToQRString(HashMapManager.getSetupHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getAutonHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getTeleopHashMap());
-            QRStringBuilder.appendToQRString(HashMapManager.getClimbHashMap());
+            QRStringBuilder.buildQRString();
 
             try {
                 bitmap = TextToImageEncode(QRStringBuilder.getQRString());
@@ -601,12 +597,35 @@ public class PregameActivity extends AppCompatActivity {
 
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                                QRStringBuilder.clearQRString();
-                                HashMapManager.setupNextMatch();
-                                setupHashMap = HashMapManager.getSetupHashMap();
-                                updateXMLObjects(true);
+                            public void onClick(View v) {
+                                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
+                                View view = getLayoutInflater().inflate(R.layout.setup_next_match_confirm_popup, null);
+
+                                Button setupNextMatchButton = view.findViewById(R.id.SetupNextMatchButton);
+                                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+                                final AlertDialog popupDialog = cancelDialog.create();
+
+                                popupDialog.setView(view);
+                                popupDialog.show();
+
+                                setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        QRStringBuilder.clearQRString();
+                                        HashMapManager.setupNextMatch();
+                                        setupHashMap = HashMapManager.getSetupHashMap();
+                                        updateXMLObjects(true);
+                                        dialog.dismiss();
+                                        popupDialog.dismiss();
+                                    }
+                                });
+
+                                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        popupDialog.dismiss();
+                                    }
+                                });
                             }
                         });
                     }

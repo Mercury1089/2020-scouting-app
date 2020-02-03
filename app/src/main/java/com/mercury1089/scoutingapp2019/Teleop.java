@@ -36,12 +36,27 @@ public class Teleop extends Fragment {
     private Switch fellOverSwitch;
 
     //TextViews
+    private TextView possessionID;
+    private TextView possessionDescription;
+    private TextView pickedUpID;
     private TextView pickedUpCounter;
+    private TextView droppedID;
     private TextView droppedCounter;
+
+    private TextView scoringID;
+    private TextView scoringDescription;
     private TextView scoredCounter;
     private TextView missedCounter;
+
+    private TextView controlPanelID;
+    private TextView controlPanelDescription;
     private TextView stageTwoID;
     private TextView stageThreeID;
+
+    private TextView miscID;
+    private TextView miscDescription;
+
+    private TextView fellOverID;
 
     //other variables
     private ConstraintLayout constraintLayout;
@@ -66,25 +81,36 @@ public class Teleop extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
+        possessionID = getView().findViewById(R.id.IDPossession);
+        possessionDescription = getView().findViewById(R.id.IDPossessionDirections);
+        pickedUpID = getView().findViewById(R.id.IDPickedUp);
         pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
         pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
         pickedUpCounter = getView().findViewById(R.id.PickedUpCounter);
 
+        droppedID = getView().findViewById(R.id.IDDropped);
         droppedIncrementButton = getView().findViewById(R.id.DroppedButton);
         droppedDecrementButton = getView().findViewById(R.id.NotDroppedButton);
         droppedCounter = getView().findViewById(R.id.DroppedCounter);
 
+        scoringID = getView().findViewById(R.id.IDScoring);
+        scoringDescription = getView().findViewById(R.id.IDScoringDirections);
         scoredButton = getView().findViewById(R.id.ScoredButton);
         scoredCounter = getView().findViewById(R.id.ScoredCounter);
         missedButton = getView().findViewById(R.id.MissedButton);
         missedCounter = getView().findViewById(R.id.MissedCounter);
 
+        controlPanelID = getView().findViewById(R.id.IDControlPanel);
+        controlPanelDescription = getView().findViewById(R.id.IDControlPanelDirections);
         stageTwoButton = getView().findViewById(R.id.Stage2Switch);
         stageTwoID = getView().findViewById(R.id.IDStage2);
         stageThreeButton = getView().findViewById(R.id.Stage3Switch);
         stageThreeID = getView().findViewById(R.id.IDStage3);
 
+        miscID = getView().findViewById(R.id.IDMisc);
+        miscDescription = getView().findViewById(R.id.IDMiscDirections);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
+        fellOverID = getView().findViewById(R.id.IDFellOver);
 
         //set listeners for buttons
         pickedUpIncrementButton.setOnClickListener(new View.OnClickListener() {
@@ -125,8 +151,32 @@ public class Teleop extends Fragment {
             }
         });
 
-        scoredButton.setOnClickListener(new BootstrapButton.OnClickListener() {
+        scoredButton.setOnClickListener(new View.OnClickListener() {
+            // Buttons
+            private Button doneButton;
+            private Button cancelButton;
+            private Button outerIncrement;
+            private Button outerDecrement;
+            private Button innerIncrement;
+            private Button innerDecrement;
+            private Button lowerIncrement;
+            private Button lowerDecrement;
+
+            // TextViews
+            private TextView outerScore;
+            private TextView innerScore;
+            private TextView lowerScore;
+
+            // On Cancel Variables
+            private String oldOuterScore;
+            private String oldInnerScore;
+            private String oldLowerScore;
+
             public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                controlPanelButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.popup_scored_up, null);
 
@@ -135,55 +185,68 @@ public class Teleop extends Fragment {
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(scoredButton);
+                scoredButton.setSelected(true);
 
-                // Bootstrap Buttons
-                Button doneButton = popupView.findViewById(R.id.DoneButton);
-                Button cancelButton = popupView.findViewById(R.id.CancelButton);
-                Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
-                Button upperDecrement = popupView.findViewById(R.id.UpperDecrement);
-                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                // Buttons
+                doneButton = popupView.findViewById(R.id.DoneButton);
+                cancelButton = popupView.findViewById(R.id.CancelButton);
+                outerIncrement = popupView.findViewById(R.id.OuterIncrement);
+                outerDecrement = popupView.findViewById(R.id.OuterDecrement);
+                innerIncrement = popupView.findViewById(R.id.InnerIncrement);
+                innerDecrement = popupView.findViewById(R.id.InnerDecrement);
+                lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView upperScore = popupView.findViewById(R.id.UpperScore);
-                TextView lowerScore = popupView.findViewById(R.id.LowerScore);
+                outerScore = popupView.findViewById(R.id.OuterScore);
+                innerScore = popupView.findViewById(R.id.InnerScore);
+                lowerScore = popupView.findViewById(R.id.LowerScore);
 
-                // Temp variables
-                upperScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("UpperPortScored"), 3));
-                lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortScored"), 3));
+                oldOuterScore = teleopHashMap.get("OuterPortScored");
+                oldInnerScore = teleopHashMap.get("InnerPortScored");
+                oldLowerScore = teleopHashMap.get("LowerPortScored");
 
-                checkToDisable(upperDecrement, upperScore, "upper");
-                checkToDisable(lowerDecrement, lowerScore, "lower");
+                updateObjects();
 
-                upperIncrement.setOnClickListener(new View.OnClickListener() {
+                outerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        upperPortNum += 1;
-                        upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                        checkToDisable(upperDecrement, upperScore, "upper");
+                        teleopHashMap.put("OuterPortScored", Integer.toString(Integer.parseInt((String)outerScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
-                upperDecrement.setOnClickListener(new View.OnClickListener() {
+                outerDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        if(upperPortNum > 0) {
-                            upperPortNum -= 1;
-                            upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                            checkToDisable(upperDecrement, upperScore, "upper");
-                        }
+                        int outerPortNum = Integer.parseInt((String)outerScore.getText());
+                        teleopHashMap.put("OuterPortScored", outerPortNum > 0 ? Integer.toString(outerPortNum - 1) : Integer.toString(outerPortNum));
+                        updateObjects();
+                    }
+                });
+
+                innerIncrement.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        teleopHashMap.put("InnerPortScored", Integer.toString(Integer.parseInt((String)innerScore.getText()) + 1));
+                        updateObjects();
+                    }
+                });
+
+                innerDecrement.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int innerPortNum = Integer.parseInt((String)innerScore.getText());
+                        teleopHashMap.put("InnerPortScored", innerPortNum > 0 ? Integer.toString(innerPortNum - 1) : Integer.toString(innerPortNum));
+                        updateObjects();
                     }
                 });
 
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        lowerPortNum += 1;
-                        lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                        checkToDisable(lowerDecrement, lowerScore, "lower");
+                        teleopHashMap.put("LowerPortScored", Integer.toString(Integer.parseInt((String)lowerScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
@@ -191,108 +254,141 @@ public class Teleop extends Fragment {
                     @Override
                     public void onClick(View v) {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        if(lowerPortNum > 0) {
-                            lowerPortNum -= 1;
-                            lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                            checkToDisable(lowerDecrement, lowerScore, "lower");
-                        }
+                        teleopHashMap.put("LowerPortScored", lowerPortNum > 0 ? Integer.toString(lowerPortNum - 1) : Integer.toString(lowerPortNum));
+                        updateObjects();
                     }
                 });
 
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        teleopHashMap.put("UpperPortScored", (String)upperScore.getText());
-                        // teleopHashMap.put("OuterPortScored", (String)outerScore.getText());
-                        teleopHashMap.put("LowerPortScored", (String)lowerScore.getText());
-                        totalScored = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredButton.setSelected(false);
                     }
                 });
 
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        teleopHashMap.put("OuterPortScored", oldOuterScore);
+                        teleopHashMap.put("InnerPortScored", oldInnerScore);
+                        teleopHashMap.put("LowerPortScored", oldLowerScore);
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredButton.setSelected(false);
                     }
                 });
             }
 
-            private void checkToDisable(Button button, TextView text, String name){
-                if(name.toLowerCase().equals("upper")) {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                } else {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                }
+            private void updateObjects(){
+                String outerPortNum = teleopHashMap.get("OuterPortScored");
+                String innerPortNum = teleopHashMap.get("InnerPortScored");
+                String lowerPortNum = teleopHashMap.get("LowerPortScored");
+
+                outerScore.setText(GenUtils.padLeftZeros(outerPortNum, 3));
+                innerScore.setText(GenUtils.padLeftZeros(innerPortNum, 3));
+                lowerScore.setText(GenUtils.padLeftZeros(lowerPortNum, 3));
+
+                if(Integer.parseInt(outerPortNum) <= 0)
+                    outerDecrement.setEnabled(false);
+                else
+                    outerDecrement.setEnabled(true);
+
+                if(Integer.parseInt(innerPortNum) <= 0)
+                    innerDecrement.setEnabled(false);
+                else
+                    innerDecrement.setEnabled(true);
+
+                if(Integer.parseInt(lowerPortNum) <= 0)
+                    lowerDecrement.setEnabled(false);
+                else
+                    lowerDecrement.setEnabled(true);
+
+                totalScored = Integer.parseInt(outerPortNum) + Integer.parseInt(innerPortNum) + Integer.parseInt(lowerPortNum);
+                scoredCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
             }
         });
 
-        missedButton.setOnClickListener(new BootstrapButton.OnClickListener() {
-            public void onClick(View view){
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored_up, null);
+        missedButton.setOnClickListener(new View.OnClickListener() {
+            // Buttons
+            private Button doneButton;
+            private Button cancelButton;
+            private Button higherIncrement;
+            private Button higherDecrement;
+            private Button lowerIncrement;
+            private Button lowerDecrement;
 
-                int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
-                int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
+            // TextViews
+            private TextView higherScore;
+            private TextView lowerScore;
+
+            // On Cancel Variables
+            private String oldHigherScore;
+            private String oldLowerScore;
+
+            public void onClick(View view){
+                possessionButtonsEnabledState(false);
+                controlPanelButtonsEnabledState(false);
+                miscButtonsEnabledState(false);
+
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.popup_missed_down, null);
+
+                int width = (int)getResources().getDimension(R.dimen.missed_popup_width);
+                int height = (int)getResources().getDimension(R.dimen.missed_popup_height);
 
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
                 popupWindow.showAsDropDown(missedButton);
+                missedButton.setSelected(true);
 
-                // Bootstrap Buttons
-                Button doneButton = popupView.findViewById(R.id.DoneButton);
-                Button cancelButton = popupView.findViewById(R.id.CancelButton);
-                Button upperIncrement = popupView.findViewById(R.id.UpperIncrement);
-                Button upperDecrement = popupView.findViewById(R.id.UpperDecrement);
-                Button lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
-                Button lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
+                // Buttons
+                doneButton = popupView.findViewById(R.id.DoneButton);
+                cancelButton = popupView.findViewById(R.id.CancelButton);
+                higherIncrement = popupView.findViewById(R.id.UpperIncrement);
+                higherDecrement = popupView.findViewById(R.id.UpperDecrement);
+                lowerIncrement = popupView.findViewById(R.id.LowerIncrement);
+                lowerDecrement = popupView.findViewById(R.id.LowerDecrement);
 
                 // Counter TextBoxes
-                TextView upperScore = popupView.findViewById(R.id.UpperScore);
-                TextView lowerScore = popupView.findViewById(R.id.LowerScore);
+                higherScore = popupView.findViewById(R.id.UpperScore);
+                lowerScore = popupView.findViewById(R.id.LowerScore);
 
-                // Temp variables
-                upperScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("UpperPortMissed"), 3));
-                lowerScore.setText(GenUtils.padLeftZeros(teleopHashMap.get("LowerPortMissed"), 3));
+                oldHigherScore = teleopHashMap.get("UpperPortMissed");
+                oldLowerScore = teleopHashMap.get("LowerPortMissed");
 
-                checkToDisable(upperDecrement, upperScore, "upper");
-                checkToDisable(lowerDecrement, lowerScore, "lower");
+                updateObjects();
 
-                upperIncrement.setOnClickListener(new View.OnClickListener() {
+                higherIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        upperPortNum += 1;
-                        upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                        checkToDisable(upperDecrement, upperScore, "upper");
+                        teleopHashMap.put("UpperPortMissed", Integer.toString(Integer.parseInt((String)higherScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
-                upperDecrement.setOnClickListener(new View.OnClickListener() {
+                higherDecrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int upperPortNum = Integer.parseInt((String)upperScore.getText());
-                        if(upperPortNum > 0) {
-                            upperPortNum -= 1;
-                            upperScore.setText(GenUtils.padLeftZeros(Integer.toString(upperPortNum), 3));
-                            checkToDisable(upperDecrement, upperScore, "upper");
-                        }
+                        int higherPortNum = Integer.parseInt((String)higherScore.getText());
+                        teleopHashMap.put("UpperPortMissed", higherPortNum > 0 ? Integer.toString(higherPortNum - 1) : Integer.toString(higherPortNum));
+                        updateObjects();
                     }
                 });
 
                 lowerIncrement.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        lowerPortNum += 1;
-                        lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                        checkToDisable(lowerDecrement, lowerScore, "lower");
+                        teleopHashMap.put("LowerPortMissed", Integer.toString(Integer.parseInt((String)lowerScore.getText()) + 1));
+                        updateObjects();
                     }
                 });
 
@@ -300,45 +396,59 @@ public class Teleop extends Fragment {
                     @Override
                     public void onClick(View v) {
                         int lowerPortNum = Integer.parseInt((String)lowerScore.getText());
-                        if(lowerPortNum > 0) {
-                            lowerPortNum -= 1;
-                            lowerScore.setText(GenUtils.padLeftZeros(Integer.toString(lowerPortNum), 3));
-                            checkToDisable(lowerDecrement, lowerScore, "lower");
-                        }
+                        teleopHashMap.put("LowerPortMissed", lowerPortNum > 0 ? Integer.toString(lowerPortNum - 1) : Integer.toString(lowerPortNum));
+                        updateObjects();
                     }
                 });
 
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        teleopHashMap.put("UpperPortMissed", (String)upperScore.getText());
-                        teleopHashMap.put("LowerPortMissed", (String)lowerScore.getText());
-                        totalMissed = Integer.parseInt((String)upperScore.getText()) + Integer.parseInt((String)lowerScore.getText());
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedButton.setSelected(false);
                     }
                 });
 
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        teleopHashMap.put("UpperPortMissed", oldHigherScore);
+                        teleopHashMap.put("LowerPortMissed", oldLowerScore);
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
                         popupWindow.dismiss();
+                        missedButton.setSelected(false);
                     }
                 });
             }
 
-            private void checkToDisable(Button button, TextView text, String name){
-                if(name.toLowerCase().equals("upper")) {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                } else {
-                    if (Integer.parseInt((String)text.getText()) == 0)
-                        button.setEnabled(false);
-                    else
-                        button.setEnabled(true);
-                }
+            private void updateObjects(){
+                String higherPortNum = teleopHashMap.get("UpperPortMissed");
+                String lowerPortNum = teleopHashMap.get("LowerPortMissed");
+
+                higherScore.setText(GenUtils.padLeftZeros(higherPortNum, 3));
+                lowerScore.setText(GenUtils.padLeftZeros(lowerPortNum, 3));
+
+                if(Integer.parseInt(higherPortNum) <= 0)
+                    higherDecrement.setEnabled(false);
+                else
+                    higherDecrement.setEnabled(true);
+
+                if(Integer.parseInt(lowerPortNum) <= 0)
+                    lowerDecrement.setEnabled(false);
+                else
+                    lowerDecrement.setEnabled(true);
+
+                totalScored = Integer.parseInt(higherPortNum) + Integer.parseInt(lowerPortNum);
+                missedCounter.setText(GenUtils.padLeftZeros(Integer.toString(totalScored), 3));
             }
         });
 
@@ -364,26 +474,54 @@ public class Teleop extends Fragment {
         });
     }
 
-    private void allButtonsEnabledState(boolean enable){
+    private void possessionButtonsEnabledState(boolean enable){
+        possessionID.setEnabled(enable);
+        possessionDescription.setEnabled(enable);
+
+        pickedUpID.setEnabled(enable);
         pickedUpIncrementButton.setEnabled(enable);
         pickedUpDecrementButton.setEnabled(enable);
         pickedUpCounter.setEnabled(enable);
 
+        droppedID.setEnabled(enable);
         droppedIncrementButton.setEnabled(enable);
         droppedDecrementButton.setEnabled(enable);
         droppedCounter.setEnabled(enable);
+    }
+
+    private void scoringButtonsEnabledState(boolean enable){
+        scoringID.setEnabled(enable);
+        scoringDescription.setEnabled(enable);
 
         scoredButton.setEnabled(enable);
         scoredCounter.setEnabled(enable);
 
         missedButton.setEnabled(enable);
         missedCounter.setEnabled(enable);
+    }
+
+    private void controlPanelButtonsEnabledState(boolean enable){
+        controlPanelID.setEnabled(enable);
+        controlPanelDescription.setEnabled(enable);
 
         stageTwoButton.setEnabled(enable);
         stageTwoID.setEnabled(enable);
 
         stageThreeButton.setEnabled(enable);
         stageThreeID.setEnabled(enable);
+    }
+
+    private void miscButtonsEnabledState(boolean enable){
+        miscID.setEnabled(enable);
+        miscDescription.setEnabled(enable);
+        fellOverSwitch.setEnabled(enable);
+        fellOverID.setEnabled(enable);
+    }
+
+    private void allButtonsEnabledState(boolean enable){
+        possessionButtonsEnabledState(enable);
+        scoringButtonsEnabledState(enable);
+        controlPanelButtonsEnabledState(enable);
     }
 
     private void updateXMLObjects(){

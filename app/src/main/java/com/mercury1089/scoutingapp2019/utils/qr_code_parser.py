@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 import cv2
 import qrtools
 import csv
@@ -6,8 +7,9 @@ from shutil import copyfile
 
 def show_webcam():
 
+    num_setup = 13
     num_vals = 7 # number of values per game phase
-    
+
     last_input = ""
     SETUP_LIST = 'setupList.csv'
     EVENT_LIST = 'eventList.csv'
@@ -17,11 +19,11 @@ def show_webcam():
     while True:
         ret_val, img = cam.read()
         cv2.imshow('1089 Scouting Scanner', img)
-        if cv2.waitKey(1) == 27: 
+        if cv2.waitKey(1) == 27:
             break  # esc to quit
         cv2.imwrite(file, img)
         qr = qrtools.QR()
-        qr.decode(file) 
+        qr.decode(file)
         if qr.data != "NULL" and qr.data != last_input:
             iAr = qr.data.strip().split(",")
             scouter=iAr[0]
@@ -33,17 +35,23 @@ def show_webcam():
                                               for i in range(0, len(iAr), n)]
             with open(SETUP_LIST, 'ab+') as csvfile:
                 csv_write = csv.writer(csvfile, dialect='excel', delimiter=',')
-                csv_write.writerow(iAr[:15])
+                csv_write.writerow(iAr[:num_setup])
             with open(EVENT_LIST, 'ab+') as csvfile:
                 csv_write = csv.writer(csvfile, dialect='excel', delimiter=',')
-                setup_arr = [team,match]
-                del iAr[:15]
+                setup_arr = [team, match, "Game Phase"]
+                del iAr[:num_setup]
                 for chunk in chunks(iAr):
-                    if len(chunk) == 7:
-                        chunk.append(scouter)
-                        chunk.append(time.time())
-                        time.sleep(.001)
-                        csv_write.writerow(setup_arr + chunk)
+                    print chunk
+                    if len(chunk) < num_vals:
+                        break
+                    setup_arr[2] = chunk[0]
+                    #print(setup)
+                    csv_write.writerow(setup_arr + ["S", "I", chunk[1]])
+                    csv_write.writerow(setup_arr + ["S", "O", chunk[2]])
+                    csv_write.writerow(setup_arr + ["S", "L", chunk[3]])
+                    csv_write.writerow(setup_arr + ["M", "H", chunk[4]])
+                    csv_write.writerow(setup_arr + ["M", "L", chunk[5]])
+                    csv_write.writerow(setup_arr + ["D", "", chunk[6]])
             last_input = qr.data
             print "Saved - ", scouter, ":", team,":", match
     cv2.destroyAllWindows()
@@ -54,3 +62,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
