@@ -64,7 +64,6 @@
         android:track="@drawable/track_states"
         app:layout_constraintStart_toEndOf="@+id/TeamNumberInput"
         app:layout_constraintTop_toTopOf="@+id/TeamNumberInput" />
-    <!-- TODO: test if switch active states are properly changing thumb and track colors to orange-->
 
     <TextView
         android:id="@+id/IDMatchNumber"

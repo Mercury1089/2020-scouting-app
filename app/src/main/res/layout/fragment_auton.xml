@@ -423,7 +423,7 @@
         android:paddingStart="190dp"
         android:paddingEnd="190dp"
         android:text="@string/TeleopNext"
-        android:textColor="@color/ice"
+        android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

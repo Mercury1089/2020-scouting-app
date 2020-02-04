@@ -16,8 +16,8 @@ public class QRStringBuilder {
 
         //Setup Data
         QRString.append(setup.get("ScouterName")).append(",");
-        QRString.append(setup.get("MatchNumber")).append(",");
         QRString.append(setup.get("TeamNumber")).append(",");
+        QRString.append(setup.get("MatchNumber")).append(",");
         QRString.append(setup.get("AlliancePartner1")).append(",");
         QRString.append(setup.get("AlliancePartner2")).append(",");
         QRString.append(setup.get("AllianceColor")).append(",");

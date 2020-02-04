@@ -182,6 +182,22 @@ public class Climb extends Fragment {
                 parkedSwitch.setEnabled(true);
                 parkedID.setEnabled(true);
         }
+
+        if(setupHashMap.get("FellOver").equals("1")){
+            climbedSwitch.setChecked(false);
+            climbedSwitch.setEnabled(false);
+            climbedID.setEnabled(false);
+
+            leveledSwitch.setChecked(false);
+            leveledSwitch.setEnabled(false);
+            leveledID.setEnabled(false);
+
+            parkedSwitch.setChecked(false);
+            parkedSwitch.setEnabled(false);
+            parkedID.setEnabled(false);
+
+            climbHashMap.put("CLP", "");
+        }
     }
 
     @Override
