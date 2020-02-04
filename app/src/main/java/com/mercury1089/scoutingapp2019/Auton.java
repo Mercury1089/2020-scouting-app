@@ -201,6 +201,7 @@ public class Auton extends Fragment {
                     teleopWarning.setTextColor(getResources().getColor(R.color.white));
                     teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     teleopWarning.setText(getResources().getString(R.string.TeleopError));
+                    nextButton.setBackground(getResources().getDrawable(R.drawable.button_large_error));
                 }
             }
         };
