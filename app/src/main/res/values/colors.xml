@@ -35,6 +35,8 @@
     <color name="denim"> #232C3D </color>
     <color name="charcoal"> #06090D </color>
 
+    <color name="dark_red">#8a0303</color>
+
     <color name="button_disabled"> #2F3A4F </color>
 
     <color name="heading_active"> #828FAC </color>

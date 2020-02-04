@@ -181,7 +181,7 @@ public class Teleop extends Fragment {
                 miscButtonsEnabledState(false);
 
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_scored_up, null);
+                View popupView = inflater.inflate(R.layout.popup_scored_down, null);
 
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
