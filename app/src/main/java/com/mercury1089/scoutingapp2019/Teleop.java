@@ -176,6 +176,7 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                missedButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
@@ -271,6 +272,7 @@ public class Teleop extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedButton.setEnabled(true);
                         scoredButton.setSelected(false);
                     }
                 });
@@ -287,6 +289,7 @@ public class Teleop extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedButton.setEnabled(true);
                         scoredButton.setSelected(false);
                     }
                 });
@@ -339,6 +342,7 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                scoredButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
@@ -413,6 +417,7 @@ public class Teleop extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredButton.setEnabled(true);
                         missedButton.setSelected(false);
                     }
                 });
@@ -428,6 +433,7 @@ public class Teleop extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredButton.setEnabled(true);
                         missedButton.setSelected(false);
                     }
                 });

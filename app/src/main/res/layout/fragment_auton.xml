@@ -419,7 +419,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_next_states"
-        android:drawableEnd="@drawable/right"
+        android:drawableEnd="@drawable/right_states"
         android:paddingStart="190dp"
         android:paddingEnd="190dp"
         android:text="@string/TeleopNext"
