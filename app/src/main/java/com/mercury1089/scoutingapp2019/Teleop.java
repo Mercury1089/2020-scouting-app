@@ -176,6 +176,7 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                missedCounter.setEnabled(true);
                 missedButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
@@ -272,6 +273,7 @@ public class Teleop extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedCounter.setEnabled(true);
                         missedButton.setEnabled(true);
                         scoredButton.setSelected(false);
                     }
@@ -289,6 +291,7 @@ public class Teleop extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedCounter.setEnabled(true);
                         missedButton.setEnabled(true);
                         scoredButton.setSelected(false);
                     }
@@ -343,6 +346,7 @@ public class Teleop extends Fragment {
 
             public void onClick(View view){
                 scoredButton.setEnabled(false);
+                scoredCounter.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
@@ -418,6 +422,7 @@ public class Teleop extends Fragment {
                         updateXMLObjects();
                         popupWindow.dismiss();
                         scoredButton.setEnabled(true);
+                        scoredCounter.setEnabled(true);
                         missedButton.setSelected(false);
                     }
                 });
@@ -434,6 +439,7 @@ public class Teleop extends Fragment {
                         updateXMLObjects();
                         popupWindow.dismiss();
                         scoredButton.setEnabled(true);
+                        scoredCounter.setEnabled(true);
                         missedButton.setSelected(false);
                     }
                 });
