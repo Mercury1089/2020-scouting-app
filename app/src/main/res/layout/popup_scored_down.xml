@@ -8,8 +8,8 @@
 
     <View
         android:id="@+id/carat"
-        android:layout_width="@dimen/carat_length"
-        android:layout_height="@dimen/carat_length"
+        android:layout_width="@dimen/carat_width"
+        android:layout_height="@dimen/carat_height"
         android:layout_marginStart="32dp"
         android:background="@drawable/carat"
         app:layout_constraintStart_toStartOf="parent"
