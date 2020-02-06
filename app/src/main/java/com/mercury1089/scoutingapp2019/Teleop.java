@@ -176,7 +176,7 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
-                missedCounter.setEnabled(true);
+                missedCounter.setEnabled(false);
                 missedButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
