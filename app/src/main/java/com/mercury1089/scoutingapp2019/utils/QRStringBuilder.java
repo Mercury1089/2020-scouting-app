@@ -1,5 +1,7 @@
 package com.mercury1089.scoutingapp2019.utils;
 
+import android.content.Context;
+
 import com.mercury1089.scoutingapp2019.HashMapManager;
 
 import java.util.LinkedHashMap;
@@ -52,5 +54,8 @@ public class QRStringBuilder {
         return QRString.toString();
     }
 
-    public static void clearQRString() {QRString = new StringBuilder(); }
+    public static void clearQRString(Context context) {
+        HashMapManager.appendQRList(QRString.toString(), context);
+        QRString = new StringBuilder();
+    }
 }

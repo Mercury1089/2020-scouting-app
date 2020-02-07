@@ -280,6 +280,8 @@ public class Auton extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                missedCounter.setEnabled(false);
+                missedButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
 
@@ -373,6 +375,8 @@ public class Auton extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedCounter.setEnabled(true);
+                        missedButton.setEnabled(true);
                         scoredButton.setSelected(false);
                     }
                 });
@@ -388,6 +392,8 @@ public class Auton extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        missedCounter.setEnabled(true);
+                        missedButton.setEnabled(true);
                         scoredButton.setSelected(false);
                     }
                 });
@@ -440,6 +446,8 @@ public class Auton extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                scoredCounter.setEnabled(false);
+                scoredButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
 
@@ -512,6 +520,8 @@ public class Auton extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredCounter.setEnabled(true);
+                        scoredButton.setEnabled(true);
                         missedButton.setSelected(false);
                     }
                 });
@@ -526,6 +536,8 @@ public class Auton extends Fragment {
                         updateObjects();
                         updateXMLObjects();
                         popupWindow.dismiss();
+                        scoredCounter.setEnabled(true);
+                        scoredButton.setEnabled(true);
                         missedButton.setSelected(false);
                     }
                 });

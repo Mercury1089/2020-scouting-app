@@ -208,7 +208,7 @@
 
         <Button
             android:id="@+id/BlueButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/alliance_color_width"
             android:layout_height="@dimen/button_height"
             android:background="@drawable/toggle_blue_states"
             android:fontFamily="@font/open_sans"
@@ -220,7 +220,7 @@
 
         <Button
             android:id="@+id/RedButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/alliance_color_width"
             android:layout_height="@dimen/button_height"
             android:background="@drawable/toggle_red_states"
             android:fontFamily="@font/open_sans"

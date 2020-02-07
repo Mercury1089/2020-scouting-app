@@ -22,7 +22,6 @@ import java.util.Set;
 public class MatchActivity extends AppCompatActivity {
 
     //variables that store elements of the screen for the output variables
-    private Button exitButton;
     public TabLayout tabs;
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
@@ -39,8 +38,6 @@ public class MatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match);
 
         //initializers
-        exitButton = findViewById(R.id.ExitButton);
-
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(4);
@@ -52,48 +49,40 @@ public class MatchActivity extends AppCompatActivity {
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.AUTON);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
-
-        //click methods
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
-                View view = getLayoutInflater().inflate(R.layout.exit_confirm_popup, null);
-
-                Button exitConfirm = view.findViewById(R.id.ExitConfirm);
-                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
-                final AlertDialog dialog = cancelDialog.create();
-
-                dialog.setView(view);
-                dialog.show();
-
-                cancelConfirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                exitConfirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                        HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
-                        HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
-                        HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
-                        Intent intent = new Intent(MatchActivity.this, PregameActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-            }
-        });
     }
 
     //back button
     @Override
     public void onBackPressed() {
-        exitButton.performClick();
+        final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
+        View view = getLayoutInflater().inflate(R.layout.exit_confirm_popup, null);
+
+        Button exitConfirm = view.findViewById(R.id.ExitConfirm);
+        Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
+        final AlertDialog dialog = cancelDialog.create();
+
+        dialog.setView(view);
+        dialog.show();
+
+        cancelConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        exitConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
+                HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
+                HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
+                Intent intent = new Intent(MatchActivity.this, PregameActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     //call methods

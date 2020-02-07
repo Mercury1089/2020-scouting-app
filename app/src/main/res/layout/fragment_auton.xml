@@ -89,13 +89,13 @@
         android:id="@+id/IDPossession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/PossessionTitle"
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
         app:layout_constraintTop_toBottomOf="@+id/TeleopWarning" />
 
     <TextView
@@ -188,6 +188,7 @@
         android:fontFamily="@font/open_sans"
         android:text="@string/Dropped"
         android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/IDPickedUp" />
 

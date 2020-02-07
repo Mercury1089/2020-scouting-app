@@ -1,8 +1,21 @@
 package com.mercury1089.scoutingapp2019;
 
+import android.content.Context;
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class HashMapManager {
+public class HashMapManager{
     private static LinkedHashMap<String, String> settingsHashMap = new LinkedHashMap<>();
     private static LinkedHashMap<String, String> setupHashMap = new LinkedHashMap<>();
     private static LinkedHashMap<String, String> autonHashMap = new LinkedHashMap<>();
@@ -15,7 +28,7 @@ public class HashMapManager {
      *
      */
     public enum HASH{
-        SETTINGS, SETUP, AUTON, TELEOP, CLIMB
+        SETTINGS, SETUP, AUTON, TELEOP, CLIMB, QRCODES
     }
 
     /**
@@ -125,6 +138,74 @@ public class HashMapManager {
      */
     public static void putClimbHashMap(LinkedHashMap<String, String> climbData){
         climbHashMap = climbData;
+    }
+
+    /**
+     *
+     */
+    public static void appendQRList(String qrString, Context context){
+        String[] qrList = setupQRList(context);
+        String[] newList = new String[qrList.length + 1];
+        Log.d("QRStuff", "" + qrList.length + " " + newList.length);
+        for(int i = 0; i < qrList.length; i++)
+            newList[i] = qrList[i];
+        newList[newList.length - 1] = qrString;
+        outputQRList(newList, context);
+    }
+
+    /**
+     *
+     */
+    public static String[] setupQRList(Context context){
+        String filename = "QRData";
+        String[] qrList = new String[0];
+        try {
+            FileInputStream fs = context.openFileInput(filename);
+            InputStreamReader inputStreamReader = new InputStreamReader(fs, StandardCharsets.UTF_8);
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            String line = reader.readLine();
+            int count = 0;
+            while(line != null){
+                Log.d("QRStuff3", "" + count);
+                String[] tempList = qrList;
+                qrList = new String[tempList.length + 1];
+                for(int i = 0; i < tempList.length; i++)
+                    qrList[i] = tempList[i];
+                qrList[qrList.length-1] = line;
+                line = reader.readLine();
+                count ++;
+            }
+        } catch(Exception e){
+            File file = new File(context.getFilesDir(), filename);
+            try {
+                file.createNewFile();
+            }catch (Exception e1) {}
+        }
+        return qrList;
+    }
+
+    /**
+     *
+     */
+    public static void outputQRList(String[] qrList, Context context){
+        String filename = "QRData";
+        try {
+            File file = new File(context.getFilesDir(), filename);
+            if(file.exists()) {
+                file.delete();
+            }
+            file.createNewFile();
+            FileOutputStream fs = new FileOutputStream(file);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fs));
+            for(String qrString : qrList){
+                Log.d("QRStuff2", "" + qrList.length);
+                bw.write(qrString);
+                bw.newLine();
+            }
+            bw.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

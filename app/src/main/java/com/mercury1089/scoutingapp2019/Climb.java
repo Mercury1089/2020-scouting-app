@@ -36,6 +36,8 @@ public class Climb extends Fragment {
     private Switch parkedSwitch;
 
     //TextViews
+    private TextView endgameID;
+    private TextView endgameDirections;
     private TextView climbedID;
     private TextView leveledID;
     private TextView parkedID;
@@ -63,6 +65,9 @@ public class Climb extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
+        endgameID = getView().findViewById(R.id.IDEndgame);
+        endgameDirections = getView().findViewById(R.id.IDEndgameDirections);
+
         climbedID = getView().findViewById(R.id.IDClimbed);
         climbedSwitch = getView().findViewById(R.id.ClimbedSwitch);
 
@@ -184,6 +189,9 @@ public class Climb extends Fragment {
         }
 
         if(setupHashMap.get("FellOver").equals("1")){
+            endgameID.setEnabled(false);
+            endgameDirections.setEnabled(false);
+
             climbedSwitch.setChecked(false);
             climbedSwitch.setEnabled(false);
             climbedID.setEnabled(false);
@@ -197,6 +205,9 @@ public class Climb extends Fragment {
             parkedID.setEnabled(false);
 
             climbHashMap.put("CLP", "");
+        } else {
+            endgameID.setEnabled(true);
+            endgameDirections.setEnabled(true);
         }
     }
 
@@ -239,7 +250,7 @@ public class Climb extends Fragment {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(context, R.color.design_default_color_primary_dark) : GenUtils.getAColor(context, R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(context, R.color.black) : GenUtils.getAColor(context, R.color.white);
             }
         }
 
@@ -274,8 +285,8 @@ public class Climb extends Fragment {
                         dialog.setCancelable(false);
 
                         //progressDialog.dismiss();
-                        teamNumber.setText("Team Number: " + setupHashMap.get("TeamNumber"));
-                        matchNumber.setText("Match Number: " + setupHashMap.get("MatchNumber"));
+                        teamNumber.setText(setupHashMap.get("TeamNumber"));
+                        matchNumber.setText(setupHashMap.get("MatchNumber"));
 
                         loading_alert.dismiss();
 
@@ -297,7 +308,7 @@ public class Climb extends Fragment {
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        QRStringBuilder.clearQRString();
+                                        QRStringBuilder.clearQRString(context);
                                         HashMapManager.setupNextMatch();
                                         Intent intent = new Intent(context, PregameActivity.class);
                                         startActivity(intent);

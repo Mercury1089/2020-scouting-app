@@ -1,6 +1,8 @@
 package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -11,9 +13,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -355,6 +359,15 @@ public class PregameActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
     }*/
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
     public void fieldPosClicked(View view){
         Button button = findViewById(view.getId());
         if(button.getCompoundDrawablesRelative()[2] != null) {
@@ -547,7 +560,7 @@ public class PregameActivity extends AppCompatActivity {
             int offset = y * bitMatrixWidth;
             for (int x = 0; x < bitMatrixWidth; x++) {
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(PregameActivity.this, R.color.design_default_color_primary_dark) : GenUtils.getAColor(PregameActivity.this, R.color.bootstrap_dropdown_divider);
+                        GenUtils.getAColor(PregameActivity.this, R.color.black) : GenUtils.getAColor(PregameActivity.this, R.color.white);
             }
         }
 
@@ -611,7 +624,7 @@ public class PregameActivity extends AppCompatActivity {
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        QRStringBuilder.clearQRString();
+                                        QRStringBuilder.clearQRString(getApplicationContext());
                                         HashMapManager.setupNextMatch();
                                         setupHashMap = HashMapManager.getSetupHashMap();
                                         updateXMLObjects(true);
