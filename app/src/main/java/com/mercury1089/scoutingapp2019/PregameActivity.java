@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -218,9 +219,44 @@ public class PregameActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 HashMapManager.putSetupHashMap(setupHashMap);
                 Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                 startActivity(intent);
+
+                /*
+                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
+                View view1 = getLayoutInflater().inflate(R.layout.settings_password, null);
+
+                TextView passwordField = view1.findViewById(R.id.PasswordField);
+                Button confirm = view1.findViewById(R.id.ConfirmButton);
+                Button cancel = view1.findViewById(R.id.CancelButton);
+                final AlertDialog dialog = cancelDialog.create();
+
+                dialog.setView(view1);
+                dialog.show();
+
+                confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(passwordField.getText().toString().equals("31415925")){
+                            HashMapManager.putSetupHashMap(setupHashMap);
+                            Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(PregameActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+                cancel.setOnClickListener((new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                }));
+                */
             }
         });
 
