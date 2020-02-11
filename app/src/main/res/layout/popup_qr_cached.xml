@@ -7,6 +7,22 @@
     android:minWidth="400dp"
     android:minHeight="900dp">
 
+    <Button
+        android:id="@+id/unreadButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@android:color/transparent"
+        android:text="Mark as unscanned"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readButton" />
+
     <TextView
         android:id="@+id/IDMatchNumberQR"
         android:layout_width="wrap_content"
@@ -42,20 +58,18 @@
         app:srcCompat="@color/bootstrap_brand_secondary_text" />
 
     <Button
-        android:id="@+id/GoBackButton"
+        android:id="@+id/readButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/button_active"
-        android:drawableEnd="@drawable/right_states"
         android:fontFamily="@font/open_sans"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:text="Close"
+        android:text="Mark as scanned"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

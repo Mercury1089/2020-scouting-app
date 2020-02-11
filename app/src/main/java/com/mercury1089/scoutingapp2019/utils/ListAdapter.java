@@ -3,6 +3,7 @@ package com.mercury1089.scoutingapp2019.utils;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.mercury1089.scoutingapp2019.HashMapManager;
 import com.mercury1089.scoutingapp2019.R;
 import com.mercury1089.scoutingapp2019.SettingsActivity;
 import static com.mercury1089.scoutingapp2019.utils.GenUtils.padLeftZeros;
@@ -57,10 +59,13 @@ public class ListAdapter extends BaseAdapter {
         View vi = inflater.inflate(R.layout.qr_list_item, null);
 
         Button item = vi.findViewById(R.id.itemButton);
-        String[] qrData = data[position].split(",");
-        String teamNumber = qrData[1], matchNumber = qrData[2], qrString = data[position];
-//        if (item == null)
-//            return vi;
+        String[] qrDataFromFile = data[position].split("~");
+
+        String[] qrData = qrDataFromFile[0].split(",");
+        Log.d("Stuff", data[position]);
+        String teamNumber = qrData[1], matchNumber = qrData[2], qrString = qrDataFromFile[0];
+
+        item.setSelected(qrDataFromFile[1].equals("Y"));
         item.setText("Team Number: " + padLeftZeros(teamNumber, 2) + "    Match Number: " + padLeftZeros(matchNumber, 2));
         item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +77,7 @@ public class ListAdapter extends BaseAdapter {
                 loading_alert.setCancelable(false);
                 loading_alert.show();
 
-                ListAdapter.QRRunnable qrRunnable = new ListAdapter.QRRunnable(v.getTag().toString().split("~"), context);
+                ListAdapter.QRRunnable qrRunnable = new ListAdapter.QRRunnable(v.getTag().toString().split("~"), context, v);
                 new Thread(qrRunnable).start();
             }
         });
@@ -114,12 +119,14 @@ public class ListAdapter extends BaseAdapter {
 
         private String teamNum, matchNum, qrString;
         private SettingsActivity context;
+        private View buttonView;
 
-        public QRRunnable(String[] qrData, Context c){
+        public QRRunnable(String[] qrData, Context c, View v){
             teamNum = qrData[0];
             matchNum = qrData[1];
             qrString = qrData[2];
             context = (SettingsActivity) c;
+            buttonView = v;
         }
 
         @Override
@@ -134,7 +141,8 @@ public class ListAdapter extends BaseAdapter {
                         ImageView imageView = view1.findViewById(R.id.imageView);
                         TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
-                        final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
+                        Button readButton = view1.findViewById(R.id.readButton);
+                        Button unreadButton = view1.findViewById(R.id.unreadButton);
                         imageView.setImageBitmap(bitmap);
                         qrDialog.setView(view1);
                         final AlertDialog dialog = qrDialog.create();
@@ -147,9 +155,38 @@ public class ListAdapter extends BaseAdapter {
 
                         dialog.show();
 
-                        goBackToMain.setOnClickListener(new View.OnClickListener() {
+                        readButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                String[] qrList = HashMapManager.setupQRList(context);
+                                int qrDataIndex = -1;
+                                for(qrDataIndex = 0; qrDataIndex <= qrList.length; qrDataIndex++){
+                                    if(qrDataIndex == qrList.length)
+                                        throw new IndexOutOfBoundsException("QR String not found in file");
+                                    if(qrList[qrDataIndex].split("~")[0].equals(qrString))
+                                        break;
+                                }
+                                qrList[qrDataIndex] = qrString + "~Y";
+                                HashMapManager.outputQRList(qrList, context);
+                                buttonView.setSelected(true);
+                                dialog.dismiss();
+                            }
+                        });
+
+                        unreadButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String[] qrList = HashMapManager.setupQRList(context);
+                                int qrDataIndex = -1;
+                                for(qrDataIndex = 0; qrDataIndex <= qrList.length; qrDataIndex++){
+                                    if(qrDataIndex == qrList.length)
+                                        throw new IndexOutOfBoundsException("QR String not found in file");
+                                    if(qrList[qrDataIndex].split("~")[0].equals(qrString))
+                                        break;
+                                }
+                                qrList[qrDataIndex] = qrString + "~N";
+                                HashMapManager.outputQRList(qrList, context);
+                                buttonView.setSelected(false);
                                 dialog.dismiss();
                             }
                         });

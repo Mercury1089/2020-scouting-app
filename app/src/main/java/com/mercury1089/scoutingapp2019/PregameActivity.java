@@ -39,6 +39,7 @@ import java.util.LinkedHashMap;
 
 public class PregameActivity extends AppCompatActivity {
 
+    //Set the default password in HashMapManager.setDefaultValues();
     String password;
 
     //variables that store elements of the screen for the output variables
@@ -653,18 +654,15 @@ public class PregameActivity extends AppCompatActivity {
                         TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
                         final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
+                        Switch scannedSwitch = view1.findViewById(R.id.ScannedSwitch);
                         imageView.setImageBitmap(bitmap);
                         qrDialog.setView(view1);
                         final AlertDialog dialog = qrDialog.create();
                         dialog.setCancelable(false);
 
-                        //progressDialog.dismiss();
                         teamNumber.setText(setupHashMap.get("TeamNumber"));
                         matchNumber.setText(setupHashMap.get("MatchNumber"));
-                        //goBackToMain.setBackgroundColor(GenUtils.getAColor(PregameActivity.this, (R.color.savedefault)));
-                        //goBackToMain.setTextColor(GenUtils.getAColor(PregameActivity.this, R.color.savetextdefault));
 
-                        //progressDialog.dismiss();
                         loading_alert.dismiss();
 
                         dialog.show();
@@ -685,7 +683,7 @@ public class PregameActivity extends AppCompatActivity {
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        QRStringBuilder.clearQRString(getApplicationContext());
+                                        QRStringBuilder.clearQRString(scannedSwitch.isChecked(), getApplicationContext());
                                         HashMapManager.setupNextMatch();
                                         setupHashMap = HashMapManager.getSetupHashMap();
                                         updateXMLObjects(true);

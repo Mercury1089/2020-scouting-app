@@ -70,7 +70,6 @@ public class SettingsActivity extends AppCompatActivity {
                 HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
                 HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
                 HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
-                clearQRCache.callOnClick();
                 Toast.makeText(SettingsActivity.this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -139,12 +138,35 @@ public class SettingsActivity extends AppCompatActivity {
         clearQRCache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMapManager.outputQRList(new String[0], SettingsActivity.this);
-                qrList = HashMapManager.setupQRList(SettingsActivity.this);
-                listAdapter = new ListAdapter(SettingsActivity.this, qrList);
-                qrCodeSelector.setAdapter(listAdapter);
-                listAdapter.notifyDataSetChanged();
-                clearQRCache.setEnabled(false);
+                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(SettingsActivity.this);
+                View view1 = getLayoutInflater().inflate(R.layout.clear_qr_cache_confirm, null);
+
+                Button clearConfirm = view1.findViewById(R.id.ClearConfirm);
+                Button cancelConfirm = view1.findViewById(R.id.CancelConfirm);
+                final AlertDialog dialog = cancelDialog.create();
+
+                dialog.setView(view1);
+                dialog.show();
+
+                clearConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        HashMapManager.outputQRList(new String[0], SettingsActivity.this);
+                        qrList = HashMapManager.setupQRList(SettingsActivity.this);
+                        listAdapter = new ListAdapter(SettingsActivity.this, qrList);
+                        qrCodeSelector.setAdapter(listAdapter);
+                        listAdapter.notifyDataSetChanged();
+                        clearQRCache.setEnabled(false);
+                        dialog.dismiss();
+                    }
+                });
+
+                cancelConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
