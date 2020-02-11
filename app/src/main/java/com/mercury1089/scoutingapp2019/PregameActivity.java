@@ -13,10 +13,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -253,6 +255,16 @@ public class PregameActivity extends AppCompatActivity {
 
                 dialog.setView(view1);
                 dialog.show();
+
+                passwordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                        if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                            //do what you want on the press of 'done'
+                            confirm.performClick();
+                        }
+                        return false;
+                    }
+                });
 
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
