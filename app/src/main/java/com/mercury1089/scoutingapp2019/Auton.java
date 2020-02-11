@@ -150,47 +150,51 @@ public class Auton extends Fragment {
                     timerID.setTextColor(context.getResources().getColor(R.color.banana));
                     timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_yellow, 0, 0, 0);
 
-                    ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
-                    ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
 
-                    ObjectAnimator bottomEdgeLighterOn = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 1.0f, 0.0f);
-                    ObjectAnimator bottomEdgeLighterOff = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator bottomEdgeLighterOn = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator bottomEdgeLighterOff = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 1.0f, 0.0f);
 
-                    ObjectAnimator rightEdgeLighterOn = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 1.0f, 0.0f);
-                    ObjectAnimator rightEdgeLighterOff = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator rightEdgeLighterOn = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator rightEdgeLighterOff = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 1.0f, 0.0f);
 
-                    ObjectAnimator leftEdgeLighterOn = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 1.0f, 0.0f);
-                    ObjectAnimator leftEdgeLighterOff = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator leftEdgeLighterOn = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator leftEdgeLighterOff = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 1.0f, 0.0f);
 
-                    topEdgeLighterOn.setDuration(100);
-                    topEdgeLighterOff.setDuration(300);
+                    topEdgeLighterOn.setDuration(500);
+                    topEdgeLighterOff.setDuration(500);
 
-                    bottomEdgeLighterOn.setDuration(100);
-                    bottomEdgeLighterOff.setDuration(300);
+                    bottomEdgeLighterOn.setDuration(500);
+                    bottomEdgeLighterOff.setDuration(500);
 
-                    leftEdgeLighterOn.setDuration(100);
-                    leftEdgeLighterOff.setDuration(300);
+                    leftEdgeLighterOn.setDuration(500);
+                    leftEdgeLighterOff.setDuration(500);
 
-                    rightEdgeLighterOn.setDuration(100);
-                    rightEdgeLighterOff.setDuration(300);
+                    rightEdgeLighterOn.setDuration(500);
+                    rightEdgeLighterOff.setDuration(500);
 
+                    AnimatorSet animateOn = new AnimatorSet();
+                    AnimatorSet animateOff = new AnimatorSet();
                     AnimatorSet animatorSet = new AnimatorSet();
 
-                    animatorSet.playTogether(topEdgeLighterOn, bottomEdgeLighterOn, rightEdgeLighterOn, leftEdgeLighterOn);
+                    animateOn.playTogether(topEdgeLighterOn, bottomEdgeLighterOn, rightEdgeLighterOn, leftEdgeLighterOn);
+
+                    animateOff.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, rightEdgeLighterOff, leftEdgeLighterOff);
+
+                    animatorSet.playSequentially(animateOn, animateOff);
                     animatorSet.start();
 
-                    animatorSet.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, leftEdgeLighterOff, rightEdgeLighterOff);
-                    animatorSet.start();
-                } else { //the bars need to remain lit up after the countdown
-                    topEdgeBar.setAlpha(1);
-                    bottomEdgeBar.setAlpha(1);
-                    rightEdgeBar.setAlpha(1);
-                    leftEdgeBar.setAlpha(1);
                 }
             }
 
             public void onFinish() { //sets the label to display a teleop error background and text
                 if(running) {
+                    topEdgeBar.setAlpha(1.0f);
+                    bottomEdgeBar.setAlpha(1.0f);
+                    rightEdgeBar.setAlpha(1.0f);
+                    leftEdgeBar.setAlpha(1.0f);
+
                     secondsRemaining.setText("00");
                     topEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     bottomEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));

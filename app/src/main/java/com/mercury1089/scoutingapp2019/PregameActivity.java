@@ -2,6 +2,8 @@ package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -242,7 +244,7 @@ public class PregameActivity extends AppCompatActivity {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                     startActivity(intent);
-                    //finish();
+                    finish();
                     return;
                 }
 
@@ -252,6 +254,10 @@ public class PregameActivity extends AppCompatActivity {
                 TextView passwordField = view1.findViewById(R.id.PasswordField);
                 Button confirm = view1.findViewById(R.id.ConfirmButton);
                 Button cancel = view1.findViewById(R.id.CancelButton);
+                ImageView topEdgeBar = view1.findViewById(R.id.topEdgeBar);
+                ImageView bottomEdgeBar = view1.findViewById(R.id.bottomEdgeBar);
+                ImageView leftEdgeBar = view1.findViewById(R.id.leftEdgeBar);
+                ImageView rightEdgeBar = view1.findViewById(R.id.rightEdgeBar);
                 final AlertDialog dialog = cancelDialog.create();
 
                 dialog.setView(view1);
@@ -276,10 +282,40 @@ public class PregameActivity extends AppCompatActivity {
                             Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                             startActivity(intent);
                             dialog.dismiss();
-                            //finish();
+                            finish();
                         } else {
                             Toast.makeText(PregameActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
+
+                            ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                            ObjectAnimator bottomEdgeLighterOn = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                            ObjectAnimator rightEdgeLighterOn = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                            ObjectAnimator leftEdgeLighterOn = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
+
+                            ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                            ObjectAnimator bottomEdgeLighterOff = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                            ObjectAnimator rightEdgeLighterOff = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                            ObjectAnimator leftEdgeLighterOff = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 1.0f, 0.0f);
+
+                            topEdgeLighterOn.setDuration(250);
+                            bottomEdgeLighterOn.setDuration(250);
+                            rightEdgeLighterOn.setDuration(250);
+                            leftEdgeLighterOn.setDuration(250);
+
+                            topEdgeLighterOff.setDuration(200);
+                            bottomEdgeLighterOff.setDuration(200);
+                            rightEdgeLighterOff.setDuration(200);
+                            leftEdgeLighterOff.setDuration(200);
+
+                            AnimatorSet animateOn = new AnimatorSet();
+                            AnimatorSet animateOff = new AnimatorSet();
+                            AnimatorSet animatorSet = new AnimatorSet();
+
+                            animateOn.playTogether(topEdgeLighterOn, bottomEdgeLighterOn, rightEdgeLighterOn, leftEdgeLighterOn);
+
+                            animateOff.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, rightEdgeLighterOff, leftEdgeLighterOff);
+
+                            animatorSet.playSequentially(animateOn, animateOff);
+                            animatorSet.start();
                         }
                     }
                 });
