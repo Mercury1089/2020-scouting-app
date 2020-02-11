@@ -63,6 +63,7 @@
 
     <!-- Button Texts -->
         <string name="ResetButton">RESET ALL VARIABLES</string>
+        <string name="QRCacheItem">Team Number: %1$s &#160;&#160;&#160;&#160;&#160;&#160; Match Number: %2$s</string>
 
 
 <!-- MatchActivity -->

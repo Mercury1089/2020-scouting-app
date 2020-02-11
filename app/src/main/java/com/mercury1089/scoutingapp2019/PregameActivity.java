@@ -242,6 +242,7 @@ public class PregameActivity extends AppCompatActivity {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                     startActivity(intent);
+                    //finish();
                     return;
                 }
 
@@ -274,6 +275,8 @@ public class PregameActivity extends AppCompatActivity {
                             HashMapManager.putSetupHashMap(setupHashMap);
                             Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                             startActivity(intent);
+                            dialog.dismiss();
+                            //finish();
                         } else {
                             Toast.makeText(PregameActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
@@ -667,6 +670,7 @@ public class PregameActivity extends AppCompatActivity {
                         TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
                         final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
                         Switch scannedSwitch = view1.findViewById(R.id.ScannedSwitch);
+                        Switch newScouterSwitch = view1.findViewById(R.id.NewScouterSwitch);
                         imageView.setImageBitmap(bitmap);
                         qrDialog.setView(view1);
                         final AlertDialog dialog = qrDialog.create();
@@ -696,7 +700,7 @@ public class PregameActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View view) {
                                         QRStringBuilder.clearQRString(scannedSwitch.isChecked(), getApplicationContext());
-                                        HashMapManager.setupNextMatch();
+                                        HashMapManager.setupNextMatch(newScouterSwitch.isChecked());
                                         setupHashMap = HashMapManager.getSetupHashMap();
                                         updateXMLObjects(true);
                                         dialog.dismiss();

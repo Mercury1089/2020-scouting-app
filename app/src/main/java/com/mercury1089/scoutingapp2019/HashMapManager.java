@@ -367,7 +367,7 @@ public class HashMapManager{
      *
      */
 
-    public static void setupNextMatch(){
+    public static void setupNextMatch(boolean newScouter){
         String scouterName = setupHashMap.get("ScouterName");
         String matchNumber = setupHashMap.get("MatchNumber");
         String allianceColor = setupHashMap.get("AllianceColor");
@@ -375,7 +375,7 @@ public class HashMapManager{
         setDefaultValues(HASH.AUTON);
         setDefaultValues(HASH.TELEOP);
         setDefaultValues(HASH.CLIMB);
-        setupHashMap.put("ScouterName", scouterName);
+        setupHashMap.put("ScouterName", newScouter ? "" : scouterName);
         try {
             setupHashMap.put("MatchNumber", Integer.toString((Integer.parseInt(matchNumber) + 1)));
         } catch(NumberFormatException e){

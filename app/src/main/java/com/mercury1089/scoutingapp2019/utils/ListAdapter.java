@@ -66,7 +66,8 @@ public class ListAdapter extends BaseAdapter {
         String teamNumber = qrData[1], matchNumber = qrData[2], qrString = qrDataFromFile[0];
 
         item.setSelected(qrDataFromFile[1].equals("Y"));
-        item.setText("Team Number: " + padLeftZeros(teamNumber, 2) + "    Match Number: " + padLeftZeros(matchNumber, 2));
+        //item.setText("Team Number: " + padLeftZeros(teamNumber, 4) + "    Match Number: " + padLeftZeros(matchNumber, 2));
+        item.setText(context.getString(R.string.QRCacheItem, padLeftZeros(teamNumber, 4), padLeftZeros(matchNumber, 2)));
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
