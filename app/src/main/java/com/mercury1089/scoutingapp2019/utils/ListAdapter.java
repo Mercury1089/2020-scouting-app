@@ -1,12 +1,13 @@
 package com.mercury1089.scoutingapp2019.utils;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,7 +25,7 @@ public class ListAdapter extends BaseAdapter {
     SettingsActivity context;
     String[] data;
     private static LayoutInflater inflater = null;
-    private AlertDialog loading_alert;
+    private Dialog loading_alert;
     public final static int QRCodeSize = 500;
 
     public ListAdapter(Context context, String[] data) {
@@ -71,10 +72,9 @@ public class ListAdapter extends BaseAdapter {
         item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(context);
-                View loading_view = context.getLayoutInflater().inflate(R.layout.loading_screen, null);
-                loading_alert = loading_dialog.create();
-                loading_alert.setView(loading_view);
+                loading_alert = new Dialog(context);
+                loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                loading_alert.setContentView(R.layout.loading_screen);
                 loading_alert.setCancelable(false);
                 loading_alert.show();
 
@@ -137,16 +137,16 @@ public class ListAdapter extends BaseAdapter {
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
-                        View view1 = context.getLayoutInflater().inflate(R.layout.popup_qr_cached, null);
-                        ImageView imageView = view1.findViewById(R.id.imageView);
-                        TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
-                        TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
-                        Button readButton = view1.findViewById(R.id.readButton);
-                        Button unreadButton = view1.findViewById(R.id.unreadButton);
+                        Dialog dialog = new Dialog(context);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.popup_qr_cached);
+
+                        ImageView imageView = dialog.findViewById(R.id.imageView);
+                        TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
+                        TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
+                        Button readButton = dialog.findViewById(R.id.readButton);
+                        Button unreadButton = dialog.findViewById(R.id.unreadButton);
                         imageView.setImageBitmap(bitmap);
-                        qrDialog.setView(view1);
-                        final AlertDialog dialog = qrDialog.create();
                         dialog.setCancelable(false);
 
                         teamNumber.setText(GenUtils.padLeftZeros(teamNum, 2));

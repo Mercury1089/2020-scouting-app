@@ -2,22 +2,21 @@ package com.mercury1089.scoutingapp2019;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-import android.app.AlertDialog;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 public class MatchActivity extends AppCompatActivity {
 
@@ -54,14 +53,13 @@ public class MatchActivity extends AppCompatActivity {
     //back button
     @Override
     public void onBackPressed() {
-        final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(MatchActivity.this);
-        View view = getLayoutInflater().inflate(R.layout.exit_confirm_popup, null);
+        Dialog dialog = new Dialog(MatchActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.exit_confirm_popup);
 
-        Button exitConfirm = view.findViewById(R.id.ExitConfirm);
-        Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
-        final AlertDialog dialog = cancelDialog.create();
+        Button exitConfirm = dialog.findViewById(R.id.ExitConfirm);
+        Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
 
-        dialog.setView(view);
         dialog.show();
 
         cancelConfirm.setOnClickListener(new View.OnClickListener() {

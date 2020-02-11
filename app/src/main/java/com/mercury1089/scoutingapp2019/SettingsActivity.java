@@ -1,10 +1,11 @@
 package com.mercury1089.scoutingapp2019;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.mercury1089.scoutingapp2019.utils.ListAdapter;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -78,14 +80,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Context context = SettingsActivity.this;
-                final AlertDialog.Builder passwordSettings = new AlertDialog.Builder(context);
-                View view1 = getLayoutInflater().inflate(R.layout.password_settings_popup, null);
-                TextView passwordField = view1.findViewById(R.id.PasswordField);
-                Switch requirePasswordSwitch = view1.findViewById(R.id.SettingsPasswordSwitch);
-                Button doneButton = view1.findViewById(R.id.DoneButton);
-                Button cancelButton = view1.findViewById(R.id.CancelButton);
-                passwordSettings.setView(view1);
-                final AlertDialog dialog = passwordSettings.create();
+                Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.password_settings_popup);
+
+                TextView passwordField = dialog.findViewById(R.id.PasswordField);
+                Switch requirePasswordSwitch = dialog.findViewById(R.id.SettingsPasswordSwitch);
+                Button doneButton = dialog.findViewById(R.id.DoneButton);
+                Button cancelButton = dialog.findViewById(R.id.CancelButton);
 
                 String[] passwordData = HashMapManager.pullSettingsPassword(context);
                 try {
@@ -139,14 +141,13 @@ public class SettingsActivity extends AppCompatActivity {
         clearQRCache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(SettingsActivity.this);
-                View view1 = getLayoutInflater().inflate(R.layout.clear_qr_cache_confirm, null);
+                Dialog dialog = new Dialog(SettingsActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.clear_qr_cache_confirm);
 
-                Button clearConfirm = view1.findViewById(R.id.ClearConfirm);
-                Button cancelConfirm = view1.findViewById(R.id.CancelConfirm);
-                final AlertDialog dialog = cancelDialog.create();
+                Button clearConfirm = dialog.findViewById(R.id.ClearConfirm);
+                Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
 
-                dialog.setView(view1);
                 dialog.show();
 
                 clearConfirm.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,6 @@
 package com.mercury1089.scoutingapp2019;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -44,7 +45,7 @@ public class Climb extends Fragment {
 
     //other variables
     private ProgressDialog progressDialog;
-    private AlertDialog loading_alert;
+    private Dialog loading_alert;
     public final static int QRCodeSize = 500;
 
     public static Climb newInstance() {
@@ -117,23 +118,21 @@ public class Climb extends Fragment {
         generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(context);
-                View view = getLayoutInflater().inflate(R.layout.generate_qrcode_confirm_popup, null);
+                Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.generate_qrcode_confirm_popup);
 
-                Button generateQRButton = view.findViewById(R.id.GenerateQRButton);
-                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
-                final AlertDialog dialog = cancelDialog.create();
+                Button generateQRButton = dialog.findViewById(R.id.GenerateQRButton);
+                Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
 
-                dialog.setView(view);
                 dialog.show();
 
                 generateQRButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(context);
-                        View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
-                        loading_alert = loading_dialog.create();
-                        loading_alert.setView(loading_view);
+                        loading_alert = new Dialog(context);
+                        loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        loading_alert.setContentView(R.layout.loading_screen);
                         loading_alert.setCancelable(false);
                         loading_alert.show();
 
@@ -273,17 +272,17 @@ public class Climb extends Fragment {
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(context);
-                        View view1 = getLayoutInflater().inflate(R.layout.popup_qr, null);
-                        ImageView imageView = view1.findViewById(R.id.imageView);
-                        TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
-                        TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
-                        final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
-                        Switch scannedSwitch = view1.findViewById(R.id.ScannedSwitch);
-                        Switch newScouterSwitch = view1.findViewById(R.id.NewScouterSwitch);
+                        Dialog dialog = new Dialog(context);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.popup_qr);
+
+                        ImageView imageView = dialog.findViewById(R.id.imageView);
+                        TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
+                        TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
+                        Button goBackToMain = dialog.findViewById(R.id.GoBackButton);
+                        Switch scannedSwitch = dialog.findViewById(R.id.ScannedSwitch);
+                        Switch newScouterSwitch = dialog.findViewById(R.id.NewScouterSwitch);
                         imageView.setImageBitmap(bitmap);
-                        qrDialog.setView(view1);
-                        final AlertDialog dialog = qrDialog.create();
                         dialog.setCancelable(false);
 
                         //progressDialog.dismiss();
@@ -297,15 +296,14 @@ public class Climb extends Fragment {
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(context);
-                                View view = getLayoutInflater().inflate(R.layout.setup_next_match_confirm_popup, null);
+                                Dialog confirmDialog = new Dialog(context);
+                                confirmDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                confirmDialog.setContentView(R.layout.setup_next_match_confirm_popup);
 
-                                Button setupNextMatchButton = view.findViewById(R.id.SetupNextMatchButton);
-                                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
-                                final AlertDialog popupDialog = cancelDialog.create();
+                                Button setupNextMatchButton = confirmDialog.findViewById(R.id.SetupNextMatchButton);
+                                Button cancelConfirm = confirmDialog.findViewById(R.id.CancelConfirm);
 
-                                popupDialog.setView(view);
-                                popupDialog.show();
+                                confirmDialog.show();
 
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -315,14 +313,14 @@ public class Climb extends Fragment {
                                         Intent intent = new Intent(context, PregameActivity.class);
                                         startActivity(intent);
                                         dialog.dismiss();
-                                        popupDialog.dismiss();
+                                        confirmDialog.dismiss();
                                     }
                                 });
 
                                 cancelConfirm.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        popupDialog.dismiss();
+                                        confirmDialog.dismiss();
                                     }
                                 });
                             }

@@ -1,11 +1,9 @@
 package com.mercury1089.scoutingapp2019;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,11 +12,9 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -30,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.BarcodeFormat;
@@ -38,7 +33,6 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-
 import java.util.LinkedHashMap;
 
 public class PregameActivity extends AppCompatActivity {
@@ -87,7 +81,7 @@ public class PregameActivity extends AppCompatActivity {
     private LinkedHashMap<String, String> settingsHashMap;
     private LinkedHashMap<String, String> setupHashMap;
 
-    private AlertDialog loading_alert;
+    private Dialog loading_alert;
     private ProgressDialog progressDialog;
 
     //for QR code generator
@@ -248,19 +242,18 @@ public class PregameActivity extends AppCompatActivity {
                     return;
                 }
 
-                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
-                View view1 = getLayoutInflater().inflate(R.layout.settings_password, null);
+                Dialog dialog = new Dialog(PregameActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.settings_password);
 
-                TextView passwordField = view1.findViewById(R.id.PasswordField);
-                Button confirm = view1.findViewById(R.id.ConfirmButton);
-                Button cancel = view1.findViewById(R.id.CancelButton);
-                ImageView topEdgeBar = view1.findViewById(R.id.topEdgeBar);
-                ImageView bottomEdgeBar = view1.findViewById(R.id.bottomEdgeBar);
-                ImageView leftEdgeBar = view1.findViewById(R.id.leftEdgeBar);
-                ImageView rightEdgeBar = view1.findViewById(R.id.rightEdgeBar);
-                final AlertDialog dialog = cancelDialog.create();
+                TextView passwordField = dialog.findViewById(R.id.PasswordField);
+                Button confirm = dialog.findViewById(R.id.ConfirmButton);
+                Button cancel = dialog.findViewById(R.id.CancelButton);
+                ImageView topEdgeBar = dialog.findViewById(R.id.topEdgeBar);
+                ImageView bottomEdgeBar = dialog.findViewById(R.id.bottomEdgeBar);
+                ImageView leftEdgeBar = dialog.findViewById(R.id.leftEdgeBar);
+                ImageView rightEdgeBar = dialog.findViewById(R.id.rightEdgeBar);
 
-                dialog.setView(view1);
                 dialog.show();
 
                 passwordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -349,23 +342,21 @@ public class PregameActivity extends AppCompatActivity {
             @Override
             public  void onClick(View v){
                 if(isQRButton) {
-                    final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
-                    View view = getLayoutInflater().inflate(R.layout.generate_qrcode_confirm_popup, null);
+                    Dialog dialog = new Dialog(PregameActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.generate_qrcode_confirm_popup);
 
-                    Button generateQRButton = view.findViewById(R.id.GenerateQRButton);
-                    Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
-                    final AlertDialog dialog = cancelDialog.create();
+                    Button generateQRButton = dialog.findViewById(R.id.GenerateQRButton);
+                    Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
 
-                    dialog.setView(view);
                     dialog.show();
 
                     generateQRButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            final AlertDialog.Builder loading_dialog = new AlertDialog.Builder(PregameActivity.this);
-                            View loading_view = getLayoutInflater().inflate(R.layout.loading_screen, null);
-                            loading_alert = loading_dialog.create();
-                            loading_alert.setView(loading_view);
+                            loading_alert = new Dialog(PregameActivity.this);
+                            loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            loading_alert.setContentView(R.layout.loading_screen);
                             loading_alert.setCancelable(false);
                             loading_alert.show();
 
@@ -422,14 +413,13 @@ public class PregameActivity extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
-                View view1 = getLayoutInflater().inflate(R.layout.clear_confirm_popup, null);
+                Dialog dialog = new Dialog(PregameActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.clear_confirm_popup);
 
-                Button clearConfirm = view1.findViewById(R.id.ClearConfirm);
-                Button cancelConfirm = view1.findViewById(R.id.CancelConfirm);
-                final AlertDialog dialog = cancelDialog.create();
+                Button clearConfirm = dialog.findViewById(R.id.ClearConfirm);
+                Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
 
-                dialog.setView(view1);
                 dialog.show();
 
                 cancelConfirm.setOnClickListener(new View.OnClickListener() {
@@ -553,8 +543,6 @@ public class PregameActivity extends AppCompatActivity {
         RC.setCompoundDrawablesRelative(null, null, null, null);
         RR1.setCompoundDrawablesRelative(null, null, null, null);
         RR2.setCompoundDrawablesRelative(null, null, null, null);
-
-        setupHashMap.put("StartingPosition", "");
     }
 
     private void setStartingPosEnabled(boolean enable){
@@ -623,6 +611,7 @@ public class PregameActivity extends AppCompatActivity {
             startingPositionID.setEnabled(false);
             startingPositionDescription.setEnabled(false);
             clearStartingPos();
+            setupHashMap.put("StartingPosition", "");
             playingField.setEnabled(false);
             setStartingPosEnabled(false);
 
@@ -698,20 +687,18 @@ public class PregameActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //PregameActivity.QRCodeGenerator qrCodeGenerator = new PregameActivity.QRCodeGenerator();
-                        //qrCodeGenerator.execute();
+                        Dialog dialog = new Dialog(PregameActivity.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.popup_qr);
 
-                        final AlertDialog.Builder qrDialog = new AlertDialog.Builder(PregameActivity.this);
-                        View view1 = getLayoutInflater().inflate(R.layout.popup_qr, null);
-                        ImageView imageView = view1.findViewById(R.id.imageView);
-                        TextView teamNumber = view1.findViewById(R.id.TeamNumberQR);
-                        TextView matchNumber = view1.findViewById(R.id.MatchNumberQR);
-                        final Button goBackToMain = view1.findViewById(R.id.GoBackButton);
-                        Switch scannedSwitch = view1.findViewById(R.id.ScannedSwitch);
-                        Switch newScouterSwitch = view1.findViewById(R.id.NewScouterSwitch);
+                        ImageView imageView = dialog.findViewById(R.id.imageView);
+                        TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
+                        TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
+                        Button goBackToMain = dialog.findViewById(R.id.GoBackButton);
+                        Switch scannedSwitch = dialog.findViewById(R.id.ScannedSwitch);
+                        Switch newScouterSwitch = dialog.findViewById(R.id.NewScouterSwitch);
                         imageView.setImageBitmap(bitmap);
-                        qrDialog.setView(view1);
-                        final AlertDialog dialog = qrDialog.create();
+
                         dialog.setCancelable(false);
 
                         teamNumber.setText(setupHashMap.get("TeamNumber"));
@@ -724,15 +711,14 @@ public class PregameActivity extends AppCompatActivity {
                         goBackToMain.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
-                                View view = getLayoutInflater().inflate(R.layout.setup_next_match_confirm_popup, null);
+                                Dialog confirmDialog = new Dialog(PregameActivity.this);
+                                confirmDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                confirmDialog.setContentView(R.layout.setup_next_match_confirm_popup);
 
-                                Button setupNextMatchButton = view.findViewById(R.id.SetupNextMatchButton);
-                                Button cancelConfirm = view.findViewById(R.id.CancelConfirm);
-                                final AlertDialog popupDialog = cancelDialog.create();
+                                Button setupNextMatchButton = confirmDialog.findViewById(R.id.SetupNextMatchButton);
+                                Button cancelConfirm = confirmDialog.findViewById(R.id.CancelConfirm);
 
-                                popupDialog.setView(view);
-                                popupDialog.show();
+                                confirmDialog.show();
 
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -742,14 +728,14 @@ public class PregameActivity extends AppCompatActivity {
                                         setupHashMap = HashMapManager.getSetupHashMap();
                                         updateXMLObjects(true);
                                         dialog.dismiss();
-                                        popupDialog.dismiss();
+                                        confirmDialog.dismiss();
                                     }
                                 });
 
                                 cancelConfirm.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        popupDialog.dismiss();
+                                        confirmDialog.dismiss();
                                     }
                                 });
                             }
