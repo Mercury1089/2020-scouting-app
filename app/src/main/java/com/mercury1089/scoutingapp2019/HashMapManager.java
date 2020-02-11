@@ -215,6 +215,9 @@ public class HashMapManager{
             BufferedReader reader = new BufferedReader(inputStreamReader);
             password = reader.readLine();
             usePassword = reader.readLine();
+            if(password == null || usePassword == null){
+                return new String[] {"", "N"};
+            }
             return new String[] {password, usePassword};
         } catch(Exception e){
             File file = new File(context.getFilesDir(), filename);
