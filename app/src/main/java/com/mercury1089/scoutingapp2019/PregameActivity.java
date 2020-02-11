@@ -553,6 +553,8 @@ public class PregameActivity extends AppCompatActivity {
         RC.setCompoundDrawablesRelative(null, null, null, null);
         RR1.setCompoundDrawablesRelative(null, null, null, null);
         RR2.setCompoundDrawablesRelative(null, null, null, null);
+
+        setupHashMap.put("StartingPosition", "");
     }
 
     private void setStartingPosEnabled(boolean enable){
