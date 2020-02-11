@@ -10,9 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class HashMapManager{
@@ -208,6 +206,46 @@ public class HashMapManager{
         }
     }
 
+    public static String[] pullSettingsPassword(Context context){
+        String filename = "SettingsPassword";
+        String password, usePassword;
+        try {
+            FileInputStream fs = context.openFileInput(filename);
+            InputStreamReader inputStreamReader = new InputStreamReader(fs, StandardCharsets.UTF_8);
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            password = reader.readLine();
+            usePassword = reader.readLine();
+            return new String[] {password, usePassword};
+        } catch(Exception e){
+            File file = new File(context.getFilesDir(), filename);
+            try {
+                file.createNewFile();
+            }catch (Exception e1) {}
+            return null;
+        }
+    }
+
+    public static void saveSettingsPassword(String[] passwordStuff, Context context){
+        String filename = "SettingsPassword";
+        try {
+            String password = passwordStuff[0];
+            String usePassword = passwordStuff[1];
+            File file = new File(context.getFilesDir(), filename);
+            if(file.exists()) {
+                file.delete();
+            }
+            file.createNewFile();
+            FileOutputStream fs = new FileOutputStream(file);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fs));
+            bw.write(password);
+            bw.newLine();
+            bw.write(usePassword);
+            bw.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
     *
     * Used to reset all the setupHashMap values to their default values
@@ -220,6 +258,7 @@ public class HashMapManager{
                 settingsHashMap.put("HashMapName", "Settings");
                 settingsHashMap.put("NothingToSeeHere", "0");
                 settingsHashMap.put("Slack", "0");
+                settingsHashMap.put("DefaultPassword", "abc");
             case SETUP:
                 setupHashMap.put("HashMapName", "Setup");
                 setupHashMap.put("ScouterName", "");

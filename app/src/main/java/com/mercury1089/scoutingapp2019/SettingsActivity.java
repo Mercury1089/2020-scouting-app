@@ -1,29 +1,18 @@
 package com.mercury1089.scoutingapp2019;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.ListAdapter;
-import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
-
 import java.util.LinkedHashMap;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -41,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         Button localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         Button backButton = findViewById(R.id.BackButton);
         Button clearQRCache = findViewById(R.id.ClearQRCodesButton);
+        Button passwordSettingsButton = findViewById(R.id.PasswordSettingsButton);
         ImageButton muteButton = findViewById(R.id.MuteButton);
 
         qrCodeSelector = findViewById(R.id.QRCodeListView);
@@ -60,6 +50,13 @@ public class SettingsActivity extends AppCompatActivity {
             muteButton.setEnabled(false);
         }
 
+        try {
+            String requiredPassword = HashMapManager.pullSettingsPassword(SettingsActivity.this)[1];
+            passwordSettingsButton.setSelected(requiredPassword.equals("Y"));
+        } catch (Exception e) {
+            passwordSettingsButton.setSelected(false);
+        }
+
         if(qrList.length > 0)
             clearQRCache.setEnabled(true);
         else
@@ -75,6 +72,49 @@ public class SettingsActivity extends AppCompatActivity {
                 HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
                 clearQRCache.callOnClick();
                 Toast.makeText(SettingsActivity.this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        passwordSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = SettingsActivity.this;
+                final AlertDialog.Builder passwordSettings = new AlertDialog.Builder(context);
+                View view1 = getLayoutInflater().inflate(R.layout.password_settings_popup, null);
+                TextView passwordField = view1.findViewById(R.id.PasswordField);
+                Switch requirePasswordSwitch = view1.findViewById(R.id.SettingsPasswordSwitch);
+                Button doneButton = view1.findViewById(R.id.DoneButton);
+                Button cancelButton = view1.findViewById(R.id.CancelButton);
+                passwordSettings.setView(view1);
+                final AlertDialog dialog = passwordSettings.create();
+
+                String[] passwordData = HashMapManager.pullSettingsPassword(context);
+                try {
+                    passwordField.setText(passwordData[0]);
+                    requirePasswordSwitch.setChecked(passwordData[1].equals("Y"));
+                } catch (Exception e) {}
+
+                passwordField.setHint(settingsHashMap.get("DefaultPassword").toString());
+
+                dialog.show();
+
+                doneButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String password = passwordField.getText().toString(), requiredPassword = requirePasswordSwitch.isChecked() ? "Y" : "N";
+                        HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
+                        dialog.dismiss();
+                        HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
+                        passwordSettingsButton.setSelected(requiredPassword.equals("Y"));
+                    }
+                });
+
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 

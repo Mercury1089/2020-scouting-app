@@ -39,8 +39,9 @@ import java.util.LinkedHashMap;
 
 public class PregameActivity extends AppCompatActivity {
 
-    //variables that store elements of the screen for the output variables
+    String password;
 
+    //variables that store elements of the screen for the output variables
     //Buttons
     private ImageButton settingsButton;
     private Button blueButton;
@@ -133,6 +134,7 @@ public class PregameActivity extends AppCompatActivity {
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
         settingsHashMap = HashMapManager.getSettingsHashMap();
         setupHashMap = HashMapManager.getSetupHashMap();
+        password = settingsHashMap.get("DefaultPassword");
 
         //setting group buttons to default state
         updateXMLObjects(true);
@@ -219,12 +221,27 @@ public class PregameActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String[] passwordData = HashMapManager.pullSettingsPassword(PregameActivity.this);
+                final String password, requiredPassword;
+                String tempPassword, tempRequired;
+                try {
+                    tempPassword = passwordData[0];
+                    tempRequired = passwordData[1];
+                } catch (Exception e) {
+                    tempPassword = PregameActivity.this.password;
+                    tempRequired = "N";
+                }
 
-                HashMapManager.putSetupHashMap(setupHashMap);
-                Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
-                startActivity(intent);
+                password = tempPassword;
+                requiredPassword = tempRequired;
 
-                /*
+                if(requiredPassword.equals("N")){
+                    HashMapManager.putSetupHashMap(setupHashMap);
+                    Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
                 final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(PregameActivity.this);
                 View view1 = getLayoutInflater().inflate(R.layout.settings_password, null);
 
@@ -239,7 +256,8 @@ public class PregameActivity extends AppCompatActivity {
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(passwordField.getText().toString().equals("31415925")){
+                        String savedPassword = !password.equals("") ? password : PregameActivity.this.password;
+                        if(passwordField.getText().toString().equals(savedPassword)){
                             HashMapManager.putSetupHashMap(setupHashMap);
                             Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                             startActivity(intent);
@@ -256,7 +274,6 @@ public class PregameActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 }));
-                */
             }
         });
 
@@ -324,8 +341,16 @@ public class PregameActivity extends AppCompatActivity {
                         clearStartingPos();
                         updateXMLObjects(true);
                         return;
-                    } else if(scouterNameInput.getText().toString().equals("0x") && matchNumberInput.getText().toString().equals("441") && teamNumberInput.getText().toString().equals("1089") && firstAlliancePartnerInput.getText().toString().equals("1089") && secondAlliancePartnerInput.getText().toString().equals("1089")){
+                    } else if(scouterNameInput.getText().toString().equals("0x") && matchNumberInput.getText().toString().equals("441") && teamNumberInput.getText().toString().equals("1089") && firstAlliancePartnerInput.getText().toString().equals("1089") && secondAlliancePartnerInput.getText().toString().equals("1089")) {
                         settingsHashMap.put("Slack", "1");
+                        HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
+                        setupHashMap = HashMapManager.getSetupHashMap();
+
+                        clearStartingPos();
+                        updateXMLObjects(true);
+                        return;
+                    } else if(scouterNameInput.getText().toString().equals("admin") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")){
+                        HashMapManager.saveSettingsPassword(new String[]{"", "N"}, PregameActivity.this);
                         HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
                         setupHashMap = HashMapManager.getSetupHashMap();
 

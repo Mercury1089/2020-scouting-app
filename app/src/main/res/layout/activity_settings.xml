@@ -13,7 +13,7 @@
         android:id="@+id/BackButton"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/button_height"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_states"
         android:drawableLeft="@drawable/left"
@@ -23,6 +23,20 @@
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SettingsHeader" />
+
+    <Button
+        android:id="@+id/PasswordSettingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_states"
+        android:fontFamily="@font/open_sans"
+        android:text="Password Settings"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintStart_toEndOf="@id/BackButton"
+        app:layout_constraintEnd_toStartOf="@id/MuteButton"
         app:layout_constraintTop_toBottomOf="@+id/SettingsHeader" />
 
     <Button
@@ -45,7 +59,6 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/button_height"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="100dp"
         android:background="@drawable/button_states"
         android:drawableStart="@drawable/trash_states"
         android:drawablePadding="@dimen/bootstrap_alert_paddings"
@@ -53,7 +66,7 @@
         android:text="Clear QR Codes"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
-        app:layout_constraintStart_toEndOf="@+id/LocalStorageResetButton"
+        app:layout_constraintEnd_toEndOf="@+id/IDSettingsDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDSettingsDirections" />
 
     <TextView
@@ -73,10 +86,12 @@
         android:layout_width="541dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/ResetDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/IDSettings"
         app:layout_constraintTop_toBottomOf="@+id/IDSettings" />
 
