@@ -1,5 +1,6 @@
 package com.mercury1089.scoutingapp2019;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -176,8 +177,6 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
-                missedCounter.setEnabled(false);
-                missedButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
@@ -188,7 +187,25 @@ public class Teleop extends Fragment {
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
 
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+                PopupWindow popupWindow = new PopupWindow(popupView, width, height);
+
+                // required*
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                // *required
+
+                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        scoredButton.setSelected(false);
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
+                    }
+                });
+
                 popupWindow.showAsDropDown(scoredButton);
                 scoredButton.setSelected(true);
 
@@ -267,15 +284,7 @@ public class Teleop extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        possessionButtonsEnabledState(true);
-                        controlPanelButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        missedCounter.setEnabled(true);
-                        missedButton.setEnabled(true);
-                        scoredButton.setSelected(false);
                     }
                 });
 
@@ -285,15 +294,7 @@ public class Teleop extends Fragment {
                         teleopHashMap.put("OuterPortScored", oldOuterScore);
                         teleopHashMap.put("InnerPortScored", oldInnerScore);
                         teleopHashMap.put("LowerPortScored", oldLowerScore);
-                        possessionButtonsEnabledState(true);
-                        controlPanelButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        missedCounter.setEnabled(true);
-                        missedButton.setEnabled(true);
-                        scoredButton.setSelected(false);
                     }
                 });
             }
@@ -345,8 +346,6 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
-                scoredButton.setEnabled(false);
-                scoredCounter.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
@@ -357,7 +356,25 @@ public class Teleop extends Fragment {
                 int width = (int)getResources().getDimension(R.dimen.missed_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.missed_popup_height);
 
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+                PopupWindow popupWindow = new PopupWindow(popupView, width, height);
+
+                // required*
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                // *required
+
+                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        missedButton.setSelected(false);
+                        possessionButtonsEnabledState(true);
+                        controlPanelButtonsEnabledState(false);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
+                    }
+                });
+
                 popupWindow.showAsDropDown(missedButton);
                 missedButton.setSelected(true);
 
@@ -415,15 +432,7 @@ public class Teleop extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        possessionButtonsEnabledState(true);
-                        controlPanelButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        scoredButton.setEnabled(true);
-                        scoredCounter.setEnabled(true);
-                        missedButton.setSelected(false);
                     }
                 });
 
@@ -432,15 +441,7 @@ public class Teleop extends Fragment {
                     public void onClick(View v) {
                         teleopHashMap.put("UpperPortMissed", oldHigherScore);
                         teleopHashMap.put("LowerPortMissed", oldLowerScore);
-                        possessionButtonsEnabledState(true);
-                        controlPanelButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        scoredButton.setEnabled(true);
-                        scoredCounter.setEnabled(true);
-                        missedButton.setSelected(false);
                     }
                 });
             }

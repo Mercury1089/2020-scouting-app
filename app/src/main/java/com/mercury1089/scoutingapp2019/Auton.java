@@ -2,10 +2,15 @@ package com.mercury1089.scoutingapp2019;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.service.autofill.FieldClassification;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -284,8 +289,6 @@ public class Auton extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
-                missedCounter.setEnabled(false);
-                missedButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
 
@@ -295,9 +298,31 @@ public class Auton extends Fragment {
                 int width = (int)getResources().getDimension(R.dimen.scoring_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.scoring_popup_height);
 
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+                PopupWindow popupWindow = new PopupWindow(popupView, width, height);
+
+                // required*
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                // *required
+
+                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        scoredButton.setSelected(false);
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
+                    }
+                });
+
                 popupWindow.showAsDropDown(scoredButton);
                 scoredButton.setSelected(true);
+
+                //popupWindow.setOutsideTouchable(true);
+                //popupWindow.setFocusable(false);
+                //popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Log.d("Stuff4", popupWindow.isFocusable() ? "YAY!" : "NOOOO!");
 
                 // Buttons
                 doneButton = popupView.findViewById(R.id.DoneButton);
@@ -374,14 +399,7 @@ public class Auton extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        possessionButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        missedCounter.setEnabled(true);
-                        missedButton.setEnabled(true);
-                        scoredButton.setSelected(false);
                     }
                 });
 
@@ -391,14 +409,7 @@ public class Auton extends Fragment {
                         autonHashMap.put("OuterPortScored", oldOuterScore);
                         autonHashMap.put("InnerPortScored", oldInnerScore);
                         autonHashMap.put("LowerPortScored", oldLowerScore);
-                        possessionButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        missedCounter.setEnabled(true);
-                        missedButton.setEnabled(true);
-                        scoredButton.setSelected(false);
                     }
                 });
             }
@@ -450,8 +461,6 @@ public class Auton extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
-                scoredCounter.setEnabled(false);
-                scoredButton.setEnabled(false);
                 possessionButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
 
@@ -461,7 +470,24 @@ public class Auton extends Fragment {
                 int width = (int)getResources().getDimension(R.dimen.missed_popup_width);
                 int height = (int)getResources().getDimension(R.dimen.missed_popup_height);
 
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+                PopupWindow popupWindow = new PopupWindow(popupView, width, height);
+
+                // required*
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                // *required
+
+                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        missedButton.setSelected(false);
+                        possessionButtonsEnabledState(true);
+                        miscButtonsEnabledState(true);
+                        updateObjects();
+                        updateXMLObjects();
+                    }
+                });
+
                 popupWindow.showAsDropDown(missedButton);
                 missedButton.setSelected(true);
 
@@ -519,14 +545,7 @@ public class Auton extends Fragment {
                 doneButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        possessionButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        scoredCounter.setEnabled(true);
-                        scoredButton.setEnabled(true);
-                        missedButton.setSelected(false);
                     }
                 });
 
@@ -535,14 +554,7 @@ public class Auton extends Fragment {
                     public void onClick(View v) {
                         autonHashMap.put("UpperPortMissed", oldHigherScore);
                         autonHashMap.put("LowerPortMissed", oldLowerScore);
-                        possessionButtonsEnabledState(true);
-                        miscButtonsEnabledState(true);
-                        updateObjects();
-                        updateXMLObjects();
                         popupWindow.dismiss();
-                        scoredCounter.setEnabled(true);
-                        scoredButton.setEnabled(true);
-                        missedButton.setSelected(false);
                     }
                 });
             }
