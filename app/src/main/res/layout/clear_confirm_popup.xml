@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="360dp"
+    android:layout_height="wrap_content"
     android:background="@color/night"
     android:maxHeight="350dp"
     android:padding="@dimen/padding">
 
     <Button
         android:id="@+id/ClearConfirm"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_large_active"
         android:fontFamily="@font/open_sans"
-        android:text="@string/Clear"
 
+        android:text="@string/Clear"
         android:textColor="@color/ice"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDQRWarningDirections" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <!-- android:layout_constraintWidth_percent="0.7" -->
 
     <Button
         android:id="@+id/CancelConfirm"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="@dimen/button_text_size"
+        android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
+        android:fontFamily="@font/open_sans"
         android:text="@string/Cancel"
         android:textColor="@color/ice"
         android:textSize="@dimen/button_text_size"
@@ -43,13 +45,11 @@
         android:id="@+id/IDQRWarningDirections"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/open_sans"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_italic"
         android:text="@string/ClearDirections"
         android:textColor="@color/bootstrap_brand_secondary_border"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDClear" />
 
@@ -57,8 +57,6 @@
         android:id="@+id/IDClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/ClearTitle"
         android:textColor="@drawable/header_states"
@@ -68,10 +66,10 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="2dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/divider"
-        app:layout_constraintBottom_toTopOf="@+id/ClearConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

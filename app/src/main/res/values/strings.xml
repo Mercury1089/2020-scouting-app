@@ -138,6 +138,12 @@
     <!-- Clear -->
         <string name="ClearDirections">Are you sure you want to clear all data on the setup screen?</string>
 
+    <!-- Password -->
+        <string name="IDPassword">PASSWORD</string>
+        <string name="IDPasswordInstructions">Please enter an password to access the Settings screen.</string>
+        <string name="IDPasswordSettings">PASSWORD SETTINGS</string>
+        <string name="IDPasswordRequiredConfirm">Password protect app settings?</string>
+
     <!-- Button Text -->
         <string name="Recharge">Recharge for Next Match</string>
         <string name="Scanned">Scanned?</string>
