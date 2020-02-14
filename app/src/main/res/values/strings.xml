@@ -140,7 +140,7 @@
 
     <!-- Password -->
         <string name="IDPassword">PASSWORD</string>
-        <string name="IDPasswordInstructions">Please enter an password to access the Settings screen.</string>
+        <string name="IDPasswordInstructions">Please enter a password to access the Settings screen</string>
         <string name="IDPasswordSettings">PASSWORD SETTINGS</string>
         <string name="IDPasswordRequiredConfirm">Password protect app settings?</string>
 
