@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.mercury1089.scoutingapp2019.utils.ListAdapter;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -82,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Context context = SettingsActivity.this;
                 Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.password_settings_popup);
+                dialog.setContentView(R.layout.enter_password_popup);
 
                 TextView passwordField = dialog.findViewById(R.id.PasswordField);
                 Switch requirePasswordSwitch = dialog.findViewById(R.id.SettingsPasswordSwitch);
