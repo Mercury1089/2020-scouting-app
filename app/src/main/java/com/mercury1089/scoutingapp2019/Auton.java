@@ -2,6 +2,10 @@ package com.mercury1089.scoutingapp2019;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+
+import android.content.Context;
+import android.os.Vibrator;
+
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -146,6 +150,8 @@ public class Auton extends Fragment {
         //fill in counters with data
         updateXMLObjects();
 
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
         timer = new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -154,6 +160,8 @@ public class Auton extends Fragment {
                     teleopWarning.setVisibility(View.VISIBLE);
                     timerID.setTextColor(context.getResources().getColor(R.color.banana));
                     timerID.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.timer_yellow, 0, 0, 0);
+
+                    vibrator.vibrate(500);
 
                     ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
                     ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
