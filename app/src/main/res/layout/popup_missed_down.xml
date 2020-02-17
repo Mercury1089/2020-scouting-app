@@ -50,24 +50,24 @@
 
 
             <Button
-                android:id="@+id/UpperIncrement"
+                android:id="@+id/UpperDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
+                android:text="@string/Minus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
             <Button
-                android:id="@+id/UpperDecrement"
+                android:id="@+id/UpperIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
+                android:text="@string/Plus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
@@ -99,24 +99,24 @@
 
 
             <Button
-                android:id="@+id/LowerIncrement"
+                android:id="@+id/LowerDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
+                android:text="@string/Minus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
             <Button
-                android:id="@+id/LowerDecrement"
+                android:id="@+id/LowerIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
+                android:text="@string/Plus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 

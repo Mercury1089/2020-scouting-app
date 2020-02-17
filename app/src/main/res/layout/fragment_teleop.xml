@@ -155,22 +155,22 @@
         app:layout_constraintTop_toTopOf="@+id/IDPickedUp">
 
         <ImageButton
-            android:id="@+id/PickedUpButton"
+            android:id="@+id/NotPickedUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
             android:enabled="true"
             android:gravity="center"
-            android:src="@drawable/plus_states"
+            android:src="@drawable/minus_states"
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/NotPickedUpButton"
+            android:id="@+id/PickedUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
-            android:src="@drawable/minus_states"
+            android:src="@drawable/plus_states"
             tools:ignore="ContentDescription" />
     </RadioGroup>
 
@@ -187,21 +187,21 @@
         app:layout_constraintTop_toTopOf="@+id/IDDropped">
 
         <ImageButton
-            android:id="@+id/DroppedButton"
+            android:id="@+id/NotDroppedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
             android:gravity="center"
-            android:src="@drawable/plus_states"
+            android:src="@drawable/minus_states"
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/NotDroppedButton"
+            android:id="@+id/DroppedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
-            android:src="@drawable/minus_states"
+            android:src="@drawable/plus_states"
             tools:ignore="ContentDescription" />
     </RadioGroup>
 

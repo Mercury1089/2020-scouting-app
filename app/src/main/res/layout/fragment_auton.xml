@@ -218,23 +218,23 @@
         app:layout_constraintTop_toTopOf="@+id/IDPickedUp">
 
         <ImageButton
-            android:id="@+id/PickedUpButton"
+            android:id="@+id/NotPickedUpButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:background="@drawable/toggle_left_states"
             android:enabled="true"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:src="@drawable/plus_states"
+            android:src="@drawable/minus_states"
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/NotPickedUpButton"
+            android:id="@+id/PickedUpButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:background="@drawable/toggle_right_states"
             android:gravity="center"
-            android:src="@drawable/minus_states"
+            android:src="@drawable/plus_states"
             android:enabled="false"
             tools:ignore="ContentDescription" />
 
@@ -253,23 +253,23 @@
         app:layout_constraintTop_toTopOf="@+id/IDDropped">
 
         <ImageButton
-            android:id="@+id/DroppedButton"
+            android:id="@+id/NotDroppedButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:background="@drawable/toggle_left_states"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:src="@drawable/plus_states"
+            android:src="@drawable/minus_states"
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/NotDroppedButton"
+            android:id="@+id/DroppedButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:background="@drawable/toggle_right_states"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:src="@drawable/minus_states"
+            android:src="@drawable/plus_states"
             tools:ignore="ContentDescription" />
     </RadioGroup>
 

@@ -49,24 +49,24 @@
 
 
             <Button
-                android:id="@+id/OuterIncrement"
+                android:id="@+id/OuterDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
+                android:text="@string/Minus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
             <Button
-                android:id="@+id/OuterDecrement"
+                android:id="@+id/OuterIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
+                android:text="@string/Plus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
@@ -109,24 +109,24 @@
 
 
             <Button
-                android:id="@+id/InnerIncrement"
+                android:id="@+id/InnerDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
+                android:text="@string/Minus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
             <Button
-                android:id="@+id/InnerDecrement"
+                android:id="@+id/InnerIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
+                android:text="@string/Plus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
@@ -158,24 +158,24 @@
 
 
             <Button
-                android:id="@+id/LowerIncrement"
+                android:id="@+id/LowerDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
+                android:text="@string/Minus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
             <Button
-                android:id="@+id/LowerDecrement"
+                android:id="@+id/LowerIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
+                android:text="@string/Plus"
                 android:textColor="@drawable/text_states"
                 android:textSize="@dimen/square_toggle_text" />
 
