@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScoredPopupWindow"
     android:layout_width="@dimen/missed_popup_width"
     android:layout_height="@dimen/missed_popup_height"
@@ -41,27 +42,27 @@
             app:layout_constraintTop_toTopOf="@+id/UpperID">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/UpperDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/UpperIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
 
 
         </RadioGroup>
@@ -90,27 +91,27 @@
             app:layout_constraintTop_toTopOf="@+id/LowerID">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/LowerDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/LowerIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
 
 
         </RadioGroup>

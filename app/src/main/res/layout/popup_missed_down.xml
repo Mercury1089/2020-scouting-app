@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScoredPopupWindow"
-    android:layout_width="@dimen/missed_popup_width"
-    android:layout_height="@dimen/missed_popup_height"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@android:color/transparent">
 
     <View
@@ -18,9 +18,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Contents"
-        android:layout_width="@dimen/scoring_popup_width"
-        android:layout_height="315dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@color/bg_scoring_popup"
+        android:padding="@dimen/padding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carat">
 
@@ -28,10 +29,9 @@
             android:id="@+id/UpperID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="10dp"
             android:text="@string/UpperPortID"
-            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:textColor="@color/ice"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -48,30 +48,27 @@
             app:layout_constraintStart_toEndOf="@+id/UpperID"
             app:layout_constraintTop_toTopOf="@+id/UpperID">
 
-
-            <Button
+            <ImageButton
                 android:id="@+id/UpperDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/UpperIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
-
-
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
         </RadioGroup>
 
         <TextView
@@ -80,8 +77,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/DefaultValue"
-            android:textColor="@color/bootstrap_brand_secondary_border"
-            android:textSize="@dimen/label_text_size"
+            android:textColor="@color/ice"
+            android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/UpperID"
             app:layout_constraintStart_toEndOf="@+id/UpperIncrementDecrementContainer"
             app:layout_constraintTop_toTopOf="@+id/UpperID" />
@@ -97,28 +94,27 @@
             app:layout_constraintStart_toStartOf="@+id/UpperIncrementDecrementContainer"
             app:layout_constraintTop_toTopOf="@+id/LowerID">
 
-
-            <Button
+            <ImageButton
                 android:id="@+id/LowerDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/LowerIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
 
 
         </RadioGroup>
@@ -129,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:text="@string/LowerPortID"
-            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:textColor="@color/ice"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="@+id/UpperID"
             app:layout_constraintTop_toBottomOf="@+id/UpperID" />
@@ -139,8 +135,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/DefaultValue"
-            android:textColor="@color/bootstrap_brand_secondary_border"
-            android:textSize="@dimen/label_text_size"
+            android:textColor="@color/ice"
+            android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
             app:layout_constraintStart_toStartOf="@+id/UpperScore"
             app:layout_constraintTop_toTopOf="@+id/LowerID" />

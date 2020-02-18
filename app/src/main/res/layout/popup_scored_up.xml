@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScoredPopupWindow"
-    android:layout_width="@dimen/scoring_popup_width"
-    android:layout_height="@dimen/scoring_popup_height"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@android:color/transparent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Contents"
-        android:layout_width="@dimen/scoring_popup_width"
-        android:layout_height="365dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@color/bg_scoring_popup"
+        android:padding="@dimen/padding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -19,10 +20,9 @@
             android:id="@+id/OuterID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:text="@string/OuterPortID"
-            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:textColor="@color/ice"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,27 +40,27 @@
             app:layout_constraintTop_toTopOf="@+id/OuterID">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/OuterDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/OuterIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
 
 
         </RadioGroup>
@@ -71,8 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/DefaultValue"
-            android:textColor="@color/bootstrap_brand_secondary_border"
-            android:textSize="@dimen/label_text_size"
+            android:textColor="@color/ice"
+            android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/OuterID"
             app:layout_constraintStart_toEndOf="@+id/OuterIncrementDecrementContainer"
             app:layout_constraintTop_toTopOf="@+id/OuterID" />
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:text="@string/InnerPortID"
-            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:textColor="@color/ice"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="@id/OuterID"
             app:layout_constraintTop_toBottomOf="@id/OuterID" />
@@ -100,27 +100,27 @@
             app:layout_constraintTop_toTopOf="@+id/InnerID">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/InnerDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/InnerIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
 
 
         </RadioGroup>
@@ -131,8 +131,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/DefaultValue"
-            android:textColor="@color/bootstrap_brand_secondary_border"
-            android:textSize="@dimen/label_text_size"
+            android:textColor="@color/ice"
+            android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/InnerID"
             app:layout_constraintStart_toEndOf="@+id/InnerIncrementDecrementContainer"
             app:layout_constraintTop_toTopOf="@+id/InnerID" />
@@ -149,27 +149,27 @@
             app:layout_constraintTop_toTopOf="@+id/LowerID">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/LowerDecrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_left_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Minus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/LowerIncrement"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:background="@drawable/toggle_right_states"
+                android:enabled="true"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:text="@string/Plus"
-                android:textColor="@drawable/text_states"
-                android:textSize="@dimen/square_toggle_text" />
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
 
 
         </RadioGroup>
@@ -180,7 +180,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:text="@string/LowerPortID"
-            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:textColor="@color/ice"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="@+id/InnerID"
             app:layout_constraintTop_toBottomOf="@+id/InnerID" />
@@ -190,8 +190,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/DefaultValue"
-            android:textColor="@color/bootstrap_brand_secondary_border"
-            android:textSize="@dimen/label_text_size"
+            android:textColor="@color/ice"
+            android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
             app:layout_constraintStart_toStartOf="@+id/InnerScore"
             app:layout_constraintTop_toTopOf="@+id/LowerID" />
@@ -235,7 +235,7 @@
         android:layout_marginStart="36dp"
         android:background="@drawable/carat"
         android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Contents" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
