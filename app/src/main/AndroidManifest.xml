@@ -8,14 +8,15 @@
     <application
         android:hardwareAccelerated="false"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/infinite_recharge_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/infinite_recharge_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MatchActivity" />
         <activity android:name=".SettingsActivity"/>
-        <activity android:name=".PregameActivity">
+        <activity android:name=".PregameActivity" />
+        <activity android:name=".MatchActivity"/>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

@@ -3,18 +3,15 @@ package com.mercury1089.scoutingapp2019;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Vibrator;
 
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.service.autofill.FieldClassification;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,8 +24,6 @@ import android.widget.TextView;
 import java.util.LinkedHashMap;
 import androidx.fragment.app.Fragment;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-
-import org.w3c.dom.Text;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -85,6 +80,7 @@ public class Auton extends Fragment {
     private boolean running = true;
     private int totalScored;
     private int totalMissed;
+    private AnimatorSet teleopButtonAnimation;
 
     public static Auton newInstance() {
         Auton fragment = new Auton();
@@ -163,39 +159,28 @@ public class Auton extends Fragment {
 
                     vibrator.vibrate(500);
 
-                    ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
-                    ObjectAnimator topEdgeLighterOff = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                    ObjectAnimator topEdgeLighter = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator bottomEdgeLighter = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator rightEdgeLighter = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator leftEdgeLighter = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
 
-                    ObjectAnimator bottomEdgeLighterOn = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
-                    ObjectAnimator bottomEdgeLighterOff = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                    topEdgeLighter.setDuration(500);
+                    bottomEdgeLighter.setDuration(500);
+                    leftEdgeLighter.setDuration(500);
+                    rightEdgeLighter.setDuration(500);
 
-                    ObjectAnimator rightEdgeLighterOn = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
-                    ObjectAnimator rightEdgeLighterOff = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 1.0f, 0.0f);
+                    topEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    topEdgeLighter.setRepeatCount(1);
+                    bottomEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    bottomEdgeLighter.setRepeatCount(1);
+                    leftEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    leftEdgeLighter.setRepeatCount(1);
+                    rightEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    rightEdgeLighter.setRepeatCount(1);
 
-                    ObjectAnimator leftEdgeLighterOn = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
-                    ObjectAnimator leftEdgeLighterOff = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 1.0f, 0.0f);
-
-                    topEdgeLighterOn.setDuration(500);
-                    topEdgeLighterOff.setDuration(500);
-
-                    bottomEdgeLighterOn.setDuration(500);
-                    bottomEdgeLighterOff.setDuration(500);
-
-                    leftEdgeLighterOn.setDuration(500);
-                    leftEdgeLighterOff.setDuration(500);
-
-                    rightEdgeLighterOn.setDuration(500);
-                    rightEdgeLighterOff.setDuration(500);
-
-                    AnimatorSet animateOn = new AnimatorSet();
-                    AnimatorSet animateOff = new AnimatorSet();
                     AnimatorSet animatorSet = new AnimatorSet();
 
-                    animateOn.playTogether(topEdgeLighterOn, bottomEdgeLighterOn, rightEdgeLighterOn, leftEdgeLighterOn);
-
-                    animateOff.playTogether(topEdgeLighterOff, bottomEdgeLighterOff, rightEdgeLighterOff, leftEdgeLighterOff);
-
-                    animatorSet.playSequentially(animateOn, animateOff);
+                    animatorSet.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter);
                     animatorSet.start();
 
                 }
@@ -219,6 +204,15 @@ public class Auton extends Fragment {
                     teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     teleopWarning.setText(getResources().getString(R.string.TeleopError));
                     nextButton.setSelected(true);
+
+                    ObjectAnimator anim = new ObjectAnimator().ofFloat(nextButton, View.ALPHA, 1.0f, 0.25f);
+                    anim.setDuration(750);
+                    anim.setRepeatCount(ObjectAnimator.INFINITE);
+                    anim.setRepeatMode(ObjectAnimator.REVERSE);
+
+                    teleopButtonAnimation = new AnimatorSet();
+                    teleopButtonAnimation.play(anim);
+                    teleopButtonAnimation.start();
                 }
             }
         };
@@ -691,9 +685,12 @@ public class Auton extends Fragment {
             if (isVisibleToUser) {
                 setupHashMap = HashMapManager.getSetupHashMap();
                 autonHashMap = HashMapManager.getAutonHashMap();
+                nextButton.setAlpha(1.0f);
                 updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
+                if(teleopButtonAnimation != null)
+                    teleopButtonAnimation.end();
                 HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putAutonHashMap(autonHashMap);
             }
