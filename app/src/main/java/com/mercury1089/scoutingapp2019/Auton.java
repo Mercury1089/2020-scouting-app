@@ -2,11 +2,9 @@ package com.mercury1089.scoutingapp2019;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Vibrator;
-
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -24,7 +22,6 @@ import android.widget.TextView;
 import java.util.LinkedHashMap;
 import androidx.fragment.app.Fragment;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
-
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Auton extends Fragment {
@@ -80,7 +77,7 @@ public class Auton extends Fragment {
     private boolean running = true;
     private int totalScored;
     private int totalMissed;
-    private AnimatorSet teleopButtonAnimation;
+    private ValueAnimator teleopButtonAnimation;
 
     public static Auton newInstance() {
         Auton fragment = new Auton();
@@ -152,6 +149,7 @@ public class Auton extends Fragment {
 
             public void onTick(long millisUntilFinished) {
                 secondsRemaining.setText(GenUtils.padLeftZeros("" + millisUntilFinished / 1000, 2));
+
                 if (millisUntilFinished / 1000 <= 3 && millisUntilFinished / 1000 > 0) {  //play the blinking animation
                     teleopWarning.setVisibility(View.VISIBLE);
                     timerID.setTextColor(context.getResources().getColor(R.color.banana));
@@ -169,17 +167,16 @@ public class Auton extends Fragment {
                     leftEdgeLighter.setDuration(500);
                     rightEdgeLighter.setDuration(500);
 
-                    topEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    topEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
                     topEdgeLighter.setRepeatCount(1);
-                    bottomEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    bottomEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
                     bottomEdgeLighter.setRepeatCount(1);
-                    leftEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    leftEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
                     leftEdgeLighter.setRepeatCount(1);
-                    rightEdgeLighter.setRepeatMode(ValueAnimator.REVERSE);
+                    rightEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
                     rightEdgeLighter.setRepeatCount(1);
 
                     AnimatorSet animatorSet = new AnimatorSet();
-
                     animatorSet.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter);
                     animatorSet.start();
 
@@ -188,11 +185,6 @@ public class Auton extends Fragment {
 
             public void onFinish() { //sets the label to display a teleop error background and text
                 if(running) {
-                    topEdgeBar.setAlpha(1.0f);
-                    bottomEdgeBar.setAlpha(1.0f);
-                    rightEdgeBar.setAlpha(1.0f);
-                    leftEdgeBar.setAlpha(1.0f);
-
                     secondsRemaining.setText("00");
                     topEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     bottomEdgeBar.setBackground(getResources().getDrawable(R.drawable.teleop_error));
@@ -203,15 +195,33 @@ public class Auton extends Fragment {
                     teleopWarning.setTextColor(getResources().getColor(R.color.white));
                     teleopWarning.setBackground(getResources().getDrawable(R.drawable.teleop_error));
                     teleopWarning.setText(getResources().getString(R.string.TeleopError));
-                    nextButton.setSelected(true);
 
-                    ObjectAnimator anim = new ObjectAnimator().ofFloat(nextButton, View.ALPHA, 1.0f, 0.25f);
-                    anim.setDuration(750);
-                    anim.setRepeatCount(ObjectAnimator.INFINITE);
-                    anim.setRepeatMode(ObjectAnimator.REVERSE);
+                    ObjectAnimator topEdgeLighter = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator bottomEdgeLighter = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator rightEdgeLighter = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                    ObjectAnimator leftEdgeLighter = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
 
-                    teleopButtonAnimation = new AnimatorSet();
-                    teleopButtonAnimation.play(anim);
+                    topEdgeLighter.setDuration(500);
+                    bottomEdgeLighter.setDuration(500);
+                    leftEdgeLighter.setDuration(500);
+                    rightEdgeLighter.setDuration(500);
+
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    animatorSet.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter);
+                    animatorSet.start();
+
+                    teleopButtonAnimation = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.melon), GenUtils.getAColor(context, R.color.fire));
+
+                    teleopButtonAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            nextButton.setBackgroundColor((Integer)animation.getAnimatedValue());
+                        }
+                    });
+
+                    teleopButtonAnimation.setDuration(500);
+                    teleopButtonAnimation.setRepeatMode(ValueAnimator.REVERSE);
+                    teleopButtonAnimation.setRepeatCount(ValueAnimator.INFINITE);
                     teleopButtonAnimation.start();
                 }
             }

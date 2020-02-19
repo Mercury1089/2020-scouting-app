@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SettingsActivity"/>
-        <activity android:name=".PregameActivity" />
+        <activity android:name=".PregameActivity"/>
         <activity android:name=".MatchActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>

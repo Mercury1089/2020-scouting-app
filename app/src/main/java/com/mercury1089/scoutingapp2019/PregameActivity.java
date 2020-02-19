@@ -279,6 +279,30 @@ public class PregameActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(PregameActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
 
+                            ObjectAnimator topEdgeLighter = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                            ObjectAnimator bottomEdgeLighter = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                            ObjectAnimator rightEdgeLighter = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
+                            ObjectAnimator leftEdgeLighter = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
+
+                            topEdgeLighter.setDuration(500);
+                            bottomEdgeLighter.setDuration(500);
+                            leftEdgeLighter.setDuration(500);
+                            rightEdgeLighter.setDuration(500);
+
+                            topEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
+                            topEdgeLighter.setRepeatCount(1);
+                            bottomEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
+                            bottomEdgeLighter.setRepeatCount(1);
+                            leftEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
+                            leftEdgeLighter.setRepeatCount(1);
+                            rightEdgeLighter.setRepeatMode(ObjectAnimator.REVERSE);
+                            rightEdgeLighter.setRepeatCount(1);
+
+                            AnimatorSet animatorSet = new AnimatorSet();
+                            animatorSet.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter);
+                            animatorSet.start();
+
+                            /*
                             ObjectAnimator topEdgeLighterOn = ObjectAnimator.ofFloat(topEdgeBar, View.ALPHA, 0.0f, 1.0f);
                             ObjectAnimator bottomEdgeLighterOn = ObjectAnimator.ofFloat(bottomEdgeBar, View.ALPHA, 0.0f, 1.0f);
                             ObjectAnimator rightEdgeLighterOn = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
@@ -309,6 +333,7 @@ public class PregameActivity extends AppCompatActivity {
 
                             animatorSet.playSequentially(animateOn, animateOff);
                             animatorSet.start();
+                             */
                         }
                     }
                 });
