@@ -3,17 +3,26 @@ package com.mercury1089.scoutingapp2019;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class SplashActivity extends AppCompatActivity {
+
+    private MediaPlayer mediaPlayer;
+    private float volume = 1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +47,8 @@ public class SplashActivity extends AppCompatActivity {
                 ImageView lightningBolt = findViewById(R.id.LightningBolt);
                 TextView developersText = findViewById(R.id.CreditWhereCreditsDue);
 
+                mediaPlayer = MediaPlayer.create(SplashActivity.this, R.raw.thunder2);
+
                 int lightningBoltSpeed = 200;
 
                 ObjectAnimator animatorX = ObjectAnimator.ofFloat(lightningBolt, View.X, 100, 200).setDuration(lightningBoltSpeed);
@@ -58,11 +69,13 @@ public class SplashActivity extends AppCompatActivity {
                 animatorSet.playSequentially(lightningAnimation, animatorScreenAlphaOff, animatorTextAlpha, animatorScreenAlphaOn, anim);
 
                 animatorSet.start();
+                mediaPlayer.start();
+                startFadeOut();
             }
-        }, 500);
+        }, 750);
 
         Handler handler1 = new Handler();
-        handler.postDelayed(new Runnable() {
+        handler1.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // After t seconds redirect to another intent
@@ -72,6 +85,37 @@ public class SplashActivity extends AppCompatActivity {
                 //Remove activity
                 finish();
             }
-        }, 2000);
+        }, 2250);
+    }
+
+    private void startFadeOut(){
+        final int FADE_DURATION = 3750; //The duration of the fade
+        //The amount of time between volume changes. The smaller this is, the smoother the fade
+        final int FADE_INTERVAL = 100;
+        int numberOfSteps = FADE_DURATION/FADE_INTERVAL; //Calculate the number of fade steps
+        //Calculate by how much the volume changes each step
+        final float deltaVolume = volume / (float)numberOfSteps;
+
+        //Create a new Timer and Timer task to run the fading outside the main UI thread
+        final Timer timer = new Timer(true);
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                fadeOutStep(deltaVolume); //Do a fade step
+                //Cancel and Purge the Timer if the desired volume has been reached
+                if(volume>=1f){
+                    timer.cancel();
+                    timer.purge();
+                }
+            }
+        };
+
+        timer.schedule(timerTask,FADE_INTERVAL,FADE_INTERVAL);
+    }
+
+    private void fadeOutStep(float deltaVolume){
+        mediaPlayer.setVolume(volume, volume);
+        volume += deltaVolume;
+
     }
 }

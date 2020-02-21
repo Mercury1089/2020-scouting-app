@@ -78,6 +78,7 @@ public class Auton extends Fragment {
     private int totalScored;
     private int totalMissed;
     private ValueAnimator teleopButtonAnimation;
+    private AnimatorSet animatorSet;
 
     public static Auton newInstance() {
         Auton fragment = new Auton();
@@ -201,16 +202,24 @@ public class Auton extends Fragment {
                     ObjectAnimator rightEdgeLighter = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
                     ObjectAnimator leftEdgeLighter = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
 
+                    ValueAnimator teleopButtonAnim = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.melon), GenUtils.getAColor(context, R.color.fire));
+                    teleopButtonAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            nextButton.setBackgroundColor((Integer)animation.getAnimatedValue());
+                        }
+                    });
+
                     topEdgeLighter.setDuration(500);
                     bottomEdgeLighter.setDuration(500);
                     leftEdgeLighter.setDuration(500);
                     rightEdgeLighter.setDuration(500);
+                    teleopButtonAnim.setDuration(500);
 
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter);
-                    animatorSet.start();
+                    AnimatorSet animatorSet1 = new AnimatorSet();
+                    animatorSet1.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter, teleopButtonAnim);
 
-                    teleopButtonAnimation = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.melon), GenUtils.getAColor(context, R.color.fire));
+                    teleopButtonAnimation = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.fire), GenUtils.getAColor(context, R.color.juicy_orange));
 
                     teleopButtonAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
@@ -222,7 +231,10 @@ public class Auton extends Fragment {
                     teleopButtonAnimation.setDuration(500);
                     teleopButtonAnimation.setRepeatMode(ValueAnimator.REVERSE);
                     teleopButtonAnimation.setRepeatCount(ValueAnimator.INFINITE);
-                    teleopButtonAnimation.start();
+
+                    animatorSet = new AnimatorSet();
+                    animatorSet.playSequentially(animatorSet1, teleopButtonAnimation);
+                    animatorSet.start();
                 }
             }
         };
@@ -695,12 +707,13 @@ public class Auton extends Fragment {
             if (isVisibleToUser) {
                 setupHashMap = HashMapManager.getSetupHashMap();
                 autonHashMap = HashMapManager.getAutonHashMap();
-                nextButton.setAlpha(1.0f);
                 updateXMLObjects();
                 //set all objects in the fragment to their values from the HashMaps
             } else {
-                if(teleopButtonAnimation != null)
-                    teleopButtonAnimation.end();
+                if(teleopButtonAnimation != null) {
+                    teleopButtonAnimation.cancel();
+                    nextButton.setBackgroundColor(getResources().getColor(R.color.fire));
+                }
                 HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putAutonHashMap(autonHashMap);
             }
