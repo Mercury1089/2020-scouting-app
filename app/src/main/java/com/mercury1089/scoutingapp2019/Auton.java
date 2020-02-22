@@ -258,7 +258,7 @@ public class Auton extends Fragment {
                     AnimatorSet animatorSet1 = new AnimatorSet();
                     animatorSet1.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter, teleopButtonAnim, teleopTextAnim, teleopArrowAnim);
 
-                    teleopButtonAnimation = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.fire), GenUtils.getAColor(context, R.color.juicy_orange));
+                    teleopButtonAnimation = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.fire), GenUtils.getAColor(context, R.color.ocean));
 
                     teleopButtonAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
@@ -763,6 +763,7 @@ public class Auton extends Fragment {
                             }
                     ));
                     nextButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.right_states,0);
+                    nextButton.setSelected(true);
                 }
                 HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putAutonHashMap(autonHashMap);

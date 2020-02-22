@@ -312,6 +312,7 @@ public class Climb extends Fragment {
                                         HashMapManager.setupNextMatch(newScouterSwitch.isChecked());
                                         Intent intent = new Intent(context, PregameActivity.class);
                                         startActivity(intent);
+                                        context.finish();
                                         dialog.dismiss();
                                         confirmDialog.dismiss();
                                     }

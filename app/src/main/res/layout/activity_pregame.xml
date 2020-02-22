@@ -344,7 +344,6 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="9dp"
         android:background="@android:color/transparent"
-        android:drawableEnd="@drawable/starting_pos"
         android:gravity="center"
         android:onClick="fieldPosClicked"
         android:paddingRight="@dimen/left_pos_padding"
@@ -417,7 +416,6 @@
         android:gravity="center"
         android:onClick="fieldPosClicked"
         android:paddingRight="@dimen/right_pos_padding"
-        android:drawableEnd="@drawable/starting_pos"
         android:tag="RL2"
         app:layout_constraintEnd_toEndOf="@+id/PlayingField"
         app:layout_constraintTop_toTopOf="@+id/PlayingField" />
