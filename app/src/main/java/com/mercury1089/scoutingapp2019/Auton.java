@@ -1,9 +1,13 @@
 package com.mercury1089.scoutingapp2019;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.os.Vibrator;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -202,11 +206,44 @@ public class Auton extends Fragment {
                     ObjectAnimator rightEdgeLighter = ObjectAnimator.ofFloat(rightEdgeBar, View.ALPHA, 0.0f, 1.0f);
                     ObjectAnimator leftEdgeLighter = ObjectAnimator.ofFloat(leftEdgeBar, View.ALPHA, 0.0f, 1.0f);
 
-                    ValueAnimator teleopButtonAnim = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.melon), GenUtils.getAColor(context, R.color.fire));
+                    int currentButtonColor = GenUtils.getAColor(context, R.color.melon);
+                    if(!nextButton.isEnabled())
+                        currentButtonColor = GenUtils.getAColor(context, R.color.night);
+
+                    ValueAnimator teleopButtonAnim = ValueAnimator.ofArgb(currentButtonColor, GenUtils.getAColor(context, R.color.fire));
                     teleopButtonAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
                             nextButton.setBackgroundColor((Integer)animation.getAnimatedValue());
+                        }
+                    });
+
+                    int currentArrowColor = GenUtils.getAColor(context, R.color.ice);
+                    if(!nextButton.isEnabled())
+                        currentArrowColor = GenUtils.getAColor(context, R.color.ocean);
+
+                    ValueAnimator teleopArrowAnim = ValueAnimator.ofArgb(currentArrowColor, GenUtils.getAColor(context, R.color.ice));
+                    teleopArrowAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            nextButton.getCompoundDrawablesRelative()[2].setColorFilter((Integer)animation.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+                        }
+                    });
+
+                    teleopArrowAnim.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            nextButton.getCompoundDrawablesRelative()[2].clearColorFilter();
+                            nextButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.right,0);
+                        }
+                    });
+
+                    ValueAnimator teleopTextAnim = ValueAnimator.ofArgb(nextButton.getCurrentTextColor(), GenUtils.getAColor(context, R.color.ice));
+                    teleopTextAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            nextButton.setTextColor((Integer)animation.getAnimatedValue());
                         }
                     });
 
@@ -215,9 +252,11 @@ public class Auton extends Fragment {
                     leftEdgeLighter.setDuration(500);
                     rightEdgeLighter.setDuration(500);
                     teleopButtonAnim.setDuration(500);
+                    teleopTextAnim.setDuration(500);
+                    teleopArrowAnim.setDuration(500);
 
                     AnimatorSet animatorSet1 = new AnimatorSet();
-                    animatorSet1.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter, teleopButtonAnim);
+                    animatorSet1.playTogether(topEdgeLighter, bottomEdgeLighter, leftEdgeLighter, rightEdgeLighter, teleopButtonAnim, teleopTextAnim, teleopArrowAnim);
 
                     teleopButtonAnimation = ValueAnimator.ofArgb(GenUtils.getAColor(context, R.color.fire), GenUtils.getAColor(context, R.color.juicy_orange));
 
@@ -295,12 +334,12 @@ public class Auton extends Fragment {
             // Buttons
             private Button doneButton;
             private Button cancelButton;
-            private Button outerIncrement;
-            private Button outerDecrement;
-            private Button innerIncrement;
-            private Button innerDecrement;
-            private Button lowerIncrement;
-            private Button lowerDecrement;
+            private ImageButton outerIncrement;
+            private ImageButton outerDecrement;
+            private ImageButton innerIncrement;
+            private ImageButton innerDecrement;
+            private ImageButton lowerIncrement;
+            private ImageButton lowerDecrement;
 
             // TextViews
             private TextView outerScore;
@@ -471,10 +510,10 @@ public class Auton extends Fragment {
             // Buttons
             private Button doneButton;
             private Button cancelButton;
-            private Button higherIncrement;
-            private Button higherDecrement;
-            private Button lowerIncrement;
-            private Button lowerDecrement;
+            private ImageButton higherIncrement;
+            private ImageButton higherDecrement;
+            private ImageButton lowerIncrement;
+            private ImageButton lowerDecrement;
 
             // TextViews
             private TextView higherScore;
@@ -712,7 +751,18 @@ public class Auton extends Fragment {
             } else {
                 if(teleopButtonAnimation != null) {
                     teleopButtonAnimation.cancel();
-                    nextButton.setBackgroundColor(getResources().getColor(R.color.fire));
+                    nextButton.setBackground(getResources().getDrawable(R.drawable.button_next_states));
+                    nextButton.setTextColor(new ColorStateList(
+                            new int [] [] {
+                                    new int [] {android.R.attr.state_enabled},
+                                    new int [] {}
+                            },
+                            new int [] {
+                                    GenUtils.getAColor(context, R.color.ice),
+                                    GenUtils.getAColor(context, R.color.ocean)
+                            }
+                    ));
+                    nextButton.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.right_states,0);
                 }
                 HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putAutonHashMap(autonHashMap);

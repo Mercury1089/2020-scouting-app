@@ -10,8 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Contents"
-        android:layout_width="@dimen/scoring_popup_width"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/missed_popup_width"
+        android:layout_height="315dp"
         android:background="@color/bg_scoring_popup"
         app:layout_constraintBottom_toTopOf="@+id/carat"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +162,7 @@
             android:layout_marginEnd="20dp"
             android:background="@android:color/transparent"
             android:text="@string/Cancel"
-            android:textColor="@color/ice"
+            android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

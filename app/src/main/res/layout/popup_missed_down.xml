@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScoredPopupWindow"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="@dimen/missed_popup_width"
+    android:layout_height="@dimen/missed_popup_height"
     android:background="@android:color/transparent">
 
     <View
@@ -18,8 +18,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Contents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/missed_popup_width"
+        android:layout_height="315dp"
         android:background="@color/bg_scoring_popup"
         android:padding="@dimen/padding"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/UpperPortID"
-            android:textColor="@color/ice"
+            android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/DefaultValue"
-            android:textColor="@color/ice"
+            android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/UpperID"
             app:layout_constraintStart_toEndOf="@+id/UpperIncrementDecrementContainer"
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:text="@string/LowerPortID"
-            android:textColor="@color/ice"
+            android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/label_text_size"
             app:layout_constraintStart_toStartOf="@+id/UpperID"
             app:layout_constraintTop_toBottomOf="@+id/UpperID" />
@@ -135,7 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/DefaultValue"
-            android:textColor="@color/ice"
+            android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/LowerID"
             app:layout_constraintStart_toStartOf="@+id/UpperScore"
@@ -165,7 +165,7 @@
             android:layout_marginEnd="20dp"
             android:background="@android:color/transparent"
             android:text="@string/Cancel"
-            android:textColor="@color/ice"
+            android:textColor="@color/bootstrap_brand_secondary_border"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

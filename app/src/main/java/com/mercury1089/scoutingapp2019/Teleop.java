@@ -159,12 +159,12 @@ public class Teleop extends Fragment {
             // Buttons
             private Button doneButton;
             private Button cancelButton;
-            private Button outerIncrement;
-            private Button outerDecrement;
-            private Button innerIncrement;
-            private Button innerDecrement;
-            private Button lowerIncrement;
-            private Button lowerDecrement;
+            private ImageButton outerIncrement;
+            private ImageButton outerDecrement;
+            private ImageButton innerIncrement;
+            private ImageButton innerDecrement;
+            private ImageButton lowerIncrement;
+            private ImageButton lowerDecrement;
 
             // TextViews
             private TextView outerScore;
@@ -332,10 +332,10 @@ public class Teleop extends Fragment {
             // Buttons
             private Button doneButton;
             private Button cancelButton;
-            private Button higherIncrement;
-            private Button higherDecrement;
-            private Button lowerIncrement;
-            private Button lowerDecrement;
+            private ImageButton higherIncrement;
+            private ImageButton higherDecrement;
+            private ImageButton lowerDecrement;
+            private ImageButton lowerIncrement;
 
             // TextViews
             private TextView higherScore;
