@@ -9,7 +9,7 @@
     <dimen name="tail_height">12dp</dimen>
     <dimen name="scoring_popup_width">355dp</dimen>
     <dimen name="scoring_popup_height">398dp</dimen>
-    <dimen name="missed_popup_width">340dp</dimen>
+    <dimen name="missed_popup_width">350dp</dimen>
     <dimen name="missed_popup_height">343dp</dimen>
     <dimen name="carat_width">48dp</dimen>
     <dimen name="carat_height">28dp</dimen>

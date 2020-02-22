@@ -267,7 +267,7 @@ public class Auton extends Fragment {
                         }
                     });
 
-                    teleopButtonAnimation.setDuration(500);
+                    teleopButtonAnimation.setDuration(500);;
                     teleopButtonAnimation.setRepeatMode(ValueAnimator.REVERSE);
                     teleopButtonAnimation.setRepeatCount(ValueAnimator.INFINITE);
 

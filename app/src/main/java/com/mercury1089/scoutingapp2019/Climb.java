@@ -280,8 +280,6 @@ public class Climb extends Fragment {
                         TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
                         Button goBackToMain = dialog.findViewById(R.id.GoBackButton);
-                        Switch scannedSwitch = dialog.findViewById(R.id.ScannedSwitch);
-                        Switch newScouterSwitch = dialog.findViewById(R.id.NewScouterSwitch);
                         imageView.setImageBitmap(bitmap);
                         dialog.setCancelable(false);
 
@@ -308,8 +306,8 @@ public class Climb extends Fragment {
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        QRStringBuilder.clearQRString(scannedSwitch.isChecked(), context);
-                                        HashMapManager.setupNextMatch(newScouterSwitch.isChecked());
+                                        QRStringBuilder.clearQRString(context);
+                                        HashMapManager.setupNextMatch();
                                         Intent intent = new Intent(context, PregameActivity.class);
                                         startActivity(intent);
                                         context.finish();

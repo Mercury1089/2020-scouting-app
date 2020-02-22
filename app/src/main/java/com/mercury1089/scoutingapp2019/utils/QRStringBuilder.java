@@ -54,8 +54,8 @@ public class QRStringBuilder {
         return QRString.toString();
     }
 
-    public static void clearQRString(boolean scanned,Context context) {
-        HashMapManager.appendQRList(QRString.toString() + (scanned ? "~Y" : "~N"), context);
+    public static void clearQRString(Context context) {
+        HashMapManager.appendQRList(QRString.toString(), context);
         QRString = new StringBuilder();
     }
 }

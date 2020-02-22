@@ -60,14 +60,11 @@ public class ListAdapter extends BaseAdapter {
         View vi = inflater.inflate(R.layout.qr_list_item, null);
 
         Button item = vi.findViewById(R.id.itemButton);
-        String[] qrDataFromFile = data[position].split("~");
 
-        String[] qrData = qrDataFromFile[0].split(",");
+        String[] qrData = data[position].split(",");
         Log.d("Stuff", data[position]);
-        String teamNumber = qrData[1], matchNumber = qrData[2], qrString = qrDataFromFile[0];
+        String teamNumber = qrData[1], matchNumber = qrData[2], qrString = data[position];
 
-        item.setSelected(qrDataFromFile[1].equals("Y"));
-        //item.setText("Team Number: " + padLeftZeros(teamNumber, 4) + "    Match Number: " + padLeftZeros(matchNumber, 2));
         item.setText(context.getString(R.string.QRCacheItem, padLeftZeros(teamNumber, 4), padLeftZeros(matchNumber, 2)));
         item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,8 +141,7 @@ public class ListAdapter extends BaseAdapter {
                         ImageView imageView = dialog.findViewById(R.id.imageView);
                         TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
-                        Button readButton = dialog.findViewById(R.id.readButton);
-                        Button unreadButton = dialog.findViewById(R.id.unreadButton);
+                        Button closeButton = dialog.findViewById(R.id.CloseButton);
                         imageView.setImageBitmap(bitmap);
                         dialog.setCancelable(false);
 
@@ -156,38 +152,9 @@ public class ListAdapter extends BaseAdapter {
 
                         dialog.show();
 
-                        readButton.setOnClickListener(new View.OnClickListener() {
+                        closeButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String[] qrList = HashMapManager.setupQRList(context);
-                                int qrDataIndex = -1;
-                                for(qrDataIndex = 0; qrDataIndex <= qrList.length; qrDataIndex++){
-                                    if(qrDataIndex == qrList.length)
-                                        throw new IndexOutOfBoundsException("QR String not found in file");
-                                    if(qrList[qrDataIndex].split("~")[0].equals(qrString))
-                                        break;
-                                }
-                                qrList[qrDataIndex] = qrString + "~Y";
-                                HashMapManager.outputQRList(qrList, context);
-                                buttonView.setSelected(true);
-                                dialog.dismiss();
-                            }
-                        });
-
-                        unreadButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                String[] qrList = HashMapManager.setupQRList(context);
-                                int qrDataIndex = -1;
-                                for(qrDataIndex = 0; qrDataIndex <= qrList.length; qrDataIndex++){
-                                    if(qrDataIndex == qrList.length)
-                                        throw new IndexOutOfBoundsException("QR String not found in file");
-                                    if(qrList[qrDataIndex].split("~")[0].equals(qrString))
-                                        break;
-                                }
-                                qrList[qrDataIndex] = qrString + "~N";
-                                HashMapManager.outputQRList(qrList, context);
-                                buttonView.setSelected(false);
                                 dialog.dismiss();
                             }
                         });

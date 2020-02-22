@@ -720,8 +720,6 @@ public class PregameActivity extends AppCompatActivity {
                         TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
                         Button goBackToMain = dialog.findViewById(R.id.GoBackButton);
-                        Switch scannedSwitch = dialog.findViewById(R.id.ScannedSwitch);
-                        Switch newScouterSwitch = dialog.findViewById(R.id.NewScouterSwitch);
                         imageView.setImageBitmap(bitmap);
 
                         dialog.setCancelable(false);
@@ -748,8 +746,8 @@ public class PregameActivity extends AppCompatActivity {
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        QRStringBuilder.clearQRString(scannedSwitch.isChecked(), getApplicationContext());
-                                        HashMapManager.setupNextMatch(newScouterSwitch.isChecked());
+                                        QRStringBuilder.clearQRString(getApplicationContext());
+                                        HashMapManager.setupNextMatch();
                                         setupHashMap = HashMapManager.getSetupHashMap();
                                         updateXMLObjects(true);
                                         dialog.dismiss();
