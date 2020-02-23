@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -95,6 +96,7 @@ public class Auton extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = (MatchActivity) getActivity();
+
         return inflater.inflate(R.layout.fragment_auton, container, false);
     }
 
@@ -102,7 +104,7 @@ public class Auton extends Fragment {
         super.onStart();
 
         //linking variables to XML elements on the screen
-        timerID = getView().findViewById((R.id.IDAutonSeconds1));
+        timerID = getView().findViewById(R.id.IDAutonSeconds1);
         secondsRemaining = getView().findViewById(R.id.AutonSeconds);
         teleopWarning = getView().findViewById(R.id.TeleopWarning);
 
@@ -381,10 +383,6 @@ public class Auton extends Fragment {
 
                 popupWindow.showAsDropDown(scoredButton);
                 scoredButton.setSelected(true);
-
-                //popupWindow.setOutsideTouchable(true);
-                //popupWindow.setFocusable(false);
-                //popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 Log.d("Stuff4", popupWindow.isFocusable() ? "YAY!" : "NOOOO!");
 
                 // Buttons

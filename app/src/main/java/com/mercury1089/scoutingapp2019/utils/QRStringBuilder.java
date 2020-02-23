@@ -24,7 +24,11 @@ public class QRStringBuilder {
         QRString.append(setup.get("AlliancePartner2")).append(",");
         QRString.append(setup.get("AllianceColor")).append(",");
         QRString.append(setup.get("NoShow").equals("1") ? "Y" : "N").append(",");
-        QRString.append(setup.get("StartingPosition")).append(",");
+        String startingPos = (String)setup.get("StartingPosition");
+        if(startingPos != null && startingPos.length() >= 2)
+            QRString.append(startingPos.substring(1)).append(",");
+        else
+            QRString.append(startingPos).append(",");
         QRString.append(auton.get("CrossedInitiationLine").equals("1") ? "Y" : "N").append(",");
         QRString.append(teleop.get("StageTwo").equals("1") ? "Y" : "N").append(",");
         QRString.append(teleop.get("StageThree").equals("1") ? "Y" : "N").append(",");

@@ -45,13 +45,12 @@ def show_webcam():
                     if len(chunk) < num_vals:
                         break
                     setup_arr[2] = chunk[0]
-                    #print(setup)
-                    csv_write.writerow(setup_arr + ["S", "I", chunk[1]])
-                    csv_write.writerow(setup_arr + ["S", "O", chunk[2]])
-                    csv_write.writerow(setup_arr + ["S", "L", chunk[3]])
-                    csv_write.writerow(setup_arr + ["M", "H", chunk[4]])
-                    csv_write.writerow(setup_arr + ["M", "L", chunk[5]])
-                    csv_write.writerow(setup_arr + ["D", "", chunk[6]])
+                    csv_write.writerow(setup_arr+["S", "I", chunk[1], scouter])
+                    csv_write.writerow(setup_arr+["S", "O", chunk[2], scouter])
+                    csv_write.writerow(setup_arr+["S", "L", chunk[3], scouter])
+                    csv_write.writerow(setup_arr+["M", "H", chunk[4], scouter])
+                    csv_write.writerow(setup_arr+["M", "L", chunk[5], scouter])
+                    csv_write.writerow(setup_arr+["D", "", chunk[6], scouter])
             last_input = qr.data
             print "Saved - ", scouter, ":", team,":", match
     cv2.destroyAllWindows()
