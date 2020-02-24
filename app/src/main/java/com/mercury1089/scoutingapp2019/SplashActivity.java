@@ -52,15 +52,12 @@ public class SplashActivity extends AppCompatActivity {
                 int lightningBoltSpeed = 200;
 
                 ObjectAnimator animatorX = ObjectAnimator.ofFloat(lightningBolt, View.X, 100, 200).setDuration(lightningBoltSpeed);
-                ObjectAnimator animatorY = ObjectAnimator.ofFloat(lightningBolt, View.Y, -200, 300).setDuration(lightningBoltSpeed);
+                ObjectAnimator animatorY = ObjectAnimator.ofFloat(lightningBolt, View.Y, -200, 350).setDuration(lightningBoltSpeed);
                 ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(lightningBolt, View.ALPHA, 0, 1).setDuration(lightningBoltSpeed);
                 ObjectAnimator animatorScreenAlphaOff = ObjectAnimator.ofFloat(constraintLayout, View.ALPHA, 1, 0).setDuration(100);
                 ObjectAnimator animatorTextAlpha = ObjectAnimator.ofFloat(developersText, View.ALPHA, 0, .5f).setDuration(0);
                 ObjectAnimator animatorScreenAlphaOn = ObjectAnimator.ofFloat(constraintLayout, View.ALPHA, 0, 1).setDuration(100);
-
                 ObjectAnimator anim = ObjectAnimator.ofFloat(developersText, View.ALPHA, .5f, 1.0f).setDuration(500);
-                anim.setRepeatCount(1);
-                anim.setRepeatMode(ObjectAnimator.REVERSE);
 
                 AnimatorSet lightningAnimation = new AnimatorSet();
                 lightningAnimation.playTogether(animatorX, animatorY, animatorAlpha);
