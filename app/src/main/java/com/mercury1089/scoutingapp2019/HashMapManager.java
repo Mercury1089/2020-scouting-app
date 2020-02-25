@@ -95,6 +95,8 @@ public class HashMapManager{
      *
      */
     public static void putSettingsHashMap(LinkedHashMap<String, String> settingsData){
+        if(settingsData == null)
+            return;
         settingsHashMap = settingsData;
     }
 
@@ -105,6 +107,9 @@ public class HashMapManager{
     *
      */
     public static void putSetupHashMap(LinkedHashMap<String, String> setupData){
+        if(setupData == null) {
+            return;
+        }
         setupHashMap = setupData;
     }
 
@@ -115,6 +120,8 @@ public class HashMapManager{
      *
      */
     public static void putAutonHashMap(LinkedHashMap<String, String> autonData){
+        if(autonData == null)
+            return;
         autonHashMap = autonData;
     }
 
@@ -125,6 +132,8 @@ public class HashMapManager{
      *
      */
     public static void putTeleopHashMap(LinkedHashMap<String, String> teleopData){
+        if(teleopData == null)
+            return;
         teleopHashMap = teleopData;
     }
 
@@ -135,6 +144,8 @@ public class HashMapManager{
      *
      */
     public static void putClimbHashMap(LinkedHashMap<String, String> climbData){
+        if(climbData == null)
+            return;
         climbHashMap = climbData;
     }
 

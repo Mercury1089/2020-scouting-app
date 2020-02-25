@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -13,31 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
-    private float volume = 1;
+    private float volume = .25f;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-
-        /*
-        ObjectAnimator anim = new ObjectAnimator().ofFloat(developersText, View.ALPHA, 1.0f, .75f);
-        anim.setDuration(500);
-        anim.setRepeatCount(ObjectAnimator.INFINITE);
-        anim.setRepeatMode(ObjectAnimator.REVERSE);
-
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.play(anim);
-        animatorSet.start();
-        */
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -48,6 +34,12 @@ public class SplashActivity extends AppCompatActivity {
                 TextView developersText = findViewById(R.id.CreditWhereCreditsDue);
 
                 mediaPlayer = MediaPlayer.create(SplashActivity.this, R.raw.thunder2);
+                mediaPlayer.setVolume(volume, volume);
+                try {
+                    mediaPlayer.prepare();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 int lightningBoltSpeed = 200;
 
@@ -100,7 +92,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 fadeOutStep(deltaVolume); //Do a fade step
                 //Cancel and Purge the Timer if the desired volume has been reached
-                if(volume>=1f){
+                if(volume<=0f){
                     timer.cancel();
                     timer.purge();
                 }
@@ -112,7 +104,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void fadeOutStep(float deltaVolume){
         mediaPlayer.setVolume(volume, volume);
-        volume += deltaVolume;
+        volume -= deltaVolume;
 
     }
 }

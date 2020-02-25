@@ -13,10 +13,14 @@
         android:roundIcon="@mipmap/infinite_recharge_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".PregameActivity"/>
-        <activity android:name=".MatchActivity"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PregameActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MatchActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
