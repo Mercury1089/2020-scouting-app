@@ -12,7 +12,6 @@ import android.os.Vibrator;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -84,6 +83,8 @@ public class Auton extends Fragment {
     private int totalMissed;
     private ValueAnimator teleopButtonAnimation;
     private AnimatorSet animatorSet;
+    private boolean scoredReTap;
+    private boolean missedReTap;
 
     public static Auton newInstance() {
         Auton fragment = new Auton();
@@ -354,6 +355,11 @@ public class Auton extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                if(scoredReTap) {
+                    scoredReTap = false;
+                    return;
+                }
+
                 possessionButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
 
@@ -383,7 +389,19 @@ public class Auton extends Fragment {
 
                 popupWindow.showAsDropDown(scoredButton);
                 scoredButton.setSelected(true);
-                Log.d("Stuff4", popupWindow.isFocusable() ? "YAY!" : "NOOOO!");
+
+                popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if(0 <= event.getX() && event.getX() <= scoredButton.getWidth() &&
+                                popupWindow.getHeight() <= event.getY() && event.getY() <= popupWindow.getHeight() + scoredButton.getHeight()) {
+                            scoredReTap = true;
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
 
                 // Buttons
                 doneButton = popupView.findViewById(R.id.DoneButton);
@@ -407,8 +425,7 @@ public class Auton extends Fragment {
                 updateObjects();
 
                 outerIncrement.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                    @Override public void onClick(View v) {
                         autonHashMap.put("OuterPortScored", Integer.toString(Integer.parseInt((String)outerScore.getText()) + 1));
                         updateObjects();
                     }
@@ -522,6 +539,11 @@ public class Auton extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                if(missedReTap) {
+                    missedReTap = false;
+                    return;
+                }
+
                 possessionButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
 
@@ -551,6 +573,19 @@ public class Auton extends Fragment {
 
                 popupWindow.showAsDropDown(missedButton);
                 missedButton.setSelected(true);
+
+                popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if(0 <= event.getX() && event.getX() <= missedButton.getWidth() &&
+                                popupWindow.getHeight() <= event.getY() && event.getY() <= popupWindow.getHeight() + missedButton.getHeight()) {
+                            missedReTap = true;
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
 
                 // Buttons
                 doneButton = popupView.findViewById(R.id.DoneButton);

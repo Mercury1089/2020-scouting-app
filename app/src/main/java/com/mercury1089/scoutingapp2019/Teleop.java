@@ -3,6 +3,7 @@ package com.mercury1089.scoutingapp2019;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -64,6 +65,8 @@ public class Teleop extends Fragment {
     private ConstraintLayout constraintLayout;
     private int totalScored;
     private int totalMissed;
+    private boolean scoredReTap;
+    private boolean missedReTap;
 
     public static Teleop newInstance() {
         Teleop fragment = new Teleop();
@@ -177,6 +180,11 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                if(scoredReTap){
+                    scoredReTap = false;
+                    return;
+                }
+
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
@@ -208,6 +216,19 @@ public class Teleop extends Fragment {
 
                 popupWindow.showAsDropDown(scoredButton);
                 scoredButton.setSelected(true);
+
+                popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if(0 <= event.getX() && event.getX() <= scoredButton.getWidth() &&
+                                -scoredButton.getHeight() <= event.getY() && event.getY() <= 0) {
+                            scoredReTap = true;
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
 
                 // Buttons
                 doneButton = popupView.findViewById(R.id.DoneButton);
@@ -346,6 +367,11 @@ public class Teleop extends Fragment {
             private String oldLowerScore;
 
             public void onClick(View view){
+                if(missedReTap){
+                    missedReTap = false;
+                    return;
+                }
+
                 possessionButtonsEnabledState(false);
                 controlPanelButtonsEnabledState(false);
                 miscButtonsEnabledState(false);
@@ -377,6 +403,19 @@ public class Teleop extends Fragment {
 
                 popupWindow.showAsDropDown(missedButton);
                 missedButton.setSelected(true);
+
+                popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if(0 <= event.getX() && event.getX() <= missedButton.getWidth() &&
+                                -missedButton.getHeight() <= event.getY() && event.getY() <= 0) {
+                            missedReTap = true;
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
 
                 // Buttons
                 doneButton = popupView.findViewById(R.id.DoneButton);
