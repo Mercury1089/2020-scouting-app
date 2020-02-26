@@ -35,11 +35,6 @@ public class SplashActivity extends AppCompatActivity {
 
                 mediaPlayer = MediaPlayer.create(SplashActivity.this, R.raw.thunder2);
                 mediaPlayer.setVolume(volume, volume);
-                try {
-                    mediaPlayer.prepare();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
 
                 int lightningBoltSpeed = 200;
 
