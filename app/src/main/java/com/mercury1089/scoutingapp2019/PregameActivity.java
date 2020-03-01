@@ -717,6 +717,7 @@ public class PregameActivity extends AppCompatActivity {
                         dialog.setContentView(R.layout.popup_qr);
 
                         ImageView imageView = dialog.findViewById(R.id.imageView);
+                        TextView scouterName = dialog.findViewById(R.id.ScouterNameQR);
                         TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
                         Button goBackToMain = dialog.findViewById(R.id.GoBackButton);
@@ -724,6 +725,7 @@ public class PregameActivity extends AppCompatActivity {
 
                         dialog.setCancelable(false);
 
+                        scouterName.setText(setupHashMap.get("ScouterName"));
                         teamNumber.setText(setupHashMap.get("TeamNumber"));
                         matchNumber.setText(setupHashMap.get("MatchNumber"));
 

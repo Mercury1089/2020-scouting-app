@@ -63,7 +63,7 @@ public class ListAdapter extends BaseAdapter {
 
         String[] qrData = data[position].split(",");
         Log.d("Stuff", data[position]);
-        String teamNumber = qrData[1], matchNumber = qrData[2], qrString = data[position];
+        String scouterName = qrData[0], teamNumber = qrData[1], matchNumber = qrData[2], qrString = data[position];
 
         item.setText(context.getString(R.string.QRCacheItem, padLeftZeros(teamNumber, 4), padLeftZeros(matchNumber, 2)));
         item.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,7 @@ public class ListAdapter extends BaseAdapter {
                 new Thread(qrRunnable).start();
             }
         });
-        item.setTag(teamNumber + "~" + matchNumber + "~" + qrString);
+        item.setTag(scouterName + "~" + teamNumber + "~" + matchNumber + "~" + qrString);
         item.setId(Integer.parseInt(teamNumber+matchNumber));
         return vi;
     }
@@ -115,16 +115,15 @@ public class ListAdapter extends BaseAdapter {
 
     class QRRunnable implements Runnable {
 
-        private String teamNum, matchNum, qrString;
+        private String scouter, teamNum, matchNum, qrString;
         private SettingsActivity context;
-        private View buttonView;
 
         public QRRunnable(String[] qrData, Context c, View v){
-            teamNum = qrData[0];
-            matchNum = qrData[1];
-            qrString = qrData[2];
+            scouter = qrData[0];
+            teamNum = qrData[1];
+            matchNum = qrData[2];
+            qrString = qrData[3];
             context = (SettingsActivity) c;
-            buttonView = v;
         }
 
         @Override
@@ -139,12 +138,15 @@ public class ListAdapter extends BaseAdapter {
                         dialog.setContentView(R.layout.popup_qr_cached);
 
                         ImageView imageView = dialog.findViewById(R.id.imageView);
+                        TextView scouterName = dialog.findViewById(R.id.ScouterNameQR);
                         TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
                         TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
                         Button closeButton = dialog.findViewById(R.id.CloseButton);
                         imageView.setImageBitmap(bitmap);
+
                         dialog.setCancelable(false);
 
+                        scouterName.setText(scouter);
                         teamNumber.setText(GenUtils.padLeftZeros(teamNum, 2));
                         matchNumber.setText(GenUtils.padLeftZeros(matchNum, 2));
 

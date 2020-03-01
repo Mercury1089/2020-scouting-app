@@ -7,6 +7,17 @@
     android:padding="40dp">
 
     <TextView
+        android:id="@+id/IDScouterNameQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/ScouterNameID"
+        android:textColor="@color/bootstrap_dropdown_divider"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/IDMatchNumberQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +26,7 @@
         android:textColor="@color/bootstrap_dropdown_divider"
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/IDScouterNameQR" />
 
     <TextView
         android:id="@+id/IDTeamNumberQR"
@@ -39,6 +50,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDTeamNumberQR"
         app:srcCompat="@color/bootstrap_brand_secondary_text" />
+
+    <TextView
+        android:id="@+id/ScouterNameQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="John Doe"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDScouterNameQR"
+        app:layout_constraintStart_toEndOf="@+id/IDScouterNameQR"
+        app:layout_constraintTop_toTopOf="@+id/IDScouterNameQR" />
 
     <TextView
         android:id="@+id/MatchNumberQR"

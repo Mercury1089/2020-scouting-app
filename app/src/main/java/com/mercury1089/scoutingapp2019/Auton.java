@@ -158,6 +158,9 @@ public class Auton extends Fragment {
             public void onTick(long millisUntilFinished) {
                 secondsRemaining.setText(GenUtils.padLeftZeros("" + millisUntilFinished / 1000, 2));
 
+                if(!running)
+                    return;
+
                 if (millisUntilFinished / 1000 <= 3 && millisUntilFinished / 1000 > 0) {  //play the blinking animation
                     teleopWarning.setVisibility(View.VISIBLE);
                     timerID.setTextColor(context.getResources().getColor(R.color.banana));
