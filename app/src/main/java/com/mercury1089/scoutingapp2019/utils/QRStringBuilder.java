@@ -16,6 +16,9 @@ public class QRStringBuilder {
         LinkedHashMap teleop = HashMapManager.getTeleopHashMap();
         LinkedHashMap climb = HashMapManager.getClimbHashMap();
 
+        //Game Title
+        QRString.append("InfiniteRecharge,");
+
         //Setup Data
         QRString.append(setup.get("ScouterName")).append(",");
         QRString.append(setup.get("TeamNumber")).append(",");
