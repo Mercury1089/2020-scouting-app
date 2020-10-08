@@ -269,11 +269,16 @@ public class HashMapManager{
     public static void setDefaultValues(HASH map){
         switch(map) {
             case SETTINGS:
+                //include all the items that will be in the settingsHashMap
                 settingsHashMap.put("HashMapName", "Settings");
                 settingsHashMap.put("NothingToSeeHere", "0");
                 settingsHashMap.put("Slack", "0");
                 settingsHashMap.put("DefaultPassword", "abc");
+                settingsHashMap.put("QRName", "InfiniteRechargeScouting"); //Value is final
+                settingsHashMap.put("SetupNum", "13"); //Value is final
+                settingsHashMap.put("EventNum", "7"); //Value is final
             case SETUP:
+                //include all the items that will be in the setupHashMap
                 setupHashMap.put("HashMapName", "Setup");
                 setupHashMap.put("ScouterName", "");
                 setupHashMap.put("MatchNumber", "");

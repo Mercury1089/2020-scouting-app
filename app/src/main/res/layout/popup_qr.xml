@@ -58,7 +58,7 @@
         android:layout_marginStart="16dp"
         android:fontFamily="@font/open_sans"
         android:gravity="center"
-        android:text="John Doe"
+        android:text="@string/DefaultScouterName"
         android:textColor="@color/ice"
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/IDScouterNameQR"

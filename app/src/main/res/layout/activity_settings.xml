@@ -35,8 +35,23 @@
         android:text="Password Settings"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
+        app:layout_constraintEnd_toStartOf="@+id/GetConfigCode"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toEndOf="@id/BackButton"
-        app:layout_constraintEnd_toStartOf="@id/MuteButton"
+        app:layout_constraintTop_toBottomOf="@+id/SettingsHeader" />
+
+    <Button
+        android:id="@+id/GetConfigCode"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/button_states"
+        android:fontFamily="@font/open_sans"
+        android:text="Get Config Code"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SettingsHeader" />
 
     <Button
@@ -114,14 +129,15 @@
         android:id="@+id/MuteButton"
         android:layout_width="60dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
         android:scaleType="fitXY"
         android:src="@drawable/mute"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/BackButton"
+        app:layout_constraintEnd_toEndOf="@+id/SettingsHeader"
+        app:layout_constraintTop_toTopOf="@+id/SettingsHeader"
         tools:ignore="ContentDescription" />
 
     <TextView

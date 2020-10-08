@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_general"
+    android:padding="@dimen/padding">
+
+    <TextView
+        android:id="@+id/IDQRName"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/IDQRName"
+        android:textColor="@color/bootstrap_dropdown_divider"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/IDSetupNum"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/IDSetupNum"
+        android:textColor="@color/bootstrap_dropdown_divider"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDQRName"
+        app:layout_constraintTop_toBottomOf="@+id/IDQRName" />
+
+    <TextView
+        android:id="@+id/IDEventNum"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/IDEventNum"
+        android:textColor="@color/bootstrap_dropdown_divider"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDSetupNum"
+        app:layout_constraintTop_toBottomOf="@+id/IDSetupNum" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="447dp"
+        android:layout_height="447dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/QRCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDEventNum"
+        app:srcCompat="@color/bootstrap_brand_secondary_text" />
+
+    <Button
+        android:id="@+id/CloseButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_active"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/Close"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/QRName"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/DefaultDesignation"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDQRName"
+        app:layout_constraintStart_toEndOf="@+id/IDQRName"
+        app:layout_constraintTop_toTopOf="@+id/IDQRName" />
+
+    <TextView
+        android:id="@+id/SetupNum"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/DefaultValue"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDSetupNum"
+        app:layout_constraintStart_toStartOf="@+id/EventNum"
+        app:layout_constraintTop_toTopOf="@+id/IDSetupNum" />
+
+    <TextView
+        android:id="@+id/EventNum"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/DefaultValue"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/IDEventNum"
+        app:layout_constraintStart_toEndOf="@+id/IDEventNum"
+        app:layout_constraintTop_toTopOf="@+id/IDEventNum" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

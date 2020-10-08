@@ -9,15 +9,14 @@ import java.util.LinkedHashMap;
 public class QRStringBuilder {
 
     private static StringBuilder QRString = new StringBuilder();
+    private static StringBuilder configString = new StringBuilder();
 
     public static void buildQRString(){
+        LinkedHashMap settings = HashMapManager.getSettingsHashMap();
         LinkedHashMap setup = HashMapManager.getSetupHashMap();
         LinkedHashMap auton = HashMapManager.getAutonHashMap();
         LinkedHashMap teleop = HashMapManager.getTeleopHashMap();
         LinkedHashMap climb = HashMapManager.getClimbHashMap();
-
-        //Game Title
-        QRString.append("InfiniteRechargeScouting,");
 
         //Setup Data
         QRString.append(setup.get("ScouterName")).append(",");
@@ -55,6 +54,20 @@ public class QRStringBuilder {
         QRString.append(teleop.get("UpperPortMissed")).append(",");
         QRString.append(teleop.get("LowerPortMissed")).append(",");
         QRString.append(teleop.get("NumberDropped")).append(",");
+
+        //QR Name
+        QRString.append(settings.get("QRName"));
+        System.out.println(QRString.toString());
+    }
+
+    public static void buildConfigString(){
+        LinkedHashMap settings = HashMapManager.getSettingsHashMap();
+        configString.append(settings.get("QRName")).append(",");
+        configString.append(settings.get("SetupNum")).append(",");
+        configString.append(settings.get("EventNum")).append(",");
+
+        //Code Designation
+        configString.append("config");
     }
 
     public static String getQRString(){
@@ -64,5 +77,9 @@ public class QRStringBuilder {
     public static void clearQRString(Context context) {
         HashMapManager.appendQRList(QRString.toString(), context);
         QRString = new StringBuilder();
+    }
+
+    public static String getConfigString() {
+        return configString.toString();
     }
 }

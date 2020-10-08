@@ -126,6 +126,14 @@
         <string name="SetupNextMatchID">DID YOU SCAN YOUR QR CODE?</string>
         <string name="SetupNextMatchDirections">Returning to the Setup screen will erase this QR code and all of your data from this match.</string>
         <string name="SetupNextMatch">SET UP NEXT MATCH</string>
+        <string name="Close">CLOSE</string>
+        <string name="DefaultScouterName">John Doe</string>
+
+    <!-- Config Popup -->
+        <string name="IDQRName">QR dode designation:</string>
+        <string name="IDSetupNum"># setup values:</string>
+        <string name="IDEventNum"># values per game phase:</string>
+        <string name="DefaultDesignation">DESIGNATION</string>
 
     <!-- Scored -->
         <string name="OuterPortID">OUTER</string>
