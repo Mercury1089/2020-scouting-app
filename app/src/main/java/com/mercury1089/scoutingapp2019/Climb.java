@@ -188,9 +188,6 @@ public class Climb extends Fragment {
         }
 
         if(setupHashMap.get("FellOver").equals("1")){
-            endgameID.setEnabled(false);
-            endgameDirections.setEnabled(false);
-
             climbedSwitch.setChecked(false);
             climbedSwitch.setEnabled(false);
             climbedID.setEnabled(false);
@@ -198,10 +195,6 @@ public class Climb extends Fragment {
             leveledSwitch.setChecked(false);
             leveledSwitch.setEnabled(false);
             leveledID.setEnabled(false);
-
-            parkedSwitch.setChecked(false);
-            parkedSwitch.setEnabled(false);
-            parkedID.setEnabled(false);
 
             climbHashMap.put("CLP", "");
         } else {
