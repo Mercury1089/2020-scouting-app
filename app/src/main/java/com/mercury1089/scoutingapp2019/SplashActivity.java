@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_activity);
+        setContentView(R.layout.activity_splash);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -31,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 ConstraintLayout constraintLayout = findViewById(R.id.SplashActivity);
                 ImageView lightningBolt = findViewById(R.id.LightningBolt);
+                ImageView target = findViewById(R.id.Target);
                 TextView developersText = findViewById(R.id.CreditWhereCreditsDue);
 
                 mediaPlayer = MediaPlayer.create(SplashActivity.this, R.raw.thunder2);
@@ -38,8 +39,8 @@ public class SplashActivity extends AppCompatActivity {
 
                 int lightningBoltSpeed = 200;
 
-                ObjectAnimator animatorX = ObjectAnimator.ofFloat(lightningBolt, View.X, 100, 200).setDuration(lightningBoltSpeed);
-                ObjectAnimator animatorY = ObjectAnimator.ofFloat(lightningBolt, View.Y, -200, 350).setDuration(lightningBoltSpeed);
+                ObjectAnimator animatorX = ObjectAnimator.ofFloat(lightningBolt, View.X, target.getX() - 150, target.getX()).setDuration(lightningBoltSpeed);
+                ObjectAnimator animatorY = ObjectAnimator.ofFloat(lightningBolt, View.Y, target.getY() - 550, target.getY()).setDuration(lightningBoltSpeed);
                 ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(lightningBolt, View.ALPHA, 0, 1).setDuration(lightningBoltSpeed);
                 ObjectAnimator animatorScreenAlphaOff = ObjectAnimator.ofFloat(constraintLayout, View.ALPHA, 1, 0).setDuration(100);
                 ObjectAnimator animatorTextAlpha = ObjectAnimator.ofFloat(developersText, View.ALPHA, 0, .5f).setDuration(0);

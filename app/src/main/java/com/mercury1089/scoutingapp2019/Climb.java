@@ -120,7 +120,7 @@ public class Climb extends Fragment {
             public void onClick(View v) {
                 Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.generate_qrcode_confirm_popup);
+                dialog.setContentView(R.layout.confirmation_popup_generate_qrcode);
 
                 Button generateQRButton = dialog.findViewById(R.id.GenerateQRButton);
                 Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
@@ -298,7 +298,7 @@ public class Climb extends Fragment {
                             public void onClick(View v) {
                                 Dialog confirmDialog = new Dialog(context);
                                 confirmDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                confirmDialog.setContentView(R.layout.setup_next_match_confirm_popup);
+                                confirmDialog.setContentView(R.layout.confirmation_popup_setup_next_match);
 
                                 Button setupNextMatchButton = confirmDialog.findViewById(R.id.SetupNextMatchButton);
                                 Button cancelConfirm = confirmDialog.findViewById(R.id.CancelConfirm);

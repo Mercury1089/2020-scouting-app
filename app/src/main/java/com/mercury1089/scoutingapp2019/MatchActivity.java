@@ -55,7 +55,7 @@ public class MatchActivity extends AppCompatActivity {
     public void onBackPressed() {
         Dialog dialog = new Dialog(MatchActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.exit_confirm_popup);
+        dialog.setContentView(R.layout.confirmation_popup_exit);
 
         Button exitConfirm = dialog.findViewById(R.id.ExitConfirm);
         Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);

@@ -81,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Context context = SettingsActivity.this;
                 Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.enter_password_popup);
+                dialog.setContentView(R.layout.popup_edit_password);
 
                 TextView passwordField = dialog.findViewById(R.id.PasswordField);
                 Switch requirePasswordSwitch = dialog.findViewById(R.id.SettingsPasswordSwitch);
@@ -142,7 +142,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Dialog dialog = new Dialog(SettingsActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.clear_qr_cache_confirm);
+                dialog.setContentView(R.layout.confirmation_popup_clear_qr_cache);
 
                 Button clearConfirm = dialog.findViewById(R.id.ClearConfirm);
                 Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);

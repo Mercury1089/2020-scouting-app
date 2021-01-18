@@ -9,8 +9,8 @@
     <fragment
         android:id="@+id/Auton"
         android:name="com.mercury1089.scoutingapp2019.Auton"
-        android:layout_width="599dp"
-        android:layout_height="893dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

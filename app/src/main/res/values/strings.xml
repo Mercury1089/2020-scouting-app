@@ -5,6 +5,10 @@
     <!-- new line = \n -->
 
 
+<!-- Activity Splash -->
+        <string name="Dev_Credit">Developed by Mercury 1089</string>
+
+
 <!-- Headings -->
     <!-- Titles -->
         <string name="app_name">Scouting App 2020</string>

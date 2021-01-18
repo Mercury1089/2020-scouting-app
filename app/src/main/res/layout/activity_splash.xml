@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/target"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/CreditWhereCreditsDue"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/lightning_bolt"
-        android:layout_marginLeft="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="parent" />
 
@@ -30,7 +29,7 @@
         android:id="@+id/CreditWhereCreditsDue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Developed by Mercury 1089"
+        android:text="@string/Dev_Credit"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:textColor="@color/melon"
         android:textSize="48sp"

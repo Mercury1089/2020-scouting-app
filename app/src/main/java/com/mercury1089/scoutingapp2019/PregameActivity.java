@@ -244,7 +244,7 @@ public class PregameActivity extends AppCompatActivity {
 
                 Dialog dialog = new Dialog(PregameActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.settings_password);
+                dialog.setContentView(R.layout.popup_settings_password);
 
                 TextView passwordField = dialog.findViewById(R.id.PasswordField);
                 Button confirm = dialog.findViewById(R.id.ConfirmButton);
@@ -369,7 +369,7 @@ public class PregameActivity extends AppCompatActivity {
                 if(isQRButton) {
                     Dialog dialog = new Dialog(PregameActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.generate_qrcode_confirm_popup);
+                    dialog.setContentView(R.layout.confirmation_popup_generate_qrcode);
 
                     Button generateQRButton = dialog.findViewById(R.id.GenerateQRButton);
                     Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
@@ -440,7 +440,7 @@ public class PregameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Dialog dialog = new Dialog(PregameActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.clear_confirm_popup);
+                dialog.setContentView(R.layout.confirmation_popup_clear);
 
                 Button clearConfirm = dialog.findViewById(R.id.ClearConfirm);
                 Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
@@ -738,7 +738,7 @@ public class PregameActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 Dialog confirmDialog = new Dialog(PregameActivity.this);
                                 confirmDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                confirmDialog.setContentView(R.layout.setup_next_match_confirm_popup);
+                                confirmDialog.setContentView(R.layout.confirmation_popup_setup_next_match);
 
                                 Button setupNextMatchButton = confirmDialog.findViewById(R.id.SetupNextMatchButton);
                                 Button cancelConfirm = confirmDialog.findViewById(R.id.CancelConfirm);
